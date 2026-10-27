@@ -2,7 +2,7 @@
 
 Seth Douglas and Nidhal Mghirbi
 
-Version 1.0.0, October 2026.
+Version 1.0.0, October 2026. DOI: [10.5281/zenodo.23697346](https://doi.org/10.5281/zenodo.23697346).
 
 The paper is split from its companion paper, *An explicit nonlocal game of quantum value one that needs exponential
 entanglement* (Nidhal Mghirbi and Seth Douglas, 2026, doi:[10.5281/zenodo.23697255](https://doi.org/10.5281/zenodo.23697255)), released together with it; each theorem is proved in exactly
