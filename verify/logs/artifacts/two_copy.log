@@ -1,0 +1,227 @@
+$ python -I -B two_copy/EXACT.py 
+{"rows_done": 0, "unique_exact_matrices": 4061, "seconds": 0.4193305000080727}
+{"rows_done": 5000, "unique_exact_matrices": 4102, "seconds": 0.4554739000159316}
+{"rows_done": 10000, "unique_exact_matrices": 4102, "seconds": 0.4770153000135906}
+{"rows_done": 15000, "unique_exact_matrices": 4102, "seconds": 0.5101179000339471}
+{"rows_done": 20000, "unique_exact_matrices": 4102, "seconds": 0.5312344999983907}
+{"rows_done": 25000, "unique_exact_matrices": 4102, "seconds": 0.5531524000107311}
+{"rows_done": 30000, "unique_exact_matrices": 4102, "seconds": 0.6077974000363611}
+{"rows_done": 35000, "unique_exact_matrices": 4102, "seconds": 0.6313620000146329}
+{"rows_done": 40000, "unique_exact_matrices": 4102, "seconds": 0.6541237000492401}
+{"rows_done": 45000, "unique_exact_matrices": 4102, "seconds": 0.6773296000319533}
+{"rows_done": 50000, "unique_exact_matrices": 4102, "seconds": 0.699638300051447}
+{"rows_done": 55000, "unique_exact_matrices": 4102, "seconds": 0.7225789000513032}
+{"rows_done": 60000, "unique_exact_matrices": 4102, "seconds": 0.7468309000250883}
+{"rows_done": 65000, "unique_exact_matrices": 4126, "seconds": 0.841863600013312}
+{"rows_done": 70000, "unique_exact_matrices": 4126, "seconds": 1.0633442000253126}
+{"rows_done": 75000, "unique_exact_matrices": 4126, "seconds": 1.0936089000315405}
+{"rows_done": 80000, "unique_exact_matrices": 4126, "seconds": 1.1292477000388317}
+{"rows_done": 85000, "unique_exact_matrices": 4126, "seconds": 1.1582025000243448}
+{"rows_done": 90000, "unique_exact_matrices": 4126, "seconds": 1.184448100044392}
+{"rows_done": 95000, "unique_exact_matrices": 4126, "seconds": 1.212116100010462}
+{"rows_done": 100000, "unique_exact_matrices": 4126, "seconds": 1.239741800003685}
+{"rows_done": 105000, "unique_exact_matrices": 4126, "seconds": 1.2639329000376165}
+{"rows_done": 110000, "unique_exact_matrices": 4126, "seconds": 1.2908966999966651}
+{"rows_done": 115000, "unique_exact_matrices": 4126, "seconds": 1.319087700045202}
+{"rows_done": 120000, "unique_exact_matrices": 4126, "seconds": 1.3464367000269704}
+{"rows_done": 125000, "unique_exact_matrices": 4126, "seconds": 1.3725590000394732}
+{"rows_done": 130000, "unique_exact_matrices": 4126, "seconds": 1.401622400037013}
+{"rows_done": 135000, "unique_exact_matrices": 4126, "seconds": 1.4236524000298232}
+{"rows_done": 140000, "unique_exact_matrices": 4126, "seconds": 1.4493601000285707}
+{"rows_done": 145000, "unique_exact_matrices": 4126, "seconds": 1.4732850000145845}
+{"rows_done": 150000, "unique_exact_matrices": 4126, "seconds": 1.4999982000445016}
+{"rows_done": 155000, "unique_exact_matrices": 4126, "seconds": 1.525881500041578}
+{"rows_done": 160000, "unique_exact_matrices": 4126, "seconds": 1.558072500047274}
+{
+  "status": "PASS",
+  "artifact_sha256": "ee3dcceff877b13a9156bd0971534a1e3cacedf95d50ee22a0b66fe596142a1e",
+  "counts": {
+    "squares": 199129,
+    "rows": 164608,
+    "row_commutators": 493855
+  },
+  "all_declared_variables_used": true,
+  "rows_covered": [
+    0,
+    164608
+  ],
+  "row_visit_hash": "2dabfb92123981bb75905c8e6da8528602ed522fd8daf864f3a70bc9b35a93c3",
+  "split_source_block_checks": 576,
+  "controls": {
+    "positive_source_controls": 4,
+    "negative_source_controls": 2,
+    "wrong_row_sign_rejected": true
+  },
+  "arity_histogram": {
+    "3": 164606,
+    "9": 1,
+    "2": 1
+  },
+  "unique_exact_matrices": 4126,
+  "monomial_product_cache": 19064,
+  "source_word_cache": 60,
+  "factor_product_cache": 82,
+  "peak_process_bytes": 121085952,
+  "seconds": 1.6131574000464752,
+  "limits": "Exact audit in the full negative product-HNN algebra, including all final rows. Finite identities do not replace the written arbitrary-state theorem."
+}
+[exit code 0]
+
+$ python -I -B two_copy/PLAY.py 
+{"physical_squares_done": 199129, "unique_physical_matrices": 3924, "seconds": 1.0997134000062943, "peak_bytes": 131555328}
+{"contexts_done": 2000, "last_row": 1999, "unique_context_Born_data": 112, "unique_physical_matrices": 3924, "seconds": 1.335132100037299, "peak_bytes": 131555328}
+{"contexts_done": 4000, "last_row": 3999, "unique_context_Born_data": 112, "unique_physical_matrices": 3924, "seconds": 1.4400458000018261, "peak_bytes": 131555328}
+{"contexts_done": 6000, "last_row": 5999, "unique_context_Born_data": 112, "unique_physical_matrices": 3924, "seconds": 1.5442255000234582, "peak_bytes": 131555328}
+{"contexts_done": 8000, "last_row": 7999, "unique_context_Born_data": 112, "unique_physical_matrices": 3924, "seconds": 1.6448925000149757, "peak_bytes": 131555328}
+{"contexts_done": 10000, "last_row": 9999, "unique_context_Born_data": 112, "unique_physical_matrices": 3924, "seconds": 1.749474000011105, "peak_bytes": 131555328}
+{"contexts_done": 12000, "last_row": 11999, "unique_context_Born_data": 198, "unique_physical_matrices": 3924, "seconds": 1.9192526999977417, "peak_bytes": 131555328}
+{"contexts_done": 14000, "last_row": 13999, "unique_context_Born_data": 228, "unique_physical_matrices": 3924, "seconds": 2.0408155000186525, "peak_bytes": 131555328}
+{"contexts_done": 16000, "last_row": 15999, "unique_context_Born_data": 228, "unique_physical_matrices": 3924, "seconds": 2.144028700015042, "peak_bytes": 131555328}
+{"contexts_done": 18000, "last_row": 17999, "unique_context_Born_data": 228, "unique_physical_matrices": 3924, "seconds": 2.246760300011374, "peak_bytes": 131555328}
+{"contexts_done": 20000, "last_row": 19999, "unique_context_Born_data": 228, "unique_physical_matrices": 3924, "seconds": 2.355292599997483, "peak_bytes": 131555328}
+{"contexts_done": 22000, "last_row": 21999, "unique_context_Born_data": 228, "unique_physical_matrices": 3924, "seconds": 2.459265300014522, "peak_bytes": 131555328}
+{"contexts_done": 24000, "last_row": 23999, "unique_context_Born_data": 228, "unique_physical_matrices": 3924, "seconds": 2.5587487000157125, "peak_bytes": 131555328}
+{"contexts_done": 26000, "last_row": 25999, "unique_context_Born_data": 228, "unique_physical_matrices": 3924, "seconds": 2.6637958000064828, "peak_bytes": 131555328}
+{"contexts_done": 28000, "last_row": 27999, "unique_context_Born_data": 228, "unique_physical_matrices": 3924, "seconds": 2.772919000010006, "peak_bytes": 131555328}
+{"contexts_done": 30000, "last_row": 29999, "unique_context_Born_data": 501, "unique_physical_matrices": 3924, "seconds": 3.0808832999900915, "peak_bytes": 131719168}
+{"contexts_done": 32000, "last_row": 31999, "unique_context_Born_data": 501, "unique_physical_matrices": 3924, "seconds": 3.180592600023374, "peak_bytes": 131719168}
+{"contexts_done": 34000, "last_row": 33999, "unique_context_Born_data": 501, "unique_physical_matrices": 3924, "seconds": 3.2827960000140592, "peak_bytes": 131719168}
+{"contexts_done": 36000, "last_row": 35999, "unique_context_Born_data": 501, "unique_physical_matrices": 3924, "seconds": 3.388133900007233, "peak_bytes": 131719168}
+{"contexts_done": 38000, "last_row": 37999, "unique_context_Born_data": 501, "unique_physical_matrices": 3924, "seconds": 3.4926921000005677, "peak_bytes": 131719168}
+{"contexts_done": 40000, "last_row": 39999, "unique_context_Born_data": 501, "unique_physical_matrices": 3924, "seconds": 3.593273800041061, "peak_bytes": 131719168}
+{"contexts_done": 42000, "last_row": 41999, "unique_context_Born_data": 501, "unique_physical_matrices": 3924, "seconds": 3.702162400004454, "peak_bytes": 131719168}
+{"contexts_done": 44000, "last_row": 43999, "unique_context_Born_data": 501, "unique_physical_matrices": 3924, "seconds": 3.803535000013653, "peak_bytes": 131719168}
+{"contexts_done": 46000, "last_row": 45999, "unique_context_Born_data": 501, "unique_physical_matrices": 3924, "seconds": 3.9031424000277184, "peak_bytes": 131719168}
+{"contexts_done": 48000, "last_row": 47999, "unique_context_Born_data": 501, "unique_physical_matrices": 3924, "seconds": 4.012716600031126, "peak_bytes": 131719168}
+{"contexts_done": 50000, "last_row": 49999, "unique_context_Born_data": 501, "unique_physical_matrices": 3924, "seconds": 4.117654000001494, "peak_bytes": 131788800}
+{"contexts_done": 52000, "last_row": 51999, "unique_context_Born_data": 501, "unique_physical_matrices": 3924, "seconds": 4.220373600022867, "peak_bytes": 131788800}
+{"contexts_done": 54000, "last_row": 53999, "unique_context_Born_data": 501, "unique_physical_matrices": 3924, "seconds": 4.3249666999909095, "peak_bytes": 131788800}
+{"contexts_done": 56000, "last_row": 55999, "unique_context_Born_data": 501, "unique_physical_matrices": 3924, "seconds": 4.429584700032137, "peak_bytes": 131788800}
+{"contexts_done": 58000, "last_row": 57999, "unique_context_Born_data": 501, "unique_physical_matrices": 3924, "seconds": 4.534610800037626, "peak_bytes": 131825664}
+{"contexts_done": 60000, "last_row": 59999, "unique_context_Born_data": 501, "unique_physical_matrices": 3924, "seconds": 4.637581199989654, "peak_bytes": 131825664}
+{"contexts_done": 62000, "last_row": 61999, "unique_context_Born_data": 501, "unique_physical_matrices": 3924, "seconds": 4.735111500020139, "peak_bytes": 131825664}
+{"contexts_done": 64000, "last_row": 63999, "unique_context_Born_data": 501, "unique_physical_matrices": 3924, "seconds": 4.83584489999339, "peak_bytes": 131825664}
+{"contexts_done": 66000, "last_row": 65999, "unique_context_Born_data": 1557, "unique_physical_matrices": 4124, "seconds": 5.714090900029987, "peak_bytes": 137703424}
+{"contexts_done": 68000, "last_row": 67999, "unique_context_Born_data": 2371, "unique_physical_matrices": 4124, "seconds": 6.364186900027562, "peak_bytes": 141225984}
+{"contexts_done": 70000, "last_row": 69999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 6.698361299990211, "peak_bytes": 143605760}
+{"contexts_done": 72000, "last_row": 71999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 6.797180499997921, "peak_bytes": 143605760}
+{"contexts_done": 74000, "last_row": 73999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 6.897855899995193, "peak_bytes": 143605760}
+{"contexts_done": 76000, "last_row": 75999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 6.9991418000427075, "peak_bytes": 143605760}
+{"contexts_done": 78000, "last_row": 77999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 7.098804700013716, "peak_bytes": 143605760}
+{"contexts_done": 80000, "last_row": 79999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 7.199726600025315, "peak_bytes": 143605760}
+{"contexts_done": 82000, "last_row": 81999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 7.302536700037308, "peak_bytes": 143605760}
+{"contexts_done": 84000, "last_row": 83999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 7.404128400026821, "peak_bytes": 143605760}
+{"contexts_done": 86000, "last_row": 85999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 7.505461200024001, "peak_bytes": 143605760}
+{"contexts_done": 88000, "last_row": 87999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 7.611191100033466, "peak_bytes": 143605760}
+{"contexts_done": 90000, "last_row": 89999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 7.71899530000519, "peak_bytes": 143605760}
+{"contexts_done": 92000, "last_row": 91999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 7.825833200011402, "peak_bytes": 143605760}
+{"contexts_done": 94000, "last_row": 93999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 7.934614000027068, "peak_bytes": 143605760}
+{"contexts_done": 96000, "last_row": 95999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 8.048148000030778, "peak_bytes": 143605760}
+{"contexts_done": 98000, "last_row": 97999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 8.151821200037375, "peak_bytes": 143605760}
+{"contexts_done": 100000, "last_row": 99999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 8.254033000033814, "peak_bytes": 143605760}
+{"contexts_done": 102000, "last_row": 101999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 8.360396900039632, "peak_bytes": 143605760}
+{"contexts_done": 104000, "last_row": 103999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 8.463085099996533, "peak_bytes": 143605760}
+{"contexts_done": 106000, "last_row": 105999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 8.575041800038889, "peak_bytes": 143605760}
+{"contexts_done": 108000, "last_row": 107999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 8.675621900008991, "peak_bytes": 143605760}
+{"contexts_done": 110000, "last_row": 109999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 8.778917199990246, "peak_bytes": 143605760}
+{"contexts_done": 112000, "last_row": 111999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 8.88356600003317, "peak_bytes": 143605760}
+{"contexts_done": 114000, "last_row": 113999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 8.984929700032808, "peak_bytes": 143605760}
+{"contexts_done": 116000, "last_row": 115999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 9.088470600021537, "peak_bytes": 143605760}
+{"contexts_done": 118000, "last_row": 117999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 9.19972090004012, "peak_bytes": 143605760}
+{"contexts_done": 120000, "last_row": 119999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 9.301131399988662, "peak_bytes": 143605760}
+{"contexts_done": 122000, "last_row": 121999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 9.401501000043936, "peak_bytes": 143605760}
+{"contexts_done": 124000, "last_row": 123999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 9.501201700011734, "peak_bytes": 143605760}
+{"contexts_done": 126000, "last_row": 125999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 9.600483299989719, "peak_bytes": 143605760}
+{"contexts_done": 128000, "last_row": 127999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 9.701576700026635, "peak_bytes": 143605760}
+{"contexts_done": 130000, "last_row": 129999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 9.801712699991185, "peak_bytes": 143605760}
+{"contexts_done": 132000, "last_row": 131999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 9.902690200018696, "peak_bytes": 143605760}
+{"contexts_done": 134000, "last_row": 133999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 10.010607200034428, "peak_bytes": 143605760}
+{"contexts_done": 136000, "last_row": 135999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 10.12402160000056, "peak_bytes": 143605760}
+{"contexts_done": 138000, "last_row": 137999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 10.227643800026271, "peak_bytes": 143605760}
+{"contexts_done": 140000, "last_row": 139999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 10.336394300044049, "peak_bytes": 143605760}
+{"contexts_done": 142000, "last_row": 141999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 10.441922400030307, "peak_bytes": 143605760}
+{"contexts_done": 144000, "last_row": 143999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 10.549179300025571, "peak_bytes": 143605760}
+{"contexts_done": 146000, "last_row": 145999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 10.656522600038443, "peak_bytes": 143605760}
+{"contexts_done": 148000, "last_row": 147999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 10.771460900024977, "peak_bytes": 143605760}
+{"contexts_done": 150000, "last_row": 149999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 10.87953750003362, "peak_bytes": 143605760}
+{"contexts_done": 152000, "last_row": 151999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 10.987850100034848, "peak_bytes": 143605760}
+{"contexts_done": 154000, "last_row": 153999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 11.094907700025942, "peak_bytes": 143605760}
+{"contexts_done": 156000, "last_row": 155999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 11.195514200022444, "peak_bytes": 143605760}
+{"contexts_done": 158000, "last_row": 157999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 11.30573020002339, "peak_bytes": 143605760}
+{"contexts_done": 160000, "last_row": 159999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 11.410470800008625, "peak_bytes": 143605760}
+{"contexts_done": 162000, "last_row": 161999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 11.512530200008769, "peak_bytes": 143605760}
+{"contexts_done": 164000, "last_row": 163999, "unique_context_Born_data": 2727, "unique_physical_matrices": 4124, "seconds": 11.612156799994409, "peak_bytes": 143605760}
+{
+  "status": "PASS",
+  "artifact_sha256": "ee3dcceff877b13a9156bd0971534a1e3cacedf95d50ee22a0b66fe596142a1e",
+  "lengths": [
+    2,
+    3
+  ],
+  "rows_covered": [
+    0,
+    164608
+  ],
+  "row_visit_hash": "2dabfb92123981bb75905c8e6da8528602ed522fd8daf864f3a70bc9b35a93c3",
+  "all_final_contexts_visited": true,
+  "contexts": 164608,
+  "raw_outcome_visits": 1317364,
+  "incidence_outcome_visits": 3955160,
+  "physical_square_visits": 199129,
+  "cover_rows": [
+    {
+      "row": 2,
+      "all_raw_outcomes": 512,
+      "scalar_Born_evaluation": true
+    }
+  ],
+  "records": [
+    {
+      "binary_word_length": 2,
+      "source_dimension": 16,
+      "game_schmidt_rank": 1024,
+      "game_entropy_bits": 10,
+      "source_precision": 0.9999999999999999,
+      "source_error_squared": 0.9999999999999998,
+      "actual_game_loss": 3.0058786126231206e-07,
+      "loss_over_source_error_squared": 3.005878612623121e-07,
+      "maximum_probability_mass_error": 0.0,
+      "maximum_physical_square_trace_error": 0.0,
+      "maximum_forbidden_context_probability": 0.00390625
+    },
+    {
+      "binary_word_length": 3,
+      "source_dimension": 64,
+      "game_schmidt_rank": 4096,
+      "game_entropy_bits": 12,
+      "source_precision": 0.4450418679126288,
+      "source_error_squared": 0.19806226419516174,
+      "actual_game_loss": 6.20479257191874e-08,
+      "loss_over_source_error_squared": 3.132748480449973e-07,
+      "maximum_probability_mass_error": 2.220446049250313e-16,
+      "maximum_physical_square_trace_error": 0.0,
+      "maximum_forbidden_context_probability": 0.0007736807195123374
+    }
+  ],
+  "dense_controls": {
+    "dense_factor_word_controls": 210,
+    "dense_core_monomial_controls": 16,
+    "maximum_dense_difference": 6.979023448416918e-16,
+    "repeated_inverse_negative_controls": "PASS"
+  },
+  "unique_context_Born_data": 2736,
+  "scalar_contexts_visited": 45046,
+  "unique_physical_matrices": 4124,
+  "physical_monomial_product_cache": 24819,
+  "matrix_inner_cache": 23893,
+  "factor_trace_cache": 18,
+  "maximum_imaginary_probability_or_correlation": 0.0,
+  "minimum_raw_probability": 0.0,
+  "minimum_incident_error_probability": 0.0,
+  "peak_process_bytes": 143605760,
+  "seconds": 11.653483500005677,
+  "arithmetic": "complex floating point; physical tensor-permutation traces independently dense-audited; no source-relator simplification",
+  "limits": "Complete actual strategy evaluation for the exported finite game; no optimization, lower-bound proof, or asymptotic matching inference from these finite sizes."
+}
+[exit code 0]
+

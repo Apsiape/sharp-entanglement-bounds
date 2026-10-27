@@ -1,0 +1,31 @@
+==============================================================================
+Constants in the proofs
+==============================================================================
+[ok  ] one pair: 4(1+sqrt2)^2 sqrt2 < 33: 32.9706 (bound 33)
+[ok  ] CHSH: 6(33 + 2 sqrt2) <= 215: 214.9706 (bound 215)
+[ok  ] CHSH: 6*297 + 996*215/3 <= 73162: 73162.00 (bound 73162)
+[ok  ] CHSH: 6*297 + 1388*215/3 <= 101256: 101255.33 (bound 101256)
+[ok  ] CHSH: 2*14^2 = 392 (anticommutator 12 plus state commutator 2): 392 (bound 392)
+[ok  ] CHSH: 3*101256*2sqrt2/ln2 <= 1.24e6: 1.2395e+06 (bound 1.24e6)
+[ok  ] CHSH: 73162*3sqrt2 <= 3.11e5: 3.1040e+05 (bound 3.11e5)
+[ok  ] CHSH: 1 - 0.124 - h(0.0311) > 0.67: 0.67612 (bound 0.67)
+[ok  ] count: (sqrt(10M)+1)^2 <= 16M for M = 2..10^5: checked (bound )
+[ok  ] count: 1 - 0.1/(2 ln2) - h(0.025) > 3/4: 0.75920 (bound 0.75)
+[ok  ] lamp sector theorem: the step inequalities for N = 1..399: True (bound True)
+[ok  ] lamp sector theorem: 16*252^2/(1.02e7) < 1/10: 0.0996 (bound 0.1)
+[ok  ] lamp sector theorem: 160*63504 <= 1.02e7: 10160640 (bound 1.02e7)
+[ok  ] lamp sector theorem: g(1) = 1 + 4*23^2 = 2117: 2117 (bound 2117)
+[ok  ] lamp sector theorem: 2*1071 - log2(1.02e7) > 2117: 2118.718 (bound 2117)
+[ok  ] lamp sector theorem: 4*1.02e7 <= 4.1e7: 40800000.0 (bound 4.1e7)
+[ok  ] profile of K: 5 pi + 19 pi/2 = 29 pi/2: 45.553093 (bound 45.553093)
+[ok  ] SV game: 4(9+3+3) = 60, 4(1+6) = 28, 28+12 = 40, 29*60 = 1740: (60, 28, 40, 1740) (bound (60, 28, 40, 1740))
+[ok  ] K profile upper bound: log2(sqrt2 pi + 1) < 3: 2.4444 (bound 3)
+[ok  ] entropy: coth(1/4) <= 5, log2 5 < 7/3, (5/8)/ln2 < 15/16: 4.0830 (bound 5)
+[ok  ] entropy: G_{1/2}(5/4) < 157/48: 2.9313 (bound 3.2708)
+[ok  ] entropy: 1 + 2*157/48 < 8: 7.5417 (bound 8)
+[ok  ] K entropy: coth(1/18) <= 19, 19^4 < 2^17, (11/12)/ln2 < 11/8: 18.0185 (bound 19)
+[ok  ] K entropy: G_{1/9}(33/4) < 17/4 + 11/8: 5.4939 (bound 5.6250)
+[ok  ] K entropy: 1 + 17/4 + 11/8 + 7/3 + 15/16 = 475/48 < 10: 475/48 (bound 475/48)
+[ok  ] return theorem: C_3: 788.167 (bound about 788.2)
+------------------------------------------------------------------------------
+Constants in the proofs: 26 checks, 0 failures

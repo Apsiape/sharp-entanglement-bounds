@@ -1,0 +1,25 @@
+==============================================================================
+Explicit linear system games from the cover construction
+==============================================================================
+[ok  ] K4: source relators are 1 in the negative-quotient engine: True (bound True)
+[ok  ] K4: each W_i is diagonal with a single negative block (four blocks): True (bound True)
+[ok  ] K4: each conjugated source word restricts to its generator on its block: True (bound True)
+      K4: 5206 variables, 4325 equations, maximum arity 3, 16 blocks (the central generator J is not a variable)
+[ok  ] K4: all images are involutions, all equations hold, all 12973 commutators are trivial: True (bound True)
+[ok  ] K4: size (variables, equations, arity, blocks): (5206, 4325, 3, 16) (bound (5206, 4325, 3, 16))
+      K4: Schmidt rank 64, source precision 2.091e-01, complete-play loss 4.210e-07, loss/e^2 9.634e-06
+      K4: Schmidt rank 128, source precision 4.986e-02, complete-play loss 2.395e-08, loss/e^2 9.634e-06
+[ok  ] K4: complete play, loss / (source precision)^2: 9.63e-06, 9.63e-06 (bound stable and small)
+[ok  ] K4: observed rank exponent between the two sizes: 0.2418 (bound approaching 0.2500)
+[ok  ] L48: source relators are 1 in the negative-quotient engine: True (bound True)
+[ok  ] L48: each W_i is diagonal with a single negative block (four blocks): True (bound True)
+[ok  ] L48: each conjugated source word restricts to its generator on its block: True (bound True)
+      L48: 6798 variables, 5653 equations, maximum arity 5, 16 blocks (the central generator J is not a variable)
+[ok  ] L48: all images are involutions, all equations hold, all 16964 commutators are trivial: True (bound True)
+[ok  ] L48: size (variables, equations, arity, blocks): (6798, 5653, 5, 16) (bound (6798, 5653, 5, 16))
+      L48: Schmidt rank 64, source precision 4.957e-01, complete-play loss 1.811e-06, loss/e^2 7.371e-06
+      L48: Schmidt rank 256, source precision 5.574e-02, complete-play loss 2.290e-08, loss/e^2 7.371e-06
+[ok  ] L48: complete play, loss / (source precision)^2: 7.37e-06, 7.37e-06 (bound stable and small)
+[ok  ] L48: observed rank exponent between the two sizes: 0.3172 (bound approaching 0.3333)
+------------------------------------------------------------------------------
+Explicit linear system games from the cover construction: 14 checks, 0 failures

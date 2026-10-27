@@ -1,0 +1,26 @@
+{
+  "status": "BUILT",
+  "fallback": {
+    "path": "l4m8/L4M8-LINEAR-GAME.json",
+    "sha256": "9cc63bb337c2d3d61b4feff535d5b3439a85a891b1d1d2e2eddfcab7446a4cb6",
+    "unchanged_during_build": true
+  },
+  "objects": [
+    {
+      "path": "SELECTOR-MAGIC.json",
+      "sha256": "a72e61c28f78ea99f2609c69442e69a96f84954ecaed5d2c6275692883ee42d2",
+      "variables": 6808,
+      "contexts": 5659,
+      "incidences": 22637,
+      "max_context_arity": 6
+    },
+    {
+      "path": "SELECTOR-CONTRADICTION.json",
+      "sha256": "03bc42656e3f3151ed84c2a20ba9756aee00818eb76ea5a4798e7f0de9653e63",
+      "variables": 6800,
+      "contexts": 5655,
+      "incidences": 22617,
+      "max_context_arity": 6
+    }
+  ]
+}

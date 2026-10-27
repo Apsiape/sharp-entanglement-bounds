@@ -1,0 +1,27 @@
+==============================================================================
+Spectral transport
+==============================================================================
+[ok  ] circle W1: exact formula agrees with linear programming: 4.27e-08 (bound 1e-6 (solver tolerance))
+[ok  ] inverse branches contract W1 by 1/2: max excess: 6.66e-16 (bound 0)
+[ok  ] P(D_* mu) = (mu + S_* mu)/2: max W1 distance: 0.00e+00 (bound 0)
+[ok  ] W1(mu,h) <= W1(D_* mu,mu) + W1(S_* mu,mu): max excess: 0.00e+00 (bound 0)
+[ok  ] d atoms are at W1 distance >= pi/(2d) from Haar: max excess: 4.44e-16 (bound 0)
+[ok  ] spectral coupling: second moment = ||P xi - xi Q||^2: 9.77e-15 (bound 0)
+[ok  ] spectral coupling: W1 <= (pi/2)||P xi - xi Q||, max excess: 0.00e+00 (bound 0)
+[ok  ] rotating the state: W1 <= pi ||[U,xi]||, max excess: 0.00e+00 (bound 0)
+[ok  ] W2 rotation counterexample, delta=0.01: W2 / ||[U,xi]||: 14.1 (bound unbounded)
+[ok  ] W2 rotation counterexample, delta=0.0001: W2 / ||[U,xi]||: 141.4 (bound unbounded)
+[ok  ] explicit K model: one defect sqrt2 sin(pi/d), the others 0: 4.44e-16 (bound 0)
+[ok  ] profile of K, 120 perturbed models: max W1(D_* mu, mu) / (5 pi e): 0.0954 (bound 1)
+[ok  ] profile of K, 120 perturbed models: max W1(S_* mu, mu) / (9.5 pi e): 0.0730 (bound 1)
+[ok  ] profile of K, 120 perturbed models: max 1/(29 e d): 0.0150 (bound 1)
+[ok  ] Holevo: max I(A:B) - S(rho), 160 cases: 3.23e-15 (bound 0)
+[ok  ] entropy from transport, finite-bin form: max (bound - S): -3.614 (bound 0)
+[ok  ] entropy from transport, S >= log(1/(delta+c)) - 8: max (bound - S): -8.652 (bound 0)
+[ok  ] flat clock d=64: finite-bin bound is nonvacuous and below S = 6: 0.53 (bound 6)
+[ok  ] flat clock d=256: finite-bin bound is nonvacuous and below S = 8: 2.53 (bound 8)
+[ok  ] entropy profile of K, 43 models with e <= 1/2: max (log(1/e) - 10 - S): -12.138 (bound 0)
+[ok  ] pure clock state: W1 to Haar equals pi/(2d): 0.098175 (bound 0.098175)
+[ok  ] pure clock state: entropy 0, state commutator sqrt 2: -0.00e+00, 1.414214 (bound 0, 1.414214)
+------------------------------------------------------------------------------
+Spectral transport: 22 checks, 0 failures

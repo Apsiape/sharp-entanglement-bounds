@@ -1,0 +1,117 @@
+\subsection{Usable entanglement, precision and the two source contracts}\label{sec:prelim-usable}
+
+\paragraph{One-way distillable entanglement.} For a bipartite state $\rho_{AB}$, $\ED^{A\to B}(\rho_{AB})$ is the largest
+rate, in ebits per input copy, at which local operations and classical communication from Alice to Bob alone convert
+independent copies of $\rho_{AB}$ into maximally entangled pairs with vanishing error; $\ED^{B\to A}$ is defined with the
+roles exchanged. We call the two the \emph{directional rates}, and \emph{usable entanglement} means either of them. Both
+are unchanged by local isometries, and neither increases under local channels of either party or under classical
+messages in the permitted direction. A local measurement by Alice whose outcome is announced to Bob, succeeding with
+probability $p$ and leaving the conditional state $\sigma$, gives $\ED^{A\to B}(\rho)\ge p\,\ED^{A\to B}(\sigma)$: a
+fraction $p$ of the copies succeed, Alice names them, and the rest are discarded. The hashing inequality of Devetak and
+Winter~\cite{DW05} states
+\begin{equation}\label{eq:hashing}
+\ED^{A\to B}(\rho_{AB})\ \ge\ S(\rho_B)-S(\rho_{AB}),
+\end{equation}
+the coherent information from Alice to Bob, achieved with classical communication from Alice to Bob. We use it in two
+standard forms. If an $N$-qubit pair state has been made Bell-diagonal by a bilateral Pauli twirl (Alice samples a Pauli,
+announces it, and both parties apply it, Bob its complex conjugate), then $S(\rho_B)=N$ and $S(\rho_{AB})$ is the Shannon
+entropy of the $2N$ Bell-error bits, which is at most the sum of their binary entropies, however correlated they
+are~\cite{BDSW96}:
+\begin{equation}\label{eq:bell-hashing}
+\ED^{A\to B}\ \ge\ N-\sum_{k=1}^{2N}h(p_k),
+\end{equation}
+where $p_k$ is the probability that the $k$-th Bell stabilizer fails. If instead a state on $\C^D\otimes\C^D$ has singlet
+fraction $1-p$ with $p<\frac12$, an isotropic twirl and~\eqref{eq:hashing} give
+\begin{equation}\label{eq:singlet-hashing}
+\ED\ \ge\ \log D-h(p)-p\log(D^2-1)\ \ge\ (1-2p)\log D-h(p)
+\end{equation}
+in either direction. For a pure state both directional rates equal the entanglement entropy: this is the concentration theorem
+of Bennett, Bernstein, Popescu and Schumacher~\cite{BBPS96}.
+
+\paragraph{The resource of a game.} For a finite game $G$ with its original question distribution and legal-answer
+alphabets, the \emph{loss} of a strategy is one minus its winning probability, and $\eps$ always denotes a loss. Put
+\begin{equation}\label{eq:dG}
+d_G^\to(\eps)=\inf\bigl\{\ED^{A\to B}(\rho_{AB}):\ \text{some finite-dimensional strategy on }\rho_{AB}\text{ has loss}\le\eps\bigr\},
+\end{equation}
+the measurements being arbitrary POVMs, and define $d_G^\leftarrow$ with $\ED^{B\to A}$. An infimum need not be attained.
+Marginal entropy, pure Schmidt rank, ambient dimension, mixed-state $\EF$ and mixed-state $\ED$ are five different
+quantities, and each statement below names the one it bounds.
+
+\paragraph{Precision.} The letter $\eps$ is reserved for the loss of a game from value one. Source statements use a
+\emph{precision} $e$, a bound on root errors of relations, measured as vector or Hilbert--Schmidt norms. A game of loss
+$\eps$ supplies source precision $e=C_G\sqrt\eps$ (\cref{sec:transfer}), and a source model of precision $e$ returns a
+strategy of loss $O(e^2)$. Neither convention is a relative bias deficit or a gap below a Bell optimum; the latter
+appears only in \cref{sec:boundary}, where it is called a Bell gap.
+
+\paragraph{The conversion of errors.} Every rate below passes through the same chain of conversions. A tested incidence lost
+with probability $\ell$ gives an actual mirror of error $2\sqrt\ell$, so loss $\eps$ gives mirror errors $\delta=O(\sqrt\eps)$
+(\cref{thm:transfer,prop:interface}). Mirrors give state commutators at most $\sqrt2\,\delta$ (\cref{lem:transfer-parties}(d)). A word of
+length $L$ and area $A$ in the source relations then has error $O((A+L)\delta)$ (\cref{thm:linear-filling}); charging each
+cell its own conjugator (\cref{lem:calculus,lem:conjugators}) gives the simpler $O(A(L+A)\delta)$. Either is $O(\delta)$ for the
+fixed words of a fixed source, and the cost is charged explicitly where the words grow. For $2N$ extracted Pauli labels whose
+signed pair errors, state commutators and actual mirror errors are all at most $\kappa$, the Bell-stabilizer failures are
+$p_k\le25N\kappa^2$ (\cref{thm:signed-regular}), and hashing~\eqref{eq:bell-hashing} turns these into
+$\ED^{A\to B}\ge N[1-2h(25N\kappa^2)]$. In the other direction a model of precision $e$ gives a strategy of loss $O(e^2)$
+(\cref{thm:return}). Between game loss and source precision the conversion is thus $e=C_G\sqrt\eps$, with loss $O(e^2)$ on return.
+Further power losses, from spectral cuts and from growing decoders, are accounted for in the proofs where they occur. Constant
+factors in precision change a law $\alpha\log(1/\eps)$ only by $O(1)$ and leave every exponent unchanged.
+
+\paragraph{Original states and actual mirrors.} A strategy on a mixed state $\rho_{AB}$ is analysed on a purification
+$\Psi\in H_A\otimes H_B\otimes H_E$, which is used only in proofs: no operation ever acts on $E$. If $U$ acts on Bob and
+$V$ on Alice, we call $V$ an \emph{actual mirror} of $U$ with error $\delta$ if $\|(V-U)\Psi\|\le\delta$; since
+$\|(V-U)\Psi\|^2=\Tr\rho_{AB}(V-U)^*(V-U)$, this does not depend on the purification. Opposite-party operators commute,
+and that is the only algebraic fact behind the following transfers.
+
+\begin{lemma}[Transfer across the parties]\label{lem:transfer-parties}
+Let $\Psi$ purify $\rho_{AB}$.
+\begin{enumerate}[label=(\alph*),itemsep=1pt]
+\item If $U_1,\dots,U_l$ act on Bob and $V_1,\dots,V_l$ on Alice, all contractions, with $\|(V_i-U_i)\Psi\|\le\delta_i$,
+then $\|(U_1\cdots U_l-V_l\cdots V_1)\Psi\|\le\sum_i\delta_i$.
+\item If moreover $F$ acts on Bob and the $U_i$ and $V_i$ are unitaries, then $\|FU_1\cdots U_l\Psi\|\le\|F\Psi\|+\opn
+F\sum_i\delta_i$.
+\item If $R$ acts on Bob and $S$ on Alice, both unitary, then $\|(R^n-S^n)\Psi\|\le n\|(R-S)\Psi\|$ for $n\ge0$.
+\item If $U$ is a unitary on Bob and $V$ a unitary on Alice with $\|(V-U)\Psi\|\le\mu$, then
+$\hs{[U,\rho_B^{1/2}]}\le\sqrt2\mu$ and $\hs{[V,\rho_A^{1/2}]}\le\sqrt2\mu$.
+\end{enumerate}
+The same holds with the parties exchanged.
+\end{lemma}
+
+\begin{proof}
+(a) Replace the rightmost factor $U_l$, which acts first on $\Psi$, by $V_l$, at cost $\delta_l$ since the left factors
+are contractions; then move $V_l$ to the far left, past the Bob operators, and induct. (b) By (a),
+$\|FU_1\cdots U_l\Psi-FV_l\cdots V_1\Psi\|\le\opn F\sum_i\delta_i$, and $\|FV_l\cdots V_1\Psi\|=\|V_l\cdots V_1F\Psi\|
+=\|F\Psi\|$. (c) $R^n-S^n=\sum_{j<n}R^{n-1-j}(R-S)S^j$, and $(R-S)S^j\Psi=S^j(R-S)\Psi$, while $R^{n-1-j}S^j$ is unitary.
+(d) Write $\xi=\rho_B^{1/2}$ and use a Schmidt decomposition $\Psi=\sum_k\sqrt{\lambda_k}\,e_k\otimes f_k$ across $B$ versus $AE$,
+with $\Pi$ the projection onto the span of the $e_k$. The isometry $\Theta(e_k\otimes v)=|v\rangle\langle f_k|$ of the standard form
+(\cref{lem:standard-form}) maps $\Psi$ to $\xi$, $(I\otimes U)x$ to $U\Theta(x)$, and $(\Pi(V\otimes I_E)\otimes I)\Psi$ to $\xi C$, where $C$ is
+the transposed matrix of the compression $\Pi(V\otimes I_E)\Pi$ in the bases $(e_k)$, $(f_k)$; the part of $(V\otimes I_E)\Psi$ outside
+the range of $\Pi$ is orthogonal to $U\Psi$. So $C$ is a contraction on $H_B$ with
+$\hs{U\xi-\xi C}\le\mu$, and the same for the adjoints gives $\hs{U^*\xi-\xi C^*}\le\mu$; the adjoints have the same
+mirror error, because $(V^*-U^*)\Psi=-V^*U^*(V-U)\Psi$ once $U^*$ is commuted past $V$. With $x=\Tr(\xi U^*\xi U)\ge0$,
+$y=\hs{\xi C}$, $y'=\hs{\xi C^*}$ and the positive form $\langle K,L\rangle_\xi=\Tr(\xi K^*\xi L)$, which is the Hilbert--Schmidt
+inner product of $\xi^{1/2}K\xi^{1/2}$ and $\xi^{1/2}L\xi^{1/2}$, expanding $\hs{U\xi-\xi C}^2=1+y^2-2\re\langle U,C\rangle_\xi$ and
+applying the Cauchy--Schwarz inequality to the form, with $\langle U,U\rangle_\xi=x$ and $\langle C,C\rangle_\xi\le\hs{C\xi}\hs{\xi C}=y'y$,
+gives $\mu^2\ge1+y^2-2\sqrt{xyy'}$, and likewise $\mu^2\ge1+y'^2-2\sqrt{xyy'}$. Adding, and using
+$y^2+y'^2\ge2yy'$, gives $2\mu^2\ge2-2x+2(\sqrt{yy'}-\sqrt x)^2\ge2-2x=\hs{[U,\xi]}^2$. Exchange the parties for $V$.
+\end{proof}
+
+Part (d) is the unitary form of \cref{lem:consistency}, with the same constant; for reflections the inverse mirror is the
+mirror itself. Square-root-state commutators are therefore \emph{consequences} of actual mirrors.
+
+\paragraph{The state-weighted source contract (SW).} Fix a finite presentation with a marked central involution $J$.
+A \emph{model at precision $e$} is an assignment of unitaries to the generators on a finite-dimensional space and a
+density matrix $\rho$, $\xi=\rho^{1/2}$, possibly singular, such that every listed relator $R$, every generator $U$ and
+the marked word satisfy
+\[
+\hs{(R-I)\xi}\le e,\qquad\hs{[U,\xi]}\le e,\qquad\hs{(J+I)\xi}\le e,
+\]
+with the unnormalized Hilbert--Schmidt norm and $\Tr\rho=1$. For the flat state this is the normalized-trace
+approximate representation with $J$ near $-I$. This is \cref{def:hlp-rho} below.
+
+\paragraph{The exact-source contract (EX).} Bob's operators satisfy all relations of the presentation exactly, as operator
+identities, in the sector $\pi(J)=-I$, on a possibly infinite-dimensional ambient space; the input is the
+\emph{original} arbitrary normal mixed state $\rho_{AB}$; and Alice has actual unitaries mirroring each signed generator
+with error at most $e$ on a purification. Word errors follow from \cref{lem:transfer-parties}(a), applied to the unchanged
+vector in reverse order. The exact upper constructions below use finite-rank states inside infinite exact
+representations; none of the exact sources has a nonzero finite-dimensional representation with $J=-I$. ``Both
+directions'' always means the two physical one-way rates $\ED^{A\to B}$ and $\ED^{B\to A}$ of the original state.

@@ -1,0 +1,27 @@
+==============================================================================
+CHSH(n)
+==============================================================================
+[ok  ] sum-of-squares identity, 300 instances: max error: 4.00e-15 (bound 0)
+[ok  ] one pair: max ||{A,A'}xi||^2 / (33 delta): 0.1836 (bound 1)
+[ok  ] one pair: max ||[A,xi]||^2 / (2 sqrt2 delta): 0.2717 (bound 1)
+[ok  ] the two algebraic identities on random involutions: max error: 1.46e-15 (bound 0)
+[ok  ] triple chain, pair bound for eta: max ratio: 0.2461 (bound 1)
+[ok  ] triple chain, pair bound for c: max ratio: 0.1951 (bound 1)
+[ok  ] triple chain, rounding: max excess: 0.00e+00 (bound 0)
+[ok  ] triple chain, raw commutators: max excess: 0.00e+00 (bound 0)
+[ok  ] triple chain, raw anticommutator: max excess: 0.00e+00 (bound 0)
+[ok  ] triple chain, rounded commutators: max excess: 0.00e+00 (bound 0)
+[ok  ] triple chain, rounded anticommutator: max excess: 0.00e+00 (bound 0)
+[ok  ] triple chain, rounded state commutators: max excess: 0.00e+00 (bound 0)
+[ok  ] triple chain, entropy bound from the count: max excess: -3.32e-12 (bound 0)
+[ok  ] triple chain, aggregate A: max excess: 0.00e+00 (bound 0)
+[ok  ] triple chain, aggregate B: max excess: 0.00e+00 (bound 0)
+[ok  ] final bound S(rho_A) >= M/2 where n eps <= 1e-7 (16 strategies): True (bound True)
+      n=3: anticommutators 0.0e+00, bias 0.707106781187, entropy 1.000000 = floor(n/2) = 1
+      n=4: anticommutators 0.0e+00, bias 0.707106781187, entropy 2.000000 = floor(n/2) = 2
+      n=5: anticommutators 0.0e+00, bias 0.707106781187, entropy 2.000000 = floor(n/2) = 2
+      n=6: anticommutators 0.0e+00, bias 0.707106781187, entropy 3.000000 = floor(n/2) = 3
+      n=7: anticommutators 0.0e+00, bias 0.707106781187, entropy 3.000000 = floor(n/2) = 3
+[ok  ] exact strategy attains sqrt2/2 with floor(n/2) ebits, n = 3..7: True (bound True)
+------------------------------------------------------------------------------
+CHSH(n): 17 checks, 0 failures

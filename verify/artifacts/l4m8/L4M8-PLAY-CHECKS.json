@@ -1,0 +1,80 @@
+{
+  "status": "PASS",
+  "arithmetic": "complex floating point, tensor-permutation trace; independently dense-audited",
+  "q": 4,
+  "m": 8,
+  "records": [
+    {
+      "word_length": 1,
+      "source_dimension": 4,
+      "game_schmidt_rank": 64,
+      "source_precision": 0.3505164208641522,
+      "game_entropy": 6.0,
+      "all_contexts": 5653,
+      "all_raw_branches": 45244,
+      "actual_complete_game_loss": 4.472266202921442e-06,
+      "loss_over_source_error_squared": 3.640079839135695e-05,
+      "maximum_normalized_square_trace_defect": 0.0,
+      "maximum_probability_mass_error": 2.220446049250313e-16,
+      "maximum_imaginary_probability_or_correlation": 5.265241893342759e-19,
+      "maximum_context_forbidden_probability": 0.0019197150202408357
+    },
+    {
+      "word_length": 2,
+      "source_dimension": 16,
+      "game_schmidt_rank": 256,
+      "source_precision": 0.03941704700547474,
+      "game_entropy": 8.0,
+      "all_contexts": 5653,
+      "all_raw_branches": 45244,
+      "actual_complete_game_loss": 5.725065581496652e-08,
+      "loss_over_source_error_squared": 3.684786211010453e-05,
+      "maximum_normalized_square_trace_defect": 0.0,
+      "maximum_probability_mass_error": 0.0,
+      "maximum_imaginary_probability_or_correlation": 5.265241893342759e-19,
+      "maximum_context_forbidden_probability": 2.4276618666108085e-05
+    },
+    {
+      "word_length": 3,
+      "source_dimension": 64,
+      "game_schmidt_rank": 1024,
+      "source_precision": 0.004860354980148092,
+      "game_entropy": 10.0,
+      "all_contexts": 5653,
+      "all_raw_branches": 45244,
+      "actual_complete_game_loss": 8.705921165652781e-10,
+      "loss_over_source_error_squared": 3.685350100518376e-05,
+      "maximum_normalized_square_trace_defect": 0.0,
+      "maximum_probability_mass_error": 0.0,
+      "maximum_imaginary_probability_or_correlation": 5.265241893342759e-19,
+      "maximum_context_forbidden_probability": 3.6911016457544243e-07
+    },
+    {
+      "word_length": 4,
+      "source_dimension": 256,
+      "game_schmidt_rank": 4096,
+      "source_precision": 0.0006065071985534694,
+      "game_entropy": 12.0,
+      "all_contexts": 5653,
+      "all_raw_branches": 45244,
+      "actual_complete_game_loss": 1.3556628035921791e-11,
+      "loss_over_source_error_squared": 3.6853586650779056e-05,
+      "maximum_normalized_square_trace_defect": 0.0,
+      "maximum_probability_mass_error": 2.220446049250313e-16,
+      "maximum_imaginary_probability_or_correlation": 5.265241893342759e-19,
+      "maximum_context_forbidden_probability": 5.747671578265612e-09
+    }
+  ],
+  "empirical_rank_exponents": [
+    0.31808790820908883,
+    0.3311723535189769,
+    0.3330598538853504
+  ],
+  "dense_engine_controls": {
+    "independent_dense_word_controls": 208,
+    "maximum_trace_difference": 2.3191507704880176e-16
+  },
+  "source_trace_cache": 696,
+  "seconds": 51.33555429999251,
+  "limits": "Complete actual strategies, not optimization or a lower-bound proof. Source and retained-state compiler proofs give the matching one-third rate."
+}

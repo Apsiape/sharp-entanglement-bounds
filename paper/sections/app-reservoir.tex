@@ -1,0 +1,71 @@
+%======================================================================
+\section{The Ji--Leung--Vidick game with a tapered reservoir}\label{app:reservoir}
+%======================================================================
+
+Ji, Leung and Vidick built a three-player game, $\mathrm{3EMB}$, in which near-optimal play forces the players to exchange
+an EPR pair coherently with a product state, which needs an embezzling reservoir~\cite{JLV20}; embezzling states go back to van Dam
+and Hayden~\cite{vDH03}. Ji, Leung and Vidick proved that winning
+with probability $1-\eps$ needs local dimension $2^{\Omega(\eps^{-c})}$ for two of the players, and that $O(\eps^{-1})$ qubits
+per player suffice~\cite[Theorem~1]{JLV20}. Their strategy uses the reservoir
+$|\Gamma_d\rangle=N_d^{-1}\sum_{j=1}^d|11\rangle^{\otimes j}|\mathrm{EPR}\rangle^{\otimes(d-j)}$, whose left-shift unitaries perform
+the exchange with overlap $1-O(1/d)$~\cite[(7)]{JLV20}. A reservoir whose amplitudes taper to zero at both ends does the
+exchange with overlap $1-O(1/d^2)$. Such amplitudes, proportional to $\sin(\pi k/(N+1))$, appear in the coherent state
+exchange of Leung, Toner and Watrous, who credit the improvement to Harrow and Shor~\cite[footnote~1]{LTW13}; see
+also~\cite{LW14}. This appendix records that substituting a tapered reservoir into the strategy of~\cite[Lemma~7]{JLV20}
+gives the upper bound $O(\eps^{-1/2})$ qubits. We claim no new reservoir and no matching lower bound.
+
+\begin{lemma}[A tapered reservoir]\label{lem:reservoir}
+Let $L\ge1$ and $P_m=\frac2{L+1}\sin^2\frac{\pi(m+1)}{L+1}$ for $0\le m<L$. Let $\Gamma_L\in(\C^2)^{\otimes L}\otimes(\C^2)^{\otimes L}$
+have Schmidt coefficients whose squares are $P_m/2^m$, each with multiplicity $2^m$, for $0\le m<L$. There are unitaries $U$
+and $V$ on $\C^2\otimes(\C^2)^{\otimes L}$ such that
+\[
+F=\bigl\langle|11\rangle\otimes\Gamma_L,\ (U\otimes V)(|\mathrm{EPR}\rangle\otimes\Gamma_L)\bigr\rangle
+\]
+is real and at least $\cos\frac\pi{L+1}$.
+\end{lemma}
+
+\begin{proof}
+The $P_m$ sum to $1$, since $\sum_{k=1}^L\sin^2(\pi k/(L+1))=(L+1)/2$, and $\Gamma_L$ has Schmidt rank $2^L-1$, so it fits in $L$
+qubits on each side. The state $|\mathrm{EPR}\rangle\otimes\Gamma_L$ has, for each $m$, $2^{m+1}$ Schmidt coefficients with squares
+$P_m/2^{m+1}$, and $|11\rangle\otimes\Gamma_L$ has $2^{m+1}$ Schmidt coefficients with squares $P_{m+1}/2^{m+1}$ in shell $m+1$. Let $U$
+map the Schmidt vectors of the first state on Alice's side in group $m$ to those of the second in shell $m+1$, for
+$0\le m\le L-2$, and complete it to a unitary by an arbitrary bijection of the remaining vectors of orthonormal bases;
+let $V$ do the same on Bob's side with the same bijection. Then $F$ is a sum of products of nonnegative Schmidt
+coefficients, so it is real and nonnegative, and the matched groups alone contribute
+\[
+\sum_{m=0}^{L-2}2^{m+1}\sqrt{\frac{P_m}{2^{m+1}}\cdot\frac{P_{m+1}}{2^{m+1}}}=\frac2{L+1}\sum_{j=1}^L\sin(j\vartheta)\sin((j+1)\vartheta)=\cos\vartheta,
+\]
+with $\vartheta=\pi/(L+1)$; the term $j=L$ vanishes, and
+$\sum_{j=1}^L\sin(j\vartheta)\sin((j+1)\vartheta)=\frac12\bigl(L\cos\vartheta-\sum_{j=1}^L\cos((2j+1)\vartheta)\bigr)=\frac{L+1}2\cos\vartheta$.
+\end{proof}
+
+\begin{proposition}\label{prop:jlv}
+For every $L\ge1$ the game $\mathrm{3EMB}$ of~\cite[Figure~2]{JLV20} has a strategy in which the first player holds three
+qubits and the other two hold $L+3$ qubits each, and which wins with probability at least $1-\pi^2/(16(L+1)^2)$. Hence
+$O(\eps^{-1/2})$ qubits per player suffice to win with probability $1-\eps$.
+\end{proposition}
+
+\begin{proof}
+Take the strategy of the proof of~\cite[Lemma~7]{JLV20} with $\Gamma_L$ in place of $\Gamma_d$, and with the controlled
+unitaries $U$ and $V$ of \cref{lem:reservoir} in place of the controlled left shifts. In that strategy the reservoir is
+used only in part (d); in parts (a), (b) and (c) the second and third players act on their GHZ registers only, the same
+way in all three parts, and the strategy is accepted with probability $1$~\cite[proof of Lemma~7]{JLV20}. Part (d) is
+played with probability $\frac14$, and there the referee always accepts if the first player reports $u=1$, which happens
+with probability $\frac12$. Conditioned on $u=0$, the state is~\cite[(10)]{JLV20}
+\[
+\tfrac1{\sqrt2}|0\rangle_{V_1}\bigl(|0\rangle_{V_2}|00\rangle_{A_1B_1}|00\rangle_{A_2B_2}+|1\rangle_{V_2}|\mathrm{EPR}\rangle_{A_1B_1}|11\rangle_{A_2B_2}\bigr)\otimes|\mathrm{GHZ}\rangle\otimes\Gamma_L .
+\]
+After the second and third players apply $U$ and $V$ to $A_1A'$ and $B_1B'$, controlled by $A_2$ and $B_2$, the inner product
+with the ideal state, in which $|\mathrm{EPR}\rangle_{A_1B_1}$ is replaced by $|11\rangle_{A_1B_1}$, is $\frac12(1+F)$, a positive real
+number. The remaining operations of the strategy are unitaries applied to both states, followed by the honest measurements of
+the test, which accept the ideal state, the state~\cite[(12)]{JLV20}, with certainty. If an effect $0\le E\le I$ satisfies
+$\langle v,Ev\rangle=1$ for a unit vector $v$, then $Ev=v$ and $E\ge|v\rangle\langle v|$. So, conditioned on $u=0$, the strategy is rejected
+with probability at most $1-\frac14(1+F)^2\le1-F\le\frac{\pi^2}{2(L+1)^2}$, and the total failure probability is at most
+$\frac14\cdot\frac12\cdot\frac{\pi^2}{2(L+1)^2}$. Taking $L=\lceil\pi/(4\sqrt\eps)\rceil$ gives the last claim.
+\end{proof}
+
+So the number of qubits that the players of $\mathrm{3EMB}$ need lies between $\Omega(\eps^{-c})$ and $O(\eps^{-1/2})$. A single
+coherent exchange cannot do better than \cref{lem:reservoir}: by~\cite[Fact~8]{JLV20}, which is~\cite[Fact~5.7]{RV15}, an
+exchange with infidelity $\eta$ needs a reservoir of local dimension $t$ with $\log t=\Omega(\eta^{-1/2})$. A matching lower
+bound for the game would need a soundness argument in which the exchange infidelity is linear in the losing probability;
+we do not have one.

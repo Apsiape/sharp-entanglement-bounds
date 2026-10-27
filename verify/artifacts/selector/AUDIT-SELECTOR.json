@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "objects": [
+    {
+      "object": "SELECTOR-MAGIC.json",
+      "sha256": "a72e61c28f78ea99f2609c69442e69a96f84954ecaed5d2c6275692883ee42d2",
+      "contexts": 5659,
+      "truth_assignments_checked": 90584,
+      "finite_perfect_strategy": {
+        "local_dim": 4,
+        "ebits": 2,
+        "state": "Phi_4",
+        "every_context_operator_checked": 5659,
+        "explicit_active_joint_PVM_assignments_checked": 96,
+        "max_operator_residual": 0.0,
+        "score": "exactly 1 by checked PVM/transposed consistency"
+      }
+    },
+    {
+      "object": "SELECTOR-CONTRADICTION.json",
+      "sha256": "03bc42656e3f3151ed84c2a20ba9756aee00818eb76ea5a4798e7f0de9653e63",
+      "contexts": 5655,
+      "truth_assignments_checked": 90496
+    }
+  ],
+  "negative_control": {
+    "shared_flag_classical_solutions": 0,
+    "private_flags_allow_perfect_classical_cheat": true,
+    "negative_control_pass": true
+  },
+  "fallback_source_unchanged": true,
+  "fallback_sha256": "9cc63bb337c2d3d61b4feff535d5b3439a85a891b1d1d2e2eddfcab7446a4cb6",
+  "limitations": "Finite syntax, all local predicates, incidence weights, and one finite perfect strategy checked. Value1/nonattainment of H and undecidability are inherited written theorems, never inferred from finite tests."
+}

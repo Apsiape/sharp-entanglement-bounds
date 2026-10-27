@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "checker_sha256": "f50e9bd081b7f8b774505be34cb435e823e85a44d13aab2e34077c5111aed4f0",
+  "source_export": {
+    "path": "SOURCE-K2.json",
+    "sha256": "e8121b84dbbbe672d35b3626386b3afedbd6ea009dda171e9e7f26ca989fdcf9"
+  },
+  "native_generators": 4,
+  "native_relators": 23,
+  "max_relator_length": 22,
+  "family_counts": {
+    "center": 2,
+    "host": 4,
+    "onsite": 3,
+    "pair": 8,
+    "stabilizer": 6
+  },
+  "exact_check_counts": {
+    "native_row_count": 1,
+    "unique_row_ids": 1,
+    "literal_lamp_relator": 23,
+    "literal_host_relator": 23,
+    "freely_reduced_export": 23,
+    "J_is_nontrivial_sign": 1,
+    "literal_setwise_stabilizer": 3,
+    "gap_address_k1": 45,
+    "gap_length_k1": 45,
+    "gap_address_k2": 165,
+    "gap_length_k2": 165,
+    "native_pair_lamp_word_length": 165,
+    "gap_address_k3": 70,
+    "gap_length_k3": 70,
+    "gap_address_k4": 21,
+    "gap_length_k4": 21,
+    "gap_address_k5": 7,
+    "gap_length_k5": 7,
+    "all_ordered_pair_templates": 756,
+    "active_signed_cocycle_zero_translation": 392,
+    "active_point_region_preserved": 392,
+    "active_cocycle_tail_fixed": 6192,
+    "active_internal_subset_preserved": 252408,
+    "external_straddling_vacuum_site": 160,
+    "transported_native_lamp_inside": 83,
+    "scalar_Dirichlet_clock": 3,
+    "boundary_omission_negative_control": 3,
+    "onsite_as_cross_template_rejected": 1,
+    "missing_overlap_template_rejected": 1,
+    "wrong_cocycle_order_rejected": 1,
+    "point_region_crossing_rejected": 1,
+    "wrong_gap_exponent_rejected": 1
+  },
+  "total_boolean_comparisons": 261250,
+  "clock_records": [
+    {
+      "L": 1,
+      "R": 6,
+      "points": 18,
+      "internal_subset_qubits": 153,
+      "active_signed_edges": 48,
+      "clock_energy": 0.5857864376269049
+    },
+    {
+      "L": 2,
+      "R": 10,
+      "points": 30,
+      "internal_subset_qubits": 435,
+      "active_signed_edges": 120,
+      "clock_energy": 0.2679491924311228
+    },
+    {
+      "L": 3,
+      "R": 14,
+      "points": 42,
+      "internal_subset_qubits": 861,
+      "active_signed_edges": 224,
+      "clock_energy": 0.1522409349774265
+    }
+  ],
+  "external_straddling_witnesses": 160,
+  "no_native_spin_arrays": true,
+  "claim_limit": "Literal infinite-action finite probes and exact word/Pauli controls, with float scalar clock constants. Infinite presentation, all-k laws and asymptotic ED require written proofs, not this enumeration."
+}

@@ -1,0 +1,361 @@
+%======================================================================
+\section{The point-Pauli game: a polynomial window}\label{sec:point}
+%======================================================================
+
+The configuration lamps of \cref{sec:lamps} sit on the $2^N$ configurations of $N$ points and give an almost inverse-loss
+demand. Placing Pauli lamps on the points themselves gives a fixed game whose demand lies between two positive powers of $1/\eps$,
+strictly between the logarithmic and inverse scales. Whether its demand has a limiting power-law exponent, and what that exponent is,
+remain open.
+
+\subsection{The source and the game}\label{sec:point-source}
+
+The \emph{point source} has generators $a,b,s,x,z,J$ and the $22$ relators
+\begin{gather*}
+s^2,\quad(sas a^{-1})^3,\quad[s,a^2sa^{-2}],\quad aba^{-1}b^{-1}s^{-1}\ (\mathrm{H4}),\quad asa^{-1}bs^{-1}b^{-1},\\
+J^2,\ x^2,\ z^2,\quad[J,a],[J,b],[J,s],[J,x],[J,z],\quad[x,z]J^{-1},\\
+[x,sa],\ [x,sb],\ [z,sa],\ [z,sb],\qquad[u,ava^{-1}]\quad(u,v\in\{x,z\}),
+\end{gather*}
+with $[u,v]=uvu^{-1}v^{-1}$ and marked involution $J$. The first five are Johnson's presentation of Houghton's group
+$H_3$~\cite{Joh99},~\cite[Theorem~2.8]{Lee12}, in the words of~\cite[(1)]{DM-H3}; $s$ is the transposition of the first two points of
+the first ray, $k=sa$ and $l=sb$ generate the stabilizer of the first point, and the last eight relators place a Pauli pair
+$x,z$ at that point, commuting with its stabilizer, with all sites' pairs commuting and every onsite commutator equal to the
+central $J$. Let $G_{\mathrm{pt}}$ be the game of the universal compiler (\cref{thm:universal}) for this presentation, with the
+compiler's uniform-context, uniform-incidence question law. It has $6960$ variables and $5713$ contexts, of arity at most three,
+and upper amplification $12$. The exported game is archived in \texttt{verify/artifacts}, where an independent checker verifies,
+exactly and against these $22$ relators, every variable square, context commutator and forbidden assignment and the six
+recovery maps.
+
+\subsection{Fillings on the actual state}\label{sec:point-filling}
+
+The lower bound needs the cost, on the actual state, of long null words with large fillings. \Cref{lem:conjugators} and
+\cref{lem:calculus}(d) charge each of the $A$ cells of a filling its own conjugator, of length up to $n+K(A+1)$ for a word of
+length $n$, and so give the quadratic bound $A(1+2n+2K(A+1))e$. The conjugators can be shared. Cut a van Kampen diagram into a
+tree of faces; at each face, substitute at once the whole boundary of the subdiagram that hangs from each child edge, and pay only
+for moving the bounded remainder of that one face. Every edge of the tree is then charged once, and the charge becomes linear in
+the size of the diagram (\cref{thm:linear-filling}).
+
+In this subsection $\varphi:F(S)\to\mathrm U(d)$ is a homomorphism, $\xi=\rho^{1/2}$ for a density matrix $\rho$, and
+$\hs{[\varphi(s),\xi]}\le e_c$ for every $s\in S$. Words may contain the letter $1$, with $\varphi(1)=I$ and $1^{-1}=1$, and $|v|$
+counts the letters of a word $v$ other than $1$.
+
+\begin{lemma}[Bounded transport]\label{lem:bounded-transport}
+For every operator $Y$ and every word $v$, $\hs{Y\varphi(v)\xi}\le\hs{Y\xi}+\opn Y\,|v|\,e_c$.
+\end{lemma}
+
+\begin{proof}
+$Y\varphi(v)\xi=Y\xi\varphi(v)+Y[\varphi(v),\xi]$. The first term has norm $\hs{Y\xi}$ because $\varphi(v)$ is unitary, and the
+second at most $\opn Y|v|e_c$ by \cref{lem:calculus}(a).
+\end{proof}
+
+The bounded operator $Y$ is moved past $\varphi(v)$ as a whole, so the length of the word that produced $Y$ never enters. With
+actual mirrors on a purification $\Psi$ of the original state, \cref{lem:transfer-parties}(b) is the same statement, with $e_c$
+replaced by the mirror error of the signed generators.
+
+\begin{lemma}[Substituting whole words into one face]\label{lem:face-substitution}
+Let $t_1,\dots,t_m$ be letters of $S^{\pm1}\cup\{1\}$ and $q_1,\dots,q_m$ words, and put $R=t_1\cdots t_m$, $W=q_1\cdots q_m$ and
+$b_i=\hs{(\varphi(t_i^{-1}q_i)-I)\xi}$. Then
+\[
+\hs{(\varphi(W)-I)\xi}\ \le\ \hs{(\varphi(R)-I)\xi}+\sum_{i:\,q_i\ne t_i}\bigl(b_i+2(m-i)e_c\bigr).
+\]
+\end{lemma}
+
+\begin{proof}
+Telescoping,
+\[
+\varphi(W)-\varphi(R)=\sum_{i=1}^m\varphi(q_1\cdots q_{i-1})\bigl(\varphi(q_i)-\varphi(t_i)\bigr)\varphi(t_{i+1}\cdots t_m),
+\]
+and the terms with $q_i=t_i$ vanish. The left factors are unitary. The middle factor
+$Y_i=\varphi(t_i)\bigl(\varphi(t_i^{-1}q_i)-I\bigr)$ has $\opn{Y_i}\le2$ and $\hs{Y_i\xi}=b_i$, so \cref{lem:bounded-transport}
+bounds the $i$-th term, applied to $\xi$, by $b_i+2(m-i)e_c$. Finally
+$\hs{(\varphi(W)-I)\xi}\le\hs{(\varphi(R)-I)\xi}+\hs{(\varphi(W)-\varphi(R))\xi}$.
+\end{proof}
+
+The words $q_i$ may be arbitrarily long; only the suffix of the one face $R$ is moved.
+
+A \emph{disk diagram} is a finite connected plane graph whose unbounded face is bounded by a simple cycle, with every edge
+oriented and labelled by a letter of $S^{\pm1}\cup\{1\}$; an edge read against its orientation gives the inverse letter. Its
+\emph{faces} are the bounded faces of the graph. The boundary walk of a face, or of the whole diagram, read counterclockwise
+from one of its edges is a word, its \emph{boundary word} from that edge. An edge on two faces is read in opposite directions by
+them, and an outer edge is read in the same direction by the diagram and by its face.
+
+\begin{lemma}[A tree of faces]\label{lem:face-tree}
+Let $D$ be a disk diagram with $F\ge1$ faces, each with a boundary walk of at most $K'$ edges, and let $w$ be its boundary word
+from an outer edge $g_0$. Suppose that every face $f$ has $\hs{(\varphi(u)-I)\xi}\le r_f$ for its boundary word $u$ from each of
+its edges. Then
+\[
+\hs{(\varphi(w)-I)\xi}\ \le\ \sum_fr_f+2K'(F-1)e_c .
+\]
+\end{lemma}
+
+\begin{proof}
+\emph{A tree of faces.} The outer boundary is a simple cycle $Z$. The path $Z\setminus g_0$ is acyclic, so it extends to a
+spanning tree $T$ of the graph, and $g_0\notin T$. The edges outside $T$ are dual to a spanning tree $T^*$ of the dual graph,
+whose vertices are the $F$ faces and the unbounded face. Indeed, a cycle of such dual edges is a closed curve that crosses each
+corresponding primal edge once and meets the graph nowhere else, so by the Jordan curve theorem it separates the two ends of each
+such edge; the path in $T$ between them would have to cross the curve, through an edge outside $T$, which is impossible. So these
+dual edges form a forest, and by Euler's formula there are $E-V+1=F$ of them, one fewer than the number of dual vertices; hence
+$T^*$ is a spanning tree. The only outer edge outside $T$ is $g_0$, so the unbounded face is a leaf of $T^*$, attached to the face
+$f_0$ that contains $g_0$. Deleting it leaves a tree $T^*_0$ on the $F$ faces, whose $F-1$ edges are interior edges outside $T$.
+Such an edge lies on two distinct faces, since an edge with one face on both sides is a bridge and every bridge lies in $T$, and
+each of the two faces traverses it once.
+
+\emph{Substituting subtrees.} Root $T^*_0$ at $f_0$. For $f\ne f_0$ let $g_f$ be the edge joining $f$ to its parent. Let
+$R_f=t_1\cdots t_m$, $m\le K'$, be the boundary word of $f$ from $g_f$, and that of $f_0$ from $g_0$. Define $W_f$, recursively
+from the leaves, by replacing in $R_f$ each letter $t_i$ read along the edge $g_c$ of a child $c$ by the word $q_i$ obtained from
+$W_c$ by deleting its first letter. That first letter is read along $g_c$ in the direction opposite to $f$, so it is $t_i^{-1}$,
+and $t_i^{-1}q_i=W_c$. Put $\beta_f=\hs{(\varphi(W_f)-I)\xi}$. By \cref{lem:face-substitution}, with $m-i<K'$,
+\[
+\beta_f\ \le\ r_f+\sum_{c\text{ child of }f}\bigl(\beta_c+2K'e_c\bigr),
+\]
+and induction from the leaves gives $\beta_{f_0}\le\sum_fr_f+2K'(F-1)e_c$, since $T^*_0$ has $F-1$ edges.
+
+\emph{Free equality.} Read each $W_f$ as an edge path. The boundary walk of $f$ from $g_f$ is closed; replacing its traversal of
+$g_c$, from $u$ to $v$ say, by the remainder of the closed path $W_c$, which runs from $u$ back to $v$, keeps it a closed path. So
+$W_{f_0}$ is a closed edge path beginning with $g_0$. Every edge $g_c$ of $T^*_0$ is traversed once by its parent and once by its
+child, at the first letter of $W_c$, and both traversals are deleted; so $W_{f_0}$ uses only edges of $T\cup\{g_0\}$ and traverses
+$g_0$ exactly once, in the direction of $w$. In the graph $T\cup\{g_0\}$, whose only cycle is $Z$, a closed edge path from the
+initial vertex of $g_0$ is determined up to homotopy by the signed number of its traversals of $g_0$. Hence $W_{f_0}$ and the
+boundary walk $w$ are homotopic, they become equal after cancelling backtracking pairs of edges, and their words are freely equal.
+So $\varphi(w)=\varphi(W_{f_0})$.
+\end{proof}
+
+A van Kampen diagram may be singular, with edges and vertices on no face, and a face may meet itself; the next lemma removes this
+at linear cost.
+
+\begin{lemma}[Regular diagrams at linear cost]\label{lem:regular-diagram}
+Let $R$ be a set of words of length at most $K\ge1$, and let a freely reduced word $w_0\ne1$ of length $n$ be freely equal to a
+product of $A$ conjugates of elements of $R^{\pm1}$. There is a disk diagram whose boundary word from a suitable edge is $w_0$
+with letters $1$ inserted, and whose faces are at most $A$ \emph{caps} and further \emph{auxiliary} faces. The boundary word of a cap, from
+any of its edges, is a cyclic permutation of an element of $R^{\pm1}$ with letters $1$ inserted, of at most $2K$ letters; that of
+an auxiliary face has at most four letters and is freely trivial. There are at most $A+5E$ faces, where $E$ is an integer with
+$2E\le KA+n$.
+\end{lemma}
+
+\begin{proof}
+By van Kampen's lemma~\cite[Chapter~V, Section~1]{LS77}, as in the proof of \cref{lem:conjugators}, $w_0$ has a van Kampen
+diagram $D_0$ with at most $A$ faces, the boundary walk of each reading a cyclic permutation of an element of $R^{\pm1}$, and with outer
+boundary walk $w_0$ from a base vertex. Let $E$ be its number of edges. Each edge has two sides, and each side lies on exactly one
+face boundary walk or on the outer walk, so $2E\le KA+n$.
+
+Thicken the $1$-skeleton of $D_0$ in the plane: a small closed disk around each vertex and a thin band along each edge, meeting
+the disks of its two ends in two short arcs. The union $N$ is a connected compact planar surface, and the bounded components of
+its complement are the faces of $D_0$, slightly shrunk, one for each. Fill each of them with a disk, the cap of that face; by the
+Jordan--Schoenflies theorem, $N$ with its caps is a closed disk, bounded by the outer boundary curve of $N$. The two long sides of
+the band of an edge carry the letter of that edge, oriented alongside it, and every short band end, every arc of a vertex disk and
+every diagonal added below carries $1$. A band then reads $t\,1\,t^{-1}\,1$, which is freely trivial from every edge. A cap meets,
+along its boundary, one long band side for each edge of its face and one vertex arc between consecutive ones, so it reads the
+relator of that face with letters $1$ inserted. The outer boundary meets one long band side for each step of the outer walk of
+$D_0$, including both sides of an edge that the walk traverses twice, so, read from the band side of the first edge of $w_0$, it is
+$w_0$ with letters $1$ inserted. The disk of a vertex of degree $\delta\ge2$ is a polygon with $2\delta$ sides, alternately band ends
+and free arcs; divide it by diagonals into $2\delta-2$ triangles. The disk of a vertex of degree one has two sides and is kept.
+These faces read words in the letter $1$ only. As the degrees sum to $2E$, there are at most $A+E+4E$ faces.
+\end{proof}
+
+\begin{theorem}[A linear filling charge]\label{thm:linear-filling}
+Let $R$ be a finite set of words of length at most $K\ge1$, and put $K'=\max\{2K,4\}$. Suppose that $\hs{[\varphi(s),\xi]}\le e_c$
+for every $s\in S$ and $\hs{(\varphi(r)-I)\xi}\le e_r$ for every $r\in R$. If a word $w$ of length $n$ has area at most $A$ in $R$,
+then
+\[
+\hs{(\varphi(w)-I)\xi}\ \le\ Ae_r+\bigl[(2K+2K'+5KK')A+5K'n\bigr]e_c .
+\]
+In particular, in a model at precision $e$ the error is at most $C_K(A+n)e$, with $C_K=1+2K+2K'+5K'(K+1)$.
+\end{theorem}
+
+\begin{proof}
+Let $w_0$ be the free reduction of $w$, so that $\varphi(w)=\varphi(w_0)$ and $|w_0|\le n$; if $w_0=1$ there is nothing to prove.
+Otherwise take the disk diagram of \cref{lem:regular-diagram} and apply \cref{lem:face-tree}, whose faces have at most $K'$
+edges. A cap read from any edge is, up to letters $1$, a word $\alpha^{-1}r^{\pm1}\alpha$ with $r\in R$ and $|\alpha|\le K$. Since
+$\varphi(r)^{-1}-I=-\varphi(r)^{-1}(\varphi(r)-I)$, \cref{lem:calculus}(c) and~(a) give $r_f\le e_r+2Ke_c$ for a cap, and an auxiliary
+face has $r_f=0$. With at most $A+5E$ faces and $2E\le KA+n$,
+\[
+\hs{(\varphi(w)-I)\xi}\ \le\ A(e_r+2Ke_c)+2K'(A+5E)e_c\ \le\ Ae_r+\bigl[(2K+2K')A+5K'(KA+n)\bigr]e_c .
+\]
+In a model at precision $e$ both $e_r$ and $e_c$ are at most $e$.
+\end{proof}
+
+\begin{remark}\label{rem:linear-filling}
+The proof uses the state only through \cref{lem:bounded-transport}. With \cref{lem:transfer-parties}(b) in its place the same
+bound holds for $\|(U(w)-I)\Psi\|$ on a purification of the original mixed state, with $e_c$ the actual mirror error of the signed
+generators; neither form conditions on a sector or replaces the state. When every mirror is exact, for instance on a maximally
+entangled state with transposed mirrors, $e_c=0$ and the bound is the tracial estimate $Ae_r$. At a common precision $e$ the
+separately based conjugators of \cref{lem:conjugators} cost $A(A+n)e$, while the tree of faces costs $C_K(A+n)e$. No signed area
+and no cancellation between cells is used. For the five Houghton relators $K=12$ and $C_{12}=1633$.
+\end{remark}
+
+\subsection{The window}\label{sec:point-window}
+
+\begin{theorem}[The point window]\label{thm:point-window}
+There are constants $c,C>0$ such that, for all sufficiently small $\eps$,
+\[
+c\,\eps^{-\beta}\ \le\ d_{G_{\mathrm{pt}}}^\to(\eps)\ \le\ C\eps^{-1/4},\qquad\beta=\frac1{2\log107+1}\approx0.0690 .
+\]
+By \cref{thm:factor-three} the same window holds for $d^\leftarrow_{G_{\mathrm{pt}}}$. A matching lower exponent $\frac14$ is open
+(\cref{sec:open}).
+\end{theorem}
+
+The lower bound uses only a fixed visibility certificate, the polynomial far-commutator areas of Houghton's group, the linear
+filling charge of \cref{thm:linear-filling} and the $S_3$ extraction of \cref{sec:aggregate}. The upper bound is an explicit
+finite model.
+
+\begin{lemma}[A fixed visibility certificate]\label{lem:point-visibility}
+Put $\gamma=s\,(asa^{-1})$, a three-cycle. There is a constant $C_0$ such that every model of the point source at precision $e$
+has $\hs{(J-I)\xi}\le C_0(\hs{(\gamma-I)\xi}+e)$. Consequently $\hs{(\gamma-I)\xi}\ge\Delta_0>0$ for all sufficiently small $e$.
+\end{lemma}
+
+\begin{proof}
+With $k=sa$, $l=sb$ and $t=asa^{-1}$, the identity $t=[k,l]$ holds in $H_3$: both sides exchange the second and third points of
+the first ray and fix all others, which can be checked on the finitely many points the words move; by Johnson's theorem it has
+a fixed finite derivation from the five Houghton relators. In the quotient by $\gamma=1$: $x,z$ commute with $k,l$, hence with $t$,
+hence with $s=t^{-1}$, hence with $a=s^{-1}k$; then $[x,aza^{-1}]=1$ becomes $[x,z]=1$, and $[x,z]=J$ gives $J=1$. So $J$ lies in the
+normal closure of $\gamma$ and the relators, with a fixed derivation. Evaluating it with \cref{lem:calculus}, every occurrence of
+$\gamma$ costs its residual and every fixed conjugator a fixed multiple of $e$. Since $\hs{(J+I)\xi}\le e$, $\hs{(J-I)\xi}\ge2-e$.
+\end{proof}
+
+\begin{proof}[Proof of the lower bound]
+By \cref{prop:interface}, applied to the universal compiler, every strategy of loss $\eps$ gives Bob unitaries for the six
+generators and Alice opposite mirrors, with relator residuals, mirrors, inverse mirrors and state commutators at most
+$e=C\sqrt\eps$, on the original state. Round $s$ once to a reflection on each party by $\sgn\Re$; by \cref{lem:rounding} and
+\cref{lem:calculus}(e), applied to the fixed relator words, the rounded tuple still has relator residuals, mirrors and state
+commutators $O(e)$. This changes observables, not the state. Put $p=\log107$ and, for $0\le i<N$,
+\[
+S_i=a^{3i}sa^{-3i},\qquad T_i=a^{3i+1}sa^{-3i-1},
+\]
+reflections on each party (Alice using the reversed mirror words). Then $(S_iT_i)^3$ is a conjugate of $(sasa^{-1})^3$ and
+$S_iT_i$ a conjugate of $\gamma$, by words of length $O(N)$, so the cubic residuals and raw mirrors are $O(Ne)$ and, by
+\cref{lem:point-visibility}, Bob's raw three-cycle visibility is at least $\Delta_0-O(Ne)$. Every cross-copy commutator is a far
+commutator $[\sigma_{p'},\sigma_{q'}]$ with $\sigma_j=a^jsa^{-j}$, $0\le p',q'\le3N+1$ and $|p'-q'|\ge2$, a word of length $O(N)$
+whose area in the five Houghton relators is at most $135(3N+1)^p$ by~\cite[Theorem~3.2]{DM-H3}, used with its literal presentation
+and word orientation. Since $p>1$, \cref{thm:linear-filling} bounds its residual by $C(N^p+N)e\le CN^pe$. The additive and the group
+commutator of two reflections differ by a state commutator of a word of length $O(N)$, so Bob's raw cross-commutators are at most
+$\eta_0\le CN^pe$. \Cref{lem:S3-round} gives exact local $S_3$ representations with
+$\kappa\le9\eta_0+144\mu_0+36e_{\mathrm{cub}}\le CN^pe$ and Alice visibility $\Delta\ge\Delta_0/2$ once $Ne$ is small. Take
+$N=\lfloor c\,e^{-2/(2p+1)}\rfloor$ with $c$ small: then $N\kappa^2\le Cc^{2p+1}\le\Delta^2/38400$, while $Ne\to0$ because
+$2/(2p+1)<1$. \Cref{cor:S3} gives $\ED^{A\to B}(\rho_{AB})\ge\Delta^2N/16\ge c'e^{-2/(2p+1)}=c''\eps^{-1/(2p+1)}$, the exponent
+being halved because $e$ is of order $\sqrt\eps$.
+\end{proof}
+
+Charging each cell its own conjugator (\cref{lem:conjugators}) would give only $\eta_0\le CN^{2p}e$ and the exponent
+$1/(4\log107+1)\approx0.0358$. The area exponent enters only through $\eta_0$. Let $A^*(M)$ be the largest area of a far
+commutator $[\sigma_{p'}^{\pm1},\sigma_{q'}^{\pm1}]$ with $0\le p',q'\le M$ and $|p'-q'|\ge2$. The asymptotic refinement
+$A^*(M)=O(M^{\log\rho})$ of~\cite[Remark~A.3]{DM-H3}, where $\rho\in(106,107)$ is the largest root of
+$x^4-112x^3+572x^2+3328x-14208$, gives in the same way the slightly larger exponent $1/(2\log\rho+1)=0.06913\ldots$;
+\cref{sec:open} records what smaller areas would give. The route itself has a limit: no worst-pair estimate $\eta_0\le CN^ue$ with
+$u<2$ holds on all original source models, already at the scale of this proof (\cref{thm:raw-obstruction,prop:window-dilution}), so
+it cannot give a lower exponent beyond $\frac15$.
+
+\subsection{A collective finite model}\label{sec:point-collective}
+
+The upper bound needs finite tuples of the literal $22$ relators with small defect and little entanglement. The models of
+\cite[Proposition~6.5]{DM-H3} spread the single defect of Houghton's corner models over a torus of clocks by rotating the links in
+two-dimensional phase planes; on an exterior-algebra quantization they give source precision $O(M^{-3/2})$ at entropy $O(M)$, and
+hence only $d\le C\eps^{-1/3}$. The model below does better by taking the logarithm of a \emph{product} of swaps, once, after
+representing it.
+
+\begin{proposition}[Collective models]\label{prop:collective}
+For every $M\ge48$ there are unitaries for the $22$-relator source on $\C^{D_M}$, $D_M=M^2\,2^{4M+4}$, with $J=-I$, all relators
+except H4 exact, and $\opn{\mathrm{H4}-I}\le\pi/A_B+\pi/A_T\le8\pi/M^2$, where $A_B=M(M-1)/2$ and $A_T=1+(M-1)(M-2)/2$. On the maximally
+entangled state $\Phi_{D_M}$, with Alice's transposes, every signed generator mirror is exact, and both directional rates equal
+$4M+4+2\log M$.
+\end{proposition}
+
+\begin{proof}
+\emph{Base data.} We use the permutation data of~\cite[\S6]{DM-H3} in its right-action convention: $L=4M+4$ colour coordinates,
+clocks $c\in(\Z/M\Z)^2$, the link permutations $A_c,B_c$ of the corner models with the two preliminary exact moves
+$\eta_1=(1\ M{+}4)$ at $(M-1,M-1)$ and $\eta_2=(5\ M{+}5)$ at $(0,M-2)$, and $\tau=(1\ 2)$. They satisfy $A_c\tau A_c^{-1}=(2\ 3)$,
+$A_c(2\ 3)A_c^{-1}=(3\ 4)$ and $B_c\tau B_c^{-1}=(2\ 3)$ at every clock, and their H4 holonomy is the identity except at the two
+sources $q_B=(M-1,M-1)$, where it is $\prod_{t=5}^{M+3}(t\ t{+}M)$, and $q_T=(0,M-2)$, where it is $(5\ M{+}5)$~\cite[proofs of
+Propositions~6.1 and~6.5]{DM-H3}.
+
+\emph{One common region.} Let $B$ be the smallest bulk region $R_5$ of~\cite[proof of Proposition~6.5]{DM-H3} and $T$ the region with
+source $q_T$, with their labels: for every $t=5,\dots,M+3$ the label $S_t(v)$ of $R_t$ restricted to the vertices of $B$, and the
+label $S_T(v)$. Restriction preserves properties (R1)--(R4) of~\cite[Lemma~6.4]{DM-H3}, because $B\subseteq R_t$ for every $t$: every
+base link outside the sources carries each $S_t(v)$, hence their product, to the next label; the regions are connected through
+interior edges with zero boundary potentials; base labels avoid $\{1,2\}$ and labels at initial vertices of interior edges avoid
+$\{2,3,4\}$; and labels of different regions are disjoint. Let $P_B(v)=\prod_tS_t(v)$, as a product of disjoint transpositions, and
+$P_T(v)=S_T(v)$; at the sources these are the two holonomies.
+
+\emph{Represent first, then take one logarithm.} Let $\Pi$ be the qubit-permutation representation on $(\C^2)^{\otimes L}$, and put
+$V_R(v)=\Pi(P_R(v))$ and $Q_R(v)=\frac12(I-V_R(v))$ for $R\in\{B,T\}$. These $Q_R$ are orthogonal projections with
+$\exp(i\pi Q_R)=V_R$ exactly, covariant along base links ($\Pi(A)Q_R(w)\Pi(A)^*=Q_R(v)$ for an edge from $v$ to $w$), commuting with
+one another where both occur, and acting trivially on qubits $2,3,4$. Solve the scalar curl equations
+$\mathrm{curl}\,\varphi_R=\pi/A_R-\pi\,1_{q_R}$ on $R$ with zero boundary potentials by a spanning tree of the dual graph, put
+$U_c=\prod_R\exp(i\varphi_R(\text{$a$-edge at }c)Q_R(c))$ and $V_c=\prod_R\exp(i\varphi_R(\text{$b$-edge at }c)Q_R(c))$, and define on
+$\C^{M^2}\otimes(\C^2)^{\otimes L}$ the operators $a|c,v\rangle=|c-e_1,U_{c-e_1}\Pi(A_{c-e_1})v\rangle$,
+$b|c,v\rangle=|c-e_2,V_{c-e_2}\Pi(B_{c-e_2})v\rangle$, $s|c,v\rangle=|c,\Pi(\tau)v\rangle$, $x=X_1$, $z=Z_1$ and $J=-I$.
+
+\emph{The relators.} Since the rotations commute with $\Pi((2\ 3))$ and $\Pi((3\ 4))$, \cite[Lemma~6.3]{DM-H3} gives the four
+Houghton relators other than H4 exactly. The new link factors act trivially on qubits $2,3,4$ and the base permutations have the
+same first inverse images as in~\cite{DM-H3}, so in the left-operator convention $ax_1a^*=x_2$, $az_1a^*=z_2$, $bx_1b^*=x_2$,
+$bz_1b^*=z_2$, $sx_2s^*=x_1$ and $sz_2s^*=z_1$; hence $sa$ and $sb$ fix both lamps and $[u,ava^{-1}]=[u_1,v_2]=1$. Squares, centrality
+of the scalar $J$ and $[x,z]=-I=J$ are exact. For H4, the computation of~\cite[Lemma~6.4]{DM-H3} uses only covariance,
+commutation, protected supports and the endpoint identity $\exp(i\pi Q)=V$ of its generators, all of which hold here, so the
+holonomy at every plaquette is $\exp(i1_B(q)\pi Q_B(q)/A_B)\exp(i1_T(q)\pi Q_T(q)/A_T)$, of operator distance at most
+$\pi1_B/A_B+\pi1_T/A_T$ from $I$. Finally $A_B,A_T\ge M^2/4$ for $M\ge4$.
+
+\emph{The state.} On $\Phi_{D_M}$ with Alice's transposes, $(U^T\otimes I)\Phi=(I\otimes U)\Phi$, so every mirror is exact and the
+state is pure with entropy $\log D_M$.
+\end{proof}
+
+\begin{proof}[Proof of the upper bound in \cref{thm:point-window}]
+With the flat state, the collective model is a source model at precision $e_M\le8\pi/M^2$. The upper map of the universal compiler
+gives a model of the constraint system at precision $Ce_M$ with the state $I_{12}/12\otimes\rho$, and the boolean return gives a
+strategy of loss at most $K_3C^2e_M^2=O(M^{-4})$ on a maximally entangled state of dimension $12D_M$, whose rates are
+$4M+4+2\log M+\log12$. Taking $M$ of order $\eps^{-1/4}$ gives $d^\to\le C\eps^{-1/4}$.
+\end{proof}
+
+\begin{remark}\label{rem:point-collective}
+The actual tracial H4 error of the collective model is $\Theta(M^{-4})$ in squared normalized Hilbert--Schmidt norm, so the root
+precision is genuinely $\Theta(M^{-2})$. The difference from the exterior-algebra models is specific: those take a sum of the
+quadratic logarithms of $O(M)$ commuting swaps, whose tracial fluctuations are of size $\sqrt M$, whereas here the logarithm of
+their product is one bounded projection. The new links do not factor as a native link times a control, so the native class law
+below does not apply to them. An exterior-algebra specialization of the same construction also works, at dimension
+$M^22^{8M+8}$.
+\end{remark}
+
+\subsection{A conditional law on the calibrated native class}\label{sec:point-native}
+
+The exterior-algebra models of~\cite[Proposition~6.5]{DM-H3}, with $k=2$ flavours and with the Pauli lamps
+$x=i\gamma_{1,1}\gamma_{1,2}$, $z=i\gamma_{1,2}\gamma_{1,3}$ built from the Majorana operators of the first site and $J=-I$, satisfy the
+$22$ relators with only H4 inexact, $\|\mathrm{H4}-I\|^2_{2,D}\le14.26M^{-3}$, at dimension $M^22^{8M+8}$. Call such a model, for one
+$M\ge48$, a \emph{native model} $\mathcal N_M$. On the class of Bob tuples equal to one native model, the demand has a matching
+law, but the proof of that law rests on inputs that have not been supplied self-containedly.
+
+\begin{theorem}[Native class law; conditional]\label{thm:native}
+Restrict Bob's tuple to one native model $\mathcal N_M$, $M\ge48$, up to a common unitary gauge and arbitrary finite spectators,
+and let the original $ABE$ state be arbitrarily correlated. Require actual Alice signed-generator and inverse mirrors at most $e$,
+all $22$ actual vector relator residuals at most $e$, and the negative centre; do not assume a flat density, stationarity, clock
+diagonality, a pure input, flavour factorization or an independent environment. \emph{Conditional on the inputs listed
+below}, the minimum original $\ED^{A\to B}$ on this class is $\Theta(e^{-2/3})$, and on the game $G_{\mathrm{pt}}$, restricted to
+the calibrated native class (strategies whose actual native source contract is at most a fixed $C\sqrt\eps$), the minimum demand
+is $\Theta(\eps^{-1/3})$. This is not the unrestricted optimum: the collective models of \cref{prop:collective} lie outside the
+class, and the unrestricted upper bound $\eps^{-1/4}$ of \cref{thm:point-window} is below this class law.
+\end{theorem}
+
+\emph{The conditional inputs.} The lower bound is the aggregate extraction of \cref{thm:aggregate} applied to transported point
+lamps, $b_N=9E_B/N+132M_2$, together with four native estimates: the coercivity $M^2e^2+M^3\|(\mathrm{H4}-I)\Psi\|^2\ge c$; a sparse
+bad-branch probability $p_{\mathrm{bad}}\le2N/M+4Ne$; the aggregate bound $E_B\le768\,Np_{\mathrm{bad}}$; and hence
+$b_N\le13824N/M+27648Ne+396N^3e^2$, which with $N=c\min\{M,e^{-2/3}\}$ gives $\ED\ge c'e^{-2/3}$. The coercivity and the bad-branch
+estimates rest on the appendix ``Sharp Houghton cost with moderate flavour growth'' of the authors' manuscript on
+immediate delivery~\cite{DM-ID}, whose internals were not rederived by the independent review, and the bound on $E_B$ has a written derivation that has not been independently
+rederived; the theorem becomes unconditional when self-contained proofs of these are supplied. The aggregate theorem itself
+(\cref{thm:aggregate}) is proved. The upper bound uses the literal free-unitary lift $I_{12}\otimes\mathcal N_M$ in the compiled game,
+not an assignment correct only modulo the source relations: the recovery polynomial evaluates to $I_{12}\otimes s$ on every
+unitary source tuple. The source witness has flat entropy $8M+8+2\log M$; with the amplified flat state the compiled game
+witness is maximally entangled of dimension $12M^2\,2^{8M+8}$, belongs to the native class, and has $e\asymp M^{-3/2}$ and
+$\ED=8M+8+2\log M+\log12$.
+
+\begin{theorem}[Enlarged native class; conditional]\label{thm:native-enlarged}
+Keep exact native clocks and the first two protected flavours, but allow clock-dependent links $L^0_a(c)\otimes U_a(c)$ and
+$L^0_b(c)\otimes U_b(c)$ and a clock-diagonal $s_0\otimes S(c)$, with lamps $x_0,z_0\otimes I$, negative $J$, finite noncentral
+controls, arbitrary correlations with Alice and the environment, common gauges, and finite coherent direct sums of different
+$M$. Require all full actual relator residuals, control defects included, and all actual mirrors, at most $e$. Links must factor
+between protected and control factors as stated; arbitrary entangling link operators are not included. Conditional on the same
+inputs as \cref{thm:native}, the class law is again $\Theta(e^{-2/3})$, and $\Theta(\eps^{-1/3})$ only for its calibrated
+native game restriction.
+\end{theorem}
+
+The finite local identity behind the enlarged class is checked exactly: for the generator $H$ of a native link, averaged over the
+local Pauli group of the two protected flavours, $\mathbb E_P(H^2)-\mathbb E_P(H)^2=I/8+H_{(+,-)}^2\ge I/8$ on every multiplicity
+sector. Its sector estimates give $\sum_Mp_MM^{-3}\le Ce^2$, hence $\sum_Mp_MM^{-1}\le Ce^{2/3}$ by Jensen's inequality, and after
+clipping small sectors $b_N\le C_1Ne^{2/3}+C_2Ne+C_3N^3e^2$. The conditional status concerns the operational law, not this
+identity.

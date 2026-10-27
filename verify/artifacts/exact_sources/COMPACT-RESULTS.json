@@ -1,0 +1,51 @@
+{
+  "status": "PASS",
+  "checker_sha256": "cda6e5ca4cdb834172450c7dfebd8169d0249bf15be5232bebce6caddf0c3b27",
+  "source_sha256": "9aaebab95a2165c4f176b32e240360c13c410e423db749435d1deb41266aec5b",
+  "exact_comparisons": 1368856,
+  "counts": {
+    "actual_five_generators": 1,
+    "actual_twenty_one_relators": 1,
+    "literal_word_alphabet": 21,
+    "independent_literal_export": 1,
+    "actual_block_replication": 1920,
+    "onsite_actual_Pauli_commutator": 3,
+    "even_replication_rejected": 1,
+    "odd_replication_preserves_negative_J": 2,
+    "analytic_tail_displacement_budget": 144,
+    "cocycle_point_valid": 454896,
+    "cocycle_outside_region_fixed": 454896,
+    "cocycle_preserves_finite_point_region": 454464,
+    "active_lamp_block_inside_region": 2496,
+    "cosine_translation_normalized": 2,
+    "cosine_height_normalized": 2,
+    "actual_t_scalar_clock_bound": 2,
+    "actual_pq_scalar_clock_bound": 2,
+    "actual_t_clock_eigenvalue": 2
+  },
+  "relator_lengths": {
+    "max": 22,
+    "sum": 200
+  },
+  "clock_records": [
+    {
+      "L": 1,
+      "M": 18,
+      "R": 152,
+      "signed_active_cases": 72,
+      "t_root_error": 0.7653668647301795,
+      "pq_root_error": 0.37761484307786825,
+      "common_upper": 0.7853981633974483
+    },
+    {
+      "L": 2,
+      "M": 243,
+      "R": 1952,
+      "signed_active_cases": 72,
+      "t_root_error": 0.5176380902050416,
+      "pq_root_error": 0.16783715405457167,
+      "common_upper": 0.5235987755982988
+    }
+  ],
+  "limits": "Literal 21-row exporter, bounded block replication, sparse point cocycles and scalar clock controls. Not a faithful Gamma point action (t changes the direct-limit stage); not finite native spins; HNN embedding/infinite presentation/upper induction and ED theorem are analytic."
+}

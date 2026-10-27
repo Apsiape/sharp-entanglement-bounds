@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "counts": {
+    "squares": 6798,
+    "rows": 5653,
+    "row_commutators": 16964
+  },
+  "failures": [],
+  "negative_control": {
+    "variable": "bar_c_194",
+    "detected": true
+  },
+  "number_of_failures": 0,
+  "input": "L4M8-LINEAR-GAME.json",
+  "normal_form_engine": "verify/check_linear_games.py, l48_scalar",
+  "seconds": 0.96
+}

@@ -1,0 +1,2 @@
+check_tree_filling.py -text
+artifacts/** -text

@@ -1,0 +1,166 @@
+%======================================================================
+\section{The configuration-lamp game: usable entanglement}\label{sec:lamps}
+%======================================================================
+
+Our companion paper constructs an explicit binary linear system game $G$ of quantum value one, with $m=1687$ equations in
+$n=1993$ variables and at most $s=3$ variables per equation, and proves that every strategy that wins with probability at least
+$1-\eps$ has entanglement entropy $S(\rho_B)\ge c\,\eps^{-1}\beta(\eps)$, every mixed strategy has entanglement of formation at
+least $\frac c4\eps^{-1}\beta(\eps)$, and a maximally entangled strategy of local dimension $\exp(C\eps^{-1}\log(1/\eps))$
+suffices, where $\beta(\eps)=2^{-4(24+\log\log(1/\eps))^2}=\eps^{o(1)}$~\cite[Theorem~A, Theorem~10.5 and Corollary~10.6]{DM-game}.
+None of these is a lower bound on the distillable entanglement of a mixed near-winner. This section proves that bound: every
+finite-dimensional mixed strategy of sufficiently small loss $\eps$ has one-way distillable entanglement at least
+$\eps^{-1+o(1)}$ on its original state. Together with the upper construction, it gives $d^\to_G(\eps)=\eps^{-1+o(1)}$ for the
+infimum demand (\cref{thm:lamps-ED}).
+
+The group behind the game is the Pauli configuration-lamp group $\GP$~\cite[Section~6]{DM-game}, the Pauli analogue of the
+configuration-lamp group with $S_3$ lamps of~\cite[Section~3]{DM-lamps}: Pauli pairs $x_v,z_v$ sit on the finite configurations $v$
+of the points of the three rays of Houghton's group, lamps at different configurations commute, and all centres $(x_vz_v)^2$ are
+one central involution $J$. On $N$ points there are $2^N$ lamps, and the commutator of two of them has area $2^{O(\log^2N)}$. In a
+model in which $J$ is visible, the lamps are $2^N$ approximate Pauli pairs on the sector where $J$ acts as $-1$; the companion
+counts them with \cref{thm:count}, and we extract them with \cref{thm:signed-regular}.
+
+\subsection{Inputs from the companion}\label{sec:lamps-inputs}
+
+We use the following results of~\cite{DM-game}; \cref{app:companion} lists them with their numbers.
+\begin{enumerate}[label=(L\arabic*),leftmargin=3em,itemsep=2pt]
+\item\label{L-RP} \emph{The certificate.} A set $\RP$ of $27$ words in the letters $p,q,t,d,x,z$, each of length at
+most $K=30$ (at most $22$ after free reduction), containing $x^2$, $z^2$ and $(xz)^4$~\cite[Definition~7.1 and
+Table~2]{DM-game}. Areas below are with respect to $\RP$, and $J$ also denotes the word $xzxz$.
+\item\label{L-pair} \emph{Pair areas.} For $N\ge1$, $n=\max(3,N)$ and each $u\subseteq\{1,\dots,N\}$ there is a word $T_u$
+in $p,q,t$ with $|T_u|\le21Nn$ such that, for $u\ne w$ and $a,b\in\{x,z\}$, the word
+$[T_uaT_u^{-1},T_wbT_w^{-1}]$ has area at most $\Lambda_N$, where
+$14000N^2n\le\Lambda_N\le2^{(\log N+23)^2}$~\cite[Theorem~7.8 and Remark~7.10]{DM-game}.
+\item\label{L-J} \emph{Transporting $J$.} $T_uJT_u^{-1}J^{-1}$ has area at most $4|T_u|$, and
+$(T_uxT_u^{-1}\,T_uzT_u^{-1})^2=T_uJT_u^{-1}$ freely~\cite[Lemma~7.11]{DM-game}.
+\item\label{L-game} \emph{The game.} $G=G(A,b)$ is the game of~\cite[Theorem~10.5]{DM-game}, with the first question
+distribution of \cref{def:lsg}, $m=1687$ and $s=3$. It is obtained by Slofstra's embedding~\cite[Lemma~B.1]{DM-game} from an
+$E\Gamma_0$ presentation $\Pres$ with a distinguished generator $w$~\cite[Proposition~10.3]{DM-game}. There are words
+$\hat s$ of length at most $3$ over the generators of $\Pres$, for $s\in\{p,q,t,d,x,z\}$, such that for every $r\in\RP$ the word
+$\hat r$ obtained by substitution, and the word $(\hat x\hat z)^2w^{-1}$, are trivial in the group of $\Pres$ with area at most
+$A_*=60$~\cite[Proposition~10.3(d)]{DM-game}. There are a homomorphism $\Psi$ from the free group on the generators of $\Pres$
+to $F(x_1,\dots,x_n,J)$, a variable $x_{j_0}$ and a constant $A_0$ such that $\Psi(r)$ is trivial in $\Gamma=\Gamma(A,b)$ with
+area at most $A_0$ for every relator $r$ of $\Pres$, and $[\Psi(w),x_{j_0}]J$ is trivial in $\Gamma$ with area at most
+$A_0$~\cite[Lemma~B.1, (G1) and (G2)]{DM-game}.
+\item\label{L-upper} \emph{The upper bound.} $\Ent^{\mathrm{me}}(G,\eps)\le\exp(C\eps^{-1}\log(1/\eps))$ for
+$0<\eps\le\frac12$~\cite[Theorem~10.5(d)]{DM-game}.
+\end{enumerate}
+
+\subsection{Transported lamps in an arbitrary state}
+
+The companion's sector theorem counts the transported lamps in an arbitrary state. We state it, and the estimates of its proof
+that the extraction below reuses.
+
+\begin{theorem}[The sector theorem; {\cite[Theorem~8.1]{DM-game}}]\label{thm:lamps-sector}
+Let $\varphi$ assign unitaries in $\mathrm U(D)$ to $p,q,t,d,x,z$, and let $\rho$ be a density matrix on $\C^D$ with
+$\xi=\rho^{1/2}$, such that for some $e>0$ and $0<\Delta\le2$:
+\begin{enumerate}[label=(\roman*),itemsep=1pt]
+\item $\hs{(\varphi(r)-I)\xi}\le e$ for every $r\in\RP$;
+\item $\hs{[\varphi(s),\xi]}\le e$ for every letter $s$;
+\item $\hs{(\varphi(J)-I)\xi}\ge\Delta$.
+\end{enumerate}
+If $e\le2^{-1071}\Delta$, then
+\[
+\log\rank\rho\ \ge\ c_1\,\Delta^2e^{-2}\,2^{-4(24+\log\log(1/e))^2},\qquad c_1=\frac1{4.1\cdot10^7},
+\]
+and the same lower bound holds for $S(\rho_-)$, where $\rho_-$ is the sector state of \cref{lem:sector} for the involution
+$J'=\mathrm r(\varphi(J))$.
+\end{theorem}
+
+Fix $N\ge1$ and put $n=\max(3,N)$, $M=2^N$, $l=21Nn\ge63$ and $\Lambda=\Lambda_N$; then $l\le\Lambda/666$ by~\ref{L-pair}. Let
+$A_u=\varphi(T_uxT_u^{-1})$, $B_u=\varphi(T_uzT_u^{-1})$, $X_u=\mathrm r(A_u)$, $Z_u=\mathrm r(B_u)$, $J'=\mathrm r(\varphi(J))$,
+$K_u=X_uZ_uX_uZ_u$ and $P_\pm=\frac12(I\pm J')$. Steps~1 and~2 of the proof of~\cite[Theorem~8.1]{DM-game} use only (i) and (ii),
+and give
+\begin{gather}
+\hs{[X_u,\xi]},\ \hs{[Z_u,\xi]}\le\gamma:=7le,\qquad\hs{[J',\xi]}\le6e,\notag\\
+\hs{(X_u-A_u)\xi},\ \hs{(Z_u-B_u)\xi}\le(2l+1)e,\notag\\
+\hs{[Z_u,Z_w]\xi},\ \hs{[X_u,Z_w]\xi},\ \hs{[X_u,X_w]\xi}\ \le\ 61\Lambda^2e+28\gamma\qquad(u\ne w),\label{eq:lamps-comm}\\
+\gamma_0:=\hs{(K_u-J')\xi}\le1000l^2e,\qquad\hs{[X_u,J']\xi},\ \hs{[Z_u,J']\xi}\ \le\ 2\gamma_0+4\gamma+12e,\label{eq:lamps-J}\\
+\hs{\{X_u,Z_u\}P_-\xi}\le5\gamma_0+15\gamma;\label{eq:lamps-anti}
+\end{gather}
+the argument for~\eqref{eq:lamps-comm} there applies to every pair of letters $a,b\in\{x,z\}$, which gives all three cross
+types. The pair area enters squared in~\eqref{eq:lamps-comm}, because each cell of a filling of area $\Lambda$ is charged its own
+conjugator, of length of order $\Lambda$; the linear filling charge of \cref{thm:linear-filling} would let it enter linearly, but
+either leaves the exponent $2$ of $1/e$ unchanged.
+
+\begin{remark}\label{rem:lamps-poly}
+Under the polynomial Dehn bound for Houghton's group~\cite[Theorems~3.2 and~3.3]{DM-H3}, the pair areas satisfy
+$\Lambda_N\le C'N^\kappa$ with $\kappa=6+\log107$, and the factor $2^{-4(24+\log\log(1/e))^2}$ becomes a constant multiple of
+$(\log(1/e))^{-4\kappa}$~\cite[Remarks~7.10 and~8.3]{DM-game}; the same replacement applies in \cref{thm:lamps-ED} below.
+\end{remark}
+
+\begin{theorem}[Entropy and formation; {\cite[Theorem~10.5(b) and Corollary~10.6]{DM-game}}]\label{thm:lamps-game}
+There are constants $c,\eps_0>0$ such that, for $0<\eps\le\eps_0$, every strategy that wins $G$ with probability at least $1-\eps$
+satisfies $\log\rank\rho_B\ge S(\rho_B)\ge c\,\eps^{-1}\beta(\eps)$, and every mixed strategy of loss at most $\eps\le\eps_0/2$ has
+$\EF(\sigma)\ge\frac c4\eps^{-1}\beta(\eps)$. With~\ref{L-upper}, $\log\Ent(G,\eps)=\eps^{-1+o(1)}=\log\Ent^{\mathrm{me}}(G,\eps)$.
+\end{theorem}
+
+The proof passes from a strategy to a model of $\Gamma$ in Bob's state by \cref{thm:transfer}, to a model of $\Pres$ through
+$\Psi$, in which the commutator relation $[\Psi(w),x_{j_0}]J=1$ keeps $\varphi(\Psi(w))$ at distance about one from $I$, and to an
+assignment $\varphi'(s)=\varphi(\Psi(\hat s))$ of the letters of $\RP$; this assignment satisfies (i)--(iii) of
+\cref{thm:lamps-sector} with $e=C_*\sqrt\eps$ and $\Delta=\frac12$~\cite[proof of Theorem~10.5(b), Steps~1--4]{DM-game}. For the
+configuration lamps with $S_3$ lamps, at normalized-trace precision $e$, our arXiv paper has the same exponent $2$ of $1/e$ in
+$\log D$~\cite[Theorem~A(b)]{DM-lamps}.
+
+\subsection{Usable entanglement for every mixed strategy}\label{sec:lamps-ED}
+
+\begin{theorem}[The configuration-lamp game]\label{thm:lamps-ED}
+Let $G$ be the game of~\ref{L-game}, with its fixed positive question law. There are $c_G,C_G,\eps_0>0$ such that every
+finite-dimensional mixed strategy of loss at most $\eps\le\eps_0$ satisfies
+\[
+\ED^{A\to B}(\rho_{AB})\ \ge\ c_G\,\eps^{-1}2^{-4(24+\log\log(1/\eps))^2},\qquad\text{and}\qquad d_G^\to(\eps)\le C_G\eps^{-1}\log(1/\eps).
+\]
+So $d_G^\to(\eps)=\eps^{-1+o(1)}$, and by \cref{thm:factor-three} the same holds for $d_G^\leftarrow$. Neither an exact
+$\Theta(1/\eps)$ law nor a matching subleading factor is proved.
+\end{theorem}
+
+\begin{proof}
+\emph{The source on the actual state.} The passage from the game to $\RP$ just described is a fixed word map
+$s\mapsto\Psi(\hat s)$. Apply the word-transfer identities of \cref{lem:transfer-parties} to Alice's chosen row reflections, and the
+finite relator certificates in the proof of~\cite[Theorem~10.5(b), Steps~1--4]{DM-game}. These give the actual mirrors and inverse
+mirrors and the $O(\sqrt\eps)$ vector residuals on the original state; \cref{lem:transfer-parties}(d) gives the square-root-state
+commutators, while the companion's visibility argument gives $\Delta=\frac12$. This use requires no negative-quotient identity for the
+source marker and no rounding of the source words. So there is a constant $C$ such that, for $e=C\sqrt\eps$, every signed source
+generator has an actual Alice mirror (the reversed word in her chosen row reflections) and inverse mirror of error at most $e$, every
+word of $\RP$ has Bob residual at most $e$, every source letter has state commutator at most $e$ on $\rho_B$, and the visibility of
+$J=(xz)^2$ is at least $\Delta=\frac12$.
+
+\emph{Bob's estimates.} Fix $N\ge1$, $M=2^N$, $n=\max(3,N)$, $l=21Nn$ and $\Lambda=\Lambda_N$, and define $X^B_u,Z^B_u,J'_B$ and
+$P_B=\frac12(I-J'_B)$ as above. The estimates~\eqref{eq:lamps-comm}--\eqref{eq:lamps-anti} are statements about state-weighted
+norms of Bob's operators, that is, vector norms on any purification $\Psi$; they hold with $\gamma=7le$ and $\gamma_0\le1000l^2e$.
+
+\emph{Alice's reflections and the filter.} On Alice take the reversed mirror words and round them by the same rule
+$\mathrm r(z)=\sgn\Re z$, giving $X^A_u,Z^A_u,J'_A$ and $P_A=\frac12(I-J'_A)$. A transported word has length at most $2l+1$, square
+defect at most $(2l+1)e$ on Bob and $3(2l+1)e$ on Alice, and rounding costs the square defect, so
+$\|(Q^A_u-Q^B_u)\Psi\|\le15le$ for $Q=X,Z$; likewise $\|(J'_A-J'_B)\Psi\|\le14e$ and $\|(P_A-P_B)\Psi\|\le7e$. With $\sqrt{p_B}\ge
+(\Delta-e)/2$ this gives $p_A=\|P_A\Psi\|^2\ge\Delta^2/64=:p_{\min}$ for $e\le\Delta/56$. Alice measures $\{P_A,I-P_A\}$, announces the
+outcome to Bob, and keeps the branch $\psi=P_A\Psi/\sqrt{p_A}$; the flag may be included in $E$, and all communication is from
+Alice to Bob. Transferring~\eqref{eq:lamps-J} to Alice, $\|[Q^A_u,J'_A]\Psi\|\le2098l^2e$; since $Q^B_u$ commutes with $P_A$,
+\[
+\|(Q^A_u-Q^B_u)\psi\|\le(15le+1049l^2e)/\sqrt{p_A}\le1064\,l^2e/\sqrt{p_A}=:q ,
+\]
+and \cref{lem:transfer-parties}(d) gives both marginal centralities after filtering, at most $\sqrt2q$. Every Bob pair relation $R$
+(the three cross types and the onsite anticommutator), of norm at most two, has
+$\|RP_B\Psi\|=\hs{RP_-\xi}\le\hs{R\xi}+2\hs{[P_-,\xi]}$ or is bounded directly by~\eqref{eq:lamps-anti}, so in all cases
+$\|RP_B\Psi\|\le63\Lambda^2e$ and
+\[
+\|R\psi\|\le\bigl(\|RP_B\Psi\|+2\|(P_A-P_B)\Psi\|\bigr)/\sqrt{p_A}\le64\Lambda^2e/\sqrt{p_A}.
+\]
+Alice's relations are within $4q$ of Bob's by transfer. Since $\Lambda^2\ge443556\,l^2$, every hypothesis of the uniform case of
+\cref{thm:signed-regular} holds on $\psi$ with $\kappa=128\Lambda_N^2e/\sqrt{p_A}$.
+
+\emph{Rate.} \Cref{thm:signed-regular} and the filter give
+$\ED^{A\to B}(\rho_{AB})\ge p_AM[1-2h(25\cdot128^2M\Lambda_N^4e^2/p_A)]$ whenever the argument is at most $\frac12$. If
+\begin{equation}\label{eq:lamps-ED-N}
+2^N\Lambda_N^4e^2\le p_{\min}/(1600\cdot128^2),
+\end{equation}
+every Bell error is at most $\frac1{64}$ and $\ED^{A\to B}(\rho_{AB})\ge0.76\,p_{\min}2^N$. Choosing $N$ maximal subject
+to~\eqref{eq:lamps-ED-N} as in Step~5 of the proof of~\cite[Theorem~8.1]{DM-game}, where the constant $1.02\cdot10^7\Delta^{-2}$ is
+replaced by $1600\cdot128^2/p_{\min}$, gives $2^N\ge c\,e^{-2}2^{-4(24+\log\log(1/e))^2}$ for small $e$, and $e=C\sqrt\eps$ gives the lower
+bound. The upper bound is~\ref{L-upper}: a maximally entangled strategy of dimension $\exp(C\eps^{-1}\log(1/\eps))$ has directional
+rates equal to the logarithm of its dimension.
+\end{proof}
+
+The rate comes from the \emph{entropy} of the Bell errors, not from the fidelity of the whole register: a union bound would give
+whole-register infidelity $O(M^2\Lambda_N^4\eps)$ and only $M=\eps^{-1/2+o(1)}$ pairs. The source certificate is not asserted to be
+a full presentation of the configuration group; only its words and the inputs~\ref{L-RP}--\ref{L-upper} are used, together
+with \cref{lem:consistency}.

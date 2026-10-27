@@ -1,0 +1,15 @@
+==============================================================================
+Qubit count in an arbitrary state
+==============================================================================
+[ok  ] exact Paulis on the flat state: S = sum of brackets = 3: 3.000000, 3.000000 (bound 3)
+[ok  ] example: state-weighted relations of Z_1 vanish: 0.00e+00 (bound 0)
+[ok  ] example: a_1^2 equals 1: 1.000000 (bound 1)
+[ok  ] example: state commutator of Z_3 is sqrt 2: 1.414214 (bound 1.414214)
+[ok  ] part (i), 108 random instances, max a_i^2 / bound: 0.2200 (bound 1)
+[ok  ] part (ii), 108 random instances, max b_i^2 / bound: 0.2456 (bound 1)
+[ok  ] part (iii), 108 random instances, min S(rho) - sum of brackets: 3.188e-02 (bound 0)
+[ok  ] part (i), optimizer (4 starts), max ratio: 0.2500 (bound 1)
+[ok  ] part (ii), optimizer (4 starts), max ratio: 0.3587 (bound 1)
+[ok  ] part (iii), optimizer (4 starts), min gap: 6.724e-03 (bound 0)
+------------------------------------------------------------------------------
+Qubit count in an arbitrary state: 10 checks, 0 failures

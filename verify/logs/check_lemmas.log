@@ -1,0 +1,23 @@
+==============================================================================
+Auxiliary lemmas
+==============================================================================
+[ok  ] standard form (a): | ||(I x Y)psi|| - ||Y xi|| |, 200 instances: 3.11e-15 (bound 0)
+[ok  ] standard form (b): max of ||Y xi - xi A~|| - ||(A x I - I x Y)psi||: 3.11e-15 (bound 0)
+[ok  ] consistency: max ||[B,xi]|| / (sqrt2 ||B xi - xi T||), 400 random: 0.9065 (bound 1)
+[ok  ] consistency: optimizer over T, max ratio: 0.7479 (bound 1)
+[ok  ] consistency: the sharp example has ratio 1: 1.000000 (bound 1)
+[ok  ] rounding: max ||(r(U)-U)xi|| / ||(U^2-I)xi||: 0.6722 (bound 1)
+[ok  ] rounding: max ||[r(U),xi]|| - ||[U,xi]|| - 2||(U^2-I)xi||: 0.00e+00 (bound 0)
+[ok  ] rotating the state: max ||U*rho U - rho||_1 / (2||[U,xi]||): 1.0000 (bound 1)
+[ok  ] replacement estimate: max ratio, 200 instances: 1.0000 (bound 1)
+[ok  ] sector states (a): max excess: 1.84e-15 (bound 0)
+[ok  ] sector states (b), first form: max excess: 1.78e-15 (bound 0)
+[ok  ] sector states (b), second form: max excess: 1.78e-15 (bound 0)
+[ok  ] sector states (c), involutions: max excess: 3.82e-16 (bound 0)
+[ok  ] sector states (c), unitaries: max excess: 0.00e+00 (bound 0)
+[ok  ] entropy of a sector: max excess of the right side: 4.44e-16 (bound 0)
+[ok  ] entropy lemma: max D(rho||(rho+sigma)/2) - bound, 1500 random: -4.12e-07 (bound 0)
+[ok  ] entropy lemma: optimizer (6 starts), max excess: -7.46e-14 (bound 0)
+[ok  ] unequal-norm column: termwise entropy exceeds h(x/4): 1.4427e-02 > 4.1826e-04 (bound fails)
+------------------------------------------------------------------------------
+Auxiliary lemmas: 18 checks, 0 failures

@@ -1,0 +1,280 @@
+%======================================================================
+\section{Stable spectral transport and the Slofstra--Vidick game}\label{sec:transport}
+%======================================================================
+
+Slofstra and Vidick built a linear system game $\GSV$ with $C\eps^{-1/6}\le\Ent(\GSV,\eps)\le C'\eps^{-1/2}$ from the
+group~\cite[Proposition~3.2]{SV18}
+\begin{equation}\label{eq:K}
+K=\bigl\langle a,b,c,x,y\ \bigm|\ xyx^{-1}y^{-2},\ xcx^{-1}c^{-1},\ yay^{-1}b^{-1},\ yby^{-1}a^{-1},\ c^{-1}ab,\ a^2,\ b^2,\ c^2\bigr\rangle ,
+\end{equation}
+in which $c$ is a central involution, and whose profile satisfies $C\eps^{-2/3}\le\hlp(c;\delta,\eps)\le C'/\eps$. Our
+companion paper shows that both lower exponents are the upper ones: $\hlp(c;\delta,\eps)=\Theta(1/\eps)$ and
+$\Ent(\GSV,\eps)=\Theta(\eps^{-1/2})$~\cite[Theorem~F]{DM-game}. We recall that argument and add the entropy: the least
+entanglement entropy, and the least entanglement of formation, are $\frac12\log(1/\eps)+O(1)$ (\cref{thm:SV-entropy}).
+
+The picture is as follows. Let $\mu$ be the spectral measure of $\varphi(y)$ in the state. The relation $xyx^{-1}=y^2$
+makes $\mu$ nearly invariant under the doubling map $\vartheta\mapsto2\vartheta$ of the circle, and, where $c$ acts as
+$-1$, the relations $yay^{-1}=b$ and $c=ab$ make it nearly invariant under the half-turn $\vartheta\mapsto\vartheta+\pi$.
+Averaging over the two inverse branches of the doubling map contracts the Wasserstein distance by a factor $2$, so a
+measure that is nearly invariant under both maps is close to Haar measure, while a measure with $d$ atoms is at distance
+at least $\pi/(2d)$ from it. All quantities are measured in one state; the Wasserstein-$1$ distance, rather than the
+quadratic one, is what makes a change of state cost only a linear error.
+
+\subsection{Measures on the circle}\label{sec:transport-circle}
+
+Let $\Tor=\R/2\pi\Z$ with the geodesic distance $d(\vartheta,\vartheta')\in[0,\pi]$, and let $h$ be the normalized Haar
+measure. For probability measures $\mu,\nu$ on $\Tor$ put
+\[
+\Wone(\mu,\nu)=\sup\Bigl\{\int f\,d\mu-\int f\,d\nu:\ f:\Tor\to\R\text{ is }1\text{-Lipschitz}\Bigr\}.
+\]
+By Kantorovich--Rubinstein duality~\cite[Chapter~5]{Vil09} this is the least mean distance of a coupling of $\mu$ and
+$\nu$, and the least is attained. Until \cref{sec:transport-entropy} we use only the triangle inequality and the
+elementary bound $\Wone(\mu,\nu)\le\int d\,d\gamma$ for every coupling $\gamma$ of $\mu$ and $\nu$, which holds because
+$\int f\,d\mu-\int f\,d\nu=\int(f(\vartheta)-f(\vartheta'))\,d\gamma$. Let $D(\vartheta)=2\vartheta$
+and $S(\vartheta)=\vartheta+\pi$, with push-forwards $D_*$, $S_*$.
+
+The two square roots of $e^{i\vartheta}$ have angles $\vartheta/2$ and $\vartheta/2+\pi$, a set that does not depend on the
+representative of $\vartheta$. Let $\mathsf P$ replace each point by the uniform measure on its two square roots:
+$\int f\,d(\mathsf P\mu)=\int\mathsf P^*f\,d\mu$ with $\mathsf P^*f(\vartheta)=\frac12\bigl(f(\vartheta/2)+f(\vartheta/2+\pi)\bigr)$.
+
+\begin{lemma}\label{lem:circle}
+For probability measures $\mu,\nu$ on $\Tor$:
+\begin{enumerate}[label=(\alph*),itemsep=1pt]
+\item $\mathsf Ph=h$ and $\mathsf P(D_*\mu)=\frac12(\mu+S_*\mu)$;
+\item $\Wone(\mathsf P\mu,\mathsf P\nu)\le\frac12\Wone(\mu,\nu)$;
+\item $\Wone(\mu,h)\le\Wone(D_*\mu,\mu)+\Wone(S_*\mu,\mu)$;
+\item if $\mu$ has at most $d$ atoms, then $\Wone(\mu,h)\ge\pi/(2d)$.
+\end{enumerate}
+\end{lemma}
+
+This is~\cite[Lemma~11.7]{DM-game}; part (c) follows from (a), (b) and the triangle inequality, since $\mathsf P$ is a
+contraction for $\Wone$ fixing $h$, and part (d) from the $1$-Lipschitz function $d(\cdot,\supp\mu)$.
+
+The operator $\mathsf P$ is the transfer operator of the doubling map, and (b) is an averaged form of the
+square-root lifting that Slofstra and Vidick use in operator norm~\cite[Claims~3.6 and~3.7]{SV18}. Part (d) needs no
+lower bound on the masses of the atoms. More generally, if a Markov operator contracts $\Wone$ by $\lambda<1$ and fixes
+$h$, then $\Wone(\mu,h)\le\Wone(\mu,\mathsf P\mu)/(1-\lambda)$; we need only the case above.
+
+For a unitary $Y$ and a density matrix $\rho$ on $\C^d$ let $\mu^\rho_Y$ be the spectral measure of $Y$ in $\rho$, the
+probability measure on $\Tor$ with $\int f\,d\mu^\rho_Y=\Tr(\rho f(Y))$, where $f(Y)$ applies $f$ to the angles of the
+eigenvalues. It has at most $d$ atoms, and
+\begin{equation}\label{eq:spectral-push}
+\mu^\rho_{Y^2}=D_*\mu^\rho_Y,\qquad\mu^\rho_{-Y}=S_*\mu^\rho_Y,\qquad\mu^\rho_{UYU^*}=\mu^{U^*\rho U}_Y\quad(U\text{ unitary}).
+\end{equation}
+
+\begin{lemma}\label{lem:spectral-coupling}
+Let $P,Q,Y,U$ be unitaries on $\C^d$ and $\xi=\rho^{1/2}$.
+\begin{enumerate}[label=(\alph*),itemsep=1pt]
+\item There is a coupling $\nu$ of $\mu^\rho_P$ and $\mu^\rho_Q$, viewed on the unit circle, with
+$\int|z-z'|^2\,d\nu(z,z')=\hs{P\xi-\xi Q}^2$. Hence $\Wone(\mu^\rho_P,\mu^\rho_Q)\le\frac\pi2\hs{P\xi-\xi Q}$.
+\item $\Wone(\mu^{U^*\rho U}_Y,\mu^\rho_Y)\le\pi\hs{[U,\xi]}$.
+\end{enumerate}
+\end{lemma}
+
+This is~\cite[Lemma~11.8]{DM-game}. The coupling in (a) is
+$\nu=\sum_{i,j}\hs{E_i\xi F_j}^2\delta_{(z_i,z'_j)}$ for spectral decompositions $P=\sum_iz_iE_i$ and $Q=\sum_jz'_jF_j$, and (b)
+follows from \cref{lem:rotate}.
+
+The coupling in (a) is Connes' joint distribution of left and right multiplication~\cite[Lemma~1.2.6]{Con76}, as used
+in~\cite[(5.4)]{SV18}; for $\rho=I/d$ it gives the Hoffman--Wielandt inequality. Part (b) is the reason for working with
+$\Wone$: for $\rho=\mathrm{diag}(\frac12+\delta,\frac12-\delta)$, $U=\sigma_X$ and $Y=\mathrm{diag}(1,-1)$, the state commutator is
+$\hs{[U,\xi]}=\sqrt2(\sqrt{1/2+\delta}-\sqrt{1/2-\delta})=2\delta+O(\delta^3)$, while the chordal $W_2$ distance between the
+two spectral measures is $\sqrt{8\delta}$.
+
+\subsection{The profile of \texorpdfstring{$K$}{K}}\label{sec:transport-K}
+
+\begin{theorem}[{\cite[Theorem~11.9 and Proposition~11.10]{DM-game}}]\label{thm:K}
+Let $\varphi$ assign unitaries $A,B,C,X,Y$ on $\C^d$ to $a,b,c,x,y$, and let $\rho$ be a density matrix on $\C^d$ with
+$\xi=\rho^{1/2}$. Suppose that, for some $e>0$,
+\begin{enumerate}[label=(\roman*),itemsep=1pt]
+\item every relator $r$ in~\eqref{eq:K} has $\hs{(\varphi(r)-I)\xi}\le e$;
+\item $\hs{[\varphi(s),\xi]}\le e$ for $s\in\{a,b,c,x,y\}$;
+\item $\hs{(C+I)\xi}\le e$.
+\end{enumerate}
+Then $\Wone(\mu^\rho_Y,h)\le\frac{29}2\pi e$, and hence $d\ge1/(29e)$. In the notation of \cref{def:hlp-rho},
+$\hlp^\rho_K(c;e)\ge1/(29e)$.
+\end{theorem}
+
+The bound on $\Wone$ is~\cite[Proposition~11.10]{DM-game}: the relation $xyx^{-1}=y^2$ gives
+$\Wone(D_*\mu,\mu)\le5\pi e$ through a coupling in the state and a change of state by $X$, the relations $yay^{-1}=b$, $c=ab$
+and $C\approx-I$ give $\Wone(S_*\mu,\mu)\le\frac{19}2\pi e$ in the same way, and \cref{lem:circle}(c) adds the two. Then
+\cref{lem:circle}(d) gives the dimension bound~\cite[Theorem~11.9]{DM-game}. Together with an explicit flat
+model~\cite[Example~11.11]{DM-game}, a variant of that of~\cite[Lemma~3.8]{SV18} of dimension $2\lceil\pi/(\sqrt2e)\rceil$, this pins
+down the profile of $c$.
+
+\begin{corollary}[The profile of $c$; {\cite[Corollary~11.12]{DM-game}}]\label{cor:K-profile}
+For every $e>0$,
+\[
+\frac1{29e}\ \le\ \hlp^\rho_K(c;e)\ \le\ \hlp_K(c;2,e)\ \le\ 2\Bigl\lceil\frac{\pi}{\sqrt2\,e}\Bigr\rceil .
+\]
+For each $0<\delta\le2$ there are constants $c_\delta,C_\delta>0$ with $c_\delta/\eps\le\hlp_K(c;\delta,\eps)\le C_\delta/\eps$
+for $0<\eps\le2$.
+\end{corollary}
+
+This improves the lower bound $C\eps^{-2/3}$ of~\cite[Lemma~3.5 and Proposition~3.2]{SV18} to the order of their upper bound;
+their argument passes from the normalized norm to the operator norm, which costs a factor $\sqrt d$.
+
+\subsection{Entropy from transport}\label{sec:transport-entropy}
+
+\Cref{thm:K} counts the atoms of a spectral measure. Atoms may carry very unequal weights, and a spectral measure close
+to Haar measure can belong to a pure state (\cref{ex:clock}). What forces entropy is the state commutator of $Y$: it
+makes the broad spectral law of $Y$ readable on both halves of a purification, with nearly equal outcomes, and the
+correlation between the two readouts is paid for by entanglement.
+
+For $m\ge2$ cut $\Tor$ into the arcs $I_k=[2\pi k/m,2\pi(k+1)/m)$, $k\in\Z_m$, and let $\mathrm{bin}(\vartheta)=k$ for
+$\vartheta\in I_k$. For $k\in\Z_m$ let $|k|_m$ be its distance to $0$ in the cycle $\Z_m$. If $d(\vartheta,\vartheta')=t$, the
+shorter arc between them meets at most $tm/(2\pi)+2$ of the arcs $I_k$, so
+$|\mathrm{bin}(\vartheta)-\mathrm{bin}(\vartheta')|_m\le1+tm/(2\pi)$. For $a>0$ and $t\ge0$ put
+$G_a(t)=\log\coth(a/2)+at/\ln2$.
+
+\begin{lemma}\label{lem:gibbs}
+If $D$ is a random variable in $\Z_m$ with $\mathbb E|D|_m\le t$, then $H(D)\le G_a(t)$ for every $a>0$.
+\end{lemma}
+
+\begin{proof}
+Represent $D$ by an integer $\tilde D$ with $|\tilde D|=|D|_m$; this is injective, so $H(\tilde D)=H(D)$. The weights
+$q_j=e^{-a|j|}/\coth(a/2)$, $j\in\Z$, form a probability distribution, and by Gibbs' inequality
+$H(\tilde D)\le-\sum_j\Pr[\tilde D=j]\log q_j=\log\coth(a/2)+\frac a{\ln2}\mathbb E|\tilde D|$.
+\end{proof}
+
+A probability measure $\nu$ on $\Tor$ is \emph{$(\kappa,s)$-spread}, for $\kappa\ge1$ and $0<s\le1$, if
+$\nu(I)\le(\kappa|I|/2\pi)^s$ for every arc $I$ of length $|I|$. Haar measure is $(1,1)$-spread.
+
+\begin{theorem}[Entropy from transport]\label{thm:entropy-transport}
+Let $Y$ be a unitary and $\rho$ a density matrix on $\C^d$, $\xi=\rho^{1/2}$, $\mu=\mu^\rho_Y$, and suppose
+$\Wone(\mu,\nu)\le\delta$ for a $(\kappa,s)$-spread $\nu$, and $\hs{[Y,\xi]}=c$. For every integer $m\ge2$ and all $a,b>0$,
+\[
+S(\rho)\ \ge\ s\log m-s\log\kappa-G_a\Bigl(1+\frac{m\delta}{2\pi}\Bigr)-G_b\Bigl(1+\frac{mc}4\Bigr).
+\]
+In particular $S(\rho)\ge s\log\bigl(1/(\delta+c)\bigr)-s\log\kappa-8$; for $\nu=h$, $S(\rho)\ge\log(1/(\delta+c))-8$.
+\end{theorem}
+
+\begin{proof}
+Let $Y=\sum_zzE_z$ be the spectral decomposition and $P_k=\sum_{\arg z\in I_k}E_z$. On the canonical purification
+$\psi_\rho$ (\cref{sec:return}) let Bob measure $\{P_k\}$, with outcome $B$, and Alice measure $\{P_k^T\}$, with outcome
+$A$. Through the isometry $\Theta$, $\Pr[A=k,B=j]=\lVert(P_k^T\otimes P_j)\psi_\rho\rVert^2=\hs{P_j\xi P_k}^2$, and $B$ has law
+$\Pr[B=j]=\Tr(P_j\rho)=\mu(I_j)$.
+
+\emph{Holevo.} Alice's measurement leaves Bob with an ensemble of states whose average is $\rho$. By Holevo's
+bound~\cite{Hol73}, the mutual information between $A$ and the outcome of any measurement by Bob is at most
+$S(\rho)$ minus the average entropy of the ensemble, so $I(A:B)\le S(\rho)$.
+
+\emph{The two readouts nearly agree.} Measuring the finer projections $E_w^T$ and $E_z$ instead gives the law
+$\hs{E_z\xi E_w}^2$, of which $(A,B)$ is the binning, and by \cref{lem:spectral-coupling}(a) with $P=Q=Y$,
+$\sum_{z,w}|z-w|^2\hs{E_z\xi E_w}^2=\hs{Y\xi-\xi Y}^2=c^2$. The arc length is at most $\frac\pi2|z-w|$, so its mean is at most
+$\pi c/2$, and $\mathbb E|B-A|_m\le1+mc/4$. Since $B$ is determined by $A$ and $B-A$, \cref{lem:gibbs} gives
+$H(B\mid A)\le H(B-A)\le G_b(1+mc/4)$.
+
+\emph{Bob's readout is spread.} By Kantorovich--Rubinstein duality~\cite[Chapter~5]{Vil09} there is a coupling of $\nu$ and
+$\mu$ with mean distance at most $\delta$. Let $(\vartheta,\vartheta')$ have this law, $U=\mathrm{bin}(\vartheta)$ and
+$V=\mathrm{bin}(\vartheta')$. Every arc $I_k$ has $\nu(I_k)\le(\kappa/m)^s$, so $H(U)\ge s\log m-s\log\kappa$; $V$ has the law of
+$B$; and $\mathbb E|U-V|_m\le1+m\delta/(2\pi)$, so $H(B)=H(V)\ge H(U)-H(U\mid V)\ge s\log m-s\log\kappa-G_a(1+m\delta/(2\pi))$.
+
+Hence $S(\rho)\ge I(A:B)=H(B)-H(B\mid A)$, which is the first claim. For the second let $\alpha=\delta+c$. If $\alpha>\frac12$
+the claim is trivial. Otherwise take $m=\lfloor1/\alpha\rfloor\ge2$, so $s\log m\ge s\log(1/\alpha)-1$, and $a=b=\frac12$. Then
+$1+m\delta/(2\pi)\le\frac54$ and $1+mc/4\le\frac54$. Using $\coth x\le1+1/x$, $\log5<\frac73$ and $\ln2>\frac23$,
+$G_{1/2}(\frac54)<\frac73+\frac{15}{16}=\frac{157}{48}$, and the total loss is below $1+2\cdot\frac{157}{48}<8$.
+\end{proof}
+
+\begin{example}[Spread alone gives no entropy]\label{ex:clock}
+Let $Y=\mathrm{diag}(e^{2\pi ij/d})_{0\le j<d}$ and $\rho=|\psi\rangle\langle\psi|$ with $\psi=d^{-1/2}\sum_je_j$. The spectral
+measure is uniform on the $d$-th roots of unity, so $\Wone(\mu,h)=\pi/(2d)$ (moving each point of the circle to the nearest
+root couples $h$ to $\mu$ at this cost, and \cref{lem:circle}(d) gives the reverse bound). Yet $S(\rho)=0$. Here
+$\hs{[Y,\xi]}^2=2-2|\langle\psi,Y\psi\rangle|^2=2$, so the state commutator in \cref{thm:entropy-transport} cannot be dropped.
+\end{example}
+
+\begin{corollary}[The entropy profile of $K$]\label{cor:K-entropy}
+Under the hypotheses of \cref{thm:K}, if $0<e\le\frac12$ then $S(\rho)\ge\log(1/e)-10$. Consequently the infimum
+$h^S_K(e)$ of $S(\rho)$ over all such models satisfies
+\[
+\log(1/e)-10\ \le\ h^S_K(e)\ \le\ \log(1/e)+3\qquad(0<e\le\tfrac12).
+\]
+\end{corollary}
+
+\begin{proof}
+By \cref{thm:K}, $\Wone(\mu^\rho_Y,h)\le\frac{29}2\pi e$, and $c=\hs{[Y,\xi]}\le e$. Apply
+\cref{thm:entropy-transport} with $m=\lfloor1/e\rfloor\ge2$, $a=\frac19$ and $b=\frac12$. Then $1+m\delta/(2\pi)\le\frac{33}4$ and
+$1+mc/4\le\frac54$. Since $\coth(1/18)\le19$, $19^4<2^{17}$ and $\ln2>\frac23$, $G_{1/9}(\frac{33}4)<\frac{17}4+\frac{11}8$; as
+before $G_{1/2}(\frac54)<\frac73+\frac{15}{16}$; and $\log m\ge\log(1/e)-1$. The total loss is below
+$1+\frac{17}4+\frac{11}8+\frac73+\frac{15}{16}=\frac{475}{48}<10$. For the upper bound, the flat model of~\cite[Example~11.11]{DM-game} with
+$m=\lceil\pi/(\sqrt2e)\rceil$ and the flat state has $S=\log(2m)\le\log\bigl((\sqrt2\pi+1)/e\bigr)<\log(1/e)+3$.
+\end{proof}
+
+\subsection{The game}\label{sec:transport-game}
+
+Let $\GSV=G(A,b)$ be the linear system game of~\cite[Theorem~1.1]{SV18}, with the question distribution of~\cite{SV18}
+(\cref{def:lsg}), $m$ equations, $n$ variables and solution group $\Gamma$. Its construction~\cite[Propositions~6.1
+and~6.2]{SV18} supplies a homomorphism $\Psi:F(a,b,c,x,y)\to F(x_1,\dots,x_n,J)$ that descends to an embedding of $K$
+into $\Gamma$, and a word $z$ in $x_1,\dots,x_n,J$, the image of a generator $t$ with $t^2=e$ and $tct=cJ$, such that
+$[\Psi(c),z]=J$ in $\Gamma$~\cite[proof of Proposition~6.2]{SV18}; so $z$ represents an involution. The proof there prints the
+second relation, for its central element $w$, as $twt=J$. This is a misprint for $twt=wJ$: the representation used there,
+with $t$ exchanging the two blocks, $w\mapsto-I\oplus I$ and $J\mapsto-I$, satisfies $twt=wJ$, which is the relation $tat=Ja$
+of~\cite[Lemma~5.2]{Slo19} that the proof invokes, whereas $twt=J$ would force $w=J$.
+
+The upper bound of~\cite[Theorem~1.1]{SV18} rests on the lift in the same proof, which needs a
+$2d$-dimensional representation of the intermediate group with $c\mapsto(-I_d)\oplus I_d$. The value $\omega_q(\GSV)=1$ does
+not: \cite{SV18} obtain it from the non-triviality of $J$ in approximate representations of $\Gamma$, through~\cite[Lemma~5.2
+and Proposition~4.2]{Slo19} and~\cite[Corollary~5.3]{SV18}, and the tensor-power argument of~\cite[Lemma~5.2]{Slo19} does not
+need a balanced marked involution. The group $K$ has the two non-involutive
+generators $y<x$, and the literal lifts of~\cite[Proposition~4.8]{Slo19} give $(-I_d)\oplus I_{3d}$ instead, for which the relation
+$tct=cJ$ has no approximate solution (see before \cref{prop:extended}). A balanced lift exists for the flat models
+of~\cite[Example~11.11]{DM-game}, and our companion paper proves it~\cite[Lemma~11.13]{DM-game}: for these models of dimension $d$,
+the solution group $\Gamma$ has flat models with $J\mapsto-I$ of dimension $8d$ at precision $O(1/d)$. The idea is that $X$ is a
+permutation matrix there, so once $y$ has been eliminated as in~\cite[Proposition~4.8]{Slo19}, $x$ can be eliminated without doubling
+the dimension, as the product of the involutions $\tau\oplus\tau$ and $\tau X\oplus\tau X$, where the involutive permutation $\tau$
+reverses each cycle of $X$; the marked involution then stays balanced. These models give the upper bounds of \cref{thm:SV} and
+\cref{thm:SV-entropy}(c), so~\cite[Theorem~1.1]{SV18} holds as stated, with only the lift in its proof replaced. The script \texttt{verify/check\_coefficients.py} replays the reversal, the balance of
+$c$ and the lifted residuals, independently of the companion's own check.
+
+\begin{theorem}[{\cite[Theorem~11.14]{DM-game}}]\label{thm:SV}
+There are constants $c_0,C_0>0$ such that $c_0\,\eps^{-1/2}\le\Ent(\GSV,\eps)\le C_0\,\eps^{-1/2}$ for $0<\eps\le1$.
+\end{theorem}
+
+The upper bound is that of~\cite[Theorem~1.1]{SV18}, obtained through the lift above. The lower
+bound~\cite[Section~11.2]{DM-game} combines \cref{thm:transfer}, the word $z$, which keeps $\varphi(\Psi(c))$ visibly away from
+$I$ in Bob's state, the passage to the sector where its rounding is $-1$ (\cref{lem:sector}), and \cref{thm:K}. It bounds the Schmidt rank, and so the local dimension: $\log\Ent(\GSV,\eps)=
+\frac12\log(1/\eps)+O(1)$. It is not a bound on the entanglement entropy, since \cref{thm:K} counts atoms of a spectral measure,
+whose masses may be unequal. The entropy is the subject of the next theorem.
+
+\begin{theorem}[Entanglement entropy and formation for $\GSV$]\label{thm:SV-entropy}
+There are constants $C,\eps_0>0$ such that:
+\begin{enumerate}[label=(\alph*),itemsep=1pt]
+\item every pure-state strategy for $\GSV$ that wins with probability at least $1-\eps$, $0<\eps\le\eps_0$, has
+$S(\rho_B)\ge\frac12\log(1/\eps)-C$;
+\item for every state $\sigma$ on $H_A\otimes H_B$ and measurements that win with probability at least $1-\eps$,
+$0<\eps\le1$, $\EF(\sigma)\ge\frac12\log(1/\eps)-C$;
+\item for $0<\eps\le1$ there are pure-state strategies that win with probability at least $1-\eps$ with entanglement
+entropy at most $\frac12\log(1/\eps)+C$.
+\end{enumerate}
+So the least entanglement entropy of a pure-state strategy, and the least entanglement of formation of any strategy,
+are both $\frac12\log(1/\eps)+O(1)$.
+\end{theorem}
+
+\begin{proof}
+(a) Take a strategy that wins with probability at least $1-\eps$, and let $\varphi$ and $\rho$ on $\C^r$ be as in
+\cref{thm:transfer}: $\rho$ is Bob's reduced state on its support, and $(\varphi,\rho)$ is a model of $\Gamma$ at precision
+$e_0=\max(s,4)\theta$, $\theta=2\sqrt{mn\eps}$, with $\varphi(J)=-I$. Apply \cref{prop:corner} with $K$, presented
+by~\eqref{eq:K} and with distinguished involution $c$, in place of $G$, with $\Gamma$ in place of $H$, $\psi=\Psi$ and the
+word $z$ above; $c$ is a central involution of $K$, $\Psi$ induces a homomorphism $K\to\Gamma$, and $z$ represents an
+involution with $[\Psi(c),z]=J$. This gives unitaries on $\C^r$ that satisfy (i)--(iii) of \cref{thm:K}, with the same
+$\rho$, at precision $e=C_Ke_0$ for a constant $C_K$. If $e\le\frac12$, \cref{cor:K-entropy} gives
+\[
+S(\rho_B)=S(\rho)\ge\log(1/e)-10=\tfrac12\log(1/\eps)-\log\bigl(2\max(s,4)C_K\sqrt{mn}\bigr)-10 .
+\]
+
+(b) Let $f(x)=\frac12\log(1/x)-C$, enlarging $C$ so that $C\ge\frac12\log(1/\eps_0)$; then (a) and $S\ge0$ give
+$S(\rho_B)\ge f(\ell)$ for every pure strategy with losing probability $\ell\in(0,1]$. No pure strategy has $\ell=0$, by
+\cref{thm:SV}. Let $\sigma=\sum_jp_j|\psi_j\rangle\langle\psi_j|$ be any decomposition into pure states. The losing
+probability is linear in the state, so with the same measurements the components have losing probabilities $\ell_j>0$
+with $\sum_jp_j\ell_j\le\eps$. Since $f$ is convex and decreasing, $\sum_jp_jS((\psi_j)_B)\ge\sum_jp_jf(\ell_j)\ge
+f(\sum_jp_j\ell_j)\ge f(\eps)$. Taking the infimum over decompositions proves (b).
+
+(c) By the upper bound of \cref{thm:SV} there are strategies of local dimension at most $C_0\eps^{-1/2}$, and the entanglement
+entropy is at most the logarithm of the local dimension.
+\end{proof}
+
+The same model also gives $r\ge1/(29C_Ke_0)$ by \cref{thm:K}, a second proof of the lower bound of \cref{thm:SV} that
+keeps the whole state instead of passing to the sector where $c$ acts as $-1$; the sector would cost a factor $p\ge\frac1{16}$
+in front of the entropy, which is why the corner map is used here. The two results are different statements: \cref{thm:SV} bounds the
+local dimension, $\Theta(\eps^{-1/2})$, and \cref{thm:SV-entropy} the entropy, $\frac12\log(1/\eps)+O(1)$; neither bounds usable
+entanglement (\cref{sec:status}).

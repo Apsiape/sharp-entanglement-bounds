@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "artifact_sha256": "ee3dcceff877b13a9156bd0971534a1e3cacedf95d50ee22a0b66fe596142a1e",
+  "counts": {
+    "squares": 199129,
+    "rows": 164608,
+    "row_commutators": 493855
+  },
+  "all_declared_variables_used": true,
+  "rows_covered": [
+    0,
+    164608
+  ],
+  "row_visit_hash": "2dabfb92123981bb75905c8e6da8528602ed522fd8daf864f3a70bc9b35a93c3",
+  "split_source_block_checks": 576,
+  "controls": {
+    "positive_source_controls": 4,
+    "negative_source_controls": 2,
+    "wrong_row_sign_rejected": true
+  },
+  "arity_histogram": {
+    "3": 164606,
+    "9": 1,
+    "2": 1
+  },
+  "unique_exact_matrices": 4126,
+  "monomial_product_cache": 19064,
+  "source_word_cache": 60,
+  "factor_product_cache": 82,
+  "peak_process_bytes": 121085952,
+  "seconds": 1.6131574000464752,
+  "limits": "Exact audit in the full negative product-HNN algebra, including all final rows. Finite identities do not replace the written arbitrary-state theorem."
+}

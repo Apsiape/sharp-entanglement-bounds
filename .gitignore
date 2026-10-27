@@ -1,0 +1,11 @@
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.toc
+paper/*.pdf
+!paper/main.pdf
+paper/*.fls
+paper/*.fdb_latexmk
+__pycache__/
+paper/*.blg
+verify/artifacts/selector/SELECTOR-*.json

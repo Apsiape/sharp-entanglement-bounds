@@ -1,0 +1,17 @@
+==============================================================================
+Tapered reservoir
+==============================================================================
+      L= 1: matched overlap 0.000000 >= cos(pi/(L+1)) = 0.000000; best 0.707107; failure 9.38e-02 <= 1.54e-01
+      L= 2: matched overlap 0.500000 >= cos(pi/(L+1)) = 0.500000; best 0.780330; failure 5.47e-02 <= 6.85e-02
+      L= 3: matched overlap 0.707107 >= cos(pi/(L+1)) = 0.707107; best 0.839689; failure 3.39e-02 <= 3.86e-02
+      L= 5: matched overlap 0.866025 >= cos(pi/(L+1)) = 0.866025; best 0.911578; failure 1.62e-02 <= 1.71e-02
+      L= 8: matched overlap 0.939693 >= cos(pi/(L+1)) = 0.939693; best 0.954447; failure 7.42e-03 <= 7.62e-03
+      L=12: matched overlap 0.970942 >= cos(pi/(L+1)) = 0.970942; best 0.976060; failure 3.61e-03 <= 3.65e-03
+      L=16: matched overlap 0.982973 >= cos(pi/(L+1)) = 0.982973; best 0.985353; failure 2.12e-03 <= 2.13e-03
+[ok  ] shell weights sum to one: True (bound True)
+[ok  ] Schmidt rank 2^L - 1: True (bound True)
+[ok  ] matched overlap >= cos(pi/(L+1)): True (bound True)
+[ok  ] best local-unitary overlap >= matched overlap: True (bound True)
+[ok  ] game failure <= pi^2 / (16 (L+1)^2): True (bound True)
+------------------------------------------------------------------------------
+Tapered reservoir: 5 checks, 0 failures

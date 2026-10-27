@@ -1,0 +1,15 @@
+==============================================================================
+Random spectral cuts and weighted histories
+==============================================================================
+[ok  ] random cuts, 24 cases: E sum ||P(R) xi - xi P(S)||^2 / ((q/2)||R xi - xi S||): 0.676 (bound 1)
+[ok  ] random cuts with a unitary control: ratio to the explicit bound: 0.005 (bound 1)
+[ok  ] random cuts, covariant form: ratio to the explicit bound: 0.088 (bound 1)
+[ok  ] two spectral partitions: ratio to the explicit square-root bound: 0.002 (bound 1)
+[ok  ] histories, 9 sequences: trace preserving and unital (max error): 8.9e-15 (bound 0)
+[ok  ] histories: aggregate centrality minus sum of partition centralities: 0.0e+00 (bound <= 0)
+[ok  ] histories: aggregate ||E K_h xi|| minus (||E xi|| + ||E|| sum c_t): 0.0e+00 (bound <= 0)
+[ok  ] covariance: total variation minus aggregate covariance error: 0.0e+00 (bound <= 0)
+[ok  ] prediction: sqrt(2 tau) - (2H + c) and H - telescope bound: 0.0e+00 (bound <= 0)
+[ok  ] negative control: the reset channel (trace preserving, not unital) violates the history bound: lhs 1.000 > rhs 0.500 (bound violation)
+------------------------------------------------------------------------------
+Random spectral cuts and weighted histories: 10 checks, 0 failures

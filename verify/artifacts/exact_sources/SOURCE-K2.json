@@ -1,0 +1,451 @@
+{
+  "name": "G_2 central Pauli lamps on unordered two-subsets of Houghton rays",
+  "generators": [
+    "p",
+    "q",
+    "x",
+    "z"
+  ],
+  "inverse_convention": "uppercase is inverse; maps compose right to left",
+  "central_word": [
+    "x",
+    "z",
+    "x",
+    "z"
+  ],
+  "target_sector": "pi(J)=-I (representation sector, not an abstract identity relator)",
+  "relators": [
+    {
+      "id": "H1",
+      "family": "host",
+      "word": [
+        "p",
+        "q",
+        "P",
+        "Q",
+        "p",
+        "q",
+        "P",
+        "Q"
+      ]
+    },
+    {
+      "id": "H2",
+      "family": "host",
+      "word": [
+        "p",
+        "q",
+        "P",
+        "Q",
+        "p",
+        "p",
+        "q",
+        "P",
+        "P",
+        "Q",
+        "p",
+        "p",
+        "q",
+        "P",
+        "P",
+        "Q",
+        "p",
+        "p",
+        "q",
+        "P",
+        "Q",
+        "P"
+      ]
+    },
+    {
+      "id": "H3",
+      "family": "host",
+      "word": [
+        "p",
+        "q",
+        "P",
+        "Q",
+        "p",
+        "p",
+        "p",
+        "q",
+        "P",
+        "Q",
+        "P",
+        "P",
+        "q",
+        "p",
+        "Q",
+        "p",
+        "q",
+        "p",
+        "Q",
+        "P",
+        "P",
+        "P"
+      ]
+    },
+    {
+      "id": "H4",
+      "family": "host",
+      "word": [
+        "p",
+        "p",
+        "q",
+        "P",
+        "Q",
+        "P",
+        "q",
+        "q",
+        "p",
+        "Q",
+        "P",
+        "Q"
+      ]
+    },
+    {
+      "id": "L1",
+      "family": "onsite",
+      "word": [
+        "x",
+        "x"
+      ]
+    },
+    {
+      "id": "L2",
+      "family": "onsite",
+      "word": [
+        "z",
+        "z"
+      ]
+    },
+    {
+      "id": "L3",
+      "family": "onsite",
+      "word": [
+        "x",
+        "z",
+        "x",
+        "z",
+        "x",
+        "z",
+        "x",
+        "z"
+      ]
+    },
+    {
+      "id": "S1",
+      "family": "stabilizer",
+      "word": [
+        "x",
+        "p",
+        "q",
+        "P",
+        "Q",
+        "X",
+        "q",
+        "p",
+        "Q",
+        "P"
+      ]
+    },
+    {
+      "id": "S2",
+      "family": "stabilizer",
+      "word": [
+        "z",
+        "p",
+        "q",
+        "P",
+        "Q",
+        "Z",
+        "q",
+        "p",
+        "Q",
+        "P"
+      ]
+    },
+    {
+      "id": "S3",
+      "family": "stabilizer",
+      "word": [
+        "x",
+        "p",
+        "p",
+        "q",
+        "P",
+        "P",
+        "Q",
+        "p",
+        "X",
+        "P",
+        "q",
+        "p",
+        "p",
+        "Q",
+        "P",
+        "P"
+      ]
+    },
+    {
+      "id": "S4",
+      "family": "stabilizer",
+      "word": [
+        "z",
+        "p",
+        "p",
+        "q",
+        "P",
+        "P",
+        "Q",
+        "p",
+        "Z",
+        "P",
+        "q",
+        "p",
+        "p",
+        "Q",
+        "P",
+        "P"
+      ]
+    },
+    {
+      "id": "S5",
+      "family": "stabilizer",
+      "word": [
+        "x",
+        "p",
+        "p",
+        "q",
+        "P",
+        "P",
+        "X",
+        "p",
+        "p",
+        "Q",
+        "P",
+        "P"
+      ]
+    },
+    {
+      "id": "S6",
+      "family": "stabilizer",
+      "word": [
+        "z",
+        "p",
+        "p",
+        "q",
+        "P",
+        "P",
+        "Z",
+        "p",
+        "p",
+        "Q",
+        "P",
+        "P"
+      ]
+    },
+    {
+      "id": "P1xx",
+      "family": "pair",
+      "word": [
+        "x",
+        "p",
+        "x",
+        "P",
+        "X",
+        "p",
+        "X",
+        "P"
+      ]
+    },
+    {
+      "id": "P1xz",
+      "family": "pair",
+      "word": [
+        "x",
+        "p",
+        "z",
+        "P",
+        "X",
+        "p",
+        "Z",
+        "P"
+      ]
+    },
+    {
+      "id": "P1zx",
+      "family": "pair",
+      "word": [
+        "z",
+        "p",
+        "x",
+        "P",
+        "Z",
+        "p",
+        "X",
+        "P"
+      ]
+    },
+    {
+      "id": "P1zz",
+      "family": "pair",
+      "word": [
+        "z",
+        "p",
+        "z",
+        "P",
+        "Z",
+        "p",
+        "Z",
+        "P"
+      ]
+    },
+    {
+      "id": "P0xx",
+      "family": "pair",
+      "word": [
+        "x",
+        "p",
+        "p",
+        "x",
+        "P",
+        "P",
+        "X",
+        "p",
+        "p",
+        "X",
+        "P",
+        "P"
+      ]
+    },
+    {
+      "id": "P0xz",
+      "family": "pair",
+      "word": [
+        "x",
+        "p",
+        "p",
+        "z",
+        "P",
+        "P",
+        "X",
+        "p",
+        "p",
+        "Z",
+        "P",
+        "P"
+      ]
+    },
+    {
+      "id": "P0zx",
+      "family": "pair",
+      "word": [
+        "z",
+        "p",
+        "p",
+        "x",
+        "P",
+        "P",
+        "Z",
+        "p",
+        "p",
+        "X",
+        "P",
+        "P"
+      ]
+    },
+    {
+      "id": "P0zz",
+      "family": "pair",
+      "word": [
+        "z",
+        "p",
+        "p",
+        "z",
+        "P",
+        "P",
+        "Z",
+        "p",
+        "p",
+        "Z",
+        "P",
+        "P"
+      ]
+    },
+    {
+      "id": "Cp",
+      "family": "center",
+      "word": [
+        "x",
+        "z",
+        "x",
+        "z",
+        "p",
+        "Z",
+        "X",
+        "Z",
+        "X",
+        "P"
+      ]
+    },
+    {
+      "id": "Cq",
+      "family": "center",
+      "word": [
+        "x",
+        "z",
+        "x",
+        "z",
+        "q",
+        "Z",
+        "X",
+        "Z",
+        "X",
+        "Q"
+      ]
+    }
+  ],
+  "relator_precision": "all exact operator identities",
+  "state_contract": "original arbitrary normal mixed state; actual signed-generator unitary mirrors of max root error e; unrestricted ambient spaces",
+  "pair_prototypes": [
+    {
+      "overlap": 1,
+      "transporter": [
+        "p"
+      ]
+    },
+    {
+      "overlap": 0,
+      "transporter": [
+        "p",
+        "p"
+      ]
+    }
+  ],
+  "stabilizer_words": {
+    "s": [
+      "p",
+      "q",
+      "P",
+      "Q"
+    ],
+    "u=Bsp": [
+      "p",
+      "p",
+      "q",
+      "P",
+      "P",
+      "Q",
+      "p"
+    ],
+    "v=Bsq": [
+      "p",
+      "p",
+      "q",
+      "P",
+      "P"
+    ]
+  },
+  "no_game_claim": "This source JSON is not an exported game or a finite-dimensional exact negative representation."
+}

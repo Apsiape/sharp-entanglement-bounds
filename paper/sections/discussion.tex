@@ -1,0 +1,44 @@
+%======================================================================
+\section{Discussion}\label{sec:discussion}
+%======================================================================
+
+\paragraph{Usable entanglement, not dimension.} The question we started from has a cheap version and a costly one. The cheap
+version asks for a large Hilbert space; a large dimension, or a large marginal entropy, can however sit in a separable state,
+and, conditionally on~\cite{Dou26}, the $I_{3322}$ example shows that near a Bell optimum dimension can diverge while usable
+entanglement stays bounded. The costly version asks
+whether every near-winning strategy, mixed and correlated with anything, can be made to give up Bell pairs. Theorem~A answers it
+qualitatively for consistency-tested games, and the spectrum answers it quantitatively for the games we can analyse. In both,
+the conclusion is drawn on the original state (\cref{sec:status}), with actual operators of the two players.
+
+\paragraph{How the proof uses consistency.} In the classes of Theorem~A every question is checked against a copy of itself or of
+a coarser question, so near-perfect play forces Alice's operators to mirror Bob's on the state. The mirrors make Bob's moments
+tracial in the limit and let polynomials found in the limit act back on the actual strategy. For a game in either class with no
+finite-dimensional perfect strategy, every such limit is of type~II: a type~I summand would yield a finite-dimensional perfect
+strategy. A type~II algebra contains matrix algebras of every size, and this is where the Bell pairs come from. We do not know
+that consistency testing is necessary for the conclusion (\cref{sec:boundary}).
+
+\paragraph{Three mechanisms.} The quantitative results use three mechanisms, each tied to a quantitative invariant of the source. \emph{Counting}: many
+approximately independent Pauli pairs force entropy and, with extraction, usable entanglement; the pairs come from lamps, and
+their cost from the areas of the fillings that make lamps commute. \emph{Transport}: dilations and rotations force a spectral law
+to be close to an invariant one, and invariant laws satisfy a Frostman bound of exponent $\log_mq$, hence have dimension at
+least $\log_mq$; independent copies add. \emph{Addressing}: under
+exact relations, the cost is the number of qubits reachable by short words. The gaps between the three are informative. Exact
+and approximate relations can differ exponentially in cost, because approximate models can merge addresses or replace a sum of
+defect logarithms by the logarithm of a product (\cref{prop:collective}); and the quarter exponent of the point game's upper bound
+sits exactly where collective approximation beats counting.
+
+\paragraph{What is fair to call new.} Each result is a composition. The tracial correspondences, finite von Neumann algebra
+structure, Pauli rigidity and regular dilations, pretty-good recovery, uncertainty with memory and hashing are established. What
+the compositions add is accounting that keeps the original state at every step, so that the conclusions are lower bounds on the
+usable entanglement of every mixed near-winner of a fixed game, with explicit rates where we can compute them.
+
+\paragraph{What remains.} Two problems are central. The matching lower exponent $\frac14$ for the point game would close the only
+polynomial window we know, $[1/(2\log107+1),\frac14]$. Bounds by filling area cannot reach it through worst-pair raw cross-copy
+estimates: that route stops at $\eps^{-1/5}$, the value of a quadratic area bound (\cref{app:window}); it would follow from a
+same-state quartic bound on a Pauli multiplication table or from another original-state method. The logarithmic floor asks whether
+every nonattaining consistency game demands at least logarithmic usable entanglement. It holds for every game that recovers a sign
+and an even dilation with actual mirrors, including a game compiled from Abels' group (\cref{thm:floor-class,cor:abels}).
+\Cref{prop:criterion} gives an operator-norm route to a counterexample; \cref{app:floor} excludes locally stable sources, the dyadic
+pattern and copied Baumslag--Solitar models from that route. \Cref{thm:floor-class} separately excludes games with the stated
+original-state sign-and-dilation interface. Neither the undecidability of the dichotomy nor the type~II structure of the limits
+decides the problem.

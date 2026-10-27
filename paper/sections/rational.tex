@@ -1,0 +1,579 @@
+%======================================================================
+\section{Games with a dense set of coefficients}\label{sec:rational}
+%======================================================================
+
+The lamp sources and their sums realize every positive rational exponent at the source level, and more generally every number
+$\sum_i\log_{m_i}q_i$ with $q_i\ge2$ a power of two dividing $m_i$. Compiled into fixed games, they give the rational family, with
+minimum pure Schmidt rank $\Theta(\eps^{-\alpha})$, the whole finite-R\'enyi spectrum and pure one-shot concentration
+(\cref{sec:rational-boolean,sec:rational-linear,sec:renyi}). For every coefficient $\alpha=\frac12\sum_i\log_{m_i}q_i$, rational or not, they
+give games in which the one-way distillable entanglement of every mixed near-winner is at least
+$\alpha\log(1/\eps)-O(\log\log(1/\eps))$, and the infimum demand has the sharp leading coefficient $\alpha$ (\cref{sec:rational-ED}). These coefficients form a dense set that contains transcendental numbers (\cref{sec:coefficient-set}), and
+\cref{sec:arithmetic} bounds the arithmetic complexity of the coefficient of every fixed game.
+
+\subsection{The Boolean constraint family}\label{sec:rational-boolean}
+
+\begin{theorem}[Every positive rational exponent]\label{thm:rational-games}
+For every positive rational $\alpha=a/b$ there is a fixed finite Boolean constraint-variable game $G_\alpha$ of quantum value
+one, with every incidence positively tested and no finite-dimensional perfect strategy, such that the minimum Schmidt rank of
+a pure strategy of loss at most $\eps$ is $\Theta_\alpha(\eps^{-\alpha})$, and the minimum entanglement entropy of a pure
+strategy and the minimum entanglement of formation of a mixed strategy are both $\alpha\log(1/\eps)+O_\alpha(1)$. The game is
+fixed before $\eps$ is chosen.
+\end{theorem}
+
+\begin{proof}
+Take $k=2a$ copies of the binary lamp source $L_{2,2^b}$, so that \cref{thm:additive} applies with $s=k/b=2\alpha$, and let
+$G_\alpha$ be the game of the universal compiler (\cref{thm:universal}) for this presentation, with contexts of at most three
+variables. A strategy of loss $\eps$ gives, by \cref{thm:boolean-correspondence}(a), a model of the constraint system at precision
+$C\sqrt\eps$ on Bob's Schmidt support with Bob's reduced state, and the lower map of \cref{thm:universal} turns it into a model
+of the source with the \emph{same} state at precision $C'\sqrt\eps$. By \cref{thm:additive} its rank is at least
+$c\eps^{-s/2}=c\eps^{-\alpha}$ and its entropy at least $\alpha\log(1/\eps)-C$. Conversely, the flat tensor-product models at
+precision $e$, lifted by the upper map with the state $I_{12}/12\otimes\rho$ and returned by
+\cref{thm:boolean-correspondence}(b), give pure strategies of loss $K_3C^2e^2$, Schmidt rank $O(e^{-s})$ and entropy
+$s\log(1/e)+\log12+O(1)$. Taking $e$ of order $\sqrt\eps$ proves the pure statements. For the entanglement of formation,
+the pure lower bound $f(\ell)=\alpha\log(1/\ell)-C$ is convex and decreasing; it holds for every pure strategy of loss $\ell>0$
+after enlarging $C$, and no pure strategy has $\ell=0$, since the source has no finite-dimensional exact model with the
+marked involution $-I$. For a decomposition $\sigma=\sum_jp_j|\psi_j\rangle\langle\psi_j|$ with the same measurements the losses
+average to at most $\eps$, and Jensen's inequality gives $\sum_jp_jS((\psi_j)_B)\ge f(\eps)$. The upper bound is attained by
+the pure strategies above.
+\end{proof}
+
+This is a statement about a Boolean constraint game and needs no linear compiler. The mixed-state $\ED$ statement is
+\cref{thm:rational-ED}; it does not follow from the bound on $\EF$.
+
+\subsection{Linear system games}\label{sec:rational-linear}
+
+\begin{theorem}[The one-copy linear family]\label{thm:rational-linear}
+For every $q=2^r$ and every $m$ divisible by $q$ there is a fixed finite linear system game of quantum value one whose minimum
+pure Schmidt rank at loss $\eps$ is $\Theta(\eps^{-\alpha})$, $\alpha=\frac12\log_mq$, and whose minimum pure entanglement
+entropy and minimum mixed entanglement of formation are $\alpha\log(1/\eps)+O(1)$. In particular every positive rational
+$\alpha\le\frac12$ occurs.
+\end{theorem}
+
+\begin{proof}
+The lamp source $L_{q,m}$ is an extended homogeneous-linear-plus-conjugacy presentation in the sense of Slofstra and
+Vidick~\cite[\S6, (a)--(d)]{SV18}: its involutions are $z_0,\dots,z_{q-1},w$, the single set $V=\{z_0,\dots,z_{q-1},w\}$ carries
+the commuting row $z_0\cdots z_{q-1}w=e$, the relations $yz_jy^{-1}=z_{j+1}$ and $xwx^{-1}=w$ have form~(d)(ii), and
+$xyx^{-1}=y^m$ has form~(d)(iii) with $y<x$. Its marked involution $w$ is nontrivial in approximate representations, by the
+Fourier-lamp models. \Cref{prop:extended}, with the $l=2$ non-involutive generators $y<x$ and $N_G=16$, therefore applies to the solution
+group $\Gamma$ of the balanced construction: every strategy of loss $\eps$ has Bob's nonzero spectrum in $\Lambda_{L_{q,m}}(C_1\sqrt\eps)$,
+so by \cref{thm:lamp} its rank is at least $c\eps^{-\alpha}$ and its entropy at least $\alpha\log(1/\eps)-C$; and flat models of $L_{q,m}$ of
+dimension $O(e^{-2\alpha})$ give strategies of Schmidt rank $16\cdot O(e^{-2\alpha})$ and loss $O(e^2)$. The formation statement follows as in
+\cref{thm:rational-games}. For $\alpha=a/b\le\frac12$ take $r=2a$ and $m=2^b$.
+\end{proof}
+
+The campaign that produced these results also built its own restricted linear compiler, which eliminates the non-involutive
+generators in order (a generator $Y$ becomes the product $fv$ of two new involutions, and a power relation $UYU^{-1}=Y^m$ the
+conjugacy $UvU^{-1}=p_m$ with the involutive palindrome $p_m=v(fv)^{m-1}$), adds a parity cover with first-negative corner
+selectors, which is the multi-corner map of \cref{prop:corner}, and finishes with Slofstra's gadgets. For one copy it gives
+amplification $16$ and was used for the explicit exports below. The balanced construction behind \cref{prop:extended} has the same
+architecture, with Slofstra's conversions, and the same amplification $2^{l+2}$ for its own games; it does not certify the
+specifications below.
+
+\begin{theorem}[The restricted compiler for several copies; conditional]\label{thm:rational-linear-k}
+The restricted compiler applies to the input grammar of homogeneous commuting-involution rows, involutive conjugacies,
+noninvolutive conjugation of an involution, and strictly later-on-earlier positive-power actions (including power one), with a
+shared central negative involution; it does not compile arbitrary signed rows or arbitrary presentations. For the $k$-copy
+sources of \cref{thm:additive}, with $2k$ ordered eliminations, the recorded maximum arity is
+$\max\{3,\max_i(q_i+1),2^{2k-1}+1\}$, the amplification $2^{2k+2}$, and the entropy overhead $2k+2$; the precision constants are
+computable from the finite maps, and no uniform constant for the whole family is asserted. \emph{Conditional on a
+self-contained proof of the family compiler for general $k$}, the compiler itself converts these sources into fixed linear
+system games with these specifications and the profiles of \cref{thm:rational-games} for every positive rational $\alpha$.
+\end{theorem}
+
+Linear system games with these profiles exist unconditionally, by the route of \cref{cor:linear-existence} below, through
+\cref{prop:extended}; that route does not certify the arity, the amplification, the algorithm or the exports of the restricted
+compiler in \cref{thm:rational-linear-k}, which keep their condition.
+
+The return step must use arity-dependent constants: for a context of $k$ variables, \cref{thm:return} with $s=k$, or the
+boolean return with $K_kD_k^2$, where $D_k=\max\{1,[1+k(k-1)(3k+1)/4]/2\}$ converts parity errors into forbidden-product
+errors (\cref{rem:parity-forbidden}). At arity nine $K_9=138496$ and $K_9D_9^2=8829985600$; the ternary constant $111$ must
+never be used there.
+
+\begin{remark}[Exported objects; checked]\label{rem:exports}
+Three finite objects were exported and checked exactly. K4 has $5206$ game variables and $4325$ parity rows, of arity three,
+and L4M8 ($q=4$, $m=8$) has $6798$ game variables and $5653$ rows, of maximum arity five; both have amplification $16$, their
+exponents are $\frac14$ and $\frac13$, and their solution-group presentations have one more generator, the central $J$. A
+two-copy object has $199129$ game variables, again without $J$, $164608$ rows, maximum arity nine, amplification $64$ and
+exponent one. The script \texttt{verify/check\_linear\_games.py} rebuilds K4 and L4M8 from their sources and checks exactly, in
+the negative source algebra, every square, parity row and row commutator and the restriction of each conjugated source word to
+its generator on its block. The exported L4M8 and two-copy games are archived in \texttt{verify/artifacts}: the archived L4M8
+file is checked exactly against its source presentation, every square, row and row commutator, with the normal-form engine of
+\texttt{check\_linear\_games.py}, and the two-copy file by its own exact checker; complete Fourier-lamp strategies were played on every
+context of L4M8 at four sizes, with observed rank exponents $0.318$, $0.331$, $0.333$, and on every context and raw outcome of the
+two-copy game at two sizes.
+This is evidence for these finite objects, not a derivation of every $k$.
+\end{remark}
+
+\begin{remark}[Several copies are an extended presentation]\label{rem:SV-route-k}
+The source $L_{\mathbf q,\mathbf m}$ of \cref{thm:additive} is an extended homogeneous-linear-plus-conjugacy
+presentation~\cite[\S6, (a)--(d)]{SV18}, after a Tietze transformation, with the noninvolutive generators ordered
+$y_1,\dots,y_k,x_1,\dots,x_k$. Its involutions are the lamps of all copies and the shared $w$; the rows $z^{(i)}_0\cdots
+z^{(i)}_{q_i-1}w=e$, one set of the collection in~(c) for each copy, carry the within-copy commutations; and within a copy the remaining
+relations have forms (d)(ii) and (d)(iii) as in the proof of \cref{thm:rational-linear}, $x_iy_ix_i^{-1}=y_i^{m_i}$ being a
+later-on-earlier positive power. The cross-copy commutators are of three kinds. Two involutions $u,v$ commute exactly when $uvu=v$,
+an allowed involutive conjugacy (d)(i); a two-element row $uv=e$ of form~(c) would instead impose $u=v$. A noninvolutive generator
+$g$ commutes with an involution $u$ through the allowed action $gug^{-1}=u$ of form (d)(ii). Two noninvolutive generators commute
+through the later-on-earlier power-one relation $g_ig_jg_i^{-1}=g_j^1$, $j<i$, of form (d)(iii). The shared central $w$ stays one
+involution, and tensor products of the negative Fourier-lamp models respect that identification. \Cref{prop:extended}, with $l=2k$
+non-involutive generators and its multi-corner lower map, and \cref{thm:additive} therefore give an unconditional linear realization
+of every positive rational exponent, with flat amplification $N_G=2^{2k+2}$ and fixed computable presentation-dependent precision
+constants. Nothing here uses that $m_i$ is a power of two, which is how \cref{thm:rational-ED} obtains linear games for every
+coefficient of \cref{cor:coefficient-set}.
+\end{remark}
+
+\begin{corollary}[Linear games with every positive rational exponent]\label{cor:linear-existence}
+For every positive rational $\alpha=a/b$ there is a fixed finite linear system game $\widetilde G_\alpha$ of quantum value one, with every
+incidence positively tested and no finite-dimensional perfect strategy, such that the minimum Schmidt rank of a pure strategy of
+loss at most $\eps$ is $\Theta_\alpha(\eps^{-\alpha})$, the minimum entanglement entropy of a pure strategy and the minimum entanglement of
+formation of a mixed strategy are $\alpha\log(1/\eps)+O_\alpha(1)$, the pure-state statements of \cref{thm:renyi} hold for
+$\widetilde G_\alpha$, and there is $\eps_\alpha>0$ such that, separately in both directions, for $0<\eps<\eps_\alpha$,
+\[
+d^\to_{\widetilde G_\alpha}(\eps)=\alpha\log(1/\eps)+O_\alpha\bigl(\log\log(1/\eps)\bigr),\qquad
+d^\leftarrow_{\widetilde G_\alpha}(\eps)=\alpha\log(1/\eps)+O_\alpha\bigl(\log\log(1/\eps)\bigr).
+\]
+This is not an equality of the two functions at each loss. The corollary concerns existence only: it does not certify the
+specifications of \cref{thm:rational-linear-k}.
+\end{corollary}
+
+\begin{proof}
+Take $k=2a$ binary copies, $q_i=2$ and $m_i=2^b$, so that $s=k/b=2\alpha$ in \cref{thm:additive}, and let $L=L_{\mathbf q,\mathbf m}$ with
+marked involution $w$. By \cref{rem:SV-route-k}, $L$ is an extended homogeneous-linear-plus-conjugacy presentation after a
+Tietze transformation, which changes precisions by constant factors and keeps the state (\cref{prop:algebraic-map}). The
+involution $w$ is central, and it is nontrivial in approximate representations, since tensor products of the Fourier-lamp
+models of \cref{ex:fourier-lamps} have $W=-I$ at every precision. So the balanced construction before \cref{prop:extended}, with
+$l=2k=4a$ non-involutive generators, gives a binary linear system $(A,b)$, and \cref{prop:extended} applies to $\widetilde G_\alpha=G(A,b)$
+with either question distribution of \cref{def:lsg} and $N_G=2^{4a+2}$; both test every incidence.
+
+\emph{Pure strategies.} By \cref{prop:extended}(a) Bob's nonzero spectrum lies in $\Lambda_L(C_1\sqrt\eps)$, so \cref{thm:additive} gives
+Schmidt rank at least $c\eps^{-\alpha}$ and entropy at least $\alpha\log(1/\eps)-C$. The flat tensor models of \cref{thm:additive}, of
+dimension $O(e^{-s})$ with $W=-I$, give $\hlp_L(w;2,e)=O(e^{-s})$, and \cref{prop:extended}(b) turns them into strategies on maximally
+entangled states of Schmidt rank $O(\eps^{-\alpha})$ and entropy $\alpha\log(1/\eps)+O(1)$. No finite-dimensional strategy is perfect,
+since \cref{thm:additive} excludes exact finite models with $W=-I$; the formation statement follows as in \cref{thm:rational-games}.
+The proof of \cref{thm:renyi} uses only the energy functional of the source on Bob's original state, which the transfer of
+\cref{prop:extended}(a) supplies at precision $O(\sqrt\eps)$, these upper strategies, and a product strategy of positive loss; it
+applies verbatim.
+
+\emph{Mixed strategies.} The lower map of \cref{prop:extended} is the corner map of \cref{prop:corner} with $2^{4a-1}$ corners, a
+unital $*$-homomorphism given by fixed polynomials in the variables, the letter $J$ evaluating to $-1$. So \cref{prop:interface}, in the
+form noted after it for linear system games and corner maps, supplies the actual source interface on the original mixed state,
+and the usable-entanglement law in both directions is the case $k=2a$, $q_i=2$, $m_i=2^b$ of \cref{thm:rational-ED} below, for the
+game $\widetilde G_\alpha$.
+\end{proof}
+
+\subsection{The R\'enyi spectrum and pure concentration}\label{sec:renyi}
+
+For a density matrix $\rho$ and $1<\beta<\infty$ write $H_\beta(\rho)=\frac1{1-\beta}\log\Tr\rho^\beta$, $H_\infty(\rho)=-\log\opn\rho$, and
+$H_{\min}^\delta(\rho)=\sup\{-\log\opn\sigma:P(\rho,\sigma)\le\delta\}$ with the purified distance $P=\sqrt{1-F^2}$ between normalized
+states.
+
+\begin{theorem}[R\'enyi spectrum]\label{thm:renyi}
+Fix a rational $\alpha>0$ and the game $G_\alpha$ of \cref{thm:rational-games}. Over pure strategies of loss at most $\eps$, with
+$\rho=\rho_B$,
+\begin{gather*}
+\inf H_\beta(\rho)=\alpha\log(1/\eps)+O(1)\qquad(0\le\beta\le1),\\
+\inf H_\beta(\rho)=\min\Bigl\{\alpha,\frac\beta{\beta-1}\Bigr\}\log(1/\eps)+O_\beta(1)\qquad(1<\beta<\infty),
+\end{gather*}
+the finite critical order included; the constants are not uniform as $\beta\to\infty$. For $H_\infty$ the coefficient is
+$\min(\alpha,1)$ with $O(1)$ remainder when $\alpha\ne1$; at $\alpha=1$,
+\[
+\log(1/\eps)-\log(1+\log(1/\eps))-O(1)\ \le\ \inf H_\infty(\rho)\ \le\ \log(1/\eps)+O(1).
+\]
+For fixed $0<\delta<1$, $\inf H_{\min}^\delta(\rho)=\alpha\log(1/\eps)+O_\delta(1)$. For every fixed $0<\eta<1$, every pure strategy of
+loss at most $\eps$ admits a state-dependent heralded LOCC protocol that succeeds with probability at least $1-\eta$ and then
+outputs an exact $\Phi_M$ with $\log M\ge\alpha\log(1/\eps)-O_\eta(1)$; this uses the Schmidt basis of the state and is not the
+protocol of \cref{thm:protocol}. The same holds for the linear games of \cref{thm:rational-linear} and of
+\cref{cor:linear-existence}.
+\end{theorem}
+
+The proof turns the rank profile into a functional inequality. Fix the source unitaries of an arbitrary assignment and define,
+for positive $A$,
+\[
+E(A)^2=\sum_R\hs{(R-I)A}^2+\sum_V\hs{[V,A]}^2+\hs{(W+I)A}^2,
+\]
+summing over the relators $R$, the generators $V$ and the marked involution $W$. A model on $\xi=\rho^{1/2}$ at precision $e$ has
+$E(\xi)\le Ce$, and the game transfer keeps $\rho$ and gives $E(\xi)\le C\sqrt\eps$.
+
+\begin{lemma}[Faber--Krahn and layers]\label{lem:faber-krahn}
+Let $s=2\alpha$. There is $c>0$ with $E(A)^2\ge c\,\rank(A)^{-2/s}\hs A^2$ for every positive $A$ and every assignment. With
+$f_l(t)=\min((t-2^l)_+,2^l)$ for $l\in\Z$, $\sum_lE(f_l(A))^2\le E(A)^2$, and $E((A-tI)_+)\le E(A)$ for $t\ge0$.
+\end{lemma}
+
+\begin{proof}
+Apply \cref{thm:additive} to the density $A^2/\hs A^2$ with the same unitaries, at precision $E(A)/\hs A$; lowering $c$
+covers large precisions, and $E(A)=0$ is impossible for $A\ne0$ since the rank bound would then hold at every precision. For
+the layers, $\sum_lf_l(t)^2\le t^2$ and $\sum_l|f_l(t)-f_l(u)|^2\le(t-u)^2$, the $f_l(t)$ being the lengths of the disjoint
+intervals $[2^l,2^{l+1}]\cap[0,t]$. So $\sum_l\hs{Lf_l(A)}^2=\Tr(L^*L\sum_lf_l(A)^2)\le\hs{LA}^2$, and in an eigenbasis of $A$,
+$\sum_l\hs{[V,f_l(A)]}^2=\sum_{i,j}|V_{ij}|^2\sum_l|f_l(a_j)-f_l(a_i)|^2\le\hs{[V,A]}^2$. The cutoff $(t-u)_+$ is $1$-Lipschitz and
+vanishes at zero, which gives the last claim in the same way.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:renyi}]
+\emph{Schatten bounds.} First let $s>2$, $\vartheta=2/s$ and $p=2s/(s-2)$. With $r_l=\rank f_l(A)$ and $b_l=2^{pl}r_l$, the lemma gives
+$E(f_l(A))^2\ge c2^{2l}r_{l+1}r_l^{-\vartheta}=c2^{-p}b_{l+1}b_l^{-\vartheta}$, since $2-p+p\vartheta=0$; with $T=\sum_lb_l$ and $b_l\le T$,
+$\sum_lb_{l+1}b_l^{-\vartheta}\ge T^{1-\vartheta}$, and dyadic layer cake gives $T\asymp\Tr A^p$. Hence $\|A\|_p\le C\,E(A)$, the strong
+endpoint, without a logarithm. For any $s>0$ and $p>2$ with $t=2p/(p-2)>s$, add the mass term $\lambda\hs B^2$ to the energy;
+since $c\,\rank^{-2/s}+\lambda\ge c^a\lambda^{1-a}\rank^{-2/t}$ with $a=s/t$, the endpoint with parameter $t$ and the choice
+$\lambda=E(A)^2/\hs A^2$ give $\|A\|_p\le C\,E(A)^a\hs A^{1-a}$. Above the endpoint use monotonicity of Schatten norms. With
+$A=\xi$, $\hs A=1$ and $E(A)\le e$, this gives $\Tr\rho^\beta\le Ce^{\min(s(\beta-1),2\beta)}$, that is
+$H_\beta(\rho)\ge\min(s,2\beta/(\beta-1))\log(1/e)-C$, and with $e\asymp\sqrt\eps$ the lower bounds for $1<\beta<\infty$. For
+$0\le\beta\le1$, $H_\beta\ge H_1$, and \cref{thm:rational-games} gives the coefficient $\alpha$.
+
+\emph{Min-entropy.} If $s>2$, $\opn A\le\|A\|_p\le Ce$, so $\opn\rho\le Ce^2$. If $s<2$, normalize $\hs A=1$ and let
+$a_1\ge a_2\ge\cdots$ be the eigenvalues; $B=(A-a_{2r})_+$ has rank below $2r$, $\hs B\ge\sqrt r(a_r-a_{2r})$ and $E(B)\le e$, so
+$a_r-a_{2r}\le Cer^{1/s-1/2}$; telescoping over dyadic $r$ up to $R\asymp e^{-s}$ and $a_R\le R^{-1/2}$ give $a_1\le Ce^{s/2}$, that
+is $\opn\rho\le Ce^s$. If $s=2$, normalize $\hs A=1$, let $M=\opn A$, and suppose $M\ge E(A)$; otherwise $M^2<E(A)^2$ and there is
+nothing to prove. Put $K_0=\lceil\log(4/M^2)\rceil\ge2$, $\Delta=M/(4K_0)$, $t_j=M/2+j\Delta$, $h_j=\rank(A>t_j)$ and
+$F_j=\min\{(A-t_j)_+,\Delta\}$ for $0\le j<K_0$. Then $h_0\le\hs A^2/(M/2)^2=4/M^2$ and $h_{K_0}\ge1$, since $t_{K_0}=3M/4<M$. The bands
+$[t_j,t_j+\Delta]$ are disjoint, so, as for the layers of \cref{lem:faber-krahn}, $\sum_jE(F_j)^2\le E(A)^2$; and $F_j=\Delta$ on the
+eigenvalues above $t_{j+1}$, so $\hs{F_j}^2\ge\Delta^2h_{j+1}$, while $\rank F_j=h_j$. The $s=2$ inequality
+$E(F)^2\ge c\,\rank(F)^{-1}\hs F^2$ and the arithmetic-geometric mean inequality give
+\[
+E(A)^2\ge c\Delta^2\sum_{j<K_0}\frac{h_{j+1}}{h_j}\ge c\Delta^2K_0\Bigl(\frac{h_{K_0}}{h_0}\Bigr)^{1/K_0}\ge\frac{cM^2}{16K_0}\Bigl(\frac{M^2}4\Bigr)^{1/K_0}
+\ge\frac{cM^2}{32K_0},
+\]
+and $K_0=O(1+\log(1/E(A)))$ because $M\ge E(A)$. So $\opn\rho=M^2\le CE(A)^2[1+\log(1/E(A))]$, that is $\opn\rho\le Ce^2(1+\log(1/e))$.
+With $e\asymp\sqrt\eps$ these are the lower bounds for $H_\infty$; at $s=2$, substituting $e=C_G\sqrt\eps$ gives
+$H_\infty(\rho)\ge\log(1/\eps)-\log(1+\log(1/\eps))-O(1)$, a single logarithmic-logarithmic loss. The $O(1)$ endpoint remainder is open,
+and the constants are not uniform in the R\'enyi order.
+
+\emph{Upper bounds.} Take a pure strategy of loss at most $\eps/2$ and Schmidt rank $D\le C\eps^{-\alpha}$, and a deterministic
+product strategy of loss $\ell_{\mathrm{bad}}>0$; such a positive loss exists because there is no perfect finite strategy. With
+$\delta=\eps/(2\ell_{\mathrm{bad}})$ and orthogonal local flags on both sides, $\sqrt{1-\delta}|0,0\rangle|\psi_{\mathrm{good}}\rangle+\sqrt\delta|1,1\rangle|a\rangle|b\rangle$
+is a pure strategy of loss at most $\eps$ whose squared Schmidt coefficients are $(1-\delta)\lambda_j$ and $\delta$. So
+$\Tr\rho^\beta\ge(1-\delta)^\beta D^{1-\beta}+\delta^\beta\ge c(\eps^{\alpha(\beta-1)}+\eps^\beta)$ and $\opn\rho\ge\max((1-\delta)/D,\delta)$, which
+give the upper bounds.
+
+\emph{Smoothing and concentration.} Choose $\beta>1$ with $\alpha\le\beta/(\beta-1)$, so $\Tr\rho^\beta\le C\eps^{\alpha(\beta-1)}$. For
+$\eta\in(0,1)$ let $t=(C/\eta)^{1/(\beta-1)}\eps^\alpha$ and $Q$ the spectral projection of $\rho$ onto eigenvalues at most $t$. Then
+$\mu=\Tr(I-Q)\rho\le t^{1-\beta}\Tr\rho^\beta\le\eta$, and $\sigma=Q\rho Q/(1-\mu)$ has $F(\rho,\sigma)=\sqrt{1-\mu}$ and
+$\opn\sigma\le t/(1-\eta)$; with $\eta=\delta^2$ this is the lower bound for $H^\delta_{\min}$. For the upper bound, a strategy of rank
+$D$ and any $\sigma$ with $P(\rho,\sigma)\le\delta$ have $\Tr(\Pi\sigma)\ge1-\delta^2$ on the support $\Pi$, so $\opn\sigma\ge(1-\delta^2)/D$. For
+concentration, project locally onto $Q$ in the Schmidt basis, which succeeds with probability $1-\mu\ge1-\eta$, and convert the
+resulting pure state, whose largest Schmidt weight is at most $1/M$ with $M=\lfloor(1-\eta)/t\rfloor$, to $\Phi_M$ deterministically by
+Nielsen's theorem~\cite{Nie99}. Schmidt rank cannot increase in a pure branch, so $M\le D$ for the upper scale.
+\end{proof}
+
+The weight in the largest $r$ Schmidt coefficients is controlled as well: by H\"older, $L_r\le C(r\eps^\alpha)^{(\beta-1)/\beta}$,
+so for every $r=o(\eps^{-\alpha})$ it tends to zero uniformly over near-winning pure strategies. The functional-inequality
+framework is that of Bakry, Coulhon, Ledoux and Saloff-Coste and of Rumin~\cite{BCLS95,Rum10}; one-shot concentration is
+due to Vidal, Lo--Popescu and Buscemi--Datta~\cite{Vid99,LP01,BD10}. A large rank alone is not a large entanglement:
+it could sit in a negligible tail, and the theorem excludes that at the certified scale. For the source of
+\cref{thm:shared}, $s=1$ and the same argument gives $\opn\rho\le Ce$, so every R\'enyi entropy, $H_\infty$ included, has
+coefficient one there.
+
+\subsection{Usable entanglement with the sharp coefficient}\label{sec:rational-ED}
+
+The coefficients of the lamp sums need not be rational. For $k\ge1$ and $i=1,\dots,k$ fix integers $r_i\ge1$ and $m_i\ge2$ with
+$2^{r_i}\mid m_i$, put $q_i=2^{r_i}$, let $L_{\mathbf q,\mathbf m}$ be the source of \cref{thm:additive}, and put
+\[
+\alpha=\frac12\sum_{i=1}^k\log_{m_i}q_i=\frac12\sum_{i=1}^k\frac{r_i}{\log m_i}.
+\]
+Let $G_{\mathbf q,\mathbf m}$ be the Boolean constraint game of \cref{thm:universal} for $L_{\mathbf q,\mathbf m}$, and $\widetilde G_{\mathbf q,\mathbf m}$
+the linear system game that \cref{rem:SV-route-k} and \cref{prop:extended} give for it, with either question distribution of
+\cref{def:lsg}; the remark uses only the form of the relators, not the values of $q_i$ and $m_i$. For $\alpha=a/b$, the choice of $k=2a$ copies of $L_{2,2^b}$ gives the games $G_\alpha$ and
+$\widetilde G_\alpha$ of \cref{thm:rational-games,cor:linear-existence}, and one copy gives the games of \cref{thm:rational-linear}.
+
+\begin{theorem}[Sharp coefficients on the original state]\label{thm:rational-ED}
+Let $G$ be $G_{\mathbf q,\mathbf m}$ or $\widetilde G_{\mathbf q,\mathbf m}$. Then $G$ has quantum value one, every incidence positively tested
+and no finite-dimensional perfect strategy, and there are constants $\eps_G,C_G>0$ such that, for $0<\eps<\eps_G$:
+\begin{enumerate}[label=(\alph*),itemsep=1pt]
+\item the minimum Schmidt rank of a pure strategy of loss at most $\eps$ is $\Theta_G(\eps^{-\alpha})$, and the minimum entanglement
+entropy of a pure strategy and the minimum entanglement of formation of a mixed strategy are $\alpha\log(1/\eps)+O_G(1)$;
+\item every finite-dimensional mixed strategy of loss at most $\eps$ satisfies, separately in both directions,
+\[
+\min\bigl\{\ED^{A\to B}(\rho_{AB}),\ED^{B\to A}(\rho_{AB})\bigr\}\ \ge\ \alpha\log(1/\eps)-O_G\bigl(\log\log(1/\eps)\bigr),
+\]
+and there are pure maximally entangled strategies of loss at most $\eps$ whose two directional rates are $\alpha\log(1/\eps)+O_G(1)$;
+so $d^\to_G(\eps)$ and $d^\leftarrow_G(\eps)$ are both $\alpha\log(1/\eps)+O_G(\log\log(1/\eps))$, and an $O(1)$ lower remainder is not
+proved;
+\item explicitly, with $e=C_G\sqrt\eps$, $x=\log(1/e)$ and
+\[
+L_i=\Bigl\lfloor\frac{x-32\log(2+x)}{\log m_i}\Bigr\rfloor,\qquad D=\prod_iq_i^{L_i},
+\]
+one has $L_i\ge1$, and every finite-dimensional mixed strategy of loss at most $\eps$ admits strategy-dependent product local
+isometries extracting $\Phi_D$ with vector error at most $C'_G(2+x)^{-3}$, the environment included in the junk.
+\end{enumerate}
+\end{theorem}
+
+The restriction $\eps<\eps_G$ ensures that the depths $L_i$ are positive, that the error bounds of the proof are in range, and that
+$\log\log(1/\eps)$ is defined. For rational $\alpha$ the theorem contains the usable-entanglement laws of the games $G_\alpha$ and
+$\widetilde G_\alpha$ of \cref{thm:rational-games,cor:linear-existence}, and it adds that law to the one-copy games of
+\cref{thm:rational-linear}.
+
+\begin{proof}
+\emph{The game and the pure and formation laws.} These are proved as in \cref{thm:rational-games,cor:linear-existence}, with
+\cref{thm:additive} for $s=2\alpha$ in place of the rational choice. For $G_{\mathbf q,\mathbf m}$, \cref{thm:boolean-correspondence}(a) and the
+lower map of \cref{thm:universal} give a model of $L_{\mathbf q,\mathbf m}$ with Bob's reduced state at precision $C\sqrt\eps$; for
+$\widetilde G_{\mathbf q,\mathbf m}$, \cref{prop:extended}(a) puts Bob's nonzero spectrum in $\Lambda_{L_{\mathbf q,\mathbf m}}(C\sqrt\eps)$. In both cases
+\cref{thm:additive} gives Schmidt rank at least $c\eps^{-\alpha}$ and entropy at least $\alpha\log(1/\eps)-C$. The flat tensor-product
+Fourier-lamp models at precision $c\sqrt\eps$, lifted by the upper map of \cref{thm:universal} with amplification $12$ and returned by
+\cref{thm:boolean-correspondence}(b), or turned into strategies by \cref{prop:extended}(b) with amplification $N_G=2^{2k+2}$, give strategies of loss
+at most $\eps$ on maximally entangled states of Schmidt rank $O(\eps^{-\alpha})$ and entropy $\alpha\log(1/\eps)+O(1)$, whose two directional
+rates equal their entropy~\cite{BBPS96}. They show that $G$ has quantum value one, and no finite-dimensional strategy is perfect, since
+\cref{thm:additive} excludes exact finite models with $W=-I$. The formation statement follows by Jensen's inequality as in
+\cref{thm:rational-games}. Both games test every incidence.
+
+\emph{The source on the actual state.} Fix a strategy of loss at most $\eps$, dilate it locally, and let $\Psi$ purify the dilated state.
+\Cref{prop:interface}, applied to the lower map of \cref{thm:universal}, or, for $\widetilde G_{\mathbf q,\mathbf m}$, to the corner map in the form
+noted after it, gives for every copy $i$ Bob unitaries $X_i,Y_i$ and Alice unitaries $X_i^A,Y_i^A$ such that
+$X_iY_iX_i^*=Y_i^{m_i}$ on Bob and $X_i^{A*}Y_i^AX_i^A=(Y_i^A)^{m_i}$ on Alice hold with residual at most $e=C_G\sqrt\eps$, all cross-copy
+generator commutators have residual at most $e$, and all mirrors, inverse mirrors and square-root-state commutators are at most $e$; this
+holds on the whole original state. For the rotations apply the paragraph on selector polynomials after \cref{prop:interface} to the selector
+$T_i$ of \cref{lem:rotation-selector} for copy $i$: in the negative quotient $T_i^*T_i=T_iT_i^*=1$ and $T_iy_i=\zeta_iy_iT_i$,
+$\zeta_i=e^{2\pi i/q_i}$, and $T_i$ commutes with every generator of another copy, being a polynomial in the lamps of copy $i$. This gives
+Bob unitaries $U_i$ and Alice unitaries $U_i^A$, with mirrors, inverse mirrors and square-root-state commutators $O(e)$,
+\[
+\|(U_iY_iU_i^*-\zeta_iY_i)\Psi\|=O(e),\qquad\|(U_i^AY_i^AU_i^{A*}-\zeta_i^{-1}Y_i^A)\Psi\|=O(e),
+\]
+the inverse phase on Alice because she realizes the opposite algebra, and commutators $O(e)$ of $U_i$ and of $U_i^A$ with the generators
+of the other copies on the same party. No sector is selected, and the $U_i$ need not have finite order. We enlarge $C_G$ to absorb the
+constants. Choose $\eps_G$ so small that $L_i\ge1$ and that the error bounds $\eta$, $\delta$ and $\gamma$ below lie in the ranges in
+which they are used, in particular $\eta\le1$ and $\gamma^2<\frac12$ in~\eqref{eq:singlet-hashing}; this is possible because each of
+them tends to zero with $\eps$.
+
+\emph{Powers without an exponential square.} For opposite-party unitaries, $\|(R_A^n-S_B^n)\Psi\|\le n\|(R_A-S_B)\Psi\|$
+(\cref{lem:transfer-parties}(c)); this is not asserted for two operators of one party. On each party and for each copy, with $S=X_i$ on
+Bob or $S=X_i^{A*}$ on Alice and $Y$ the $Y_i$ of that party, put $F_d=S^dYS^{-d}-Y^{m^d}$, $m=m_i$. Then
+\[
+F_{d+1}=SF_dS^{-1}+\bigl((SYS^{-1})^{m^d}-(Y^m)^{m^d}\bigr).
+\]
+Moving the one-letter suffix $S^{-1}$ of the first term to its actual mirror costs $2e$. For the second term compare $SYS^{-1}$ with the
+opposite-party mirror of $Y^m$, at cost $(m+1)e$, raise this opposite-party comparison to the power $m^d$, and compare the mirror's power
+$m^{d+1}$ back with $Y^{m^{d+1}}$ on the same party, at cost $m^{d+1}e$. So $\|F_{d+1}\Psi\|\le\|F_d\Psi\|+2e+(2m+1)m^de$, and
+$\|F_d\Psi\|\le C_mm^de$; no term $m^{2d}e$ appears. In the same way, raising the rotation relation across the parties,
+$\|(U_iY_i^nU_i^*-\zeta_i^nY_i^n)\Psi\|\le C_Gne$ for $n\ge1$, with $\zeta_i^{-n}$ on Alice.
+
+\emph{Common roots and controls.} For copy $i$ put $N_i=L_i-1$ and, on Bob,
+\[
+Y_{i,j}=X_i^{-j}Y_iX_i^j,\qquad V_{i,j}=X_i^{-j}U_iX_i^j,\qquad R_{i,j}=Y_{i,N_i}^{m_i^{N_i-j}}\qquad(0\le j\le N_i),
+\]
+with the reversed words on Alice, for example $Y^A_{i,j}=(X_i^A)^jY_i^A(X_i^A)^{-j}$; put $N=\max_iN_i$ and $M=\sum_iL_i$. All $R_{i,j}$ of
+one party and copy are powers of one unitary and commute exactly. Conjugating $F_d$ by a word of length $O(N+1)$,
+$\|(Y_{i,j}-Y_{i,l}^{m_i^{l-j}})\Psi\|\le C_G(m_i^{l-j}+N+1)e$ for $j\le l$, and in particular
+\[
+\|(R_{i,j}-Y_{i,j})\Psi\|\le C_G(m_i^{N_i-j}+N+1)e
+\]
+on each party, likewise for adjoints. With the mirror of $Y_{i,j}$, which costs $O((N+1)e)$ by \cref{lem:transfer-parties}(a), this gives
+$\|(R^A_{i,j}-R^B_{i,j})\Psi\|\le C_G(m_i^{N_i-j}+N+1)e$, and \cref{lem:transfer-parties}(d) gives the square-root-state commutators. For
+$j\le l$, compare $R_{i,j}$ with $Y_{i,l}^{n}$, $n=m_i^{l-j}$, and conjugate the rotation estimate for $Y_i^n$ by the native word
+$X_i^{-l}$, moving its suffix through actual mirrors:
+\[
+\|(V_{i,l}R_{i,j}V_{i,l}^*-\zeta_i^{n}R_{i,j})\Psi\|\le C_G(m_i^{L_i}+N+1)e .
+\]
+Since $q_i$ divides $m_i$, $\zeta_i^n=1$ for $j<l$, and $\zeta_i^n=\zeta_i$ for $j=l$: the control of stage $(i,l)$ fixes the earlier roots
+of its copy and rotates its own by $\frac1{q_i}$ of a turn, by $-\frac1{q_i}$ on Alice. The same holds for the powers $V_{i,l}^h$,
+$|h|\le Q=\max_iq_i$, at cost $C_Q$ times larger. Words of different copies have length $O(N+1)$ and commute after $O((N+1)^2)$ swaps of
+generators or controls, each with a suffix of length $O(N+1)$, so their commutators on $\Psi$ are $O((N+1)^3e)$. Replacing a native
+$Y_{i,j}$ by $R_{i,j}$ costs the estimate above; when the replaced factor stands to the left of an operator of the other copy, that
+operator is first moved to the other party through its actual mirror, so the two large powers are never multiplied. Hence every mirror,
+inverse mirror, square-root-state commutator, triangular rotation and cross-copy commutator among the $R$, the $V$ and their powers
+$|h|\le Q$ has residual at most
+\[
+\eta=C_G\Bigl(e\max_im_i^{L_i}+e(N+1)^3\Bigr),
+\]
+on both parties. No relation between different controls is used, and no term $e\prod_im_i^{L_i}$ appears.
+
+\emph{Spectral cuts.} Order the stages $(i,j)$ copy by copy and with increasing $j$ within a copy, $M$ in all. For each stage choose an
+offset $\vartheta_{i,j}$ uniform modulo $1/q_i$, independent over the stages and the same on both parties, and let $P^P_{i,j,a}$,
+$a\in\Z_{q_i}$, be the spectral projections of $R^P_{i,j}$ onto the arcs of \cref{lem:random-cuts}. Since multiplication by $\zeta_i$ moves
+each arc to the next, the control $V^B_{i,j}$ approximately sends the label $a$ to $a-1$ and $V^A_{i,j}$ sends $a$ to $a+1$, which is the
+orientation of \cref{lem:cyclic-triangular} on Alice. Within a copy the partitions commute exactly. For the mirrors, let $\nu$ be the
+joint spectral measure of the commuting unitaries $R^A,R^B$ of two parties in $\Psi$; an offset uniform modulo $1/q$ separates two points at
+distance $d\le\frac12$, in turns, with probability at most $qd$, and $d\le\frac14|z-w|$, so, as in \cref{lem:cut-parties},
+\[
+\mathbb E\sum_a\|(P_a(R^A)-P_a(R^B))\Psi\|^2\le2q\int d\,d\nu\le\frac q2\|(R^A-R^B)\Psi\| .
+\]
+On Alice, with $\xi=\rho_A^{1/2}$ and vector norms on $\Psi$ equal to Hilbert--Schmidt norms (\cref{lem:standard-form}),
+\cref{lem:random-cuts} bounds the squared expectations of the covariance defects and of the commutators of controls with earlier
+partitions by $O(\eta)$, the state commutators entering through \cref{lem:transfer-parties}(d). Its covariance estimate is stated for
+the rotation $\zeta$; for a power $V^h$ the same bound follows from its first estimate with $R=V^hZV^{-h}$ and $S=\zeta^hZ$, since
+multiplication by $\zeta^h$ shifts the arcs by $h$, converted into the covariance defect at the cost of the state commutators, as in its
+proof. For two partitions of different copies, the third estimate
+of \cref{lem:random-cuts} bounds the first moment of the commutator aggregate by $O(\eta^{1/4})$. As $\eta\le1$, every residual of
+\cref{lem:cyclic-triangular} has first moment at most $C_G\eta^{1/4}$. There are at most $C_QM^2$ of them, counting every bounded power,
+both mirrors and every earlier stage; summing their first moments before fixing the offsets, some deterministic choice of offsets has
+every residual at most
+\[
+\delta\le C_GM^2\eta^{1/4}.
+\]
+For a single copy no two partitions of different copies occur, every residual has squared expectation $O(\eta)$, and summing the squares
+instead gives $\delta\le C_GM\eta^{1/2}$.
+
+\emph{Extraction.} \Cref{lem:cyclic-triangular}, with these partitions and the controls $V^P_{i,j}$ in the order of the stages, gives
+product local isometries with vector error $\gamma\le C_QM^3\delta\le C_GM^5\eta^{1/4}$ from $\Phi_D\otimes\chi$; for a single copy,
+$\gamma\le C_GM^4\eta^{1/2}$. With $L_i$ as displayed, $m_i^{L_i}\le2^x(2+x)^{-32}$, so $em_i^{L_i}\le(2+x)^{-32}$; and $N+1\le x+1$,
+$M\le kx$ and $e(N+1)^3\le2^{-x}(x+1)^3\le C(2+x)^{-32}$. So $\eta\le C_G(2+x)^{-32}$ and $\gamma\le C_Gx^5(2+x)^{-8}\le C'_G(2+x)^{-3}$,
+which is~(c).
+
+\emph{Hashing.} Discard the junk. The output vector $v$ is a unit vector within $\gamma$ of $\Phi_D\otimes\chi$, so the projection onto
+$\Phi_D$ times the junk misses at most $\gamma^2$ of it, and the $D$-dimensional output has singlet fraction at least $1-\gamma^2$.
+By~\eqref{eq:singlet-hashing}, in either direction,
+\[
+\ED(\rho_{AB})\ \ge\ (1-2\gamma^2)\log D-h(\gamma^2)\ =\ \log D-o(1),
+\]
+since $\gamma^2\log D\le C(2+x)^{-6}x\to0$; all preprocessing was local on $AB$ and nothing acted on $E$, so this bounds each directional
+rate of the original state. Finally $\log D=\sum_ir_iL_i\ge2\alpha x-64\alpha\log(2+x)-\sum_ir_i$ and $x=\frac12\log(1/\eps)-\log C_G$, which
+gives~(b); the upper bound is given by the pure strategies above.
+\end{proof}
+
+The entropy and formation bounds of~(a) are not substitutes for this proof, which never uses a decomposition of the state, a canonical
+purification, or an exact joint spectral law for different copies. The cuts use only the first-moment estimate of \cref{lem:random-cuts}
+for two partitions, which costs the margin $32$ in $L_i$.
+
+\begin{remark}[The numbers without the cyclic lemma]\label{rem:binary-route}
+For the coefficients alone, \cref{lem:cyclic-triangular} is not needed. A copy of $L_{2^r,m}$ can be replaced by $r$ commuting copies of
+$L_{2,m}$, which keeps the source exponent $r/\log m$ but changes the source and the game; with $q_i=2$ throughout, the lamp $z_0$ of each
+copy, which satisfies $z_0yz_0=wy$, is a reflection control with $TYT\approx-Y$, and \cref{thm:triangular} suffices. So every coefficient of
+\cref{cor:coefficient-set} below is realized by binary copies $L_{2,m}$ with even $m$. The cyclic lemma is needed for the original
+$q$-lamp games with $q\ge4$, in particular for the one-copy games of \cref{thm:rational-linear} with $r\ge2$.
+\end{remark}
+
+\subsection{The set of coefficients}\label{sec:coefficient-set}
+
+Let $\mathcal S$ be the set of the coefficients $\alpha$ of \cref{thm:rational-ED}, over all finite families $(q_i,m_i)$ with $q_i=2^{r_i}$,
+$r_i\ge1$ and $q_i\mid m_i$. Logarithms are to base two.
+
+\begin{corollary}[A dense set of coefficients]\label{cor:coefficient-set}
+\[
+\mathcal S=\Bigl\{\frac12\sum_{m\ \mathrm{even}}\frac{n_m}{\log m}:\ n_m\in\Z_{\ge0},\ \text{finitely many }n_m\ne0,\ \text{not all }n_m=0\Bigr\}.
+\]
+This set is countable, closed under addition and under multiplication by positive rationals, and consists of computable reals. It contains
+every positive rational number and the set $\{a/(2b\log6):a,b\ge1\}$, which is dense in $(0,\infty)$ and consists of transcendental
+numbers; for example $\frac12\log_62=1/(2\log6)$. For every $\alpha\in\mathcal S$ there are a fixed Boolean constraint game and a fixed linear
+system game with the laws of \cref{thm:rational-ED} for $\alpha$.
+\end{corollary}
+
+\begin{proof}
+A generator $\frac12\log_mq$ with $q=2^r$ dividing $m$ has $m$ even and equals $r\cdot\frac1{2\log m}$, a sum of $r$ binary generators;
+conversely every $\frac1{2\log m}$ with $m$ even is a generator with $q=2$. This proves the description, and closure under addition is
+clear. For a positive rational $a/b$, $\frac ab\cdot\frac1{2\log m}=\frac a{2\log(m^b)}$ with $m^b$ even, which gives closure under positive
+rational multiples; with $m=2$ it gives every positive rational. Integer logarithms are uniformly computable, so every element of $\mathcal S$
+is computable, and $\mathcal S$ is countable. The numbers $a/(2b\log6)$ are realized by $a$ binary copies with $m=6^b$, and they are dense
+since $a/b$ ranges over the positive rationals. Finally $\log6$ is irrational, since $2^u=6^v$ has no solution in positive integers; if it
+were algebraic, the Gelfond--Schneider theorem~\cite{Gel34,Sch35} would make $2^{\log6}=6$ transcendental. So $\log6$ is transcendental, and
+so is every nonzero rational multiple of its reciprocal. The last assertion is \cref{thm:rational-ED}.
+\end{proof}
+
+One copy already gives a dense family. For $m=3\cdot2^b$ and $q=2^r$ with $1\le r\le b$, the one-copy coefficient is
+$\alpha_{b,r}=r/(2(b+\log3))$, which is transcendental by the same argument applied to $\log3$. For $0<t<\frac12$ and
+$r_b=\lfloor2t(b+\log3)\rfloor$, one has $1\le r_b\le b$ for all large $b$ and $0\le t-\alpha_{b,r_b}<1/(2(b+\log3))$. So the one-copy linear
+games of \cref{thm:rational-linear}, with \cref{thm:rational-ED}, have sharp usable-entanglement coefficients dense in $(0,\frac12)$.
+
+We make no transcendence claim for general elements of $\mathcal S$, and the description gives no test of membership for a number
+presented in another form. Sums are realized by commuting copies of sources, not by an additivity theorem for one-way distillable
+entanglement; products and limits of elements of $\mathcal S$ are not realized, and a sequence of different games is not one fixed game.
+The transcendence step is classical, and irrational dimension exponents of this kind are already in \cref{thm:rational-linear}; what is
+added here is the sharp original-state usable-entanglement law for them.
+
+\subsection{Which coefficients can occur}\label{sec:arithmetic}
+
+In this subsection a game is a finite game with finite question and answer sets, a winning predicate and a question distribution. Let
+$D_G(\eps)$ be the least $d$ such that some strategy on $\C^d\otimes\C^d$ has loss at most $\eps$. Let $\mathcal A_{\log}$ be the set of finite
+$c\ge0$ for which some game of quantum value one has $\lim_{\eps\downarrow0}d^\to_G(\eps)/\log(1/\eps)=c$, and $\mathcal A_{\dim}$ the same with
+$\log D_G(\eps)$ in place of $d^\to_G(\eps)$. A real is \emph{computable relative to} an oracle $X$ if it has a Cauchy name computable from
+$X$, and \emph{left-c.e.}\ (\emph{right-c.e.}) relative to $X$ if the rationals below (above) it form a set that is computably enumerable
+relative to $X$. We write $0^{(n)}$ for the $n$-th Turing jump, and call the reals computable relative to $0^{(n-1)}$ the $\Delta^0_n$ reals.
+
+\emph{Input convention.} A game is \emph{effectively algebraic} if each question probability $\pi(x)$ is a real algebraic number and is
+given by a polynomial $p_x$ with integer coefficients together with a rational isolating interval $(a_x,b_x)$, in which $\pi(x)$ is the only
+real root of $p_x$; any equivalent effective way of selecting a real root would serve as well. The algorithms of
+\cref{prop:arithmetic-dim,thm:arithmetic} take a game in this form.
+
+\begin{lemma}[Reweighting]\label{lem:reweighting}
+Two games with the same questions, answers and predicate, whose question distributions have the same support, have the same logarithmic
+coefficients, dimension exponents and power-law exponents, whenever these exist.
+\end{lemma}
+
+\begin{proof}
+The losses are $\ell_G=\sum_x\pi_G(x)\ell_x$ and $\ell_H=\sum_x\pi_H(x)\ell_x$ with the same conditional losses $\ell_x\ge0$, so $a\ell_H\le\ell_G\le
+b\ell_H$ with $a=\min_x\pi_G(x)/\pi_H(x)>0$ and $b=\max_x\pi_G(x)/\pi_H(x)$ over the common support. Hence
+$d_H^\to(\eps/a)\le d_G^\to(\eps)\le d_H^\to(\eps/b)$, and likewise for $D$. A fixed rescaling of $\eps$ changes $\log(1/\eps)$ by a constant
+and leaves every limit of the three kinds unchanged.
+\end{proof}
+
+Replacing positive real weights by the uniform distribution on their support, the sets $\mathcal A_{\log}$ and $\mathcal A_{\dim}$ are countable.
+By \cref{thm:rational-ED}, and with zero from a game that has a perfect product strategy, $\{0\}\cup\mathcal S$ lies in both.
+
+\begin{proposition}[Dimension exponents]\label{prop:arithmetic-dim}
+For an effectively algebraic game of quantum value one, given in the input convention above, $D_G(\delta)$ is computable from $G$ and every
+rational $\delta>0$, and it equals the least Schmidt rank of a pure strategy of loss at most $\delta$. Consequently every element of
+$\mathcal A_{\dim}$ is the limit of a computable sequence of rationals, hence, by Shoenfield's limit lemma~\cite{Sho59}, computable relative to
+$0'$: a $\Delta^0_2$ real.
+\end{proposition}
+
+\begin{proof}
+For fixed $d$, the existence of a unit vector in $\C^d\otimes\C^d$ and of POVMs on $\C^d$ for the finitely many questions with loss at most
+$\delta$ is an existential sentence over the real closed field of real algebraic numbers, after splitting complex coordinates into real
+and imaginary parts and expressing positivity by principal minors. Each question probability enters as a variable $\pi_x$ constrained by
+$p_x(\pi_x)=0$ and $a_x<\pi_x<b_x$, which by the input convention determines it, so the sentence has integer coefficients, and quantifier
+elimination decides it~\cite{Sei54,CM12}. A mixed state does not do better: for fixed measurements the winning probability is linear in the
+state, so an eigenvector of the game operator does at least as well, and a pure strategy compresses to its Schmidt supports. Searching
+$d=1,2,\dots$ terminates because the value is one. Approximate $\log D_G(2^{-n})/n$ by a rational $r_n$ to error at most $2^{-n}$; if the
+exponent exists, the computable sequence $(r_n)$ converges to it. Shoenfield's limit lemma~\cite{Sho59} says, relative to any oracle $X$,
+that a function is computable from $X'$ exactly when it is the limit of a function computable from $X$; we use it with $X$ computable, in
+the form for reals: the limit of a computable sequence of rationals is computable relative to $0'$. That direction is also immediate here,
+since $0'$ decides, for given $k$ and $n$, the $\Pi^0_1$ statement that $|r_m-r_{m'}|\le2^{-k}$ for all $m,m'\ge n$, and so finds a Cauchy
+name. By \cref{lem:reweighting} every element of $\mathcal A_{\dim}$ is the exponent of an effectively algebraic game.
+\end{proof}
+
+No computable rate of convergence is asserted, and the value-one promise is assumed, not decided. Nothing in this proof computes a
+distillable entanglement, which needs a separate argument.
+
+\begin{theorem}[One-way coefficients]\label{thm:arithmetic}
+Let $G$ be an effectively algebraic game of quantum value one, given in the input convention above. For rational $\delta>0$,
+$d^\to_G(\delta)$ is right-c.e.\ relative to $0'$,
+uniformly in $\delta$. If $c=\lim_{\eps\downarrow0}d^\to_G(\eps)/\log(1/\eps)$ exists and is finite, then $c$ is left-c.e.\ relative to $0''$,
+that is, the rationals below $c$ form a $\Sigma^0_3$ set; in particular $c$ is computable relative to $0'''$, a $\Delta^0_4$ real. The same holds
+for $d^\leftarrow_G$, and for the exponent $\beta$ of a power law $d^\to_G(\eps)=\eps^{-\beta+o(1)}$. By \cref{lem:reweighting}, every element of
+$\mathcal A_{\log}$ is left-c.e.\ relative to $0''$.
+\end{theorem}
+
+\begin{proof}
+\emph{The formula.} By the theorem of Devetak and Winter~\cite[Theorem~13 of the arXiv version]{DW05},
+$\ED^{A\to B}(\rho)=\lim_n\frac1nD^{(1)}(\rho^{\otimes n})$, where, for a state $\sigma$ on $\C^{d_A}\otimes\C^{d_B}$, $D^{(1)}(\sigma)$ is the
+maximum over instruments of Alice of the average coherent information $\sum_\ell p_\ell I_c(A\rangle B)_{\sigma_\ell}$, and the instruments may
+be taken with at most $d_A^2$ outcomes and one Kraus operator each. With unnormalized branches
+$\sigma_\ell=(A_\ell\otimes I)\sigma(A_\ell\otimes I)^*$ and $H(C)=-\Tr C\log C$ for positive $C$,
+\[
+D^{(1)}(\sigma)=\max\Bigl\{\sum_\ell\bigl[H(\Tr_A\sigma_\ell)-H(\sigma_\ell)\bigr]:\ \sum_\ell A_\ell^*A_\ell=I,\ \ell\le d_A^2\Bigr\},
+\]
+the terms $p_\ell\log p_\ell$ of the two entropies cancelling. Product instruments make $D^{(1)}$ superadditive under tensor products, so
+the limit is a supremum, and $D^{(1)}\ge0$, since a rank-one measurement on Alice leaves product branches. So
+$\ED^{A\to B}=\sup_Nf_N$ with $f_N(\rho)=\max_{n\le N}\frac1nD^{(1)}(\rho^{\otimes n})$, an increasing sequence of continuous functions.
+
+\emph{Computability of $f_N$.} The objective is uniformly continuous on its compact domain with a computable modulus: the eigenvalues of a
+Hermitian matrix are $1$-Lipschitz in the operator norm, and $t\mapsto-t\log t$ is uniformly continuous on $[0,1]$ with an explicit modulus.
+The domain of the instruments, and the set $K_d$ below, are compact sets defined by polynomial equations and inequalities; with the question
+probabilities entered as constrained variables, as in the proof of \cref{prop:arithmetic-dim}, the defining formulas have integer
+coefficients. Quantifier elimination decides for every rational box whether it meets such a set, so nested boxes give, for
+every point of a rational grid that lies near the set, a computable point of the set near it; evaluating a function with a computable
+modulus at these finitely many points gives its maximum or minimum over the set to any prescribed precision. So $f_N$ is computable,
+uniformly in $N$ and in the dimensions.
+
+\emph{Fixed dimension.} Let $K_d$ be the set of strategies with a state on $\C^d\otimes\C^d$, POVMs on $\C^d$ and loss at most $\delta$.
+Whether it is empty is decidable, and padding shows that it is nonempty for all $d\ge d_0$, where $d_0$ is the least $d$ with
+$K_d\ne\emptyset$, which exists because the value is one and is found by search. Put $a_{d,N}=\min_{K_d}f_N$, computable uniformly in $d,N$, and
+$b_d=\min_{K_d}\ED^{A\to B}$, a minimum of a lower semicontinuous function on a compact set. Then $b_d=\sup_Na_{d,N}$: clearly
+$a_{d,N}\le b_d$, and if $t<b_d$, the compact sets $\{z\in K_d:f_N(z)\le t\}$ decrease in $N$ and have empty intersection, so one of them is
+empty and $a_{d,N}>t$. So $b_d$ is left-c.e., uniformly in $d$, and as $0\le b_d\le\log d$ the oracle $0'$, which decides whether $b_d>r$
+for each rational $r$, computes it.
+
+\emph{The demand.} Every finite-dimensional strategy fits, after padding, in some $K_d$ with $d\ge d_0$, so
+$d^\to_G(\delta)=\inf_{d\ge d_0}b_d$. Enumerating rational upper bounds for all $b_d$ with $0'$ shows that it is right-c.e.\ relative to $0'$,
+uniformly in $\delta$.
+
+\emph{The coefficient.} Put $c_m=\inf_{n\ge m}d^\to_G(2^{-n})/n$; these are right-c.e.\ relative to $0'$, uniformly in $m$. If $c$ exists, it is
+the limit along $\eps=2^{-n}$, and then $c=\liminf_n d^\to_G(2^{-n})/n=\sup_mc_m$. A rational $r$ is below $c$ exactly when there are $m$ and a
+rational $r'>r$ with $c_m\ge r'$; the condition $c_m\ge r'$ is the complement of a set c.e.\ relative to $0'$, so it is $\Pi^0_2$, and the set
+of such $r$ is $\Sigma^0_3$, that is, c.e.\ relative to $0''$. The oracle $0'''$ decides membership in it and so computes $c$. For a power law,
+$\beta=\lim_n\log(1+d^\to_G(2^{-n}))/n$, and since $t\mapsto\log(1+t)/n$ is increasing and computable the same argument applies. For
+$d^\leftarrow_G$ exchange the parties.
+\end{proof}
+
+So $\{0\}\cup\mathcal S\subseteq\mathcal A_{\log}$, and every element of $\mathcal A_{\log}$ is left-c.e.\ relative to $0''$. The two classes do not
+match, and no optimality is claimed for the upper one: it neither shows that coefficients must be computable nor realizes a noncomputable
+coefficient. Dimension and one-way demand differ here, through the regularization, the minimization over strategies and the unbounded
+local dimension. The promise itself has a known place in the arithmetical hierarchy: Mousavi, Nezhadi and Yuen show that deciding
+whether a game has quantum value one is $\Pi^0_2$-complete~\cite[Theorem~1.1]{MNY22}. Here value one is assumed, not decided, and the
+objects we place in the hierarchy are the dimension exponents and one-way coefficients of games that have it. A zero coefficient
+for a game of Theorem~A without a finite-dimensional perfect strategy would be a counterexample to the floor of \cref{prob:floor}.

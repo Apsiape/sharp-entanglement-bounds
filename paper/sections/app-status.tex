@@ -1,0 +1,82 @@
+%======================================================================
+\section{Status of the results}\label{app:status}
+%======================================================================
+
+\Cref{tab:status} lists every result of the paper with its status. \emph{Proved}: a complete proof is given here, using
+only the cited results named in the row or the proof. \emph{Checked}: a finite computation or a verified implication from a cited
+manuscript. \emph{Conditional}: the result rests on a named input not proved self-containedly. \emph{Companion}: the result is stated
+here and proved in~\cite{DM-game}. The review column names the
+independent blind review that covered the result (see the section \hyperref[sec:methods]{How this work was done}); ``tool''
+means the earlier review of the inherited tool results, and ``read'' the later non-blind second read of the whole manuscript,
+named only where that read supplied or checked the written proof; ``check'' means an independent proof check, of the floor and
+window results found after the second blind audit, or of the coefficient results found during the third; ``computation'' means a
+finite check by the scripts in \texttt{verify/}. The twelve audits of the whole manuscript are summarized in that section and
+listed in \cref{app:audits}; a row names an audit only where it was the first blind reading of the result or of the part named. The tenth to twelfth
+audits were not blind throughout (\cref{app:audits}).
+
+\begin{longtable}{@{}L{0.3\textwidth}L{0.2\textwidth}L{0.18\textwidth}L{0.22\textwidth}@{}}
+\toprule
+result & where & status & review\\
+\midrule
+\endhead
+qubit count in a state & \cref{thm:count,cor:count-uniform} & companion & tool\\
+transfer and return, linear & \cref{thm:transfer,thm:return,cor:correspondence} & companion & tool, first, second\\
+Boolean correspondence & \cref{thm:boolean-correspondence} & proved & first, second, third\\
+universal Boolean compiler & \cref{thm:universal} & proved & first\\
+compiler on virtual retracts & \cref{thm:compile} & proved, on~\cite[Lemma~B.1]{DM-game} & tool\\
+balanced compiler, extended presentations & \cref{prop:extended} & proved & computation; tenth audit\\
+actual source interface & \cref{prop:interface} & proved & second\\
+triangular extraction & \cref{thm:triangular} & proved & second, third\\
+cyclic triangular extraction; selector polynomials & \cref{lem:cyclic-triangular}, paragraph after \cref{prop:interface} & proved & check; fourth audit\\
+signed regular extraction & \cref{thm:signed-regular,lem:fixed-size} & proved & second, third\\
+aggregate and finite-group extraction & \cref{thm:aggregate,thm:group-extract,cor:S3,lem:S3-round} & proved & third\\
+Alice-local recovery, forward bound & \cref{thm:recovery} & proved & third\\
+exact synchrony & \cref{thm:exact-sync} & proved & second\\
+Theorem A & \cref{thm:A} & proved & third\\
+effective certificates & \cref{thm:effective} & proved & third\\
+undecidability & \cref{thm:undecidable} & proved & third\\
+white-box protocol & \cref{thm:protocol}, \cref{app:protocol} & proved & third\\
+local symmetry, Bob kept & \cref{thm:local-symmetry} & proved & fourth\\
+factor three and sharpness & \cref{thm:factor-three,thm:factor-three-sharp} & proved & fourth\\
+synchronous repair; directions & \cref{prop:sync-repair,cor:direction-spectra} & proved & fourth\\
+Slofstra--Vidick dimension and profile & \cref{thm:K,cor:K-profile,thm:SV} & companion; upper lift~\cite[Lemma~11.13]{DM-game} & tool; lift by computation; tenth audit\\
+Slofstra--Vidick entropy and formation & \cref{thm:entropy-transport,cor:K-entropy,thm:SV-entropy} & proved & tool\\
+one lamp source & \cref{thm:lamp} & proved & second\\
+additive profiles & \cref{thm:additive} & proved & second\\
+shared dilations $4,6$ & \cref{thm:shared} & proved & second\\
+rational Boolean constraint games & \cref{thm:rational-games} & proved & second\\
+one-copy linear family & \cref{thm:rational-linear} & proved & second\\
+restricted compiler, several copies & \cref{thm:rational-linear-k} & conditional & third (exports checked)\\
+linear games, every rational exponent & \cref{rem:SV-route-k,cor:linear-existence} & proved & read only, not blind\\
+R\'enyi spectrum, concentration & \cref{thm:renyi} & proved & second\\
+sharp $\ED$ coefficient, rational $\alpha$ & \cref{thm:rational-ED} & proved & second (earlier form of the proof); check; fourth audit\\
+sharp $\ED$ coefficient, every $\alpha\in\mathcal S$ & \cref{thm:rational-ED,rem:binary-route} & proved & check; fourth audit\\
+dense coefficient set; arithmetic bounds & \cref{cor:coefficient-set,lem:reweighting,prop:arithmetic-dim,thm:arithmetic} & proved & check; fourth audit\\
+configuration-lamp game: entropy, formation, dimension & \cref{thm:lamps-sector,thm:lamps-game} & companion & tool\\
+configuration-lamp game: usable entanglement & \cref{thm:lamps-ED} & proved & tool, second\\
+linear filling charge & \cref{thm:linear-filling} & proved & computation (tree of faces); second audit\\
+point window & \cref{thm:point-window,prop:collective} & proved & third; present lower exponent: second audit\\
+native class laws & \cref{thm:native,thm:native-enlarged} & conditional & third\\
+address growth & \cref{thm:address} & proved & third\\
+exact point source and traces & \cref{thm:exact-point,prop:point-structure,prop:point-traces} & proved & third\\
+exact configuration source & \cref{thm:exact-config} & proved & third\\
+subset sources & \cref{prop:subset-presentation,thm:subset,thm:subset-visibility} & proved, on Johnson's presentation & fourth\\
+replication source & \cref{thm:gamma3} & proved, on Johnson's presentation & fourth\\
+PPT gap; no exact output & \cref{thm:ppt-gap,thm:no-exact} & proved & second\\
+linear compiler exclusions & \cref{prop:no-linear} & proved & second\\
+raw pair bounds & \cref{prop:raw-pairs} & proved, on the regions of~\cite[\S6]{DM-H3} & third; read\\
+finite-table gate; refutations & \cref{prop:table,prop:collective-refutes} & proved & third\\
+correction costs & \cref{prop:correction} & proved; native part conditional & third\\
+scalar phase schemes & \cref{prop:phase} & proved & fourth; read\\
+finite supports; invisible witnesses & \cref{prop:finite-support,prop:invisible} & proved & fourth\\
+$I_{3322}$ Bell-gap contrast & \cref{thm:i3322} & checked; conditional on~\cite{Dou26} & fourth\\
+floor on the sign-and-dilation class; Abels game & \cref{thm:floor-class,cor:abels} & proved & check; third audit\\
+compression; dyadic bound; criterion & \cref{lem:compression,prop:dyadic,prop:criterion} & proved & check; third audit\\
+excluded candidate classes & \cref{prop:bs-central,prop:copied-gadget,thm:stable,cor:dyadic-models} & proved & check; third audit\\
+Deligne extension & \cref{ex:deligne} & proved from imported results~\cite{Del78,BLSW23,DGLT20} & check; third audit\\
+method obstructions & \cref{prop:typeII,prop:slow-recovery,prop:threshold,prop:separation} & proved & check; third audit\\
+raw cross-copy obstruction & \cref{thm:raw-obstruction,prop:window-dilution} & proved & check; third audit\\
+finite blocks & \cref{prop:normal-perfect} & known~\cite{KPS18} & fourth\\
+\bottomrule
+\caption{Status of every result.}\label{tab:status}
+\end{longtable}

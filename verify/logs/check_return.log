@@ -1,0 +1,12 @@
+==============================================================================
+Return direction
+==============================================================================
+[ok  ] sequential measurements (a): max d_j - bound, 240 instances: 9.86e-16 (bound 0)
+[ok  ] sequential measurements (a): |Pr[a_j != b_j] - d_j^2/4|: 3.33e-16 (bound 0)
+[ok  ] sequential measurements (b): max bad parity - bound: 0.00e+00 (bound 0)
+      C_3 = 788.167
+[ok  ] return theorem, 48 perturbed magic-square models: max pair loss / (C_3 e^2): 4.08e-04 (bound 1)
+[ok  ] negative control: state commutators sqrt 2: 1.414214 (bound 1.414214)
+[ok  ] negative control: the construction loses with probability 1/2: 0.500000 (bound 0.5)
+------------------------------------------------------------------------------
+Return direction: 6 checks, 0 failures

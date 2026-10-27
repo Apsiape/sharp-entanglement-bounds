@@ -1,0 +1,115 @@
+\subsection{Boolean constraint games}\label{sec:boolean}
+
+The same correspondence holds for games whose constraints are arbitrary boolean predicates. We need it because the
+universal compiler of \cref{sec:compile-universal} produces such games.
+
+\begin{definition}[Boolean constraint games]\label{def:bcs}
+A \emph{boolean constraint system} $B$ has variables $x_1,\dots,x_n$ and contexts $C_1,\dots,C_m$, each an ordered list
+$(j_1,\dots,j_r)$ of distinct variables with a nonempty set $\mathcal S_i\subseteq\{\pm1\}^r$ of allowed assignments; put
+$k=\max_i|C_i|$. In its game a referee draws $(i,j)$ with $j\in C_i$ from a distribution $\pi$; Alice receives $i$ and
+answers an allowed assignment, Bob receives $j$ and answers a sign, and they win if Alice's assignment gives $x_j$ Bob's
+sign. Put $\pi_{\min}=\min\{\pi(i,j):j\in C_i\}$. A linear system game is the case of parity predicates.
+\end{definition}
+
+\begin{definition}[Boolean profile]\label{def:boolean-profile}
+For a context $C_i=(j_1,\dots,j_r)$ and $\alpha\in\{\pm1\}^r$ let $R_\alpha=\prod_{t=1}^r\frac12(I+\alpha_tB_{j_t})$, the
+product taken in the order of the context. A \emph{model} of $B$ at precision $e$ is a family of involutions $B_j$ on
+$\C^d$ and a density matrix $\rho$, $\xi=\rho^{1/2}$, with
+\begin{enumerate}[label=(B\arabic*),itemsep=1pt]
+\item\label{B1} $\hs{[B_j,\xi]}\le e$ for every $j$;
+\item\label{B2} $\hs{[B_j,B_l]\xi}\le e$ for $j,l$ in a common context;
+\item\label{B3} $\hs{R_\alpha\xi}\le e$ for every context and every assignment $\alpha$ that it forbids.
+\end{enumerate}
+Let $h_B(e)$ be the least dimension of a model, $h^S_B(e)$ the infimum of $S(\rho)$, and $\Lambda_B(e)$ the set of nonzero
+spectra of $\rho$.
+\end{definition}
+
+\begin{theorem}[Boolean correspondence]\label{thm:boolean-correspondence}
+Let $B$ be a boolean constraint system with question distribution $\pi$, and put $\theta=2\sqrt{\eps/\pi_{\min}}$,
+\[
+A_k=\frac k2+\frac{(k-1)(k+2)}8,\qquad K_k=2^k\Bigl[A_k^2+\Bigl(1+\frac k2\Bigr)^2\Bigr].
+\]
+\begin{enumerate}[label=(\alph*),itemsep=1pt]
+\item A strategy that wins with probability at least $1-\eps$ and has Schmidt rank $r$ gives a model of $B$ on $\C^r$ at
+precision $\max(4,k/2)\,\theta$, whose density matrix is Bob's reduced density matrix restricted to its support.
+\item A model of $B$ at precision $e$ on $\C^d$ gives a strategy on the canonical purification of its state, with local
+dimensions $d$ and Bob's reduced state $\rho$, that loses every question pair with probability at most $K_ke^2$.
+\end{enumerate}
+Consequently, if $\omega_q=1$, then $h_B(\max(4,k/2)\theta)\le\Ent(G,\eps)\le h_B(\sqrt{\eps/K_k})$, and the same holds
+for the least entanglement entropy of a pure strategy, with $h^S_B$ in place of $h_B$. For $k\le3$, $K_k\le K_3=\frac{221}2$.
+\end{theorem}
+
+\begin{proof}
+(a) The reductions of the proof of \cref{thm:transfer}~\cite[proof of Theorem~5.1, Step~1]{DM-game} apply verbatim: Bob's
+measurements are compressed to the support of his reduced state, replaced by involutions $B_j$ without lowering the winning
+probability, and Alice's are dilated, which does not change Bob's state. For each context $i$, Alice's observables $A_{ij}$, $j\in C_i$, then commute and their joint
+spectral projections onto forbidden assignments vanish. A pair $(i,j)$ is lost with probability at most
+$\eps/\pi_{\min}$, so $\lVert(A_{ij}\otimes I-I\otimes B_j)\psi\rVert\le\theta$. \Cref{lem:standard-form,lem:consistency} give
+$\hs{[B_j,\xi]}\le\sqrt2\,\theta$, which is \ref{B1}. For \ref{B2}, replacing $B_l$ and then $B_j$ by $A_{il}$ and $A_{ij}$ on
+$\psi$ costs $2\theta$ in each order, and $A_{ij}$, $A_{il}$ commute, so $\hs{[B_j,B_l]\xi}=\lVert(I\otimes[B_j,B_l])\psi\rVert\le4\theta$.
+For \ref{B3}, replace the factors $\frac12(I+\alpha_tB_{j_t})$ of $R_\alpha$, from the right, by Alice's projections
+$\frac12(I+\alpha_tA_{ij_t})$; each replacement costs $\theta/2$, since the factors are contractions and operators of the two
+players commute. The result is Alice's joint spectral projection onto $\alpha$, which is zero. So
+$\hs{R_\alpha\xi}\le k\theta/2$.
+
+(b) Let Bob measure $B_j$, and let Alice, on question $i$ with $C_i=(j_1,\dots,j_r)$, measure $B_{j_1}^T,\dots,B_{j_r}^T$ in
+turn on $\psi_\rho$ (\cref{sec:return}) and record the signs $\alpha$. Her Kraus operator for $\alpha$ is
+$\frac12(I+\alpha_rB_{j_r}^T)\cdots\frac12(I+\alpha_1B_{j_1}^T)=R_\alpha^T$, so through the isometry $\Theta$ the branch in which
+Bob's sign is $b$ is $P^b_j\xi R_\alpha$, with $P^b_j=\frac12(I+bB_j)$. Fix $j=j_s$ and $\alpha$, and put
+$Q=P^{\alpha_1}_{j_1}\cdots P^{\alpha_{s-1}}_{j_{s-1}}$. Since $P^{-\alpha_s}_jP^{\alpha_s}_j=0$,
+\[
+P^{-\alpha_s}_j\xi R_\alpha=P^{-\alpha_s}_j[\xi,R_\alpha]+[P^{-\alpha_s}_j,Q]P^{\alpha_s}_{j_s}\cdots P^{\alpha_r}_{j_r}\xi .
+\]
+The first term has norm at most $\frac12\sum_t\hs{[B_{j_t},\xi]}\le ke/2$. Expanding the commutator over the factors of $Q$,
+the term with $[P^{-\alpha_s}_j,P^{\alpha_l}_{j_l}]=-\frac14\alpha_s\alpha_l[B_j,B_{j_l}]$ is followed by $r-l$ contractions whose
+state commutators add up to at most $(r-l)e/2$; moving them past $\xi$ costs $(r-l)e/4$, so the term is at most
+$(r-l+1)e/4$. Summing over $l<s$ bounds the branch by $A_ke$. Over all $2^r$ raw outcomes, the probability that Alice's
+record disagrees with Bob's is at most $2^kA_k^2e^2$. A forbidden raw outcome has probability
+$\hs{\xi R_\alpha}^2\le(\hs{R_\alpha\xi}+\hs{[R_\alpha,\xi]})^2\le(1+k/2)^2e^2$, by \ref{B3}. Alice replaces a forbidden outcome by
+a fixed allowed assignment; this changes her answer only on that event, so every pair is lost with probability at most
+$K_ke^2$. Nothing is postselected and the shared state is $\psi_\rho$.
+
+The consequences follow as in \cref{cor:correspondence}, and $K_3=8[(11/4)^2+(5/2)^2]=221/2$.
+\end{proof}
+
+For a linear system game the algebras of \cref{def:boolean-profile} and of the solution group are the same
+(\cref{ex:presented}), so the profiles $h_B$ and $\hlp^\rho_\Gamma(J;\cdot)$ agree up to constant factors in the precision
+(\cref{prop:algebraic-map,lem:boolean-models}); \cref{thm:transfer,thm:return} give explicit constants for that case.
+The transfer direction is close to~\cite[Proposition~3.13 and Lemma~2.9]{FKMPRSZ25} (\cref{rem:transfer}); sequential
+measurement of commuting observables is standard, and what the return direction adds is that the state is kept.
+
+\subsection{The whole spectrum}\label{sec:spectrum}
+
+Both directions keep the state, so they compare whole spectra. For a game $G$ let $\Lambda_G(\eps)$ be the set of nonzero
+spectra of Bob's reduced density matrices in pure strategies that win with probability at least $1-\eps$.
+
+\begin{corollary}[Spectral correspondence]\label{cor:spectrum}
+For a linear system game with solution group $\Gamma$, in the setting of \cref{cor:correspondence},
+\[
+\Lambda_G(\eps)\subseteq\Lambda_\Gamma\bigl(C_G\sqrt\eps\bigr),\qquad\Lambda_\Gamma(e)\subseteq\Lambda_G\bigl(C_se^2\bigr),
+\]
+with $\Lambda_\Gamma$ as in \cref{sec:compile-algebra}; for a boolean constraint game the same holds with
+$\Lambda_B(\max(4,k/2)\theta)$ and $\Lambda_B(e)\subseteq\Lambda_G(K_ke^2)$. In particular, for every function $\Phi$ of finite
+lists of positive numbers, such as a Rényi entropy of any order, the logarithm of the length, or the largest entry, the
+infimum of $\Phi$ over pure strategies at losing probability $\eps$ lies between its infima over models at precisions
+$C_G\sqrt\eps$ and $\sqrt{\eps/C_s}$.
+\end{corollary}
+
+\begin{proof}
+\Cref{thm:transfer} uses Bob's reduced state on its support, whose nonzero spectrum is that of Bob's state; \cref{thm:return}
+uses the canonical purification, whose reduced state on Bob's side is $\rho$. The boolean case is
+\cref{thm:boolean-correspondence}.
+\end{proof}
+
+The Rényi entropy of order $0$ here is the logarithm of the rank of $\rho$, not of the ambient dimension; the two differ when
+$\rho$ is singular, and the dimension statements of \cref{cor:correspondence} are separate. Combined with
+\cref{prop:algebraic-map,prop:corner}, the inclusions transfer through the compilers of \cref{sec:compile}: a corner map keeps
+the spectrum, and an upper map with $N$ blocks replaces it by $D_N$ of it.
+
+\begin{remark}[Parity models as Boolean models, and large arity]\label{rem:parity-forbidden}
+A linear system is a boolean constraint system whose forbidden assignments are those of the wrong parity. A model of the
+solution group at precision $e$ gives involutions satisfying~\ref{B1}--\ref{B3} at precision $D_ke$, with
+$D_k=\max\{1,[1+k(k-1)(3k+1)/4]/2\}$ for contexts of size at most $k$, and then the boolean return loses at most $K_kD_k^2e^2$. The
+constant $K_k$ grows quickly: $K_3=\frac{221}2<111$, but $K_9=138496$ and $K_9D_9^2=8829985600$. The arity-three constant must not be used
+for games of larger arity.
+\end{remark}

@@ -1,0 +1,36 @@
+==============================================================================
+The coefficient family: cyclic extraction, cuts with q arcs, non-dyadic lamps, depths, coefficient set, balanced marker
+==============================================================================
+[ok  ] one stage, q = 2, 4, 8, controls of order other than q: largest branch error: 0.0e+00 (bound 0)
+[ok  ] one stage: every W^t is an isometry (largest deviation): 0.0e+00 (bound 0)
+[ok  ] negative control: unrecorded vectors U^(t-b) P_b v for q = 2, t = 0, U = X, v = |+>, |inner product|: 0.500 (bound = 1/2 (not orthogonal))
+[ok  ] identity used instead: sum_b ||U^(t-b) P_b v||^2 = ||v||^2, 66 random (q, d, t) cases, largest relative deviation: 8.3e-16 (bound 0)
+[ok  ] one-stage inequality (eq. cyc-stage) with C_Q = 1, 24 perturbed and random instances, q = 2, 3, 4, 6: largest ||(A - I) eta|| / right side: 0.258 (bound <= 1)
+      tau 0e+00: largest hypothesis residual delta 1.114e-16, extraction error 0.000e+00
+      tau 1e-02: largest hypothesis residual delta 2.596e-02, extraction error 1.927e-02
+      tau 3e-03: largest hypothesis residual delta 7.786e-03, extraction error 5.781e-03
+      tau 1e-03: largest hypothesis residual delta 2.595e-03, extraction error 1.927e-03
+      tau 3e-04: largest hypothesis residual delta 7.785e-04, extraction error 5.781e-04
+[ok  ] several stages (q = 4, 2, 2), unperturbed: extraction error: 0.0e+00 (bound 0)
+[ok  ] several stages, perturbed: error / delta over four perturbation sizes (largest / smallest): 1.00 (bound <= 2 (linear scaling))
+[ok  ] several stages, perturbed: error / (M^3 delta): 0.028 (bound <= 1)
+[ok  ] negative control: Bob's controls not transposed, best target: 1.002 (bound >= 0.5 (far from Phi))
+[ok  ] cuts across the parties, 36 cases: E sum_a ||(P_a(R_A) - P_a(S_B)) Psi||^2 / ((q/2)||(R_A - S_B) Psi||): 0.806 (bound 1)
+[ok  ] cuts across the parties: |Monte Carlo average - exact expectation| - 0.2 exact, largest: 0.012 (bound <= 0.05)
+[ok  ] Fourier lamps, 5 non-dyadic (q, m): dilation, row and squares exact (largest error): 2.0e-14 (bound 0)
+[ok  ] Fourier lamps: lamp conjugacy defect / (4 pi (q-1)/(q(m^L - 1))): 0.500 (bound 1)
+[ok  ] depth arithmetic, 50 (family, x) pairs: L_i >= 1, e m_i^L_i <= (2+x)^-32, remainder in [-sum r_i, 0]: all hold (bound all hold)
+[ok  ] rational multiples and every positive rational: a/(2 log m^b) = (a/b)/(2 log m), 2a/(2 log 2^b) = a/b: exact (bound exact)
+[ok  ] the set a/(2 b log 6), b < 200: distance to five targets in (0, 10): 5.37e-06 (bound <= 1e-2)
+[ok  ] one-copy family r/(2(b + log 3)), m = 3 2^b, q = 2^r: 1 <= r <= b, q | m, error < 1/(2(b + log 3)): all hold (bound all hold)
+[ok  ] balanced marker, negative control: literal lifts, l = 2, 3, marker multiplicities d and (2^l - 1) d: as stated (bound as stated)
+[ok  ] negative control: min over the last exchange, block permutations and random unitaries of ||T W T^* + W||_f / (2 (1 - 2^{1-l})^{1/2}): 1.000000 (bound >= 1 (no approximate sign relation))
+      the last exchange attains the Hoffman-Wielandt bound (largest relative gap 1.1e-16); at l = 2 it is sqrt 2; trace bound 2 (1 - 2^(1-l)) also holds (smallest ratio 1.155)
+[ok  ] l = 1: the literal lift is (-I_d) + I_d and the exchange gives T W T^* = -W (largest residual): 0.0e+00 (bound 0)
+[ok  ] balanced construction, l = 1, 2, 3: source generators block-diagonal, g_i carries block 0 to block i (largest off-block entry or deviation): 0.0e+00 (bound 0)
+[ok  ] balanced construction: W_i = -I on block i only, [W_i, W_j] = 0, [W_i, g_j s g_j^*] = 0 (largest entry): 0.0e+00 (bound 0)
+[ok  ] balanced construction: parity p = W_0 ... W_{k-1} has trace 0 and f_l p f_l = -p (largest error): 0.0e+00 (bound 0)
+[ok  ] Slofstra-Vidick group, companion flat models d = 2m, m = 2..12: tau involutive with tau X tau = X^-1, f', v' involutions with f'v' = X + X, t c t = -c, [f, x] = 0 (largest error): 0.0e+00 (bound 0)
+[ok  ] Slofstra-Vidick group: lifted relator residual minus model residual, every relator of K (largest): 2.8e-17 (bound <= 0 up to rounding 1e-12)
+------------------------------------------------------------------------------
+The coefficient family: cyclic extraction, cuts with q arcs, non-dyadic lamps, depths, coefficient set, balanced marker: 25 checks, 0 failures

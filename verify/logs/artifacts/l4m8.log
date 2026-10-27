@@ -1,0 +1,55 @@
+$ python -I -B l4m8/L4M8-EXACT.py 
+{
+  "status": "PASS",
+  "counts": {
+    "squares": 6798,
+    "rows": 5653,
+    "row_commutators": 16964
+  },
+  "failures": [],
+  "negative_control": {
+    "variable": "bar_c_194",
+    "detected": true
+  },
+  "number_of_failures": 0,
+  "input": "L4M8-LINEAR-GAME.json",
+  "normal_form_engine": "verify/check_linear_games.py, l48_scalar",
+  "seconds": 0.96
+}
+[exit code 0]
+
+$ python -I -B l4m8/L4M8-PLAY.py 
+{"contexts_done": 1000, "seconds": 15.87746689998312, "source_trace_cache": 660}
+{"contexts_done": 2000, "seconds": 23.2370126999449, "source_trace_cache": 660}
+{"contexts_done": 3000, "seconds": 31.52010139997583, "source_trace_cache": 696}
+{"contexts_done": 4000, "seconds": 39.12378149997676, "source_trace_cache": 696}
+{"contexts_done": 5000, "seconds": 46.519441699958406, "source_trace_cache": 696}
+{"complete_losses": [4.472266202921442e-06, 5.725065581496652e-08, 8.705921165652781e-10, 1.3556628035921791e-11], "maximum_mass_errors": [2.220446049250313e-16, 0.0, 0.0, 2.220446049250313e-16], "complete_square_errors": [0.0, 0.0, 0.0, 0.0]}
+{"validation_length": 1, "source_error_squared": 0.12286176129541548, "game_loss": 4.472266202921442e-06, "mass_error": 2.220446049250313e-16}
+{"word_length": 1, "source_dimension": 4, "game_schmidt_rank": 64, "source_precision": 0.3505164208641522, "game_entropy": 6.0, "all_contexts": 5653, "all_raw_branches": 45244, "actual_complete_game_loss": 4.472266202921442e-06, "loss_over_source_error_squared": 3.640079839135695e-05, "maximum_normalized_square_trace_defect": 0.0, "maximum_probability_mass_error": 2.220446049250313e-16, "maximum_imaginary_probability_or_correlation": 5.265241893342759e-19, "maximum_context_forbidden_probability": 0.0019197150202408357}
+{"validation_length": 2, "source_error_squared": 0.0015537035946318056, "game_loss": 5.725065581496652e-08, "mass_error": 0.0}
+{"word_length": 2, "source_dimension": 16, "game_schmidt_rank": 256, "source_precision": 0.03941704700547474, "game_entropy": 8.0, "all_contexts": 5653, "all_raw_branches": 45244, "actual_complete_game_loss": 5.725065581496652e-08, "loss_over_source_error_squared": 3.684786211010453e-05, "maximum_normalized_square_trace_defect": 0.0, "maximum_probability_mass_error": 0.0, "maximum_imaginary_probability_or_correlation": 5.265241893342759e-19, "maximum_context_forbidden_probability": 2.4276618666108085e-05}
+{"validation_length": 3, "source_error_squared": 2.362305053305036e-05, "game_loss": 8.705921165652781e-10, "mass_error": 0.0}
+{"word_length": 3, "source_dimension": 64, "game_schmidt_rank": 1024, "source_precision": 0.004860354980148092, "game_entropy": 10.0, "all_contexts": 5653, "all_raw_branches": 45244, "actual_complete_game_loss": 8.705921165652781e-10, "loss_over_source_error_squared": 3.685350100518376e-05, "maximum_normalized_square_trace_defect": 0.0, "maximum_probability_mass_error": 0.0, "maximum_imaginary_probability_or_correlation": 5.265241893342759e-19, "maximum_context_forbidden_probability": 3.6911016457544243e-07}
+{"validation_length": 4, "source_error_squared": 3.678509818971776e-07, "game_loss": 1.3556628035921791e-11, "mass_error": 2.220446049250313e-16}
+{"word_length": 4, "source_dimension": 256, "game_schmidt_rank": 4096, "source_precision": 0.0006065071985534694, "game_entropy": 12.0, "all_contexts": 5653, "all_raw_branches": 45244, "actual_complete_game_loss": 1.3556628035921791e-11, "loss_over_source_error_squared": 3.6853586650779056e-05, "maximum_normalized_square_trace_defect": 0.0, "maximum_probability_mass_error": 2.220446049250313e-16, "maximum_imaginary_probability_or_correlation": 5.265241893342759e-19, "maximum_context_forbidden_probability": 5.747671578265612e-09}
+{
+  "status": "PASS",
+  "arithmetic": "complex floating point, tensor-permutation trace; independently dense-audited",
+  "q": 4,
+  "m": 8,
+  "empirical_rank_exponents": [
+    0.31808790820908883,
+    0.3311723535189769,
+    0.3330598538853504
+  ],
+  "dense_engine_controls": {
+    "independent_dense_word_controls": 208,
+    "maximum_trace_difference": 2.3191507704880176e-16
+  },
+  "source_trace_cache": 696,
+  "seconds": 51.33555429999251,
+  "limits": "Complete actual strategies, not optimization or a lower-bound proof. Source and retained-state compiler proofs give the matching one-third rate."
+}
+[exit code 0]
+

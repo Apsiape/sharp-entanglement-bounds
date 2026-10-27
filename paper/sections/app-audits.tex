@@ -1,0 +1,100 @@
+%======================================================================
+\section{Review history}\label{app:audits}
+%======================================================================
+
+This appendix records the twelve audits of the whole manuscript that are summarized in the section
+\hyperref[sec:methods]{How this work was done}; they followed the four blind reviews and the second read described there.
+
+A model of another developer then audited the complete manuscript blind, refutation first, with
+its scripts and with every reference checked against its primary source. It found one false statement: the extraction clause of
+Theorem~A had lost the hypothesis that the game has no finite-dimensional perfect strategy. It also found an explicit decoder
+stated without its small-loss domain (\cref{thm:rational-ED}), game-variable counts that included the central symbol $J$,
+computations described beyond what \texttt{verify/} reproduced, and several points of wording. All were repaired. The linear
+filling charge (\cref{thm:linear-filling}) was found after this audit.
+
+A second blind audit, by a model of another developer, read
+the revised manuscript and its scripts refutation first, replayed every check and inspected every reference against its primary
+source. It found no counterexample to any theorem, including the linear filling charge, and four points that are repaired here:
+the companion paper on which several results depend was not obtainable, which the split of the two papers and their joint release
+resolve; the infinite-dimensional comparison gave a pure-vector theorem a mixed-state scope (\cref{sec:intro-known},
+\cref{rem:A-scope}); the archived L4M8 game was checked exactly only through a rebuilt copy, and the exact check of the archived file
+is now part of the replay; and the last open question compared two profiles more broadly than shown. It also suggested four earlier
+references, now cited at their uses~\cite{BBPS96,Uhl76,CoSt20,PV10}, and a consolidation of the scope statements into
+\cref{sec:status}.
+
+A third blind audit, by a model of another developer, read the manuscript with the floor and window results,
+replayed both runners and looked up every reference in a primary record. It found no counterexample to any theorem and four points,
+repaired here: \cref{prop:window-dilution} allowed an arbitrarily large second block while bounding its entanglement by the minimal
+size, and the block size is now fixed; the discussion of \cref{prob:floor} treated the sufficient criterion of \cref{prop:criterion} as
+necessary; the proof of \cref{thm:lamps-ED} invoked \cref{prop:interface}, which needs a source marker equal to $-1$, where the
+transfer identities of \cref{lem:transfer-parties} and the companion's relator certificates give what is used; and the threshold of
+\cref{app:floor-threshold} was called positive without the promise of Theorem~A. It also suggested three related works, now cited at
+their uses~\cite{MV14,vDH03,CW26}.
+
+A fourth blind audit, by a model of another developer, read the manuscript with the coefficient
+results, replayed the runners and the coefficient checks, and looked up every reference in a primary record. It found no counterexample
+to any theorem and three points, repaired here: the one-stage proof of \cref{lem:cyclic-triangular} asserted that the unrecorded vectors
+of different labels are orthogonal, which is false, and the estimate now uses only the sum of their squared norms and the orthogonal
+recorded labels; the input convention for effectively algebraic games did not select a root of a polynomial; and the limit lemma was
+used without a reference~\cite{Sho59}. It also suggested five related works, now cited at their uses~\cite{Gao15,KMW19,Cor13,AC24,BWB25}.
+
+A fifth blind audit, by a model of another developer, read the revised manuscript, including the repaired proof of
+\cref{lem:cyclic-triangular}, replayed the three runners and looked up every reference in a primary record. It found no
+counterexample to any theorem and two prose summaries wider than their theorems, repaired here: the introduction stated the factor
+three for all games, where \cref{thm:factor-three} proves it for agreement games and \cref{prop:sync-repair} gives only a
+square-root repair in class~(S); and the discussion excluded type~I limits without the hypothesis that the game has no
+finite-dimensional perfect strategy. It also asked for three clarifications, made here: the finite-dimensional convention of
+\cref{sec:prelim} now names its exceptions, the divisibility before \cref{thm:rational-ED} is stated as $2^{r_i}\mid m_i$, and the
+comparison with self-testing now includes self-tests without a finite-dimensional ideal~\cite{CZ26}. It suggested four related
+works, now cited at their uses~\cite{PaSc26,PSZZ24,MaSc23,MNY22}.
+
+A sixth blind audit, by a model of another developer, read the
+revised manuscript, replayed the three runners and looked up every reference in a primary record. It found no counterexample to any
+theorem and one summary wider than its theorems, repaired here: the abstract and the introduction stated computable thresholds and
+the white-box protocol without the restriction of \cref{thm:effective,thm:protocol} to rational games in class~(S) and rational
+binary games in class~(C). It also found three local points, repaired here: one step of the proof of \cref{prop:interface} cited
+\cref{lem:transfer-parties}(b), which concerns unitary words, for a polynomial suffix, and now uses~\eqref{eq:opposite-poly}; the
+overview of the conversions of errors in \cref{sec:prelim-usable} denied the further power losses that the proofs account for; and
+the coherent sign rounding of \cref{app:protocol} gave a sign to complex eigenvalues rather than to the cosine of their phase. Of the
+related works it suggested, those on moment hierarchies and $\mathrm{MIP}^*=\mathrm{RE}$ are now cited at their
+uses~\cite{NPA08,PNA10,BuKl12,JNVWY20}.
+
+A seventh blind audit, by a model of another developer, read the revised manuscript, replayed
+the three runners and looked up every reference in a primary record. It found no counterexample to any theorem and one exact cost
+stated too low, repaired here: the compiled native witness after \cref{thm:native} uses the amplified flat state, so its rates include
+$\log12$; it also found a discrepancy between one book chapter and its publisher's record~\cite{Abe79}, now resolved.
+
+An eighth blind
+audit, by a model of another developer, read the revised manuscript, replayed the three runners and looked up every reference in a
+primary record. It found no counterexample to any theorem and four local points, repaired here: the coefficient domain of the
+abstract and Theorem~C admitted the power of two $1$; the rigidity sentence of \cref{prob:analytic}(iii) lacked its hypotheses and
+references~\cite{Rud90,Joh92}; the chapter~\cite{Abe79} now follows the record its DOI links; and a summary of the floor in
+\cref{sec:open} is narrowed to the games for which a demand law is proved.
+
+A ninth blind audit, by a model of another developer, read the
+revised manuscript, replayed the three runners and looked up every reference in a primary record. It found no counterexample to any
+theorem and two points, repaired here. The proof of~\cite[Proposition~6.2]{SV18} lifts a representation with a balanced marked
+involution only for one non-involutive generator, so the amplification $8$ that we had taken from it was not supported for the lamp
+sources; \cref{prop:extended} now rests on a balanced construction proved here, with amplification $2^{l+2}$, and the lift for the
+group of~\cite{SV18} itself, first written out in \cref{sec:transport-game}, is now proved in our companion
+paper~\cite[Lemma~11.13]{DM-game}. And the opening of \cref{sec:lamps} stated as an equality for every strategy a law whose lower
+bound alone holds for every strategy; the equality holds for the infimum demand. It also found two local points in the text, repaired
+here: the adapter sentence of \cref{sec:normal-perfect} named a resource cost without a conversion contract, and the comparison with
+Culf and Mastel after \cref{thm:undecidable} called their arities and alphabets smaller without saying which.
+
+A tenth blind audit, by a
+model of another developer, read the revised manuscript, replayed the three runners and looked up every reference in a primary
+record; it checked the balanced construction, with code of its own, and the lift for the group of~\cite{SV18}. After it had found its
+two points, it also saw, while checking, this account of the earlier reviews and the status table of \cref{app:status}, so its
+reading was not blind throughout. It found no counterexample to any theorem and two points of wording, repaired here: the comparison
+with self-testing in \cref{sec:intro-known} gave Zhao and Kar one characterization on the game algebra, where Zhao's uses the
+universal measurement algebra and requires the unique trace to be finite-dimensional, and Kar's is stated for synchronous game
+algebras; and the opening of \cref{sec:point} could be read as giving the point game a power-law exponent, where
+\cref{thm:point-window} proves a window between two positive powers.
+
+Two further audits, by models of another developer, then
+read the whole manuscript in parallel, refutation first; each saw part of this account of the earlier reviews by accident, so
+neither was blind throughout. Neither found a counterexample or an error in a main statement. They asked for two local repairs,
+made here: the rounding function in the proof of \cref{lem:S3-round} is defined with its exception at $-1$, and class~(C)
+discards variables that occur in no constraint, so that every variable has an incident constraint (\cref{def:law-classes}).
+They also suggested the citations of~\cite{HHH98,DPP19,MR20,Bei21}, added in the introduction.

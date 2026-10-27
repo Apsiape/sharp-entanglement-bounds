@@ -1,0 +1,54 @@
+{
+  "status": "CHECKED: finite combinatorial and floating-point checks",
+  "disk_trials": 400,
+  "max_faces": 489,
+  "max_expanded_perimeter": 855,
+  "cases": [
+    "rectangular grids",
+    "exterior stems",
+    "interior dangling trees",
+    "nested cycles joined by a bridge"
+  ],
+  "algebra": {
+    "trials": 1000,
+    "max_identity_gap": 9.686656125337893e-16,
+    "max_inequality_violation": 0.0
+  },
+  "literal_source": {
+    "relator_count": 22,
+    "relator_lengths": [
+      2,
+      12,
+      12,
+      5,
+      6,
+      2,
+      2,
+      2,
+      4,
+      4,
+      4,
+      4,
+      4,
+      5,
+      6,
+      6,
+      6,
+      6,
+      8,
+      8,
+      8,
+      8
+    ],
+    "K": 12,
+    "conservative_C_K": 1633
+  },
+  "arithmetic": {
+    "p": 6.741466986401147,
+    "old_beta": 0.035757874632929836,
+    "new_beta": 0.06904678305362118,
+    "source_N_power": 0.13809356610724235,
+    "Ne_decay_power": 0.8619064338927577,
+    "balance_power_of_e": 0.0
+  }
+}

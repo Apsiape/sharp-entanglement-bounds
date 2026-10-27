@@ -1,0 +1,25 @@
+$ python -I -B point_game/VERIFY-BOOLEAN.py 
+{
+  "status": "PASS",
+  "counts": {
+    "variable_squares": 6960,
+    "context_commutators": 17125,
+    "raw_branches": 45676,
+    "forbidden_assignments": 22832,
+    "whole_state_recovery_generators": 6,
+    "negative_scalar_control": 1
+  },
+  "variables": 6960,
+  "contexts": 5713,
+  "shortening_rules": 248,
+  "cache": {
+    "hits": 2768577,
+    "misses": 1937,
+    "maxsize": 300000,
+    "currsize": 1937
+  },
+  "seconds": 2.8502467999933288,
+  "scope": "Every variable square, context commutator, forbidden branch and six whole-state recovery maps; all word reductions use finite valid source relations."
+}
+[exit code 0]
+

@@ -1,0 +1,27 @@
+==============================================================================
+The universal compiler into boolean constraint games
+==============================================================================
+      S1 (free group, x y z = 1): 1251 variables, 1039 contexts (6 boolean), 12 blocks, max arity 3
+[ok  ] S1 (free group, x y z = 1): all 1251 images are involutions in the negative quotient: True (bound True)
+[ok  ] S1 (free group, x y z = 1): all 3107 context commutators are trivial: True (bound True)
+[ok  ] S1 (free group, x y z = 1): all 4142 forbidden assignment projectors vanish: True (bound True)
+[ok  ] S1 (free group, x y z = 1): amplification and arity: (12, 3) (bound (12, 3))
+[ok  ] S1 (free group, x y z = 1): sigma(F(s)) = I_12 (x) s for every source generator: True (bound True)
+[ok  ] S1 (free group, x y z = 1): relator image diag(r, r~, 1) has r = 1, r~ != 1 and commutes with T: True (bound True)
+[ok  ] S1 (free group, x y z = 1): normal form allows exactly the one-hot assignments: True (bound True)
+      S2 (C3 * Z): 1402 variables, 1163 contexts (6 boolean), 12 blocks, max arity 3
+[ok  ] S2 (C3 * Z): all 1402 images are involutions in the negative quotient: True (bound True)
+[ok  ] S2 (C3 * Z): all 3479 context commutators are trivial: True (bound True)
+[ok  ] S2 (C3 * Z): all 4638 forbidden assignment projectors vanish: True (bound True)
+[ok  ] S2 (C3 * Z): amplification and arity: (12, 3) (bound (12, 3))
+[ok  ] S2 (C3 * Z): sigma(F(s)) = I_12 (x) s for every source generator: True (bound True)
+[ok  ] S2 (C3 * Z): relator image diag(r, r~, 1) has r = 1, r~ != 1 and commutes with T: True (bound True)
+[ok  ] S2 (C3 * Z): normal form allows exactly the one-hot assignments: True (bound True)
+[ok  ] lower map after upper map, perturbed non-flat models: recovered defect / source defect: 1.00, 1.00, 1.00 (bound stable, O(1))
+[ok  ] lower map after upper map, perturbed non-flat models: recovered defect / source defect: 1.00, 1.00, 1.00 (bound stable, O(1))
+[ok  ] boolean return, 360 queries (k <= 3, random states): loss / (K_k e^2): 0.200 (bound 1)
+[ok  ] K_3 = 221/2: 110.5 (bound 110.5)
+[ok  ] odd tensor control: tensor cubes satisfy every parity row: True (bound True)
+[ok  ] odd tensor control: tensor cubes violate one-hot with probability 2/9: 0.222222 (bound 2/9)
+------------------------------------------------------------------------------
+The universal compiler into boolean constraint games: 20 checks, 0 failures

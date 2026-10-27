@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: "Please cite the paper; this repository supplies its LaTeX source and its verification scripts."
+type: software
+title: "The price of precision: usable entanglement in nonlocal games and the geometry of groups"
+version: 1.0.0
+date-released: 2026-10-27
+abstract: "In a nonlocal game of quantum value one that no finite-dimensional strategy wins, near-perfect play needs growing dimension, which separable states can have. We ask how much usable entanglement it needs: the demand at loss $\\varepsilon$ is the least one-way distillable entanglement of the original state of a strategy of loss at most $\\varepsilon$. For synchronous games with tested diagonals and for constraint-variable consistency games, demand diverges exactly when no finite-dimensional strategy is perfect; then, for any number of Bell pairs and any fidelity below one, every sufficiently good mixed strategy yields that many at that fidelity by local isometries. For rational synchronous or binary constraint games, a loss guaranteeing this is computable under a promise, but boundedness of demand is undecidable among games of value one. Demand is at least logarithmic if near-winners have a sign relation and an even dilation mirrored by both players, as in a game from Abels' group. For agreement games the directions agree up to a factor three in loss, optimal among Bob-fixed deterministic local symmetrizations. The geometry of the group behind a game, not its presentation, sets the rates. Fixed games demand $\\alpha\\log(1/\\varepsilon)$ for every $\\alpha=\\frac12\\sum_i\\log_{m_i}q_i$ with $q_i\\ge2$ a power of two dividing $m_i$, a dense set containing all positive rationals and some transcendentals, such as $\\frac12\\log_62$; a configuration-lamp game demands $\\varepsilon^{-1+o(1)}$; Pauli lamps on the points of Houghton's three rays give demand between $\\varepsilon^{-0.0690}$ and $\\varepsilon^{-1/4}$. If group relations hold exactly and Alice matches Bob to error $e$, demand counts qubits addressable by short words: $\\Theta(1/e)$, $\\Theta(e^{-k})$ for integers $k\\ge1$, or $2^{\\Theta(1/e)}$. Conditional on our attainment and tail bounds, the $I_{3322}$ optimum needs bounded usable entanglement."
+license:
+  - CC-BY-4.0
+  - MIT
+  - Apache-2.0
+authors:
+  - family-names: Douglas
+    given-names: Seth
+  - family-names: Mghirbi
+    given-names: Nidhal
+repository-code: "https://github.com/Apsiape/sharp-entanglement-bounds"
+keywords:
+  - "nonlocal games"
+  - "distillable entanglement"
+  - "linear system games"
+  - "constraint system games"
+  - "Houghton's group"
+  - "approximate representations"
+  - "hyperlinear profile"
+  - "undecidability"
+preferred-citation:
+  type: generic
+  title: "The price of precision: usable entanglement in nonlocal games and the geometry of groups"
+  authors:
+    - family-names: Douglas
+      given-names: Seth
+    - family-names: Mghirbi
+      given-names: Nidhal
+  year: 2026
+  version: 1.0.0
+  notes: "Preprint. The paper is licensed CC BY 4.0 and the scripts MIT or Apache 2.0; see RIGHTS.md."

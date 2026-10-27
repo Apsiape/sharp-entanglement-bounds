@@ -1,0 +1,564 @@
+%======================================================================
+\section{Operational extraction on the original state}\label{sec:extract}
+%======================================================================
+
+The counting theorem bounds the entropy of Bob's reduced state, which for a mixed strategy is not a bound on usable entanglement
+(\cref{sec:status}). This section supplies the operational tools. Each takes approximate relations among actual operators of the two players, measured on a
+purification $\Psi_{ABE}$ of the original mixed state, and produces local isometries whose output either is close to a
+maximally entangled state or has few Bell errors, so that hashing applies. Nothing acts on $E$, no pure-state ensemble
+decomposition is used, and the state is never replaced. The mechanisms (regular dilations, coherent Pauli extraction,
+pretty-good recovery, hashing) are established; what is new is the accounting that keeps a growing register on the
+original state with errors summed in squares~\cite{GH17,NV17,McK16,DW05}.
+
+\subsection{The actual source interface of a compiled game}\label{sec:interface}
+
+A source enters a game through a compiler whose lower map sends each source generator $s$ to a fixed polynomial $F_s$ in
+the game's variables (\cref{sec:compile}). On a strategy Bob evaluates $F_s$ on his variable reflections. Alice evaluates
+the \emph{opposite} polynomial $\theta(F_s)$, obtained by reversing every word and substituting, for each variable $j$,
+her coarse-grained reflection for $j$ in one fixed incident context $i(j)$. The map $\theta$ is a complex-linear
+$*$-preserving antihomomorphism of word polynomials, and \cref{lem:transfer-parties}(a) gives, for every polynomial
+$P=\sum_wc_ww$,
+\begin{equation}\label{eq:opposite-poly}
+\|(P(B)-\theta(P)(A))\Psi\|\le\delta\sum_w|c_w||w|,\qquad\delta=\max_j\|(A_j-B_j)\Psi\|.
+\end{equation}
+
+\begin{proposition}[Actual source interface]\label{prop:interface}
+Let $G$ be a finite Boolean constraint-variable game, every incidence tested with probability at least $\pi_{\min}>0$,
+and let $s\mapsto F_s$ be a lower map from a presentation $\langle S\mid R\rangle$ with marked central involution $J$ into
+the game algebra $\mathcal A(G)$ of \cref{ex:presented}, given by fixed polynomials such that $F$ is a unital
+$*$-homomorphism of the negative quotient. There is a constant $C_G$ such that every finite-dimensional mixed strategy
+of loss $\eps$, with purification $\Psi$ after local projective dilation, has Bob unitaries $U_s$ and Alice unitaries
+$U_s^A$ with, for $e=C_G\sqrt\eps$,
+\begin{enumerate}[label=(\alph*),itemsep=1pt]
+\item $\|(U_s^A-U_s)\Psi\|\le e$ and $\|(U_s^{A*}-U_s^*)\Psi\|\le e$ for every $s$;
+\item $\|(r(U)-I)\Psi\|\le e$ for every relator $r$, and $\|(r^{\mathrm{rev}}(U^A)-I)\Psi\|\le e$ for the reversed word
+evaluated on Alice;
+\item $\|(U_J+I)\Psi\|\le e$;
+\item $\hs{[U_s,\rho_B^{1/2}]}\le e$ and $\hs{[U_s^A,\rho_A^{1/2}]}\le e$.
+\end{enumerate}
+If the $F_s$ are words in the variables, one may take $U_s=F_s(B)$ and $U_s^A=\theta(F_s)(A)$ without rounding.
+\end{proposition}
+
+\begin{proof}
+Relabel every illegal Alice answer to one fixed legal answer of its context, which cannot increase the loss, and dilate
+all measurements to projective ones with local pure ancillas, which changes neither the correlations nor the directional
+rates. For a context $i$ Alice's coarse-grained reflections $A_{ij}$ then commute exactly and every forbidden ordered
+product of their spectral projections vanishes. A tested incidence is lost with probability at most $\eps/\pi_{\min}$,
+so $\|(A_{ij}-B_j)\Psi\|\le\delta:=2\sqrt{\eps/\pi_{\min}}$. Every game relator $Q$ (a context commutator or a forbidden
+ordered product) is a word of bounded length in the variables of one context $i$; transferring it to that context's own
+Alice reflections by \cref{lem:transfer-parties}(a), where it is zero or the identity exactly, gives
+$\|Q(B)\Psi\|=O(\delta)$.
+
+Every polynomial in the ideal of the game relations has a finite certificate $\sum_la_lQ_lb_l$. For a term $aQb$, move
+$b(B)$ to Alice by~\eqref{eq:opposite-poly}, commute it past $Q(B)$, and use $\|\theta(b)(A)\|\le\sum|c_w|$:
+$\|a(B)Q(B)b(B)\Psi\|=O(\delta)$. Hence every element of the ideal has Bob residual $O(\delta)$ on $\Psi$, with a
+constant depending only on the fixed certificate, and by~\eqref{eq:opposite-poly} its opposite polynomial has Alice
+residual $O(\delta)$. In particular this holds for $F_s^*F_s-1$, $F_sF_s^*-1$, for $r(F)-1$ with $r\in R$, and for
+$F_J+1$. Since $\theta$ reverses products, $\theta(F_s^*F_s)=\theta(F_s)\theta(F_s)^*$ and the two unitarity defects
+exchange roles on Alice; both are controlled.
+
+Let $U_s$ be a unitary polar part of $F_s(B)$ and $U_s^A$ one of $\theta(F_s)(A)$. The scalar inequality
+$|1-t|\le|1-t^2|$, $t\ge0$, gives $\|(U-F)\Psi\|\le\|(F^*F-I)\Psi\|$ and $\|(U^*-F^*)\Psi\|\le\|(FF^*-I)\Psi\|$ on any
+vector (the argument of \cref{lem:polar}, which uses only functional calculus of $|F|$). So $U_s$ and $U_s^A$ are within
+$O(\delta)$ of $F_s(B)$ and $\theta(F_s)(A)$, together with their adjoints, and (a) follows from~\eqref{eq:opposite-poly}.
+For (b) and (c), replace the letters of $r(U)$ one at a time, from the right, by the polynomials $F_s(B)$ or $F_s(B)^*$. At
+each step the already replaced suffix is a polynomial $S(B)$ of fixed coefficient norm and degree, not necessarily unitary on
+the strategy. Move it to Alice by~\eqref{eq:opposite-poly}, at cost $O(\delta)$ because the replacement error to its left is
+bounded. Then $\theta(S)(A)$, of norm at most the coefficient norm of $S$, commutes with that replacement error, which is
+$O(\delta)$ on $\Psi$. So each step costs $O(\delta)$, and $r(F)-1$ has residual $O(\delta)$. The reversed Alice words are
+handled in the same way, with the parties exchanged. Part (d) is
+\cref{lem:transfer-parties}(d). All constants depend only on $G$, the presentation and the chosen certificates.
+\end{proof}
+
+The same proof applies to linear system games, whose game relations are the parity rows and context commutators, and to
+the corner maps of \cref{prop:corner}. The orientation matters: Alice realizes the opposite algebra. If Bob has
+$TY=\zeta YT$, Alice has $T_AY_A=\zeta^{-1}Y_AT_A$ in the corresponding reversed words, and the invariant tensor of a
+generator is $U_s^{A*}\otimes U_s$, not $U_s^A\otimes U_s$.
+
+\paragraph{Selector polynomials.} The proof never uses that $F_s$ is the image of a generator, only that its unitarity defects lie in
+the game ideal. Let $T$ be a fixed polynomial in the source generators such that $T^*T-1$ and $TT^*-1$ lie in the defining ideal of
+the negative quotient, and let $T_F$ be the polynomial in the game variables obtained by substituting $F_s$ for each generator $s$.
+Since $F$ is a homomorphism of the negative quotient, the two unitarity defects of $T_F$ lie in the game ideal. The certificate and
+polar argument above then gives, verbatim: Bob and Alice residuals $O(\delta)$ for the unitarity defects of $T_F$ and of $\theta(T_F)$;
+the mirror $\|(T_F(B)-\theta(T_F)(A))\Psi\|=O(\delta)$, by~\eqref{eq:opposite-poly}; unitary polar parts $U_T$ of $T_F(B)$ and $U_T^A$
+of $\theta(T_F)(A)$, within $O(\delta)$ of them together with their adjoints, so that $U_T^A$ is an actual mirror of $U_T$, and
+$U_T^{A*}$ of $U_T^*$, with error $O(e)$; square-root-state commutators $O(e)$, by \cref{lem:transfer-parties}(d); and residual
+$O(e)$ for every word in $U_T,U_T^*$ and the $U_s,U_s^*$ whose image in the polynomials lies in the game ideal, replacing letters from
+the right as in~(b), with the reversed words on Alice. In particular, if $Ty=\zeta yT$ in the negative quotient for a generator $y$,
+then $\|(U_TU_yU_T^*-\zeta U_y)\Psi\|=O(e)$, and on Alice $\|(U_T^AU_y^AU_T^{A*}-\zeta^{-1}U_y^A)\Psi\|=O(e)$; and if $T$ commutes with a
+generator $g$ in the negative quotient, then $\|[U_T,U_g]\Psi\|$ and $\|[U_T^A,U_g^A]\Psi\|$ are $O(e)$. The constants depend only on
+$G$, the presentation, $T$ and the chosen certificates. This applies to the corner maps and linear system games as well, and it is
+used for the rotation selectors of \cref{lem:rotation-selector} in \cref{thm:rational-ED}.
+
+\subsection{Triangular extraction}\label{sec:triangular}
+
+\begin{theorem}[Triangular extraction]\label{thm:triangular}
+Let $\Psi$ be a unit vector in $H_A\otimes H_B\otimes H_E$ and $M\ge1$. On each party let $Z_j,T_j$, $0\le j<M$, be
+reflections such that, for some $\delta\ge0$,
+\begin{gather*}
+\|(Z_j^A-Z_j^B)\Psi\|\le\delta,\qquad\|(T_j^A-T_j^B)\Psi\|\le\delta,\\
+\|[Z_j^A,Z_s^A]\Psi\|\le\delta,\quad\|[T_j^A,Z_s^A]\Psi\|\le\delta\quad(s<j),\qquad\|\{T_j^A,Z_j^A\}\Psi\|\le\delta .
+\end{gather*}
+No relation between different $T_j$ is assumed. There are product local isometries $W_A,W_B$ and a unit vector $\chi$,
+including $E$, with
+\[
+\|(W_A\otimes W_B\otimes I_E)\Psi-\Phi_{2^M}\otimes\chi\|\le\min\{2,20M^3\delta\}.
+\]
+\end{theorem}
+
+\begin{proof}
+\emph{Histories.} Put $P^{a}_j=\frac12(I+(-1)^aZ_j)$ on each party. For $h=(a_0,\dots,a_{j-1})$ let
+$K_h^A=P^{A,a_{j-1}}_{j-1}\cdots P^{A,a_0}_0$ (chronological order) and $Q_h^B=P^{B,a_0}_0\cdots P^{B,a_{j-1}}_{j-1}$ (the
+reversed order). Summing the innermost equal pair of projections repeatedly gives
+$\sum_hK_h^*K_h=\sum_hK_hK_h^*=I$, and the same for $Q$, with no commutation. Put
+$\Delta_j=(\sum_h\|(K_h^A-Q_h^B)\Psi\|^2)^{1/2}$ and $z_s=\|(Z^A_s-Z^B_s)\Psi\|$. From
+$P_s^AK_h^A-Q_h^BP_s^B=P^A_s(K^A_h-Q^B_h)+Q^B_h(P^A_s-P^B_s)$, summing the new outcome with $\sum_a(P^a_s)^2=I$ in the first
+term and the old histories with $\sum_hQ_h^*Q_h=I$ in the second, Minkowski's inequality gives
+$\Delta_{s+1}\le\Delta_s+z_s/\sqrt2$, hence
+\begin{equation}\label{eq:tri-hist}
+\Delta_j\le\sum_{s<j}z_s/\sqrt2\le j\delta/\sqrt2 .
+\end{equation}
+For an operator $F$ on Alice, $FK^A_h\Psi=Q^B_hF\Psi+F(K^A_h-Q^B_h)\Psi$, so
+\begin{equation}\label{eq:tri-suffix}
+\Bigl(\sum_h\|FK^A_h\Psi\|^2\Bigr)^{1/2}\le\|F\Psi\|+\opn F\Delta_j ,
+\end{equation}
+and for a finite family $F_a$ the same holds with $(\sum_a\|F_a\Psi\|^2)^{1/2}+(\sum_a\opn{F_a}^2)^{1/2}\Delta_j$. There is
+no factor of the number of histories.
+
+\emph{Commutators along histories.} For a reflection $G$ on Alice put $C_{G,j}=(\sum_h\|[G,K_h^A]\Psi\|^2)^{1/2}$.
+Telescoping $[G,P_{j-1}\cdots P_0]$, summing the later outcomes by completeness and applying~\eqref{eq:tri-suffix} to
+the pair $F_a=[G,P^a_s]=\frac{(-1)^a}2[G,Z_s]$, of operator norm at most one,
+\[
+C_{G,j}\le\sum_{s<j}\bigl(\|[G,Z^A_s]\Psi\|/\sqrt2+\sqrt2\Delta_s\bigr)\le j\delta/\sqrt2+j(j-1)\delta/2\le(j+1)^2\delta-\delta
+\]
+for $G=Z_j$ or $T_j$. The mirror defect $G_A-G_B$ is bipartite and is not substituted into~\eqref{eq:tri-suffix};
+instead $(G_A-G_B)K_h^A\Psi=K_h^A(G_A-G_B)\Psi+[G_A,K_h^A]\Psi$, so
+\begin{equation}\label{eq:tri-mirror}
+\Bigl(\sum_h\|(G_A-G_B)K_h^A\Psi\|^2\Bigr)^{1/2}\le(j+1)^2\delta\qquad(G=Z_j,T_j).
+\end{equation}
+The conjugacy defect $C_j=T_jZ_jT_j+Z_j=T_j\{T_j,Z_j\}$ on Alice has norm at most two and $\|C_j\Psi\|\le\delta$, so
+by~\eqref{eq:tri-suffix} its aggregate over histories is at most $\delta+2\Delta_j\le(2j+1)\delta$.
+
+\emph{One stage.} For a target bit $a$ let $W_j^{a}=\sum_{b=0,1}|b\rangle\otimes T_j^{a\oplus b}P_j^b$ on each party; it is
+an isometry because $T_j$ is unitary. Consider
+\[
+\mathcal A_j\eta=\tfrac1{\sqrt2}\sum_a|a,a,a\rangle\otimes(W_j^{A,a}\otimes W_j^{B,a})\eta,\qquad
+\mathcal I_j\eta=\sum_a|a,a,a\rangle\otimes\Phi_2\otimes P_j^{A,a}\eta .
+\]
+The first is the Stinespring form of a shared uniform random target, one copy of which is kept by the environment,
+followed by local isometries; the second is an exact isometry used only in the analysis. For any vector $\eta$ put
+$t=\|(T^A_j-T^B_j)\eta\|$, $z=\|(Z^A_j-Z^B_j)\eta\|$ and $c=\|C_j\eta\|$. The branch of $\mathcal A_j\eta$ with flags
+$(a,b,c')$ is $2^{-1/2}T_A^{a\oplus b}P^b_AT_B^{a\oplus c'}P^{c'}_B\eta$; transferring the Bob factor to Alice by
+\cref{lem:transfer-parties}(a) costs $t+z/2$ and gives $2^{-1/2}T^{a\oplus b}P^bP^{c'}T^{a\oplus c'}\eta$ on Alice. If
+$b\ne c'$ this is exactly zero, as $P^bP^{c'}=0$; if $b=c'=a$ it is $P^a\eta$; and if $b=c'\ne a$ it is
+$TP^{1-a}T\eta=P^a\eta\mp\frac12C_j\eta$. The ideal branch is $2^{-1/2}1_{b=c'}P^a_A\eta$. Over the eight orthogonal branches,
+\begin{equation}\label{eq:tri-stage}
+\|(\mathcal A_j-\mathcal I_j)\eta\|\le2t+z+c .
+\end{equation}
+
+\emph{Telescoping.} Compose the stages $j=0,\dots,M-1$ and compare $\mathcal A_{M-1}\cdots\mathcal A_0$ with
+$\mathcal I_{M-1}\cdots\mathcal I_0$ by telescoping, with actual maps on the left (isometries) and ideal prefixes on the
+right. The ideal prefix after $j$ stages is a direct sum over histories $h$ of $\Phi_2^{\otimes j}\otimes K^A_h\Psi$, so
+by~\eqref{eq:tri-stage}, \eqref{eq:tri-mirror} and the conjugacy aggregate, the $j$-th term is at most
+$3(j+1)^2\delta+(2j+1)\delta\le5(j+1)^2\delta$. Summing, the actual composite is within $5M^3\delta$ of
+$\Phi_{2^M}\otimes\chi$, $\chi=\sum_a|a,a,a\rangle\otimes K^A_a\Psi$, a unit vector by completeness.
+
+\emph{A deterministic target.} For each target string $a$ let $v_a$ be the output of the local isometries with that target,
+a unit vector. The squared error just bounded is $2^{-M}\sum_a\|v_a-\Phi_{2^M}\otimes2^{M/2}K^A_a\Psi\|^2$, so some $a$ has
+$\|v_a-\Phi_{2^M}\otimes w\|\le5M^3\delta$ with $w=2^{M/2}K^A_a\Psi$; if this is below one, replacing $w$ by $w/\|w\|$
+at most doubles it. The trivial bound $2$ covers the remaining case.
+\end{proof}
+
+The triangular matrix-unit identities hold exactly in the source algebra but only approximately on the actual state, and
+the reversed orientation of the histories on the two parties is essential; with the same orientation on both sides the
+estimate~\eqref{eq:tri-hist} fails.
+
+The same argument works with cyclic labels of bounded size and unitary controls of arbitrary order. Errors indexed by labels are
+measured by their \emph{root aggregates}, the square roots of the sums of their squares over the labels.
+
+\begin{lemma}[Cyclic triangular extraction]\label{lem:cyclic-triangular}
+Let $\Psi$ be a unit vector in $H_A\otimes H_B\otimes H_E$, $Q\ge2$ and $M\ge1$. For $0\le j<M$ let $2\le q_j\le Q$, and on each party
+$P\in\{A,B\}$ let $\{P^P_{j,a}:a\in\Z_{q_j}\}$ be a projective partition and $U^P_j$ a unitary. Suppose that, for some $\delta\ge0$, all
+of the following root aggregates on $\Psi$ are at most $\delta$, for every $j$, every $t<j$ and every integer $h$ with $|h|\le Q$:
+\begin{enumerate}[label=(\roman*),itemsep=1pt]
+\item the mirrors $(\sum_a\|(P^A_{j,a}-P^B_{j,a})\Psi\|^2)^{1/2}$ and $\|((U^A_j)^h-(U^B_j)^h)\Psi\|$;
+\item on Alice, $(\sum_{a,b}\|[P^A_{j,a},P^A_{t,b}]\Psi\|^2)^{1/2}$ and $(\sum_b\|[(U^A_j)^h,P^A_{t,b}]\Psi\|^2)^{1/2}$;
+\item on Alice, $(\sum_a\|((U^A_j)^hP^A_{j,a}(U^A_j)^{-h}-P^A_{j,a+h})\Psi\|^2)^{1/2}$, the labels taken modulo $q_j$.
+\end{enumerate}
+No relation between controls of different stages and no relation $(U^P_j)^{q_j}=I$ is assumed. There are a constant $C_Q$, depending
+only on $Q$, product local isometries $W_A,W_B$ and a unit vector $\chi$, including $E$, with
+\[
+\|(W_A\otimes W_B\otimes I_E)\Psi-\Phi_{q_0q_1\cdots q_{M-1}}\otimes\chi\|\le\min\{2,C_QM^3\delta\}.
+\]
+\end{lemma}
+
+\begin{proof}
+We follow the proof of \cref{thm:triangular} and indicate the changes; $C_Q$ denotes constants depending only on $Q$.
+
+\emph{Histories.} For a history $h=(a_0,\dots,a_{j-1})$ put $K^A_h=P^A_{j-1,a_{j-1}}\cdots P^A_{0,a_0}$ and
+$Q^B_h=P^B_{0,a_0}\cdots P^B_{j-1,a_{j-1}}$. Summing the innermost partition repeatedly gives $\sum_hK_h^*K_h=\sum_hK_hK_h^*=I$, and
+the same for $Q$, with no commutation. With $\Delta_j=(\sum_h\|(K^A_h-Q^B_h)\Psi\|^2)^{1/2}$, the identity $P^A_{j,a}K^A_h-Q^B_hP^B_{j,a}=P^A_{j,a}(K^A_h-Q^B_h)+
+Q^B_h(P^A_{j,a}-P^B_{j,a})$, completeness in each term and Minkowski's inequality give $\Delta_{j+1}\le\Delta_j+\delta$, so
+$\Delta_j\le j\delta$. As in~\eqref{eq:tri-suffix}, for a finite family $F_b$ of Alice operators,
+\begin{equation}\label{eq:cyc-suffix}
+\Bigl(\sum_{h,b}\|F_bK^A_h\Psi\|^2\Bigr)^{1/2}\le\Bigl(\sum_b\|F_b\Psi\|^2\Bigr)^{1/2}+\Bigl(\sum_b\opn{F_b}^2\Bigr)^{1/2}\Delta_j .
+\end{equation}
+
+\emph{Commutators and mirrors along histories.} Let $G$ be $(U^A_j)^n$ with $|n|\le Q$, or the family $(P^A_{j,a})_a$. Telescoping
+$[G,K^A_h]$ over the earlier stages $s<j$, summing the later outcomes by completeness, and applying~\eqref{eq:cyc-suffix} to the family
+$[G,P^A_{s,b}]$, whose operator norms are at most two and whose number is at most $Q^2$, gives by~(ii)
+\[
+\Bigl(\sum_h\|[G,K^A_h]\Psi\|^2\Bigr)^{1/2}\le\sum_{s<j}(\delta+2Q\Delta_s)\le C_Q(j+1)^2\delta ,
+\]
+summed over $a$ as well when $G$ is the family. Since the Bob operator $G_B$ commutes with $K^A_h$,
+$(G_A-G_B)K^A_h\Psi=K^A_h(G_A-G_B)\Psi+[G_A,K^A_h]\Psi$, and completeness and~(i) give the history aggregate
+$C_Q(j+1)^2\delta$ for the mirrors of $P_{j,\cdot}$ and of $(U_j)^n$. The covariance defects of~(iii) have operator norm at most two,
+so by~\eqref{eq:cyc-suffix} their history aggregate is at most $C_Q(j+1)\delta$.
+
+\emph{One stage.} Drop the index $j$. For a target label $t\in\Z_q$ put
+\[
+W_A^t=\sum_{b\in\Z_q}|b\rangle\otimes(U^A)^{t-b}P^A_b,\qquad W_B^t=\sum_{c\in\Z_q}|c\rangle\otimes(U^B)^{c-t}P^B_c ,
+\]
+with exponents taken in $\{-q+1,\dots,q-1\}$; each is an exact isometry, since the recorded label makes the cross terms orthogonal.
+Consider
+\[
+\mathcal A\eta=q^{-1/2}\sum_t|t,t,t\rangle\otimes(W_A^t\otimes W_B^t)\eta,\qquad\mathcal I\eta=\sum_t|t,t,t\rangle\otimes\Phi_q\otimes P^A_t\eta ;
+\]
+the first is the Stinespring form of a shared uniform random target, one copy of which is kept by the environment, followed by local
+isometries, and the second is an exact isometry used only in the analysis. The branch of $\mathcal A\eta$ with flags $(t,b,c)$ is
+$q^{-1/2}(U^A)^{t-b}P^A_b(U^B)^{c-t}P^B_c\eta$, and the ideal branch is $q^{-1/2}1_{b=c}P^A_t\eta$. Transferring the Bob word to Alice in
+reverse order,
+\[
+(U^B)^{c-t}P^B_c\eta=P^A_c(U^A)^{c-t}\eta+(U^B)^{c-t}(P^B_c-P^A_c)\eta+P^A_c\bigl((U^B)^{c-t}-(U^A)^{c-t}\bigr)\eta ,
+\]
+splits each branch, after the Alice factor $q^{-1/2}(U^A)^{t-b}P^A_b$, into three parts. The first is $q^{-1/2}(U^A)^{t-b}P^A_bP^A_c(U^A)^{c-t}\eta$.
+It vanishes exactly for $b\ne c$, and for $b=c$ it is $q^{-1/2}(U^A)^{t-b}P^A_b(U^A)^{b-t}\eta$, which differs from the ideal branch by $q^{-1/2}$
+times a covariance defect of~(iii) with exponent $n=t-b$ and label $b$. The second, the projection-mirror part, is
+$q^{-1/2}(U^A)^{t-b}P^A_bv_{tc}$ with $v_{tc}=(U^B)^{c-t}(P^B_c-P^A_c)\eta$. The unrecorded vectors $(U^A)^{t-b}P^A_bv$ need not be orthogonal
+as $b$ varies (for $q=2$, $t=0$, $U^A=X$, $P^A_b=|b\rangle\langle b|$ and $v=|{+}\rangle$ both are $|0\rangle/\sqrt2$), but unitarity and
+completeness give
+\[
+\sum_b\|(U^A)^{t-b}P^A_bv\|^2=\sum_b\|P^A_bv\|^2=\|v\|^2
+\]
+for every vector $v$. So the projection-mirror parts have squared norms summing over $(t,b,c)$ to $\sum_c\|(P^A_c-P^B_c)\eta\|^2$. The third,
+the unitary-mirror part, vanishes unless $b=c$, and the pairs $(t,c)$ with $c-t=n$ number $q-|n|\le q$, so these parts have squared norms
+summing to at most $\sum_{|n|<q}\|((U^A)^n-(U^B)^n)\eta\|^2$. In the same way the covariance parts have squared norms summing to at most
+$q^{-1}\sum_{|n|<q}\sum_b\|((U^A)^nP^A_b(U^A)^{-n}-P^A_{b+n})\eta\|^2$. The output branches carry orthogonal recorded labels $(t,b,c)$, so
+$\|(\mathcal A-\mathcal I)\eta\|^2$ is the sum of the squared branch errors, and Minkowski's inequality for the projection-mirror, unitary-mirror
+and covariance contributions gives
+\begin{multline}\label{eq:cyc-stage}
+\|(\mathcal A-\mathcal I)\eta\|\le C_Q\Bigl[\Bigl(\sum_c\|(P^A_c-P^B_c)\eta\|^2\Bigr)^{1/2}+\sum_{|n|<q}\|((U^A)^n-(U^B)^n)\eta\|\\
++\sum_{|n|<q}\Bigl(\sum_b\|((U^A)^nP^A_b(U^A)^{-n}-P^A_{b+n})\eta\|^2\Bigr)^{1/2}\Bigr],
+\end{multline}
+here with $C_Q=1$.
+
+\emph{Telescoping and a deterministic target.} The ideal prefix after $j$ stages is a direct sum over histories $h$ of
+$\Phi_{q_0\cdots q_{j-1}}\otimes K^A_h\Psi$, with orthogonal flags, so the squared error of stage $j$ on it is the sum over $h$ of the
+squared errors~\eqref{eq:cyc-stage} at $\eta=K^A_h\Psi$. Minkowski's inequality over the at most $4Q$ terms of~\eqref{eq:cyc-stage}, with
+the history aggregates, bounds the $j$-th term of the telescoping sum by $C_Q(j+1)^2\delta$, so the actual composite is within $C_QM^3\delta$ of
+$\Phi_{q_0\cdots q_{M-1}}\otimes\chi$, $\chi=\sum_h|h,h,h\rangle\otimes K^A_h\Psi$, a unit vector by completeness; here $|h,h,h\rangle$ records the
+target string in three copies. For each target string $t$ let $v_t$ be the output of the local isometries with that target. The squared
+error just bounded is $(q_0\cdots q_{M-1})^{-1}\sum_t\|v_t-\Phi\otimes(q_0\cdots q_{M-1})^{1/2}K^A_t\Psi\|^2$, so some $t$ has
+$\|v_t-\Phi\otimes w\|\le C_QM^3\delta$ with $w=(q_0\cdots q_{M-1})^{1/2}K^A_t\Psi$; if this is below one, normalizing $w$ at most doubles
+it, and the trivial bound $2$ covers the remaining case.
+\end{proof}
+
+For $q_j=2$ and reflections $U_j$ the hypotheses agree with those of \cref{thm:triangular} up to constant factors, with $Z_j=P_{j,0}-P_{j,1}$:
+the covariance~(iii) has aggregate $\|\{U_j,Z_j\}\Psi\|/\sqrt2$. The lemma is the finite-alphabet form of that theorem, not a new
+self-testing or hashing mechanism.
+
+\subsection{Signed regular extraction}\label{sec:signed-regular}
+
+Let $Q_1,\dots,Q_{2N}$ be the labels $X_1,\dots,X_N,Z_1,\dots,Z_N$, and let $s_{jk}=-1$ if $\{Q_j,Q_k\}$ is a pair
+$\{X_i,Z_i\}$ and $s_{jk}=+1$ otherwise. On the label register $\ell^2(\{0,1\}^{2N})$ define
+\begin{equation}\label{eq:label-paulis}
+R_k|v\rangle=r_k(v)|v+e_k\rangle,\qquad r_k(v)=\prod_{j>k}s_{jk}^{v_j}.
+\end{equation}
+These are real reflections with $R_jR_k=s_{jk}R_kR_j$ exactly. Writing $v=(a,b)$, $R_{X_i}=S_{a_i}F_{b_i}$ and
+$R_{Z_i}=S_{b_i}$, with $S$ a bit flip and $F$ its sign; for one pair the real unitary $|z\rangle|t\rangle\mapsto
+|t+z\rangle H|z\rangle$ conjugates $(R_X,R_Z)$ to $(X\otimes I,Z\otimes I)$. So the label algebra is exactly
+$M_2^{\otimes N}$ with multiplicity $2^N$, by a fixed real identification.
+
+\begin{theorem}[Signed regular extraction]\label{thm:signed-regular}
+Let $\Psi$ purify $\rho_{AB}$, and on each party $P\in\{A,B\}$ let $Q^P_1,\dots,Q^P_{2N}$ be reflections. Put
+\[
+\eta_{jk,P}=\|(Q^P_jQ^P_k-s_{jk}Q^P_kQ^P_j)\Psi\|,\quad\mu_j=\|(Q^A_j-Q^B_j)\Psi\|,\quad c_{j,P}=\hs{[Q^P_j,\rho_P^{1/2}]},
+\]
+and $D_{k,P}=4\sum_{j>k}[(\eta_{jk,P}+c_{j,P})^2+c_{j,P}^2]$. There are exact local isometries $V_A,V_B$, with
+$N$ output qubits per party after the fixed identification, whose $k$-th Bell stabilizer fails with probability
+\[
+p_k\le\bigl(\sqrt{D_{k,A}}+\sqrt{D_{k,B}}+\mu_k\bigr)^2/4 .
+\]
+Consequently $\ED^{A\to B}(\rho_{AB})\ge N-\sum_{k=1}^{2N}h(p_k)$, where upper bounds may be substituted for the $p_k$ in
+the monotone range $p_k\le\frac12$. If every signed pair error, state commutator and mirror error is at most $\kappa$,
+then $p_k\le25N\kappa^2$, and
+\[
+\ED^{A\to B}(\rho_{AB})\ge N\bigl[1-2h(25N\kappa^2)\bigr]\qquad\text{when }25N\kappa^2\le\tfrac12 .
+\]
+No independence of the errors is assumed, and these are bounds for the original mixed state.
+\end{theorem}
+
+\begin{proof}
+For $v\in\{0,1\}^{2N}$ put $f_P(v)=Q_1^{v_1}\cdots Q_{2N}^{v_{2N}}$ and $V_Pu=2^{-N}\sum_vf_P(v)u\otimes|v\rangle$, an exact
+isometry since each $f_P(v)$ is unitary. With $\xi=\rho_P^{1/2}$ and $d_{k,P}=\hs{(R_kV_P-V_PQ_k)\xi}$, the coefficient
+of $|v\rangle$ is $2^{-N}(r_k(v)f(v+e_k)-f(v)Q_k)\xi$, and writing $f(v)=LQ_k^{v_k}T$ with the suffix
+$T=Q_{k+1}^{v_{k+1}}\cdots Q_{2N}^{v_{2N}}$, left unitary cancellation gives
+\[
+d_{k,P}^2=\mathbb E_v\hs{(r_k(v)T^*Q_kT-Q_k)\xi}^2 .
+\]
+Put $u=Q_k\xi$. Then $(r_kT^*Q_kT-Q_k)\xi=(r_kT^*uT-u)+r_kT^*Q_kT(\xi-T^*\xi T)$. The signed conjugations
+$H\mapsto s_{jk}Q_jHQ_j$ are self-adjoint unitaries of the unweighted Hilbert--Schmidt space, so
+\cref{lem:twirl}, with signs $s_{jk}$, gives $\mathbb E_v\hs{r_kT^*uT-u}^2\le\sum_{j>k}\hs{Q_ju-s_{jk}uQ_j}^2$ and
+$\mathbb E_v\hs{T^*\xi T-\xi}^2\le\sum_{j>k}c_{j,P}^2$. Since $Q_jQ_k\xi-s_{jk}Q_k\xi Q_j=(Q_jQ_k-s_{jk}Q_kQ_j)\xi+s_{jk}Q_k
+[Q_j,\xi]$ and $\hs{(\cdot)\xi}=\|(\cdot)\Psi\|$ by \cref{lem:standard-form},
+\begin{equation}\label{eq:sr-intertwine}
+d_{k,P}^2\le2\sum_{j>k}(\eta_{jk,P}+c_{j,P})^2+2\sum_{j>k}c_{j,P}^2=\tfrac12D_{k,P}.
+\end{equation}
+For $\omega=(V_A\otimes V_B\otimes I_E)\Psi$, opposite-party maps commute, so
+$\|(R^A_k-R^B_k)\omega\|\le d_{k,A}+d_{k,B}+\mu_k$, and for opposite-party reflections the squared difference norm is
+four times the failure probability of their product. This proves the bound on $p_k$, a fortiori with $D_{k,P}$ in place
+of $D_{k,P}/2$. After the fixed real identification and discarding the local junk (the original systems and the label
+multiplicity), apply~\eqref{eq:bell-hashing}. In the uniform case use the sharper intertwiner estimate~\eqref{eq:sr-intertwine},
+$d_{k,P}^2\le2T_{k,P}$ with $T_{k,P}=\sum_{j>k}[(\eta_{jk,P}+c_{j,P})^2+c_{j,P}^2]$, not the looser $D_{k,P}=4T_{k,P}$ of the statement:
+there are fewer than $2N$ indices $j>k$, each with $(\eta_{jk,P}+c_{j,P})^2\le(2\kappa)^2$ and $c_{j,P}^2\le\kappa^2$, so
+\[
+d_{k,P}^2\le2(2N)\bigl[(2\kappa)^2+\kappa^2\bigr]=20N\kappa^2,\qquad p_k\le\frac{(2\sqrt{20N}+1)^2\kappa^2}4\le25N\kappa^2,
+\]
+since $(2\sqrt{20N}+1)^2\le100N$ for $N\ge1$. The constant $25$ is not obtained from $D_{k,P}$, which is already loosened by a factor two.
+\end{proof}
+
+The square-root-state commutators cannot be omitted; for reflections they are supplied by actual mirrors through
+\cref{lem:transfer-parties}(d), $c_{j,P}\le\sqrt2\mu_j$. A whole-register fidelity bound would add the $2N$ failure
+probabilities and lose a factor $N$; hashing uses only their entropy. For the qualitative law of \cref{sec:law} a
+fixed-size version suffices, which needs no state commutators.
+
+\begin{lemma}[Fixed-size signed regular extraction]\label{lem:fixed-size}
+Let $m=2r$ and $C_r=m(1+2m)$. If reflections $Q^P_1,\dots,Q^P_m$ on each party satisfy $\eta_{jk,P}\le\kappa$ and
+$\mu_j\le\kappa$, then the isometries of \cref{thm:signed-regular} give Bell-stabilizer failures at most
+$p=(2C_r+1)^2\kappa^2/4$, singlet infidelity at most $2rp$, and a unit vector $\chi$ with
+$\|(V_A\otimes V_B\otimes I)\Psi-\Phi_{2^r}\otimes\chi\|\le\sqrt{4rp}$. If $p\le\frac12$, then
+$\ED^{A\to B}(\rho_{AB})\ge r[1-2h(p)]$.
+\end{lemma}
+
+\begin{proof}
+Move $Q_k$ through the suffix $T$ letter by letter from the right. A swap with $Q_j$ leaves the pair defect
+$Q_jQ_k-s_{jk}Q_kQ_j$, of norm at most two, followed by a suffix of at most $m$ reflections; by
+\cref{lem:transfer-parties}(b) its contribution on $\Psi$ is at most $\kappa+2m\kappa$. So each label block of
+$(R_kV_P-V_PQ_k)\Psi$ has norm at most $C_r\kappa$ times its weight, and $\|(R_kV_P-V_PQ_k)\Psi\|\le C_r\kappa$. Hence
+$\|(R^A_k-R^B_k)\omega\|\le(2C_r+1)\kappa$. The $2r$ Bell stabilizers commute and their common $+1$ space is
+$\Phi_{2^r}$, so the infidelity is at most $2rp$, and the normalized projection of $\omega$ onto the Bell factor is within
+$\sqrt{2\cdot2rp}$ of $\omega$. The last claim is~\eqref{eq:bell-hashing}.
+\end{proof}
+
+\subsection{Aggregate and nonabelian bounds}\label{sec:aggregate}
+
+\begin{theorem}[Aggregate signed extraction]\label{thm:aggregate}
+In the setting of \cref{thm:signed-regular} put $E_B=\sum_{k<j}\eta_{jk,B}^2$ and $M_2=\sum_j\mu_j^2$. The average
+Bell-stabilizer failure of the extracted $N$ pairs is at most
+\[
+b_N=9E_B/N+132M_2,
+\]
+and if $b_N\le\frac12$ then $\ED^{A\to B}(\rho_{AB})\ge N[1-2h(b_N)]$. A negative lower bound may be replaced by zero.
+This is an entropy-density statement, not a full-register fidelity theorem at the same scale.
+\end{theorem}
+
+\begin{proof}
+Write $m=2N$, $E_P=\sum_{k<j}\eta_{jk,P}^2$ and $C_P=\sum_j(j-1)c_{j,P}^2$. From the definition of $D_{k,P}$ and
+$(a+b)^2\le2a^2+2b^2$, $\sum_kD_{k,P}\le8E_P+12C_P$, and so $\sum_kp_k\le6(E_A+E_B)+9(C_A+C_B)+\frac34M_2$. By
+\cref{lem:transfer-parties}(d), $c_{j,P}\le\sqrt2\mu_j$, hence $C_A+C_B\le4(m-1)M_2$; transferring the two-letter products
+to the other party, $\eta_{jk,A}\le\eta_{jk,B}+2(\mu_j+\mu_k)$, hence $E_A\le2E_B+16(m-1)M_2$. So $\sum_kp_k\le18E_B+132mM_2$.
+Divide by $m$, use concavity of $h$, and apply~\eqref{eq:bell-hashing}.
+\end{proof}
+
+Now let $G$ be a finite group and, on each party, let $u^P_1,\dots,u^P_N$ be \emph{exact} unitary representations of $G$,
+not assumed to commute for different $i$, oriented so that actual consistency reads
+\begin{equation}\label{eq:group-mirror}
+\|(u^A_i(g)-u^B_i(g^{-1}))\Psi\|\le\mu\qquad(g\in G),
+\end{equation}
+which is the right orientation for nonabelian $G$, Alice representing the opposite algebra. On $\ell^2(G)$ use the right
+regular representation and a unitary Fourier decomposition $\ell^2(G)=\bigoplus_\lambda V_\lambda\otimes\C^{d_\lambda}$.
+For $d\ge2$ let $F_d(t)=h(\min(t,1-d^{-2}))+\min(t,1-d^{-2})\log(d^2-1)$, the largest entropy of a $d^2$-valued Bell error
+of failure probability at most $t$, which saturates at $2\log d$; put $F_1=0$.
+
+\begin{theorem}[Finite-group extraction]\label{thm:group-extract}
+Suppose, on both parties, $\hs{[u^P_i(h),u^P_j(g)]\rho_P^{1/2}}\le\kappa$ for $i\ne j$, $\hs{[u^P_j(g),\rho_P^{1/2}]}\le\kappa$,
+and $\mu\le\kappa$. There are exact local regular isometries and a one-way protocol in which Alice measures and announces
+the central types $\alpha_i$ of her label factors, such that, with $a_{i\lambda}$ the probability of type $\lambda$ at
+coordinate $i$ and $q_{i\lambda}\le a_{i\lambda}$ the unnormalized failure of the invariant projector there,
+\[
+\ED^{A\to B}(\rho_{AB})\ \ge\ \sum_{i,\lambda}a_{i\lambda}\bigl[\log d_\lambda-F_{d_\lambda}(q_{i\lambda}/a_{i\lambda})\bigr],
+\qquad\sum_\lambda q_{i\lambda}\le50N\kappa^2 .
+\]
+Zero-weight summands are zero, and Alice may discard any coordinate-type branch whose summand is negative. If only Bob
+cross-commutators are bounded, by $\eta$, then $\kappa=\eta+4\mu$ is admissible.
+\end{theorem}
+
+\begin{proof}
+For $x\in G^N$ put $f_P(x)=u^P_1(x_1)\cdots u^P_N(x_N)$ and $W_Pv=|G|^{-N/2}\sum_xf_P(x)v\otimes|x\rangle$, an exact isometry.
+With $R_i(h)|x\rangle=|x_1,\dots,x_ih^{-1},\dots,x_N\rangle$, the coefficient of $|x\rangle$ in $R_i(h)W_P$ is $f_P(xh_i)$,
+and for the suffix $T=u_{i+1}(x_{i+1})\cdots u_N(x_N)$ left cancellation gives
+$\delta_{i,P}(h)^2:=\hs{(R_i(h)W_P-W_Pu_i(h))\xi}^2=\mathbb E_T\hs{(T^*u_i(h)T-u_i(h))\xi}^2$. The maps
+$A_j(H)=\mathbb E_gu_j(g)^*Hu_j(g)$ are orthogonal projections on the Hilbert--Schmidt space, and
+$\|(I-A_j)z\|^2=\frac12\mathbb E_g\hs{[u_j(g),z]}^2$. The projection-product inequality (\cref{lem:projection-product})
+gives $\mathbb E_T\hs{T^*zT-z}^2\le2\sum_{j>i}\mathbb E_g\hs{[u_j(g),z]}^2$. Applied to $z=u_i(h)\xi$ and to $\xi$, as in
+\cref{thm:signed-regular}, this gives $\delta_{i,P}(h)^2\le20N\kappa^2$. For $\omega=(W_A\otimes W_B\otimes I)\Psi$,
+$\|(R^A_i(g)-R^B_i(g^{-1}))\omega\|\le(2\sqrt{20N}+1)\kappa$. The diagonal invariant projector
+$\Pi_i=\mathbb E_gR^A_i(g)\otimes R^B_i(g)$ has failure
+$q_i=\langle\omega,(I-\Pi_i)\omega\rangle=\frac12\mathbb E_g\|(R^A_i(g)-R^B_i(g^{-1}))\omega\|^2\le50N\kappa^2$.
+
+Let $P^A_{i\lambda}$ be Alice's central type projections, $a_{i\lambda}=\langle\omega,P^A_{i\lambda}\omega\rangle$ and
+$q_{i\lambda}=\langle\omega,P^A_{i\lambda}(I-\Pi_i)\omega\rangle$; they commute, so $0\le q_{i\lambda}\le a_{i\lambda}$ and
+$\sum_\lambda q_{i\lambda}=q_i$. By Schur's lemma, on the matching blocks $(\lambda,\bar\lambda)$
+\[
+\Pi_i=\bigoplus_\lambda|\Phi_{d_\lambda}\rangle\langle\Phi_{d_\lambda}|\otimes I_{\text{multiplicities}},
+\]
+and $\Pi_i$ vanishes on the other pairs of types; Bob's matching type is the contragredient $\bar\lambda$. The protocol:
+both parties measure their central types; Alice announces her string $\alpha$; Alice keeps the payload $V_{\alpha_i}$ of
+each coordinate and discards her multiplicities and the original system; Bob keeps and aligns his payload where
+$\beta_i=\bar\alpha_i$ and otherwise replaces it by a dummy of dimension $d_{\alpha_i}$; Alice then samples generalized
+Weyl twirls on every coordinate and announces them; finally hashing~\eqref{eq:hashing}. All messages go from Alice to Bob,
+and there is no acceptance test on the whole string. Pulling the Bell-failure effect of coordinate $i$ back through these
+steps gives an effect at most $P^A_{i\lambda}(I-\Pi_i)$ on the type-$\lambda$ branch, so the conditional failure
+$t_{i\lambda}$ satisfies $a_{i\lambda}t_{i\lambda}\le q_{i\lambda}$. Conditional on $\alpha$ the twirled payload is diagonal in
+the tensor product of the generalized Bell bases, possibly with correlated error labels, and Bob's marginal is maximally mixed,
+of dimension $\prod_id_{\alpha_i}$; including the identical classical
+registers $\alpha$ on both sides does not change the coherent information, so it is at least
+$\sum_i\log d_{\alpha_i}-\sum_iH(\text{Bell error}_i\mid\alpha)$. Jensen's inequality with the concave envelope $F_d$ and
+$a_{i\lambda}t_{i\lambda}\le q_{i\lambda}$ proves the displayed bound; discarding a branch is a decision of Alice that
+depends only on her local label. For the last claim, transferring a length-two product to the opposite party costs
+$2\mu$, so Alice's cross-commutators are at most $\eta+4\mu$, and $\sqrt2\mu\le\kappa$ by \cref{lem:transfer-parties}(d).
+\end{proof}
+
+One-dimensional sectors contribute nothing even when they carry nontrivial characters; the resource is the weight on the
+noncommutative blocks. Exact irrep flags and their maximally entangled factors are established~\cite{MLWHS24,HM02}; the
+contribution here is the per-coordinate mismatch accounting on an arbitrary original state.
+
+\begin{corollary}[Three-cycle visibility]\label{cor:S3}
+For $G=S_3$, suppose the hypotheses of \cref{thm:group-extract} hold with Bob cross-commutator bound $\eta$ and mirror
+bound $\mu$, put $\kappa=\eta+4\mu$, and suppose a three-cycle $c$ has $\|(u^A_i(c)-I)\Psi\|\ge\Delta$ for every $i$. If
+$N\kappa^2\le\Delta^2/38400$ then $\ED^{A\to B}(\rho_{AB})\ge\Delta^2N/16$.
+\end{corollary}
+
+\begin{proof}
+The irreps of $S_3$ have dimensions $1,1,2$, and $2I-R(c)-R(c)^*=3P_{\mathrm{std}}$ in the regular representation. Hence
+$a_i:=a_{i,\mathrm{std}}=\frac13\|(R^A_i(c)-I)\omega\|^2\ge\frac13(\Delta-\sqrt{20N}\kappa)_+^2\ge\Delta^2/12$, and
+$q_i/a_i\le50N\kappa^2\cdot12/\Delta^2\le\frac1{64}$. For $t\le\frac12$ the function $a\mapsto a[1-F_2(q/a)]$ increases in
+$a$ (its derivative is $1+\log(1-t)\ge0$ at $t=q/a$) and decreases in $q$, so each summand of \cref{thm:group-extract} is at
+least $\frac{\Delta^2}{12}[1-h(\frac1{64})-\frac{\log3}{64}]\ge\frac34\cdot\frac{\Delta^2}{12}$.
+\end{proof}
+
+The exactness of each individual copy is supplied, from approximate data, by a local rounding.
+
+\begin{lemma}[Local $S_3$ rounding]\label{lem:S3-round}
+Let $S_i^P,T_i^P$ be reflections on each party with $\|(S_i^A-S_i^B)\Psi\|,\|(T_i^A-T_i^B)\Psi\|\le\mu_0$,
+$\|((S_i^PT_i^P)^3-I)\Psi\|\le e$, and $\|[Q_i^B,Q_j^B]\Psi\|\le\eta_0$ for $i\ne j$ and $Q\in\{S,T\}$. There are exact local
+$S_3$ representations $u_i^P$ with $u_i^P(s)=S_i^P$ satisfying the hypotheses of \cref{cor:S3} with
+$\kappa=9\eta_0+144\mu_0+36e$; if Bob's raw three-cycle has $\|(S_i^BT_i^B-I)\Psi\|\ge\Delta_0$, Alice's rounded three-cycle
+has displacement at least $\Delta=\Delta_0-2\mu_0-e$.
+\end{lemma}
+
+\begin{proof}
+Let $C=S_iT_i$ on either party, so $SCS=C^*$. Let $r_3$ send each point of the unit circle other than $-1$ to a nearest
+cube root of unity, choosing $r_3(e^{\pm i\pi/3})=1$ at those ties, and set $r_3(-1)=1$. Then $r_3(\bar z)=\overline{r_3(z)}$,
+and $|r_3(z)-z|\le|z^3-1|$ on the whole circle (at $z=-1$ both sides equal $2$). Put $C_0=r_3(C)$, $u(s)=S$ and $u(t)=SC_0$. Then $C_0^3=I$ and $SC_0S=r_3(C^*)=C_0^*$, so $u(s),u(t)$ are
+reflections with $(u(s)u(t))^3=I$: an exact $S_3$ representation. Functional calculus gives $\|(C_0-C)\Psi\|\le e$ and
+$\|(u(t)-T)\Psi\|\le e$. Every element of $S_3$ is a word of length at most three in $s,t$, and for involutive generators
+the reversed word represents the inverse, so the mirrors~\eqref{eq:group-mirror} hold with $\mu=3\mu_0+6e$. Replacing the
+letters of a word of length $L\le6$ by rounded ones, with raw suffixes moved to the other party, costs at most
+$Le+L(L-1)\mu_0\le6e+30\mu_0$; two normal forms from different copies commute after at most nine raw swaps with suffixes
+of length at most four, each costing $\eta_0+8\mu_0$. So Bob's cross-commutators are at most $9\eta_0+132\mu_0+12e$, and
+$\kappa=\eta+4\mu$ gives the stated value. Finally Bob's raw $S^BT^B$ transfers to Alice's $T^AS^A=(S^AT^A)^*$, which has
+the same displacement as $S^AT^A$, at cost $2\mu_0$, and rounding costs $e$.
+\end{proof}
+
+\subsection{Alice-local recovery and the forward direction}\label{sec:recovery}
+
+\begin{theorem}[Alice-local recovery]\label{thm:recovery}
+Let $\rho_{AB}$ be a normal state with purification $\Psi=\sum_k\sqrt{\lambda_k}|a_k\rangle_A|u_k\rangle_{BE}$. Let Alice apply
+the \emph{linear} isometry $V_A|a_k\rangle=|\bar u_k\rangle_{\bar B\bar E}$ into fresh registers, where the bar denotes
+complex conjugation of coordinates in fixed product bases, followed if desired by discarding $\bar E$.
+\begin{enumerate}[label=(\alph*),itemsep=1pt]
+\item $(V_A\otimes I)\Psi=|\sqrt R\rangle$ with $R=\rho_{BE}$, in the vectorization $\bar B\bar E:BE$. Before the discard both
+directional rates are unchanged; afterwards neither increases. Bob's marginal and operators are untouched.
+\item If $U$ is a unitary on Bob with an actual unitary Alice mirror of error $\delta\le\sqrt2$, then the exact transpose
+$U^T$ on $\bar B$ mirrors $U$ on the output with error at most
+\[
+\phi(\delta)=\sqrt{2\delta^2-\delta^4/2}\ \le\ \sqrt2\,\delta .
+\]
+In binary form, a disagreement probability $p\le\frac12$ becomes at most $2p(1-p)$.
+\item If Bob has an exact tensor factor of $M$ qubits with Paulis $X_i,Z_i$, and Alice has actual unitary predictors with
+disagreement probabilities $p_{X_i},p_{Z_i}\le\frac12$, then
+\[
+\ED^{A\to B}(\rho_{AB})\ \ge\ M-\sum_i\bigl[h(2p_{X_i}(1-p_{X_i}))+h(2p_{Z_i}(1-p_{Z_i}))\bigr],
+\]
+and $\ED^{B\to A}(\rho_{AB})\ge M-\sum_i[h(p_{X_i})+h(p_{Z_i})]$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) The conjugate vectors $\bar u_k$ are orthonormal, so $V_A$ is an isometry on the support, extended by a local
+orthogonal register; it is linear, not an antiunitary operation on the input. On $\Psi$ it gives
+$\sum_k\sqrt{\lambda_k}|\bar u_k\rangle|u_k\rangle=|\sqrt R\rangle$. Local isometries preserve, and local channels do not
+increase, the directional rates; nothing acts on $B$ or $E$.
+
+(b) Let $V$ be Alice's mirror. The vectors $V\Psi$ and $U\Psi$ purify $R$ and $S=URU^*$ on $BE$, and
+$\Re\langle V\Psi,U\Psi\rangle=1-\delta^2/2$, so by Uhlmann's transition-probability theorem~\cite{Uhl76} the root fidelity satisfies
+$F(R,S)=\trn{\sqrt R\sqrt S}\ge1-\delta^2/2$. The affinity $A(R,S)=\Tr\sqrt R\sqrt S$ satisfies $F^2\le A$: for a unitary
+$W$, $\Tr\sqrt R\sqrt SW=\Tr(R^{1/4}S^{1/4})(S^{1/4}WR^{1/4})$, whose first factor has squared Hilbert--Schmidt norm $A$ and
+second at most $\Tr\sqrt RW^*\sqrt SW\le1$; maximize over $W$~\cite[(44)]{IRS17}. On $|\sqrt R\rangle$,
+$\|(U^T\otimes I-I\otimes U)|\sqrt R\rangle\|^2=\hs{[U,\sqrt R]}^2=2-2A(R,S)\le2-2(1-\delta^2/2)^2=2\delta^2-\delta^4/2$. For
+reflections the disagreement probability is a quarter of the squared mirror error, which gives the binary form. Normal
+infinite systems follow by trace-class approximation.
+
+(c) Bob first discards the rest of his system into the environment; then $\bar B$ is exactly $M$ qubits on which Alice
+holds exact $X_i^T,Z_i^T$, predicted by Bob's $X_i,Z_i$ with disagreements $p'\le2p(1-p)$ by (b). Fano's inequality for
+each bit and subadditivity give $H(X^M_{\bar B}\mid B)+H(Z^M_{\bar B}\mid B)\le\sum_i[h(p'_{X_i})+h(p'_{Z_i})]$, and the
+uncertainty relation with quantum memory~\cite{BCCRR10} gives $H(X^M\mid B)+H(Z^M\mid B)\ge M+S(\bar B\mid B)$. Hence
+$-S(\bar B\mid B)$ is at least the displayed bound, and hashing with sender $\bar B$, held by Alice, makes it achievable
+from Alice to Bob. For the reverse statement no lift is needed: Alice measures the binary POVM with observable
+$\frac12(M+M^*)$ of her predictor $M$, whose disagreement with Bob's reflection $Q$ is exactly
+$\frac14\|(M-Q)\Psi\|^2$; the same Fano, subadditivity and uncertainty argument on Bob's exact register gives
+$-S(B_0\mid A)$, achievable from Bob to Alice. If Alice's system is infinite, apply the argument after finite-rank
+erasure truncations on Alice, which change the finitely many prediction probabilities arbitrarily little.
+\end{proof}
+
+The map $V_A$, followed by the discard of $\bar E$, is a Petz recovery map~\cite{Petz86}, the reversal operation of Barnum and
+Knill~\cite{BK02}, in the pretty-good recovery form of~\cite[App.~A.1]{BCW14}, with sides and conventions made explicit; its finite
+Choi matrix is $(\rho_A^{-T/2}\otimes I)\overline{\rho_{AB}}(\rho_A^{-T/2}\otimes I)$ on the support, and the binary bound
+$p'\le2p(1-p)$ also follows from~\cite[(12)]{Ren17}. We claim no new recovery map. One-shot bounds for one-way distillation with a
+Petz decoder, through binary hypothesis testing, are given by Can and Wilde~\cite{CW26}; they concern a given state, not the
+near-winners of a fixed game. Its use here is that the
+\emph{original} state and Bob's operators are kept, which gives the physical forward direction. Applied to all
+generators, Alice's lifted operators $D_g=\overline{U_g}=(U_g^*)^T$ form a homomorphism, so the whole exact source, with
+$J=-I$, is transported to Alice; this is used in \cref{sec:direction,sec:exact}.
+
+\subsection{Exact synchrony gives accessible maximally entangled factors}\label{sec:exact-sync}
+
+\begin{theorem}[Exact synchrony]\label{thm:exact-sync}
+Let $G$ be a finite synchronous game, $A_{xa},B_{xa}$ finite-dimensional projective measurements and $\rho_{AB}$ a mixed
+state with $\Tr\rho(A_{xa}\otimes I-I\otimes B_{xa})^2=0$ for every $x,a$. Restricted to the marginal supports, decompose the
+two measurement algebras into matching irreducible blocks of dimensions $d_\lambda$ with multiplicity spaces. Then every
+vector in the support of $\rho$ lies in $\bigoplus_\lambda\Phi_{d_\lambda}\otimes(M^A_\lambda\otimes M^B_\lambda)$, measuring the
+local central projections gives both parties the same label $\lambda$, and the conditional state is exactly
+$\Phi_{d_\lambda}\otimes\tau_\lambda$, even with coherence between different $\lambda$ in $\rho$. If $G$ has a pure Schmidt-rank
+lower bound $c\ell^{-\alpha}$ at small loss $\ell$, then for every fixed $0<\eta<1$ an exactly synchronous mixed strategy of
+loss $\eps$ yields, with success at least $1-\eta$, an exact maximally entangled state of rank at least $c_\eta\eps^{-\alpha}$.
+\end{theorem}
+
+\begin{proof}
+Exact synchrony means $(A_{xa}\otimes I)v=(I\otimes B_{xa})v$ for every $v$ in the support of $\rho$; the supports of the
+marginals are invariant under the local measurements. Vectorizing $v$ gives an operator $D$ with
+$A_{xa}D=DB_{xa}^T$, an intertwiner of the Alice representation with the transpose of Bob's. By Schur's lemma the space
+of such intertwiners is $\bigoplus_\lambda|\Phi_{d_\lambda}\rangle\otimes(M^A_\lambda\otimes M^B_\lambda)$. The central projections lie
+in the local measurement algebras, and measuring them gives the same $\lambda$ on both sides with probability $p_\lambda$,
+leaving $\Phi_{d_\lambda}\otimes\tau_\lambda$. All game measurements act on $V_\lambda$ only, so the strategy with $\Phi_{d_\lambda}$ has
+loss $\ell_\lambda$ with $\sum_\lambda p_\lambda\ell_\lambda\le\eps$. The sectors with $\ell_\lambda\le\eps/\eta$ carry weight at least
+$1-\eta$ and have $d_\lambda\ge c\eta^\alpha\eps^{-\alpha}$; on them Nielsen's majorization theorem~\cite{Nie99} converts
+$\Phi_{d_\lambda}$ deterministically to one common $\Phi_{M}$. Measuring $\lambda$, rejecting the other sectors and discarding
+multiplicities is a local protocol.
+\end{proof}
+
+This is standard finite-dimensional structure~\cite{PSSTW16}; we record it because the label is physically accessible,
+unlike the label of a convex-roof decomposition. Approximate synchrony does not suffice for an exact output
+(\cref{thm:no-exact}), and native constraint-variable games are not intrinsically synchronous: mirroring one
+representative bit per variable does not give the hypothesis on all row measurements.

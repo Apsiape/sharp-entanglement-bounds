@@ -1,0 +1,20 @@
+==============================================================================
+Compiling group profiles into games
+==============================================================================
+[ok  ] polar correction, right bound, 200 instances: max excess: -2.14e-03 (bound 0)
+[ok  ] polar correction, left bound: max excess: -1.75e-03 (bound 0)
+[ok  ] polar correction, commutator bound: max excess: -1.55e-02 (bound 0)
+[ok  ] polar correction, optimizer (8 starts): max excess: -1.03e-08 (bound 0)
+[ok  ] negative control: right defect 0 but left correction 1: True (bound True)
+[ok  ] corner map: multiplicative, unital, unitary, and sends w to -1 (exact models): 2.26e-15 (bound 0)
+[ok  ] corner map on perturbed models, same density matrix: max output/input error: 1.420 (bound bounded)
+      instance: 223 variables, 180 equations, 942 exact checks, 8 blocks, longest entry 3
+[ok  ] instance size: 223 variables and 180 equations: (223, 180) (bound (223, 180))
+[ok  ] instance: all 942 relations hold exactly in the negative quotient: True (bound True)
+      perturbation 0: model error 1.928e-17, largest pair loss 1.066e-31, entropy overhead 3.000
+      perturbation 1e-05: model error 2.828e-05, largest pair loss 1.006e-10, entropy overhead 3.000
+      perturbation 0.001: model error 2.828e-03, largest pair loss 1.006e-06, entropy overhead 3.000
+      perturbation 0.01: model error 2.828e-02, largest pair loss 1.006e-04, entropy overhead 3.000
+[ok  ] instance: pair loss <= C_3 e^2 on perturbed models: 3.64e-01 (bound 1)
+------------------------------------------------------------------------------
+Compiling group profiles into games: 10 checks, 0 failures

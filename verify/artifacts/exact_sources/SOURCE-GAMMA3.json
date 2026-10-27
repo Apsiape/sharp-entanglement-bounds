@@ -1,0 +1,38 @@
+{
+  "name": "Gamma_3: odd block-replication HNN extension of the point Pauli source",
+  "generators": ["p", "q", "x", "z", "t"],
+  "inverse_convention": "Uppercase letters are inverses; words multiply left to right and their point actions compose right to left.",
+  "central_word": "xzxz",
+  "target_sector": "pi(xzxz)=-I; this is a representation sector, not an abstract identity relator",
+  "source_precision": "Every listed relator is an exact operator identity.",
+  "state_contract": "Original arbitrary normal mixed input; actual Alice unitary mirrors for all signed p,q,x,z,t have maximum root error e. Exact source operator ambient spaces may be infinite; upper inputs have finite rank.",
+  "relators": [
+    {"id":"H1", "family":"host", "word":"pqPQpqPQ"},
+    {"id":"H2", "family":"host", "word":"pqPQppqPPQppqPPQppqPQP"},
+    {"id":"H3", "family":"host", "word":"pqPQpppqPQPPqpQpqpQPPP"},
+    {"id":"H4", "family":"host", "word":"ppqPQPqqpQPQ"},
+    {"id":"L1", "family":"onsite", "word":"xx"},
+    {"id":"L2", "family":"onsite", "word":"zz"},
+    {"id":"L3", "family":"onsite", "word":"xzxzxzxz"},
+    {"id":"Su-x", "family":"stabilizer", "word":"xpqPQpXPqpQP"},
+    {"id":"Su-z", "family":"stabilizer", "word":"zpqPQpZPqpQP"},
+    {"id":"Sv-x", "family":"stabilizer", "word":"xpqPXpQP"},
+    {"id":"Sv-z", "family":"stabilizer", "word":"zpqPZpQP"},
+    {"id":"P-xx", "family":"pair", "word":"xpxPXpXP"},
+    {"id":"P-xz", "family":"pair", "word":"xpzPXpZP"},
+    {"id":"P-zx", "family":"pair", "word":"zpxPZpXP"},
+    {"id":"P-zz", "family":"pair", "word":"zpzPZpZP"},
+    {"id":"Cp", "family":"center", "word":"xzxzpZXZXP"},
+    {"id":"Cq", "family":"center", "word":"xzxzqZXZXQ"},
+    {"id":"Tp", "family":"replication", "word":"tpTPPP"},
+    {"id":"Tq", "family":"replication", "word":"tqTQQQ"},
+    {"id":"Tx", "family":"replication", "word":"txTppXPXPX"},
+    {"id":"Tz", "family":"replication", "word":"tzTppZPZPZ"}
+  ],
+  "abbreviations_for_proof_only": {
+    "s":"pqPQ", "J":"xzxz", "u":"pqPQp", "v":"pqP",
+    "phi_p":"ppp", "phi_q":"qqq", "phi_x":"xpxpxPP", "phi_z":"zpzpzPP"
+  },
+  "no_game_claim": "This is a literal finite group-source presentation, not a compiled game or a finite-dimensional exact negative-J representation.",
+  "growth_claim": "Both exact-source original mixed-state directional ED infima are exp(Theta(1/e)); the growth order already occurs in the previous configuration source. Worldwide novelty of this compact source is unassessed."
+}

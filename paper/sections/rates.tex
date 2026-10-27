@@ -1,0 +1,217 @@
+%======================================================================
+\section{Forced branching: the lamp sources}\label{sec:rates}
+%======================================================================
+
+This section and the next build source groups with prescribed polynomial profiles. The mechanism is branching forced
+at each magnification. A relation $xyx^{-1}=y^m$ makes the spectral law of $y$ nearly invariant under multiplication of the
+angle by $m$, and a finite set of involutions permuted cyclically by $y$ makes it nearly invariant under a rotation by
+$1/q$ of a turn. A law invariant under both maps puts mass at most $q^{-n}$ on an arc of length $q^{-1}m^{-n+1}$, so it satisfies
+a Frostman bound of exponent $s=\log_mq$ and has dimension at least $s$; Haar measure, for instance, is invariant and has dimension
+one. A spectral law that is nearly invariant is close to such a law, so it needs about $e^{-s}$ atoms and $s\log(1/e)$ bits of
+entropy.
+
+\paragraph{Turns.} In this section and the next we identify $\Tor$ with $\R/\Z$ through $\vartheta=2\pi t$ and measure
+lengths and Wasserstein distances in turns: $d(t,u)\in[0,\frac12]$, and $\Wone$ is $1/(2\pi)$ times the distance of
+\cref{sec:transport}. \Cref{lem:spectral-coupling} then reads $\Wone(\mu^\rho_P,\mu^\rho_Q)\le\frac14\hs{P\xi-\xi Q}$ and
+$\Wone(\mu^{U^*\rho U}_Y,\mu^\rho_Y)\le\frac12\hs{[U,\xi]}$, and a $(\kappa,s)$-spread law satisfies $\nu(I)\le(\kappa|I|)^s$. Put
+$D(t)=mt$ and $S(t)=t+1/q$ modulo $1$.
+
+\subsection{The sources}\label{sec:rates-sources}
+
+\begin{definition}[Lamp sources]\label{def:lamps-source}
+For integers $q\ge1$ and $m\ge2$, the \emph{lamp source} $L_{q,m}$ has generators $z_0,\dots,z_{q-1},w,y,x$ and the relators
+\begin{gather*}
+z_j^2,\quad w^2,\quad[z_j,z_k],\quad[z_j,w],\quad z_0z_1\cdots z_{q-1}w,\\
+yz_jy^{-1}z_{j+1}^{-1}\ (j\bmod q),\qquad xwx^{-1}w^{-1},\qquad xyx^{-1}y^{-m},
+\end{gather*}
+with distinguished involution $w$. The row makes $w$ commute with the lamps $z_j$, and conjugating it by $y$ permutes its
+factors cyclically, so $w$ is central. Its profiles are those of \cref{ex:presented}(a): a model at precision $e$ is a
+family of unitaries $Z_j,W,Y,X$ and a density matrix $\rho$, $\xi=\rho^{1/2}$, with every relator of defect at most $e$ in
+the state, every generator of state commutator at most $e$, and $\hs{(W+I)\xi}\le e$.
+\end{definition}
+
+For $q=2$ the row gives $z_1=z_0w$, and $L_{2,2}$ is the group $K$ of Slofstra and Vidick~\eqref{eq:K}, with $a,b,c$ the
+two lamps and $w$. The power relation is a dilation of the kind of Slofstra's HNN constructions~\cite[Section~5]{Slo19}
+and of Fu's self-tests~\cite{Fu22}.
+
+\begin{theorem}[One lamp source]\label{thm:lamp}
+Let $q=2^r$ with $r\ge1$, let $q$ divide $m$, and put $s=\log_mq$. There are constants $c,C>0$ such that every model of
+$L_{q,m}$ at precision $e\le\frac12$ on $\C^d$, with density matrix $\rho$, has
+\[
+d\ \ge\ \rank\rho\ \ge\ c\,e^{-s}\qquad\text{and}\qquad S(\rho)\ \ge\ s\log(1/e)-C ,
+\]
+and for every $e\le\frac12$ there is a model at precision $e$ with the flat state, of dimension at most $Ce^{-s}$ and
+entropy at most $s\log(1/e)+C$. So $h_{L_{q,m}}(e)=\Theta(e^{-s})$ and $h^S_{L_{q,m}}(e)=s\log(1/e)+O(1)$.
+\end{theorem}
+
+The proof occupies the rest of the section. Its steps are a rotation implemented on the whole state
+(\cref{sec:rates-rotation}), an invariant law nearby (\cref{sec:rates-shadow}), the spread of every invariant law
+(\cref{sec:rates-spread}), and matching models (\cref{sec:rates-models}).
+
+\subsection{A rotation on the whole state}\label{sec:rates-rotation}
+
+Work first in the group algebra of $L_{q,m}$, before $w=-1$ is imposed. For a sign vector $\chi\in\{\pm1\}^q$ put
+$P_\chi=2^{-q}\prod_j(1+\chi_jz_j)$. These are commuting self-adjoint idempotents with $P_\chi P_{\chi'}=0$ for
+$\chi\ne\chi'$, $\sum_\chi P_\chi=1$ and $wP_\chi=(\prod_j\chi_j)P_\chi$, so
+\[
+\sum_{\chi\in\Omega_-}P_\chi=\tfrac12(1-w),\qquad\Omega_-=\Bigl\{\chi:\prod_j\chi_j=-1\Bigr\}.
+\]
+With $(\sigma\chi)_k=\chi_{k-1}$, the conjugacies give $yP_\chi y^{-1}=P_{\sigma\chi}$. Every $\chi\in\Omega_-$ has an orbit of
+length exactly $q$: if its least period $l$ is smaller, its first $l$ entries repeat $q/l$ times, an even number when $q$ is
+a power of two, and the product of all entries is $+1$. Choose a representative $\chi_O$ of each orbit $O\subseteq\Omega_-$,
+put $\zeta=e^{2\pi i/q}$, and
+\[
+T=\sum_O\sum_{a=0}^{q-1}\zeta^aP_{\sigma^a\chi_O}.
+\]
+
+\begin{lemma}\label{lem:rotation-selector}
+In the group algebra, $T^*T=TT^*=\frac12(1-w)$ and $Ty=\zeta yT$. Consequently, for a model of $L_{q,m}$ at precision $e$
+there is a unitary $U$ with
+\[
+\hs{[U,\xi]}\le Ce\qquad\text{and}\qquad\hs{(UYU^*-\zeta Y)\xi}\le Ce ,
+\]
+with $C$ depending only on $q$ and $m$.
+\end{lemma}
+
+\begin{proof}
+By orthogonality, $T^*T=TT^*=\sum_O\sum_aP_{\sigma^a\chi_O}=\frac12(1-w)$. Next $yTy^{-1}=\sum_O\sum_a\zeta^aP_{\sigma^{a+1}\chi_O}=
+\zeta^{-1}T$, since $\sigma^q\chi_O=\chi_O$; so $Ty=\zeta yT$. These identities have finite derivations from the defining
+relators (expand the products, reduce squares, commute lamps, use the row for $w$, and the $q$ conjugacies), so in the
+algebra $L_{q,m}^-$ of \cref{ex:presented}(a) the elements $T^*T-1$, $TT^*-1$ and $Ty-\zeta yT$ lie in the defining ideal.
+Let $B=T(\varphi)$. By \cref{lem:finite-identity}, $\hs{(B^*B-I)\xi}$, $\hs{(BB^*-I)\xi}$, $\hs{(BY-\zeta YB)\xi}$ and
+$\hs{[B,\xi]}$ are $O(e)$, and $\opn B=O(1)$. \Cref{lem:polar} gives a unitary $U$ with $\hs{(U-B)\xi}$, $\hs{\xi(U-B)}$ and
+$\hs{[U,\xi]}$ of order $e$. Then $(UY-\zeta YU)\xi=(BY-\zeta YB)\xi+(U-B)\xi Y+(U-B)[Y,\xi]-\zeta Y(U-B)\xi$ is $O(e)$, and
+$(UYU^*-\zeta Y)\xi=(UY-\zeta YU)U^*\xi$ is $O(e)$ after moving $U^*$ past $\xi$.
+\end{proof}
+
+No sector is selected: the polynomial $T$ combines all sign vectors of odd parity, and the state is never changed. For
+$q=2$, $T=P_{(-,+)}-P_{(+,-)}$, which in the negative quotient is the lamp $z_0$ up to sign, and $U$ is close to it.
+
+\begin{lemma}[Two approximate invariances]\label{lem:invariances}
+For a model of $L_{q,m}$ at precision $e$, the spectral law $\mu=\mu^\rho_Y$ satisfies
+\[
+\delta_D=\Wone(D_*\mu,\mu)\le\tfrac{m+3}2\,e,\qquad\delta_S=\Wone(S_*\mu,\mu)\le C'e .
+\]
+\end{lemma}
+
+\begin{proof}
+Put $Q=XYX^*$ and $R=Y^m$. The relator gives $\hs{(QR^*-I)\xi}\le e$, so $\hs{(Q-R)\xi}\le e+2\hs{[R,\xi]}\le(2m+1)e$; with
+$\hs{[Q,\xi]}\le3e$, $\hs{R\xi-\xi Q}\le(2m+4)e$. By~\eqref{eq:spectral-push} and \cref{lem:spectral-coupling} in turns,
+$\Wone(D_*\mu,\mu^{X^*\rho X}_Y)\le\frac{m+2}2e$ and $\Wone(\mu^{X^*\rho X}_Y,\mu)\le\frac e2$. For the rotation let $U$ be as in
+\cref{lem:rotation-selector}: $\mu^\rho_{\zeta Y}=S_*\mu$, $\hs{\zeta Y\xi-\xi UYU^*}\le\hs{(\zeta Y-UYU^*)\xi}+\hs{[UYU^*,\xi]}=
+O(e)$, and $\mu^\rho_{UYU^*}=\mu^{U^*\rho U}_Y$ is within $\frac12\hs{[U,\xi]}$ of $\mu$.
+\end{proof}
+
+\subsection{An invariant law nearby}\label{sec:rates-shadow}
+
+For $m=2$ and $q=2$ the invariant law is unique, and \cref{lem:circle} gives a direct estimate. In general there are many
+invariant laws, Cantor-like ones included, and we show instead that a nearly invariant law is close to \emph{some} invariant
+law, by shadowing a stationary pseudo-orbit.
+
+\begin{lemma}[Shadowing]\label{lem:shadowing}
+Let $q$ divide $m$, and let $\mu$ be a probability measure on $\R/\Z$ with $\delta_D=\Wone(D_*\mu,\mu)$ and
+$\delta_S=\Wone(S_*\mu,\mu)$. There is a probability measure $\nu$ with $D_*\nu=\nu$ and $S_*\nu=\nu$ such that
+\[
+\Wone(\mu,\nu)\le b+\frac{\delta_D+b}{m-1},\qquad b=\frac{(q-1)\delta_S}2 .
+\]
+\end{lemma}
+
+\begin{proof}
+\emph{Symmetrize.} Let $\mu_0=\frac1q\sum_{k<q}S^k_*\mu$. Since $S$ is an isometry, $\Wone(\mu,S^k_*\mu)\le k\delta_S$, so
+$\Wone(\mu,\mu_0)\le b$. As $q$ divides $m$, $DS=D$, so $D_*\mu_0=D_*\mu$ and $\delta:=\Wone(D_*\mu_0,\mu_0)\le\delta_D+b$.
+
+\emph{A symmetric coupling.} Let $\eta$ be an optimal coupling of $D_*\mu_0$ and $\mu_0$. Disintegrate $\mu_0$ along the fibres
+of $D$; since $S$ preserves every fibre and $\mu_0$, the conditional laws can be replaced by their averages over the powers of
+$S$. Choosing $(z,v)$ from $\eta$ and then $u$ from the conditional law of $\mu_0$ on the fibre $D^{-1}(z)$ gives a law $Q$ of
+$(u,v)$ with both marginals $\mu_0$, with $Du=z$, so that $\int d(Du,v)\,dQ=\delta$, and invariant under $(u,v)\mapsto(Su,v)$.
+
+\emph{A stationary chain.} Let $(U_t)_{t\in\Z}$ be the stationary Markov chain with stationary law $\mu_0$ whose consecutive
+pairs $(U_t,U_{t+1})$ have law $Q$. The conditional law of $U_t$ given the whole future $(U_{t+1},U_{t+2},\dots)$ is the
+reverse kernel of $Q$ at $U_{t+1}$, by the Markov property of the reversed chain; by the symmetry of $Q$ it is invariant
+under $S$.
+
+\emph{Shadowing.} Let $E_t\in[-\frac12,\frac12)$ represent $mU_t-U_{t+1}$ modulo $1$, so $\mathbb E|E_t|=\delta$, and put
+\[
+V_t=U_t-\sum_{j\ge0}m^{-j-1}E_{t+j}\pmod1 .
+\]
+The series converges absolutely, and $mV_t-V_{t+1}=mU_t-E_t-U_{t+1}=0$ modulo $1$. The process $(V_t)$ is a fixed function of
+the shifted process, so it is stationary, and the law $\nu$ of $V_0$ satisfies $D_*\nu=\nu$. Also
+$\mathbb E\,d(U_0,V_0)\le\sum_jm^{-j-1}\mathbb E|E_j|=\delta/(m-1)$, so $\Wone(\mu_0,\nu)\le\delta/(m-1)$.
+
+\emph{Symmetry.} $E_0$ depends on $U_0$ only through $mU_0$, which is unchanged when $U_0$ is replaced by $SU_0$ because $q$
+divides $m$, and every later $E_j$ depends only on the future. So $V_0=U_0-g(mU_0,U_1,U_2,\dots)$ for a measurable $g$, and
+replacing $U_0$ by $SU_0$ replaces $V_0$ by $SV_0$. Conditional on the future, $U_0$ has an $S$-invariant law; hence so has
+$V_0$, and $\nu$ is $S$-invariant. Finally $\Wone(\mu,\nu)\le\Wone(\mu,\mu_0)+\Wone(\mu_0,\nu)$.
+\end{proof}
+
+No uniqueness, ergodicity or continuity of an inverse branch is used, and the pseudo-orbit errors are controlled only on
+average.
+
+\subsection{Every invariant law is spread}\label{sec:rates-spread}
+
+\begin{lemma}[Spread]\label{lem:spread}
+Let $q\ge2$ divide $m$ and $s=\log_mq$. Every probability measure $\nu$ on $\R/\Z$ with $D_*\nu=\nu$ and $S_*\nu=\nu$ has no
+atoms and satisfies $\nu(I)\le(q|I|)^s$ for every arc $I$; it is $(q,s)$-spread. Consequently every probability measure
+$\lambda$ with at most $d$ atoms has $\Wone(\lambda,\nu)\ge d^{-1/s}/(4qm)$.
+\end{lemma}
+
+\begin{proof}
+For a point $t$, the $q$ points $S^kt$ are distinct and all map to $Dt$, so $q\nu(\{t\})\le\nu(\{Dt\})$, and iterating gives
+$\nu(\{t\})\le q^{-n}$ for every $n$. For a half-open arc $I$ of length at most $1/q$, the arcs $S^kI$ are disjoint and lie in
+$D^{-1}(DI)$, so $q\nu(I)\le\nu(D^{-1}(DI))=\nu(DI)$, where $DI$ is an arc of length $\min(m|I|,1)$. For $0<|I|\le1/q$ let
+$n=\lfloor\log_m(1/(q|I|))\rfloor+1$; the first $n$ images of $I$ have length at most $1/q$ before each step, so
+$\nu(I)\le q^{-n}<(q|I|)^s$. Longer arcs satisfy the bound trivially, and endpoints do not matter.
+
+Let $F$ be the set of atoms of $\lambda$, $r=(2d)^{-1/s}/(2q)$, and $f(t)=d(t,F)$. The points within $r$ of $F$ form at most
+$d$ arcs of length $2r$, of total $\nu$-mass at most $d(2qr)^s=\frac12$. So $\int f\,d\nu\ge r/2$ while $\int f\,d\lambda=0$,
+and $\Wone(\lambda,\nu)\ge r/2=2^{-1/s}d^{-1/s}/(4q)\ge d^{-1/s}/(4qm)$, since $2^{1/s}=m^{\log_q2}\le m$.
+\end{proof}
+
+\begin{proof}[Proof of the lower bounds in \cref{thm:lamp}]
+By \cref{lem:invariances,lem:shadowing} there is an invariant $\nu$ with $\Wone(\mu,\nu)\le C''e$. The law $\mu$ has at most
+$d$ atoms, so \cref{lem:spread} gives $d\ge(4qmC''e)^{-s}$. In radians $\nu$ is $(q,s)$-spread and $\Wone(\mu,\nu)\le2\pi C''e$,
+and $\hs{[Y,\xi]}\le e$, so \cref{thm:entropy-transport} gives $S(\rho)\ge s\log(1/e)-C$. Finally $\rank\rho\ge2^{S(\rho)}$.
+\end{proof}
+
+The entropy bound uses the state commutator of $Y$, not only the spread of its spectral law: by \cref{ex:clock} a pure
+state can have a spread spectral law.
+
+\subsection{Matching models}\label{sec:rates-models}
+
+\begin{example}[Fourier lamps]\label{ex:fourier-lamps}
+Let $q$ divide $m$, $L\ge1$, $h=m^L-1$, and index a basis of $\C^{q^L}$ by words $b=(b_0,\dots,b_{L-1})$ over
+$\{0,\dots,q-1\}$. Put
+\[
+t_b=\frac{m}{qh}\sum_{j=0}^{L-1}b_jm^{L-1-j},\qquad Y=\mathrm{diag}(e^{2\pi it_b}),\qquad W=-I,
+\]
+let $X$ be the permutation matrix with $X_{b,Rb}=1$, where $R$ rotates a word one place to the left, and on the first letter
+let $v_j(a)=q^{-1/2}\zeta^{ja}$, $E_j=|v_j\rangle\langle v_j|$ and $Z_j=(I_q-2E_j)\otimes I_{q^{L-1}}$. Then all relators of
+$L_{q,m}$ hold exactly except the lamp conjugacies, whose defects are at most $4\pi(q-1)/(q(m^L-1))$ in operator norm.
+\end{example}
+
+\begin{proof}
+The $E_j$ are orthogonal rank-one projections with sum $I_q$, so the $Z_j$ are commuting involutions with
+$\prod_jZ_j=I-2\sum_jE_j=-I$, and the row, the squares and the commutators hold; $W=-I$ is central. An integer calculation
+gives $mt_b-t_{Rb}=(m/q)b_0\in\Z$, so $XYX^*=Y^m$ exactly. Write $t_b=b_0/q+b_0/(qh)+r_b$, with $r_b$ depending only on
+$b_1,\dots,b_{L-1}$, and let $Y_0=D_0\otimes\mathrm{diag}(e^{2\pi ir_b})$ with $D_0=\mathrm{diag}(\zeta^{a})$ on the first letter. Then
+$D_0E_jD_0^*=E_{j+1}$, so $Y_0Z_jY_0^*=Z_{j+1}$, including $j=q-1$, and $\opn{Y-Y_0}\le\max_{b_0}|e^{2\pi ib_0/(qh)}-1|\le
+2\pi(q-1)/(qh)$. Hence $\opn{YZ_jY^*-Z_{j+1}}\le2\opn{Y-Y_0}$, and this is the defect of the relator, since its last factor is
+unitary.
+\end{proof}
+
+\begin{proof}[Proof of the upper bounds in \cref{thm:lamp}]
+With the flat state every state commutator vanishes and every defect in the state is at most its operator norm. Choose
+$L$ least with $4\pi(q-1)/(q(m^L-1))\le e$; then $m^{L-1}\le C/e$, and the dimension $q^L=q\,(m^{L-1})^s\le Ce^{-s}$ has
+entropy $L\log q\le s\log(1/e)+C$.
+\end{proof}
+
+\begin{remark}[The arithmetic of the lamp count]\label{rem:lamp-arithmetic}
+Write $q=2^vt$ with $t$ odd. Every odd-parity sign vector has an orbit whose length $l$ satisfies that $q/l$ is odd, so $2^v$
+divides $l$. Grading each orbit by powers of $e^{2\pi i/2^v}$ gives, by the same proof, a rotation by $2^{-v}$ of a turn on the
+whole state; if $2^v$ divides $m$, the exponent of $L_{q,m}$ is $\log_m2^v$, with matching models obtained from $2^v$ Fourier
+lamps, each repeated $t$ times. For odd $q$ there is an exact one-dimensional model, with every lamp and $w$ equal to $-1$ and
+$x=y=1$, and the profile is bounded. So the power of two in $q$ is what branches; an odd factor adds nothing. The
+divisibility of $m$ by the rotation order is used in $DS=D$, in the shadowing and in the models.
+\end{remark}
+
+\input{sections/additive}

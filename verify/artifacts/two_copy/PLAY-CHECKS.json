@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "artifact_sha256": "ee3dcceff877b13a9156bd0971534a1e3cacedf95d50ee22a0b66fe596142a1e",
+  "lengths": [
+    2,
+    3
+  ],
+  "rows_covered": [
+    0,
+    164608
+  ],
+  "row_visit_hash": "2dabfb92123981bb75905c8e6da8528602ed522fd8daf864f3a70bc9b35a93c3",
+  "all_final_contexts_visited": true,
+  "contexts": 164608,
+  "raw_outcome_visits": 1317364,
+  "incidence_outcome_visits": 3955160,
+  "physical_square_visits": 199129,
+  "cover_rows": [
+    {
+      "row": 2,
+      "all_raw_outcomes": 512,
+      "scalar_Born_evaluation": true
+    }
+  ],
+  "records": [
+    {
+      "binary_word_length": 2,
+      "source_dimension": 16,
+      "game_schmidt_rank": 1024,
+      "game_entropy_bits": 10,
+      "source_precision": 0.9999999999999999,
+      "source_error_squared": 0.9999999999999998,
+      "actual_game_loss": 3.0058786126231206e-07,
+      "loss_over_source_error_squared": 3.005878612623121e-07,
+      "maximum_probability_mass_error": 0.0,
+      "maximum_physical_square_trace_error": 0.0,
+      "maximum_forbidden_context_probability": 0.00390625
+    },
+    {
+      "binary_word_length": 3,
+      "source_dimension": 64,
+      "game_schmidt_rank": 4096,
+      "game_entropy_bits": 12,
+      "source_precision": 0.4450418679126288,
+      "source_error_squared": 0.19806226419516174,
+      "actual_game_loss": 6.20479257191874e-08,
+      "loss_over_source_error_squared": 3.132748480449973e-07,
+      "maximum_probability_mass_error": 2.220446049250313e-16,
+      "maximum_physical_square_trace_error": 0.0,
+      "maximum_forbidden_context_probability": 0.0007736807195123374
+    }
+  ],
+  "dense_controls": {
+    "dense_factor_word_controls": 210,
+    "dense_core_monomial_controls": 16,
+    "maximum_dense_difference": 6.979023448416918e-16,
+    "repeated_inverse_negative_controls": "PASS"
+  },
+  "unique_context_Born_data": 2736,
+  "scalar_contexts_visited": 45046,
+  "unique_physical_matrices": 4124,
+  "physical_monomial_product_cache": 24819,
+  "matrix_inner_cache": 23893,
+  "factor_trace_cache": 18,
+  "maximum_imaginary_probability_or_correlation": 0.0,
+  "minimum_raw_probability": 0.0,
+  "minimum_incident_error_probability": 0.0,
+  "peak_process_bytes": 143605760,
+  "seconds": 11.653483500005677,
+  "arithmetic": "complex floating point; physical tensor-permutation traces independently dense-audited; no source-relator simplification",
+  "limits": "Complete actual strategy evaluation for the exported finite game; no optimization, lower-bound proof, or asymptotic matching inference from these finite sizes."
+}
