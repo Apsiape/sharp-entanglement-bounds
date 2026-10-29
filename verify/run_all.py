@@ -8,19 +8,19 @@ import time
 HERE = os.path.dirname(os.path.abspath(__file__))
 CHECKS = ["check_constants", "check_lemmas", "check_count", "check_chsh", "check_return", "check_compiler",
           "check_universal", "check_rates", "check_additive", "check_coefficients", "check_linear_games",
-          "check_transport", "check_reservoir", "check_tree_filling"]
+          "check_transport", "check_reservoir", "check_tree_filling", "check_refinements", "check_window"]
 
 
 def main():
     env = dict(os.environ)
-    for name in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS"):
+    for name in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS", "VECLIB_MAXIMUM_THREADS", "BLIS_NUM_THREADS"):
         env[name] = "1"
     os.makedirs(os.path.join(HERE, "logs"), exist_ok=True)
     failed = []
     for name in CHECKS:
         start = time.monotonic()
-        res = subprocess.run([sys.executable, "-I", os.path.join(HERE, name + ".py")], capture_output=True,
-                             text=True, env=env, cwd=HERE, timeout=600)
+        res = subprocess.run([sys.executable, "-I", "-X", "utf8", "-B", os.path.join(HERE, name + ".py")], capture_output=True,
+                             text=True, encoding="utf-8", errors="replace", env=env, cwd=HERE, timeout=600)
         with open(os.path.join(HERE, "logs", name + ".log"), "w", encoding="utf-8", newline="\n") as f:
             f.write(res.stdout)
             if res.stderr:

@@ -5,78 +5,82 @@
 \Cref{tab:status} lists every result of the paper with its status. \emph{Proved}: a complete proof is given here, using
 only the cited results named in the row or the proof. \emph{Checked}: a finite computation or a verified implication from a cited
 manuscript. \emph{Conditional}: the result rests on a named input not proved self-containedly. \emph{Companion}: the result is stated
-here and proved in~\cite{DM-game}. The review column names the
-independent blind review that covered the result (see the section \hyperref[sec:methods]{How this work was done}); ``tool''
-means the earlier review of the inherited tool results, and ``read'' the later non-blind second read of the whole manuscript,
-named only where that read supplied or checked the written proof; ``check'' means an independent proof check, of the floor and
-window results found after the second blind audit, or of the coefficient results found during the third; ``computation'' means a
-finite check by the scripts in \texttt{verify/}. The twelve audits of the whole manuscript are summarized in that section and
-listed in \cref{app:audits}; a row names an audit only where it was the first blind reading of the result or of the part named. The tenth to twelfth
-audits were not blind throughout (\cref{app:audits}).
+here and proved in~\cite{DM-game}. The final column describes the proof or finite computational scope. The references in the location column identify the written proofs; \cref{app:audits} gives commands, arithmetic conventions and limitations for the computations. Finite examples do not substitute for the proofs.
 
 \begin{longtable}{@{}L{0.3\textwidth}L{0.2\textwidth}L{0.18\textwidth}L{0.22\textwidth}@{}}
 \toprule
-result & where & status & review\\
+result & where & status & proof / finite scope\\
 \midrule
 \endhead
-qubit count in a state & \cref{thm:count,cor:count-uniform} & companion & tool\\
-transfer and return, linear & \cref{thm:transfer,thm:return,cor:correspondence} & companion & tool, first, second\\
-Boolean correspondence & \cref{thm:boolean-correspondence} & proved & first, second, third\\
-universal Boolean compiler & \cref{thm:universal} & proved & first\\
-compiler on virtual retracts & \cref{thm:compile} & proved, on~\cite[Lemma~B.1]{DM-game} & tool\\
-balanced compiler, extended presentations & \cref{prop:extended} & proved & computation; tenth audit\\
-actual source interface & \cref{prop:interface} & proved & second\\
-triangular extraction & \cref{thm:triangular} & proved & second, third\\
-cyclic triangular extraction; selector polynomials & \cref{lem:cyclic-triangular}, paragraph after \cref{prop:interface} & proved & check; fourth audit\\
-signed regular extraction & \cref{thm:signed-regular,lem:fixed-size} & proved & second, third\\
-aggregate and finite-group extraction & \cref{thm:aggregate,thm:group-extract,cor:S3,lem:S3-round} & proved & third\\
-Alice-local recovery, forward bound & \cref{thm:recovery} & proved & third\\
-exact synchrony & \cref{thm:exact-sync} & proved & second\\
-Theorem A & \cref{thm:A} & proved & third\\
-effective certificates & \cref{thm:effective} & proved & third\\
-undecidability & \cref{thm:undecidable} & proved & third\\
-white-box protocol & \cref{thm:protocol}, \cref{app:protocol} & proved & third\\
-local symmetry, Bob kept & \cref{thm:local-symmetry} & proved & fourth\\
-factor three and sharpness & \cref{thm:factor-three,thm:factor-three-sharp} & proved & fourth\\
-synchronous repair; directions & \cref{prop:sync-repair,cor:direction-spectra} & proved & fourth\\
-Slofstra--Vidick dimension and profile & \cref{thm:K,cor:K-profile,thm:SV} & companion; upper lift~\cite[Lemma~11.13]{DM-game} & tool; lift by computation; tenth audit\\
-Slofstra--Vidick entropy and formation & \cref{thm:entropy-transport,cor:K-entropy,thm:SV-entropy} & proved & tool\\
-one lamp source & \cref{thm:lamp} & proved & second\\
-additive profiles & \cref{thm:additive} & proved & second\\
-shared dilations $4,6$ & \cref{thm:shared} & proved & second\\
-rational Boolean constraint games & \cref{thm:rational-games} & proved & second\\
-one-copy linear family & \cref{thm:rational-linear} & proved & second\\
-restricted compiler, several copies & \cref{thm:rational-linear-k} & conditional & third (exports checked)\\
-linear games, every rational exponent & \cref{rem:SV-route-k,cor:linear-existence} & proved & read only, not blind\\
-R\'enyi spectrum, concentration & \cref{thm:renyi} & proved & second\\
-sharp $\ED$ coefficient, rational $\alpha$ & \cref{thm:rational-ED} & proved & second (earlier form of the proof); check; fourth audit\\
-sharp $\ED$ coefficient, every $\alpha\in\mathcal S$ & \cref{thm:rational-ED,rem:binary-route} & proved & check; fourth audit\\
-dense coefficient set; arithmetic bounds & \cref{cor:coefficient-set,lem:reweighting,prop:arithmetic-dim,thm:arithmetic} & proved & check; fourth audit\\
-configuration-lamp game: entropy, formation, dimension & \cref{thm:lamps-sector,thm:lamps-game} & companion & tool\\
-configuration-lamp game: usable entanglement & \cref{thm:lamps-ED} & proved & tool, second\\
-linear filling charge & \cref{thm:linear-filling} & proved & computation (tree of faces); second audit\\
-point window & \cref{thm:point-window,prop:collective} & proved & third; present lower exponent: second audit\\
-native class laws & \cref{thm:native,thm:native-enlarged} & conditional & third\\
-address growth & \cref{thm:address} & proved & third\\
-exact point source and traces & \cref{thm:exact-point,prop:point-structure,prop:point-traces} & proved & third\\
-exact configuration source & \cref{thm:exact-config} & proved & third\\
-subset sources & \cref{prop:subset-presentation,thm:subset,thm:subset-visibility} & proved, on Johnson's presentation & fourth\\
-replication source & \cref{thm:gamma3} & proved, on Johnson's presentation & fourth\\
-PPT gap; no exact output & \cref{thm:ppt-gap,thm:no-exact} & proved & second\\
-linear compiler exclusions & \cref{prop:no-linear} & proved & second\\
-raw pair bounds & \cref{prop:raw-pairs} & proved, on the regions of~\cite[\S6]{DM-H3} & third; read\\
-finite-table gate; refutations & \cref{prop:table,prop:collective-refutes} & proved & third\\
-correction costs & \cref{prop:correction} & proved; native part conditional & third\\
-scalar phase schemes & \cref{prop:phase} & proved & fourth; read\\
-finite supports; invisible witnesses & \cref{prop:finite-support,prop:invisible} & proved & fourth\\
-$I_{3322}$ Bell-gap contrast & \cref{thm:i3322} & checked; conditional on~\cite{Dou26} & fourth\\
-floor on the sign-and-dilation class; Abels game & \cref{thm:floor-class,cor:abels} & proved & check; third audit\\
-compression; dyadic bound; criterion & \cref{lem:compression,prop:dyadic,prop:criterion} & proved & check; third audit\\
-excluded candidate classes & \cref{prop:bs-central,prop:copied-gadget,thm:stable,cor:dyadic-models} & proved & check; third audit\\
-Deligne extension & \cref{ex:deligne} & proved from imported results~\cite{Del78,BLSW23,DGLT20} & check; third audit\\
-method obstructions & \cref{prop:typeII,prop:slow-recovery,prop:threshold,prop:separation} & proved & check; third audit\\
-raw cross-copy obstruction & \cref{thm:raw-obstruction,prop:window-dilution} & proved & check; third audit\\
-finite blocks & \cref{prop:normal-perfect} & known~\cite{KPS18} & fourth\\
+qubit count in a state & \cref{thm:count,cor:count-uniform} & companion & Cited companion proof\\
+transfer and return, linear & \cref{thm:transfer,thm:return,cor:correspondence} & companion & Cited companion proof\\
+Boolean correspondence & \cref{thm:boolean-correspondence} & proved & Written proof\\
+universal Boolean compiler & \cref{thm:universal} & proved & Exact split identity\\
+compiler on virtual retracts & \cref{thm:compile} & proved, on~\cite[Lemma~B.1]{DM-game} & Written proof\\
+balanced compiler, extended presentations & \cref{prop:extended} & proved & Finite lift controls\\
+actual source interface & \cref{prop:interface} & proved & Written proof\\
+triangular extraction & \cref{thm:triangular} & proved & Written proof\\
+cyclic triangular extraction; selector polynomials & \cref{lem:cyclic-triangular}, paragraph after \cref{prop:interface} & proved & Mixed-state tests\\
+signed regular extraction & \cref{thm:signed-regular,lem:fixed-size} & proved & Written proof\\
+aggregate and finite-group extraction & \cref{thm:aggregate,thm:group-extract,cor:S3,lem:S3-round} & proved & Written proof\\
+Alice-local recovery, forward bound & \cref{thm:recovery} & proved & Written proof\\
+exact synchrony & \cref{thm:exact-sync} & proved & Written proof\\
+optimal small-error pairwise budget & \cref{thm:optimal-pair-budget} & proved & Finite budget tests\\
+Theorem A & \cref{thm:A} & proved & Written proof\\
+effective certificates & \cref{thm:effective} & proved & Written proof\\
+undecidability & \cref{thm:undecidable} & proved & Finite selector tests\\
+white-box protocol & \cref{thm:protocol}, \cref{app:protocol} & proved & Written proof\\
+local symmetry, Bob kept & \cref{thm:local-symmetry} & proved & Written proof\\
+factor three and sharpness & \cref{thm:factor-three,thm:factor-three-sharp} & proved & Written proof\\
+synchronous repair; directions & \cref{prop:sync-repair,cor:direction-spectra} & proved & Written proof\\
+Slofstra--Vidick dimension and profile & \cref{thm:K,cor:K-profile,thm:SV} & companion; upper lift~\cite[Lemma~11.13]{DM-game} & Finite examples\\
+Slofstra--Vidick entropy and formation & \cref{thm:entropy-transport,cor:K-entropy,thm:SV-entropy} & proved & Written proof\\
+one lamp source & \cref{thm:lamp} & proved & Written proof\\
+additive profiles & \cref{thm:additive} & proved & Written proof\\
+shared dilations $4,6$ & \cref{thm:shared} & proved & Written proof\\
+rational Boolean constraint games & \cref{thm:rational-games} & proved & Written proof\\
+one-copy linear family & \cref{thm:rational-linear} & proved & Written proof\\
+restricted compiler, several copies & \cref{thm:rational-linear-k} & conditional & Named hypotheses\\
+linear games, every rational exponent & \cref{rem:SV-route-k,cor:linear-existence} & proved & Written proof\\
+R\'enyi spectrum, concentration & \cref{thm:renyi} & proved & Written proof\\
+sharp $\ED$ coefficient, rational $\alpha$ & \cref{thm:rational-ED} & proved & Written proof\\
+sharp $\ED$ coefficient, every $\alpha\in\mathcal S$ & \cref{thm:rational-ED,rem:binary-route} & proved & Written proof\\
+dense coefficient set; arithmetic bounds & \cref{cor:coefficient-set,lem:reweighting,prop:arithmetic-dim,thm:arithmetic} & proved & Written proof\\
+pure coefficient spectrum & \cref{thm:pure-spectrum} & upper class proved here; lower inclusion~\cite[Theorem~1.1]{DM-U3} & Written proof; cited realization\\
+flagged coefficient spectrum; matched extraction & \cref{prop:flagged-pure-spectrum,prop:matched-coefficient} & proved; extraction interface~\cite[Lemma~12.1]{DM-U3} & Written proofs; finite spectrum checks\\
+mixing, computable fixed states and abstract arithmetic & \cref{prop:equal-loss-ensemble,prop:fixed-state-cut,prop:abstract-arithmetic-array} & proved & Finite spectrum checks\\
+weak rounding from matched laws & \cref{prop:matched-weak-rounding} & proved; realizations~\cite[Theorem~1.1 and Section~12]{DM-U3} & Written proof; cited matched laws\\
+formation, synchrony and physical leakage & \cref{prop:formation-rounding-gap,prop:synchronous-pure-rounding,prop:physical-leakage} & proved & Finite spectrum checks\\
+kernel, half-erasure and nonlimit obstructions & \cref{prop:no-exact-kernel,prop:half-erasure,prop:nonlimit-coefficient-gap} & proved & Finite spectrum checks\\
+configuration-lamp game: entropy, formation, dimension & \cref{thm:lamps-sector,thm:lamps-game} & companion & Cited companion proof\\
+configuration-lamp game: usable entanglement & \cref{thm:lamps-ED} & proved & Written proof\\
+linear filling charge & \cref{thm:linear-filling} & proved & Tree-of-faces tests\\
+point window; six-type fillings & \cref{prop:point-fill-sharp}, \cref{thm:point-window,prop:collective} & proved & Exact word certificates\\
+fixed-holonomy subdivision & \cref{prop:fixed-holonomy} & proved from magnetic-cycle estimate & Cycle examples\\
+native class laws & \cref{thm:native,thm:native-enlarged} & conditional & Named hypotheses\\
+address growth & \cref{thm:address} & proved & Written proof\\
+exact point source and traces & \cref{thm:exact-point,prop:point-structure,prop:point-traces} & proved & Written proof\\
+exact configuration source & \cref{thm:exact-config} & proved & Written proof\\
+subset sources & \cref{prop:subset-presentation,thm:subset,thm:subset-visibility} & proved, on Johnson's presentation & Written proof\\
+replication source & \cref{thm:gamma3} & proved, on Johnson's presentation & Written proof\\
+PPT gap; no exact output & \cref{thm:ppt-gap,thm:no-exact} & proved & Written proof\\
+linear compiler exclusions & \cref{prop:no-linear} & proved & Written proof\\
+raw pair bounds & \cref{prop:raw-pairs} & proved, on the regions of~\cite[\S6]{DM-H3} & Written proof\\
+finite-table gate; refutations & \cref{prop:table,prop:collective-refutes} & proved & Written proof\\
+correction costs & \cref{prop:correction} & proved; native part conditional & Named hypotheses\\
+scalar phase schemes & \cref{prop:phase} & proved & Written proof\\
+finite supports; invisible witnesses & \cref{prop:finite-support,prop:invisible} & proved & Written proof\\
+$I_{3322}$ Bell-gap contrast & \cref{thm:i3322} & checked; conditional on~\cite{Dou26} & Named hypotheses\\
+floor on the sign-and-dilation class; Abels game & \cref{thm:floor-class,cor:abels} & proved & Written proof\\
+compression; dyadic bound; criterion & \cref{lem:compression,prop:dyadic,prop:criterion} & proved & Written proof\\
+excluded candidate classes & \cref{prop:bs-central,prop:copied-gadget,thm:stable,cor:dyadic-models} & proved & Written proof\\
+Deligne extension & \cref{ex:deligne} & proved from imported results~\cite{Del78,BLSW23,DGLT20} & Written proof\\
+method obstructions & \cref{prop:typeII,prop:slow-recovery,prop:threshold,prop:separation} & proved & Written proof\\
+continuous amplification; spectral multiplicity; polynomial augmentation & \cref{prop:continuous-thin-obstruction,prop:spectral-multiplicity,prop:slow-polynomial-augmentation} & proved & Finite refinement checks\\
+source leakage, stability and populated slow modes & \cref{prop:source-leakage-floor,prop:stable-tracial-defect,prop:populated-slow-modes} & proved & Finite refinement checks\\
+qualitative thresholds; selectable depth & \cref{prop:selectable-depth} & proved & Finite refinement checks\\
+raw cross-copy obstruction & \cref{thm:raw-obstruction,prop:window-dilution} & proved & Written proof\\
+finite blocks & \cref{prop:normal-perfect} & known~\cite{KPS18} & Cited result\\
 \bottomrule
 \caption{Status of every result.}\label{tab:status}
 \end{longtable}

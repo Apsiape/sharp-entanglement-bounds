@@ -10,11 +10,12 @@ finite-dimensional mixed strategies. By \cref{thm:factor-three} the reverse dire
 only on $S(\rho_B)$, only on Schmidt rank of pure strategies, or only on the native classes of \cref{sec:point-native} is not this result.
 \end{problem}
 
-The window is $[\beta,\frac14]$ with $\beta=1/(2\log107+1)\approx0.0690$. The proof of its lower end balances $N\kappa^2$
-against a raw cross-copy bound $\eta_0\le C(A+N)e$ from the linear filling charge (\cref{thm:linear-filling}), so far-commutator
-areas of order $R^u$ give the exponent $1/(2u+1)$. The geometric gap is open: with $A^*$ as after the proof of
-\cref{thm:point-window}, $R^2/16\le A^*(R)\le135R^{\log107}$ for every integer $R\ge23$, and $A^*(R)=O(R^{\log\rho})$ with
-$\log\rho\approx6.7325$~\cite[Proposition~3.4, Theorem~3.2 and Remark~A.3]{DM-H3}. Quadratic area would give $\eps^{-1/5}$, and
+The window is $[\beta,\frac14]$ with $\beta=(2\log_2\lambda+1)^{-1}=0.0734595360384268649\ldots$.
+The proof of its lower end balances $N\kappa^2$ against a raw cross-copy bound $\eta_0\le C(A+N)e$ from the linear filling charge
+(\cref{thm:linear-filling}), so far-commutator areas of order $R^u$ give the exponent $1/(2u+1)$.
+The geometric gap is open: $R^2/16\le A^*(R)\le CR^p$ for every integer $R\ge23$, where $p=\log_2\lambda=6.3064682540119605963\ldots$;
+the lower bound is~\cite[Proposition~3.4]{DM-H3} and the upper bound is \cref{prop:point-fill-sharp}.
+Quadratic area would give $\eps^{-1/5}$, and
 cubic area $\eps^{-1/7}$. That is also the limit of this route: the worst-pair raw cross-copy estimate $\eta_0\le CN^ue$ is false
 for every $u<2$ on the original source models, already at the scale $N\asymp e^{-2/(2u+1)}$ at which the proof uses it, with exact
 mirrors and only H4 inexact (\cref{thm:raw-obstruction,prop:window-dilution}). So the raw cross-copy route stops at $u=2$, that is at
@@ -71,18 +72,13 @@ local Schatten stability, the dyadic pattern and copied Baumslag--Solitar models
 construction using arbitrary mixed states.
 
 \begin{problem}[A dense spectrum]\label{prob:dense}
-(i) Determine the set $\mathcal A_{\log}$ of logarithmic coefficients of fixed games of \cref{sec:arithmetic}. (ii) Find fixed games with
+(i) Determine the full set $\mathcal A_{\log}$ of usable-entanglement logarithmic coefficients of fixed games of \cref{sec:arithmetic}. Every positive $\Delta^0_2$ real is already in this set, on the original mixed state, by~\cite[Theorems~1.1 and~16.6, Corollary~16.7]{DM-U3}; whether the full usable spectrum is larger remains open. (ii) Find fixed games with
 power laws $d^\to_G(\eps)=\eps^{-\beta+o(1)}$ for a dense set of exponents $\beta$ in some interval, or with another new asymptotic shape,
 with complete two-sided operational accounting. (iii) Find a finitely presented exact source with a genuinely new noninteger or
 intermediate demand law, or a dense interval of laws, with both an original-state lower bound and a finite-rank exact upper construction.
 \end{problem}
 
-For (i), the dense set $\mathcal S$ of \cref{cor:coefficient-set} is realized, with every positive rational and transcendental numbers
-such as $\frac12\log_62$, and every element of $\mathcal A_{\log}$ is left-c.e.\ relative to $0''$ (\cref{thm:arithmetic}); the two classes do
-not match. We conjecture that every positive computable real lies in $\mathcal A_{\log}$. A proof in the manner of the characterization of
-the entropies of multidimensional shifts of finite type by Hochman and Meyerovitch~\cite{HM10} would need a fixed finite source in which an
-encoded computation controls the density of addressable labels in every negative representation, at the growing depths of
-\cref{thm:rational-ED}, together with finite-dimensional upper models of the same rate; no such source is known. For (ii), finite sums of
+For (i), the known inclusion is $(\Delta^0_2\cap(0,\infty))\subseteq\mathcal A_{\log}$, by the matched original-state laws of~\cite[Theorem~16.6 and Corollary~16.7]{DM-U3}. Every element of $\mathcal A_{\log}$ is left-c.e.\ relative to $0''$ (\cref{thm:arithmetic}); these bounds do not classify the full mixed-state usable spectrum. In contrast, the positive pure original-state entropy spectrum is exactly the positive $\Delta^0_2$ reals (\cref{thm:pure-spectrum}). For (ii), finite sums of
 logarithmic demands remain logarithmic, so $\mathcal S$ says nothing about power laws. The only exponents known for the games of this paper
 are $\beta=1$, for the configuration-lamp game (\cref{thm:lamps-ED}), and $\beta=0$, for the logarithmic laws; the point window of
 \cref{thm:point-window} does not identify an exponent. For

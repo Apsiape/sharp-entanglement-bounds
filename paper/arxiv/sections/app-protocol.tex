@@ -1,0 +1,62 @@
+%======================================================================
+\section{Proof of the white-box protocol}\label{app:protocol}
+%======================================================================
+
+We prove \cref{thm:protocol} for class~(S); the changes for class~(C) are at the end.
+
+\paragraph{The interface.} Each party holds the physical payload of every copy and may append known pure registers. For
+each question $x$ there is a reusable unitary $V_x$, with its inverse, acting on the payload and a retained local Naimark
+register, and known outcome projectors $Q_a$ define the dilated PVM $P_{xa}=V_x^*Q_aV_x$, which on initialized Naimark
+registers reproduces the strategy's statistics. A controlled reflection $2P_{xa}-I$ is implemented as $V_x$, then a
+controlled known phase $2Q_a-I$, then $V_x^*$; no controlled version of the unknown $V_x$ is needed. Naimark registers
+are retained across word queries, never reset. The same state and the same unitaries are used on every copy.
+
+\paragraph{Thresholds.} Let $F^{(1)},\dots,F^{(K)}$ be the menu of \cref{thm:effective} at threshold $b$, so that every
+strategy of loss at most $\eps_{\mathrm{cert}}$ has an array with $D_B(F)=\langle\psi,d_F(P^B)\psi\rangle<b$. Let $K_*\ge1$
+bound $\sum_w|c_w||w|$ for every $F_j$ and every $d_F$, and put $\eps_*=\min\{\eps_{\mathrm{cert}},(\mu_{\min}/2)(b/K_*)^2\}$.
+Then every raw polynomial mirror, including those of the $d_F$, has error at most $b$ by~\eqref{eq:opposite-poly}, so
+$|D_A(F)-D_B(F)|\le b$, where $D_A(F)$ is the expectation of $\theta(d_F)$. Since the pair defect $C=F_jF_k-s F_kF_j$ satisfies
+$C^*=-sC$, it is normal and $\theta(C^*C)=C_A^*C_A$; so $\theta(d_F)$ is the positive sum of Alice's own square and pair
+defects.
+
+\paragraph{Alice-only selection.} Expand each $d_F$, after $P=\frac12(I+R)$, as a rational combination of words in the
+reflections $R_{xa}$, splitting complex coefficients into real and imaginary parts with phases absorbed into the unitary
+terms; let $\Lambda_D$ be a common bound on the $\ell^1$ norms of the coefficients. On a sacrificed copy Alice picks a term
+with probability proportional to its coefficient, runs its controlled-unitary Hadamard test and records a sign whose
+expectation is $D_A(F)/\Lambda_D$. With $N=\lceil2\Lambda_D^2b^{-2}\ln(2K/\zeta)\rceil$ copies per array, Hoeffding's inequality
+and a union bound give, with probability at least $1-\zeta$, all $K$ estimates within $b$. Alice announces the index of a
+smallest estimate. A Bob-good array has $D_A<2b$ and estimate below $3b$, so the selected array has $D_A\le4b$ and
+$D_B\le5b$: square and pair residuals at most $3\sqrt b$ on both parties, raw mirrors at most $b$. Because the copies are
+independent and the oracles memoryless, conditioning on the selection transcript leaves the retained copy's $AB$
+marginal unchanged; its global purification may be steered by measurements on other copies, which is harmless because all
+bounds below hold for every purification and the environment and transcript are kept as junk.
+
+\paragraph{Coherent sign rounding.} For one $F$ with coefficient bound $\Lambda$, a known PREPARE and a term-by-term
+SELECT give a unitary $B$ with top block $F/\Lambda$; its oracle cost is the sum $L_F$ of the term lengths. With
+$V=|0\rangle\langle1|\otimes B+|1\rangle\langle0|\otimes B^*$, signal vector $s=|+\rangle\otimes|0\rangle$, $P=|s\rangle\langle s|\otimes I$
+and $W=(2P-I)V$, the walk $W$ has, on the invariant plane of an eigenvector of $F$ with eigenvalue $\lambda$, eigenvalues
+$e^{\pm i\vartheta}$ with $\cos\vartheta=\lambda/\Lambda$, so the cosine of either phase has the sign of $\lambda$ when
+$\lambda\ne0$. Phase estimation with $Q\ge1024\Lambda$
+points, classified by the sign of the cosine and repeated an odd number $J\ge4\log(4/b)$ of times with majority vote, has
+classification error at most $b/4$ outside the window $|\lambda|<\frac12$; applying the majority sign as a phase and
+uncomputing gives an exact reflection $T$ on payload and work registers with
+$\|(T-\sgn(F)\otimes I)(\psi\otimes|0\rangle)\|\le\sqrt b+\frac83\|(I-F^2)\psi\|\le9\sqrt b$. The second term bounds the weight
+of the excluded window. Each $T_j$ has its own work register, retained when dirty; $T_j$ is an exact reflection on the
+whole extended space, and controlled $T$ needs only control of the known classifier phase.
+
+\paragraph{Dirty work does not spoil the decoder.} The ideal reflections $Q_j=\sgn(F_j)$ satisfy, by product replacement with
+opposite-party mirrors as in Step~4 of \cref{thm:A}, every Pauli pair and mirror bound with constant $20\sqrt b$. Replacing
+each $Q_j$ by the implemented $T_j$ inside a product costs at most $9\sqrt b+40\sqrt b$ per factor, again by moving the
+right factor to the opposite party; so the implemented reflections satisfy all pair and mirror bounds with
+$\kappa=200\sqrt b$. Both parties then apply the signed regular isometry of \cref{lem:fixed-size} to the $T_j$, using
+$m$ controlled $T$ calls. Its Bell-stabilizer errors are at most $(2C_r+1)^2\kappa^2/4$ and the singlet infidelity at most
+$2r(2C_r+1)^2\kappa^2/4=20000\,r(2C_r+1)^2b<\gamma/1000$. Adding the selection failure $\zeta=\gamma/8$ keeps the infidelity
+below $\gamma/4$, and finite-precision compilation of all known gates, with per-gate accuracy below $\gamma/[100(T_{\mathrm{all}}+1)]$
+for the total count $T_{\mathrm{all}}$ of invocations, changes the output by less than $\gamma/10$ in trace distance. The only
+cross-lab message is the menu index, of $\lceil\log K\rceil$ bits, from Alice to Bob.
+
+\paragraph{Class~(C).} Use \cref{thm:effective} for native binary constraint games, with the thresholds there. For each
+variable $j$ fix an incident context $i(j)$; Alice's controlled proxy reflection is $V_{i(j)}$, a known phase on the labels
+whose $j$-th bit has the queried value, and $V_{i(j)}^*$. Illegal padded labels are relabelled virtually to a fixed legal
+assignment by known phases on the outcome register. Distinct proxies need not commute, and nothing assumes they do; the
+rest of the proof is unchanged, with $\mu_{\min}$ the least incidence weight.

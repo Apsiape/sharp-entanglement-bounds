@@ -1,0 +1,278 @@
+%======================================================================
+\section{The logarithmic floor: a class theorem and a criterion}\label{sec:floor}
+%======================================================================
+
+Theorem~A gives, for each target $r$ and fidelity $1-\gamma$, a loss threshold $\eps_0(G,r,\gamma)$, but no rate.
+\Cref{prob:floor} asks whether every game of Theorem~A has at least logarithmic demand. This section proves the floor on an
+explicit class: games that recover, with actual mirrors on the original state, a sign relation and an even dilation
+(\cref{thm:floor-class}), with a game compiled from Abels' finitely presented solvable group as an instance (\cref{cor:abels}).
+It then proves a sufficient criterion for a counterexample (\cref{prop:criterion}), through an operator-norm compression of a
+central involution (\cref{lem:compression}). The candidate classes that the criterion excludes, and the
+obstructions to proving the floor in general by the method of Theorem~A, are in \cref{app:floor}.
+
+\subsection{The sign-and-dilation class}\label{sec:floor-class}
+
+\begin{definition}[The sign-and-dilation interface]\label{def:sign-dilation}
+Let $m\ge2$ be an even integer and $C_G>0$. A finite game $G$ has the \emph{sign-and-dilation interface} with constant $C_G$ if
+every finite-dimensional mixed strategy of loss $\eps$, after local projective dilation, with $\Psi$ a purification of the
+dilated state, has actual local unitaries $X_P,Y_P,W_P$ on each party $P\in\{A,B\}$ such that, with $e=C_G\sqrt\eps$,
+\begin{enumerate}[label=(I\arabic*),itemsep=1pt]
+\item\label{I1} $\|(U_A-U_B)\Psi\|\le e$ and $\|(U_A^*-U_B^*)\Psi\|\le e$ for $U=X,Y,W$;
+\item\label{I2} $\|(X_BY_BX_B^*-Y_B^m)\Psi\|\le e$ and $\|(X_A^*Y_AX_A-Y_A^m)\Psi\|\le e$;
+\item\label{I3} $\|(W_PY_P+Y_PW_P)\Psi\|\le e$ for $P=A,B$.
+\end{enumerate}
+\end{definition}
+
+The orientation in~\ref{I2} is that of \cref{prop:interface}: Alice realizes the opposite algebra. The sign witness $W$ need not be
+an involution. No access to the environment, to a pure-state decomposition or to Bob's Schmidt partners is assumed, and
+\cref{def:sign-dilation} is a property of a game, checkable from its algebra: \cref{cor:abels} derives it from relations
+$[w,y]=J$ and $xyx^{-1}=y^m$ in a source compiled by \cref{thm:universal}. In the negative quotient, $[w,y]=J=-1$ says
+$wy=-yw$.
+
+The first step turns the unitary sign witness into a reflection, by a random semicircle cut applied to commuting operators of
+the two parties. For $\vartheta\in[0,1)$ and $z$ on the unit circle let $h_\vartheta(z)=1$ if the angle of $z$, in turns, lies in
+$[\vartheta,\vartheta+\frac12)$ modulo one, and $h_\vartheta(z)=-1$ otherwise; then $h_\vartheta(-z)=-h_\vartheta(z)$, and
+$h_\vartheta(U)$ is a reflection for every unitary $U$, with $h_\vartheta(VUV^*)=Vh_\vartheta(U)V^*$.
+
+\begin{lemma}[Cuts across the parties]\label{lem:cut-parties}
+Let $U_A$ and $V_B$ be unitaries of the two parties, so that they commute, and $\Psi$ a unit vector. For $\vartheta$ uniform in
+$[0,1)$,
+\[
+\mathbb E_\vartheta\|(h_\vartheta(U_A)-h_\vartheta(V_B))\Psi\|^2\ \le\ 2\,\|(U_A-V_B)\Psi\| .
+\]
+\end{lemma}
+
+\begin{proof}
+Let $\nu$ be the joint spectral measure of the commuting normal operators $U_A,V_B$ in the vector $\Psi$, a probability measure on
+pairs $(z,w)$ of points of the circle. Then $\|(h_\vartheta(U_A)-h_\vartheta(V_B))\Psi\|^2=4\,\nu\{h_\vartheta(z)\ne h_\vartheta(w)\}$. The two
+endpoints of the semicircle are half a turn apart, so for $z,w$ at circle distance $d\le\frac12$ in turns at most one of them lies
+on the shorter arc between $z$ and $w$, and the cut separates $z$ from $w$ with probability $2d$. As $d\le\frac14|z-w|$,
+\begin{multline*}
+\mathbb E_\vartheta\|(h_\vartheta(U_A)-h_\vartheta(V_B))\Psi\|^2=8\int d\,d\nu\\
+\le2\int|z-w|\,d\nu\le2\Bigl(\int|z-w|^2\,d\nu\Bigr)^{1/2}=2\|(U_A-V_B)\Psi\|.
+\end{multline*}
+\end{proof}
+
+\begin{theorem}[A logarithmic floor on the sign-and-dilation class]\label{thm:floor-class}
+Let $G$ have the sign-and-dilation interface for an even $m\ge2$. There are $\eps_G>0$ and $C>0$ such that every
+finite-dimensional mixed strategy of loss $\eps<\eps_G$ satisfies
+\[
+\ED^{A\to B}(\rho_{AB})\ \ge\ \frac{\log(1/\eps)}{4\log m}-C\log\log(1/\eps),
+\]
+and hence $d^\to_G(\eps)\ge\log(1/\eps)/(8\log m)-O(1)$ for $0<\eps<1$. Moreover there is $c_G>0$ such that, for every $r\ge1$ and
+$0<\gamma<1$, every finite-dimensional mixed strategy of loss at most $c_G\gamma^8r^{-64}m^{-4r}$ admits product local isometries
+whose output is within $\sqrt\gamma$, in vector norm on any purification, of $\Phi_{2^r}\otimes\chi$, the environment included in the
+junk $\chi$. So in this class the threshold of Theorem~A can be taken at least $\exp(-C_{G,\gamma}r)$.
+\end{theorem}
+
+\begin{proof}
+Fix a strategy of loss $\eps$, dilate it locally, and let $X_P,Y_P,W_P$ and $e=C_G\sqrt\eps$ be as in \cref{def:sign-dilation};
+assume $e\le1$. Directional rates are unchanged by the local isometries of the dilation.
+
+\emph{Step 1: a reflection for the sign.} Put $T_P=h_\vartheta(W_P)$, with one cut $\vartheta$ for both parties. By
+\cref{lem:cut-parties} and~\ref{I1}, $\mathbb E\|(T_A-T_B)\Psi\|^2\le2e$. On one party $P$, with $\bar P$ the other, put
+$D=W_PY_P+Y_PW_P$, of operator norm at most two. Then $Y_PW_PY_P^*+W_P=DY_P^*$, and moving $Y_P^*$ through $D$ to the other
+party costs $2e$ by~\ref{I1}, so $\|(Y_PW_PY_P^*+W_P)\Psi\|\le\|D\Psi\|+2e\le3e$ by~\ref{I3}; with the mirror of $W$,
+$\|(Y_PW_PY_P^*-(-W_{\bar P}))\Psi\|\le4e$. The unitaries $Y_PW_PY_P^*$ and $-W_{\bar P}$ act on different parties, so
+\cref{lem:cut-parties} and $h_\vartheta(Y_PW_PY_P^*)=Y_PT_PY_P^*$, $h_\vartheta(-W_{\bar P})=-T_{\bar P}$ give
+$\mathbb E\|(Y_PT_PY_P^*+T_{\bar P})\Psi\|^2\le8e$. Adding the mirror of $T$, $\mathbb E\|(Y_PT_PY_P^*+T_P)\Psi\|^2\le2\cdot8e+2\cdot2e=20e$.
+Finally $T_PY_PT_P+Y_P=T_P(Y_PT_PY_P^*+T_P)Y_P$, and moving the right factor $Y_P$ to the other party costs at most $2e$, so
+$\mathbb E\|(T_PY_PT_P+Y_P)\Psi\|^2\le2\cdot20e+2\cdot4e^2\le48e$. The sum of the two squared sign errors and the squared mirror
+error of $T$ has expectation at most $98e$, so some cut has all three at most $\sqrt{98e}<10\sqrt e$. The cut depends on the
+strategy; it is a choice of local operators, not a postselection. With it, the actual reflections $T_P$ satisfy
+$\|(T_A-T_B)\Psi\|\le10\sqrt e$ and $\|(T_PY_PT_P+Y_P)\Psi\|\le10\sqrt e$ on both parties, the unitaries $X_P,Y_P$ satisfy~\ref{I1}
+and~\ref{I2} with $e\le\sqrt e$, and by \cref{lem:transfer-parties}(d) all square-root-state commutators of $T_P,X_P,Y_P$ are at most
+$10\sqrt2\sqrt e$. Put $\delta=15\sqrt e$, which bounds all of these.
+
+\emph{Step 2: growing extraction.} The data of Step~1 are those of one copy in the proof of \cref{thm:rational-ED}, with $q=2$, the
+reflection $T$ in place of the rotation control and $\delta$ in place of $e$: $XYX^*=Y^m$ and $TYT=-Y$ on Bob, the opposite relations on
+Alice, and all mirrors, inverse mirrors and square-root commutators at most $\delta$. For $q=2$ that proof uses only that $m$ is even
+(so that $m^{l-j}$ is even for $j<l$), and for one copy it uses no cross-copy relation. Its steps \emph{powers without an exponential
+square}, \emph{common roots and controls}, \emph{spectral cuts} and \emph{extraction}, with the single-copy bound there, therefore
+give, for every integer $L\ge1$ with $C_mm^L\delta\le1$,
+product local isometries whose output is within
+\[
+\gamma_L\ \le\ C_mL^4(m^L\delta)^{1/4}
+\]
+of $\Phi_{2^L}\otimes\chi$, the environment included in $\chi$, where $C_m$ depends only on $m$.
+
+\emph{Step 3: the rate.} Put $x=\log(1/\delta)$ and $L=\lfloor(x-24\log(2+x))/\log m\rfloor$. For $\eps$ small, $L\ge1$, and
+$m^L\delta\le(2+x)^{-24}$, so $C_mm^L\delta\le1$ and $\gamma_L\le C_mL^4(2+x)^{-6}\le C_m'(2+x)^{-2}$, since $L\le x$. The output has
+singlet fraction at least $1-\gamma_L^2$, and~\eqref{eq:singlet-hashing} gives
+$\ED^{A\to B}(\rho_{AB})\ge(1-2\gamma_L^2)L-h(\gamma_L^2)=L-o(1)$, because $L\gamma_L^2\le C(2+x)^{-3}$. Finally
+$L\ge x/\log m-24\log(2+x)/\log m-1$ and $x=\frac12\log(1/e)-\log15=\frac14\log(1/\eps)-\frac12\log C_G-\log15$. This is the first
+bound. For small $\eps$ it implies the second, and the second holds trivially, by enlarging its constant, on the remaining
+range $\eps_G\le\eps<1$ and wherever $L<1$.
+
+\emph{The threshold.} Take $L=r$ in Step~2. With $\delta=15C_G^{1/2}\eps^{1/4}$ we get $\gamma_r\le C_{G,m}r^4m^{r/4}\eps^{1/16}$, and
+$\gamma_r\le\sqrt\gamma$ as soon as $\eps\le c_G\gamma^8r^{-64}m^{-4r}$ for a small $c_G$, which also ensures $C_mm^r\delta\le1$ and
+$e\le1$. Since $\gamma<1$ and $r\ge1$, this threshold is at least $\exp(-C_{G,\gamma}r)$.
+\end{proof}
+
+All operations act on Alice and Bob, and the bound concerns the original mixed state; no marginal entropy, entanglement of
+formation or replacement strategy is used. The extraction architecture is that of \cref{thm:rational-ED}; what is new here is that
+the sign witness may be an arbitrary unitary, rounded across the parties, and that the class is defined by an interface rather
+than by a particular source. The coefficient is not claimed optimal.
+
+\subsection{An instance: Abels' group}\label{sec:floor-abels}
+
+Let $R=\Z[\frac12]$ and let $A_4(R)$ be the group of upper triangular $4\times4$ matrices over $R$ with diagonal $(1,t_{22},t_{33},1)$,
+$t_{22},t_{33}\in R^\times$, in the notation of Cornulier and Tessera~\cite{CT13}. Abels proved that $A_4(\Z[1/p])$ is finitely
+presented~\cite{Abe79}; see~\cite[Introduction]{CT13}. The elementary matrices $e_{14}(r)=I+rE_{14}$ form a central subgroup, since
+every matrix of $A_4(R)$ has first column $e_1$ and last row $e_4^T$. Put
+\[
+B=A_4(R)/\langle e_{14}(1)\rangle,\qquad w=e_{12}(1),\quad y=e_{24}(\tfrac12),\quad x=\mathrm{diag}(1,2,1,1),\quad J=e_{14}(\tfrac12).
+\]
+The quotient by the cyclic central subgroup generated by one element adds one relator, so $B$ is finitely presented.
+
+\begin{lemma}\label{lem:abels-relations}
+In $B$, $J$ is a central involution, $J\ne1$, $[w,y]=J$ and $xyx^{-1}=y^2$. Every finite-dimensional unitary representation of
+$B$ sends $J$ to $I$.
+\end{lemma}
+
+\begin{proof}
+Matrix multiplication gives $[e_{12}(s),e_{24}(t)]=e_{14}(st)$, so $[w,y]=e_{14}(\frac12)=J$; and conjugation by $x$ multiplies the
+entry $(2,4)$ by $t_{22}/t_{44}=2$, so $xyx^{-1}=e_{24}(1)=y^2$. $J$ is central, $J^2=e_{14}(1)=1$ in $B$, and $J\ne1$ because
+$\frac12\notin\Z$. If a finite-dimensional unitary representation $\pi$ had $\pi(J)\ne I$, its $(-1)$-eigenspace, invariant because $J$ is
+central, would carry unitaries $A=\pi(w)$, $X=\pi(x)$, $Y=\pi(y)$ with $AYA^*=-Y$ and $XYX^*=Y^2$ exactly, in some dimension $k\ge1$;
+\cref{prop:dyadic} below with $\alpha=\beta=0$ excludes this.
+\end{proof}
+
+\begin{proposition}[A dyadic bound]\label{prop:dyadic}
+If unitaries $A,X,Y$ on $\C^k$ satisfy $\|AYA^*+Y\|_{2,k}\le\alpha$ and $\|XYX^*-Y^2\|_{2,k}\le\beta$ in the normalized Hilbert--Schmidt
+norm, then $k\ge1/(\alpha+\beta)$. In particular the bound holds with operator norms.
+\end{proposition}
+
+\begin{proof}
+Apply \cref{lem:spectral-coupling,lem:circle} with the flat state $\rho=I/k$, for which $\hs{P\xi-\xi Q}=\|P-Q\|_{2,k}$ and conjugate
+unitaries have the same spectral measure $\mu$. With~\eqref{eq:spectral-push}, $\Wone(S_*\mu,\mu)=\Wone(\mu_{-Y},\mu_{AYA^*})\le\frac\pi2\alpha$
+and $\Wone(D_*\mu,\mu)=\Wone(\mu_{Y^2},\mu_{XYX^*})\le\frac\pi2\beta$, so $\Wone(\mu,h)\le\frac\pi2(\alpha+\beta)$ by \cref{lem:circle}(c),
+while $\Wone(\mu,h)\ge\pi/(2k)$ by \cref{lem:circle}(d), $\mu$ having at most $k$ atoms.
+\end{proof}
+
+Fix a finite generating set $S$ of $B$ containing $w,x,y,J$ and a finite presentation $\langle S\mid R_B\rangle$ of $B$ that contains
+the relators $J^2$, $[J,s]$ for $s\in S$, $wyw^{-1}y^{-1}J^{-1}$ and $xyx^{-1}y^{-2}$; adding valid relators to a finite presentation
+keeps it a presentation of $B$. Let $G_B$ be the Boolean constraint game of \cref{thm:universal} for this presentation and the
+marked generator $J$, with its uniform question law.
+
+\begin{corollary}[The Abels game]\label{cor:abels}
+$G_B$ is a game in class~(C) of quantum value one with no finite-dimensional perfect strategy, every incidence is tested, and it
+has the sign-and-dilation interface with $m=2$. Hence
+\[
+d^\to_{G_B}(\eps)\ \ge\ \tfrac14\log(1/\eps)-O(\log\log(1/\eps)),\qquad\text{in particular}\qquad d^\to_{G_B}(\eps)\ge\tfrac18\log(1/\eps)-O(1).
+\]
+\end{corollary}
+
+\begin{proof}
+\emph{No finite perfect strategy.} A finite-dimensional perfect strategy of $G_B$ gives a nonzero finite-dimensional representation
+of $\mathcal A(B_G)$ (\cref{sec:law-classes}), and composing with the unital $*$-homomorphism $F:A^-_B\to\mathcal A(B_G)$ of
+\cref{thm:universal} gives a unitary representation of $B$ with $J=-I$ in finite dimension, which \cref{lem:abels-relations}
+excludes.
+
+\emph{Value one.} This is a chain of seven steps.
+(1) $B$ is solvable, hence amenable, and countable, so its reduced group $C^*$-algebra $C^*_r(B)$ is quasidiagonal by the theorem
+of Tikuisis, White and Winter~\cite[Corollary~C]{TWW17}.
+(2) By Voiculescu's characterization, which~\cite[Definition~1.1]{TWW17} takes as the definition, there are unital completely positive
+maps $\phi_n:C^*_r(B)\to M_{D_n}$ with $\|\phi_n(ab)-\phi_n(a)\phi_n(b)\|\to0$ and $\|\phi_n(a)\|\to\|a\|$ for all $a,b$ in any fixed
+finite set; we use the finite set of the left translations $\lambda_s^{\pm1}$, $s\in S$, and their products along the prefixes of
+the relators of $R_B$.
+(3) Let $U_{n,s}$ be a unitary polar part of $\phi_n(\lambda_s)$. Since $\phi_n$ is unital and $*$-preserving,
+$\|\phi_n(\lambda_s)^*\phi_n(\lambda_s)-I\|=\|\phi_n(\lambda_s^*)\phi_n(\lambda_s)-\phi_n(\lambda_s^*\lambda_s)\|\to0$, and the scalar inequality
+$|1-t|\le|1-t^2|$ gives $\|U_{n,s}-\phi_n(\lambda_s)\|\le\|\phi_n(\lambda_s)^*\phi_n(\lambda_s)-I\|$. Telescoping each relator $r$ against
+the product of the $\phi_n(\lambda_s^{\pm1})$, which are contractions, and then against $\phi_n(\lambda_r)=\phi_n(1)=I$ by asymptotic
+multiplicativity, gives $\eta_n=\max_{r\in R_B}\|r(U_n)-I\|\to0$.
+(4) Since $J\ne1$ and $\lambda$ is faithful, $\lambda_J$ is a self-adjoint unitary other than $1$, so $\|1-\lambda_J\|=2$, and
+$\|U_{n,J}-I\|\ge\|\phi_n(1-\lambda_J)\|-\|U_{n,J}-\phi_n(\lambda_J)\|\to2$.
+(5) For large $n$, $\|U_{n,J}-I\|>\eta_n$, and the compression lemma (\cref{lem:compression}) gives unitaries $V_{n,s}$ on some $\C^{k_n}$,
+$k_n\ge1$, with $V_{n,J}=-I$ and $\max_r\|r(V_n)-I\|\le(1+3L_B)\eta_n$, where $L_B$ is the largest relator length.
+(6) With the flat state, these are models of $A^-_B$ at precision $(1+3L_B)\eta_n$: the normalized Hilbert--Schmidt norm is at most
+the operator norm, state commutators vanish and $V_{n,J}+I=0$. So the flat profile $h_B(e)$ is finite for every $e>0$.
+(7) The value-one clause of \cref{thm:universal} gives $\omega_q(G_B)=1$.
+
+\emph{The interface.} \Cref{prop:interface}, applied to the lower map of \cref{thm:universal}, gives, for $e=C\sqrt\eps$, Bob unitaries
+$U_s$ and Alice unitaries $U^A_s$ with mirrors and inverse mirrors at most $e$, every relator of $R_B$ with residual at most $e$ on Bob
+and its reversed word with residual at most $e$ on Alice, and $\|(U_J+I)\Psi\|\le e$. Put $X_P=U^P_x$, $Y_P=U^P_y$ and $W_P=U^P_w$;
+\ref{I1} holds. For~\ref{I2}, let $F=U_xU_yU_x^*U_y^{-2}$, the Bob value of the relator $xyx^{-1}y^{-2}$; then
+$X_BY_BX_B^*-Y_B^2=(F-I)Y_B^2$, and moving $Y_B^2$ to Alice costs $2\cdot2e$ by \cref{lem:transfer-parties}(c), so
+\[
+\|(X_BY_BX_B^*-Y_B^2)\Psi\|\le\|(F-I)\Psi\|+2\cdot2e\le(2m+1)e=5e .
+\]
+On Alice the reversed relator is $Y_A^{-2}X_A^*Y_AX_A$, and $X_A^*Y_AX_A-Y_A^2=Y_A^2(Y_A^{-2}X_A^*Y_AX_A-I)$ has residual at most $e$. For~\ref{I3},
+let $F'=W_BY_BW_B^*Y_B^*U_J^*$, the Bob value of $wyw^{-1}y^{-1}J^{-1}$. Then
+$W_BY_B+Y_BW_B=(F'-I)U_JY_BW_B+(U_J+I)Y_BW_B$; moving the three-letter word $U_JY_BW_B$ to Alice costs $2\cdot3e$, and the two-letter
+word $Y_BW_B$ costs $2\cdot2e$, so $\|(W_BY_B+Y_BW_B)\Psi\|\le(e+6e)+(e+4e)=12e$. On Alice the reversed relator gives
+$G=U_J^{A*}Y_A^*W_A^*Y_AW_A$ with $\|(G-I)\Psi\|\le e$, and $Y_AW_A+W_AY_A=W_AY_A\bigl(U^A_J(G-I)+(U^A_J+I)\bigr)$, where
+$\|(U^A_J+I)\Psi\|\le\|(U^A_J-U_J)\Psi\|+\|(U_J+I)\Psi\|\le2e$; so it has residual at most $3e$. Hence $G_B$ has the interface with
+constant $12C$ and $m=2$, and \cref{thm:floor-class} gives the bounds.
+\end{proof}
+
+The source $B$ is the Abels quotient considered in \cref{app:floor-dyadic}; there it appears as a candidate that the criterion below
+excludes as a counterexample, consistently with the floor proved here. No upper bound or sharp coefficient is claimed for $G_B$, and
+no explicit export of the game is supplied; its existence and properties follow from \cref{thm:universal}.
+
+\subsection{Compression and the counterexample criterion}\label{sec:floor-criterion}
+
+A central involution that is visible in operator norm can be moved to a negative sector without loss of accuracy.
+
+\begin{lemma}[Operator-norm compression]\label{lem:compression}
+Let $\langle S\mid R\rangle$ be a finite presentation with a generator $J\in S$ and the relators $J^2$ and $[J,s]$ for $s\in S$, and
+let $L$ be the largest length of a relator. Let unitaries $U_s$ on $\C^D$ satisfy $\max_{r\in R}\opn{r(U)-I}\le\eta$ and
+$\opn{U_J-I}>\eta$. Then there are a nonzero subspace $\C^k\subseteq\C^D$ and unitaries $V_s$ on it with $V_J=-I_k$ and
+$\max_{r\in R}\opn{r(V)-I_k}\le(1+3L)\eta$. Moreover $V_s$ is the restriction of a unitary $B_s$ on $\C^D$ with $\opn{B_s-U_s}\le3\eta$
+that commutes with the projection onto $\C^k$.
+\end{lemma}
+
+\begin{proof}
+For $z$ on the unit circle let $\mathrm s(z)\in\{1,-1\}$ be a nearest sign, with a fixed choice at ties. With $a=|\re z|$,
+$|z-\mathrm s(z)|^2=2(1-a)\le4(1-a)(1+a)=|z^2-1|^2$. So $H=\mathrm s(U_J)$ is a self-adjoint involution with
+$\opn{U_J-H}\le\opn{U_J^2-I}\le\eta$. If $H=I$, then $\opn{U_J-I}\le\eta$, which is excluded; so $P=\frac12(I-H)$ is a nonzero
+projection, of rank $k\ge1$. For $s\ne J$, the relator $[J,s]$ gives
+$\opn{HU_s-U_sH}\le\opn{U_JU_s-U_sU_J}+2\opn{H-U_J}\le3\eta$.
+
+Put $A_s=\frac12(U_s+HU_sH)$ and $C_s=U_s-A_s$. Relative to $H$, $A_s$ is block diagonal and $C_s$ block off-diagonal, and
+$t_s=\opn{C_s}=\frac12\opn{HU_s-U_sH}\le\frac32\eta$; also $t_s\le1$. The block-diagonal part of $U_s^*U_s=I$ is
+$A_s^*A_s+C_s^*C_s=I$, so every singular value of $A_s$ is at least $\sqrt{1-t_s^2}$. In each of the two square diagonal blocks of $A_s$
+choose a unitary polar part, which exists even if the block is singular, and let $B_s$ be their direct sum. Then $B_s$ commutes
+with $H$, and $\opn{B_s-A_s}=1-\sigma_{\min}(A_s)\le1-\sqrt{1-t_s^2}\le t_s$, so $\opn{B_s-U_s}\le2t_s\le3\eta$. Put $B_J=H$ separately; then
+$\opn{B_J-U_J}\le\eta$. Telescoping, with $\opn{B_s^{-1}-U_s^{-1}}=\opn{B_s-U_s}$, every relator has
+$\opn{r(B)-I}\le\opn{r(U)-I}+3|r|\eta\le(1+3L)\eta$. All $B_s$ commute with $P$, so their restrictions $V_s$ to the range of $P$ are
+unitaries, products and inverses restrict exactly, $V_J=H|_{P\C^D}=-I_k$, and the operator norm does not increase on an invariant
+subspace.
+\end{proof}
+
+No lower bound on $k/D$ is needed, and nothing is lost in passing to the sector. In normalized Hilbert--Schmidt norm the same
+compression would pay for the trace fraction of $P$; in operator norm it does not. So a marked central involution that is
+operator-visible is never hidden by a small trace fraction: \cref{prop:invisible} concerns witnesses of bounded rank that are not
+central.
+
+\begin{proposition}[A criterion for a counterexample to the floor]\label{prop:criterion}
+Let $\langle S\mid R\rangle$ be a finite presentation with a marked central involution $J\in S$ and the relators $J^2$, $[J,s]$, such
+that no finite-dimensional unitary representation sends $J$ to $-I$. Suppose there are unitaries $U^{(n)}_s$ on $\C^{D_n}$ with
+$\eta_n=\max_r\opn{r(U^{(n)})-I}\to0$, $\opn{U^{(n)}_J-I}>\eta_n$, and
+\[
+\log D_n=o\bigl(\log(1/\eta_n)\bigr).
+\]
+Then the game $G$ of \cref{thm:universal} for this presentation lies in class~(C), has quantum value one and no finite-dimensional
+perfect strategy, and $d^\to_G(\eps_n)/\log(1/\eps_n)\to0$ along $\eps_n=C\eta_n^2\to0$ for a constant $C$: it is a counterexample
+to the floor of \cref{prob:floor}.
+\end{proposition}
+
+\begin{proof}
+By \cref{lem:compression}, each model gives a model on $\C^{k_n}$, $1\le k_n\le D_n$, with $J=-I$ and operator-norm relator errors at
+most $(1+3L)\eta_n$; with the flat state it is a model of $A^-_G$ at that precision. The upper map of \cref{thm:universal} gives a
+model of the constraint system at precision $C'\eta_n$ on $\C^{12k_n}$ with the flat state, and the Boolean return
+(\cref{lem:boolean-models} and \cref{thm:boolean-correspondence}(b)) gives a strategy on the maximally entangled state
+$\Phi_{12k_n}$, the canonical purification of the flat state, with loss at most $C\eta_n^2=:\eps_n$. Its directional rates are $\log(12k_n)\le\log D_n+\log12$, so
+\[
+\frac{d^\to_G(\eps_n)}{\log(1/\eps_n)}\ \le\ \frac{\log D_n+\log12}{2\log(1/\eta_n)-O(1)}\ \longrightarrow\ 0 .
+\]
+These strategies show $\omega_q(G)=1$. A finite-dimensional perfect strategy would give a nonzero finite-dimensional representation of
+$\mathcal A(B_G)$ and, through the unital lower map $F$, a finite-dimensional representation of the group with $J=-I$, which is
+excluded. The game is a Boolean constraint-variable game with every incidence tested, so it lies in class~(C).
+\end{proof}
+
+The proposition is an upper construction on the original resource infimum, through actual pure states; no converse from a small
+mixed-state $\ED$ to a small dimension is used. Its hypothesis also forces $k_n\to\infty$: a bounded dimension along a subsequence
+would give, by compactness of the unitary groups, an exact finite-dimensional representation with $J=-I$. For a solution group the
+same holds with the game of the solution group itself and \cref{thm:return} in place of the compiler, by~\cite[Proposition~4.4(a)]{SV18}.
+\Cref{app:floor} shows which natural candidate sources fail the hypothesis.

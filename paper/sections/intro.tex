@@ -194,7 +194,7 @@ $\eps^{-1/6}$ and $\eps^{-1/2}$; our companion paper shows that it is $\Theta(\e
 $\Theta(1/e)$ at every visibility~\cite[Theorem~F]{DM-game}. The game's least pure entropy and formation are
 $\frac12\log(1/\eps)+O(1)$.
 \item \emph{A polynomial window.} A fixed Boolean constraint game built from Pauli lamps on the points of Houghton's group $H_3$ has
-$c\,\eps^{-1/(2\log107+1)}\le d^\to(\eps)\le C\eps^{-1/4}$; the lower exponent is $1/(2\log107+1)\approx0.0690$.
+$c\,\eps^{-\beta}\le d^\to(\eps)\le C\eps^{-1/4}$, where $\beta=(2\log_2\lambda+1)^{-1}=0.0734595360384268649\ldots$ and $\lambda$ is specified in \cref{prop:point-fill-sharp}.
 \end{enumerate}
 By Theorem~B each holds in both directions.
 \end{theoremC}
@@ -206,16 +206,17 @@ profile, and matching approximate models attain the corresponding rank and entro
 add, without a joint spectral measure (\cref{thm:lamp,thm:additive}). The usable-entanglement
 coefficient comes from a triangular extraction on the original state with cyclic labels (\cref{thm:triangular,lem:cyclic-triangular}).
 The transcendence of $\frac12\log_62$ is the Gelfond--Schneider theorem. In the other direction, the logarithmic coefficient of a fixed
-game of value one, when it exists, is left-c.e.\ relative to the second Turing jump $0''$ (\cref{thm:arithmetic}); whether every positive
-computable real occurs is open (\cref{prob:dense}). In (ii) the source has $2^N$ Pauli
+game of value one, when it exists, is left-c.e.\ relative to the second Turing jump $0''$ (\cref{thm:arithmetic}). Every positive $\Delta^0_2$ real occurs with a matched original-mixed-state usable law~\cite[Theorem~16.6 and Corollary~16.7]{DM-U3}; the full usable spectrum remains open (\cref{prob:dense}). The positive pure original-state entropy spectrum is exactly the positive $\Delta^0_2$ reals (\cref{thm:pure-spectrum}). In (ii) the source has $2^N$ Pauli
 lamps whose pairwise commutators have area $2^{O(\log^2N)}$; the companion paper counts them in an arbitrary state, with errors
 summed in squares, and an extraction that counts Bell-error entropy rather than fidelity gives the usable rate
 (\cref{thm:count,thm:signed-regular}). In (iv)
-Houghton's far commutators have polynomial area $O(R^{\log107})$~\cite{DM-H3}; on the original state a filling is paid only
+Houghton's far commutators have area $O(R^{\log_2\lambda})$ (\cref{prop:point-fill-sharp}), by an explicit six-type refinement of the filling method of~\cite{DM-H3}; on the original state a filling is paid only
 linearly in its area and length (\cref{thm:linear-filling}), and this gives the lower exponent, while an explicit finite model
 that spreads one collective defect over a torus of clocks gives the upper one (\cref{prop:collective}). Whether the demand in
 (iv) has a limiting exponent, and what it is, remain open. On a calibrated native class of strategies the point game has demand $\Theta(\eps^{-1/3})$, a conditional class
 law (\cref{thm:native}; see \cref{sec:status}).
+
+The least usable entanglement of an original state carrying $M$ pairwise approximate Pauli pairs at error $0\le\kappa\le1/100$ is of order $\min\{M,\kappa^{-2}\}$, and exactly $M$ at $\kappa=0$ (\cref{thm:optimal-pair-budget}). The restriction $\kappa\le1/100$ cannot be dropped: at $\kappa=2$ a product state satisfies every defect bound and has rate zero (end of Section~\ref{sec:optimal-pair-budget}). The spectrum refinements in \cref{sec:arithmetic} separate computable pure-state optimization, convex-roof formation and physical one-way leakage; \cref{app:floor} gives quantitative obstructions and sufficient conditions for the logarithmic floor. For the collective point model, the magnetic-cycle estimate fixes the best defect order obtainable by subdividing its fixed holonomy (\cref{prop:fixed-holonomy}), without settling the quarter lower bound.
 
 What a game sees through approximate relations, an exact source sees through exact ones. Under exact relations the demand is
 governed by a single growth function. These results belong to the exact-source contract (EX) of \cref{sec:prelim-usable}, not to
@@ -369,7 +370,7 @@ $\alpha\log\frac1\eps-O(\log\log\frac1\eps)$; $\Theta(\eps^{-\alpha})$; finite-o
 Frostman exponent $\log_mq$\\
 configuration-lamp game & $\ED$ & $\eps^{-1+o(1)}$ & $2^N$ lamps, quasi-polynomial pair areas\\
 Slofstra--Vidick game & dimension; entropy & $\Theta(\eps^{-1/2})$; $\frac12\log\frac1\eps+O(1)$ & doubling and half-turn: Haar law\\
-point-Pauli game & $\ED$ & between $\eps^{-\beta}$ and $\eps^{-1/4}$, $\beta=\frac1{2\log107+1}$ & polynomial far-commutator
+point-Pauli game & $\ED$ & between $\eps^{-\beta}$ and $\eps^{-1/4}$, $\beta=\frac1{2\log_2\lambda+1}$ & polynomial far-commutator
 area, linear filling charge; collective model\\
 exact sources & $\ED$, both directions & $\Theta(\frac1e)$, $\Theta(e^{-k})$, $2^{\Theta(1/e)}$ & growth of short addresses\\
 $I_{3322}$ (Bell gap) & $\ED$ & bounded near the Bell optimum (conditional on~\cite{Dou26}) & normal attainer with geometric
@@ -394,19 +395,13 @@ infimum over all finite-dimensional strategies; the native laws of \cref{sec:poi
 class of strategies, and the exact-source laws of \cref{sec:exact} are laws for a different contract, exact source relations and
 approximate mirrors.
 
-The paper is split from our companion paper~\cite{DM-game}, and each theorem is proved in exactly one of the two. The companion
-proves the qubit count, the transfer and return for linear system games, the $\mathrm{CHSH}(n)$ and Slofstra--Vidick rates, and the
-explicit configuration-lamp game with its entropy, formation and dimension bounds; we state what we use, with a pointer
-(\cref{app:companion}). Every other result in this paper has a complete written proof, given in the text or the appendices,
-using only the cited results named at it. The native class laws of \cref{thm:native,thm:native-enlarged}
+The companion paper~\cite{DM-game} proves the qubit count, transfer and return for linear system games, the $\mathrm{CHSH}(n)$ and Slofstra--Vidick rates, and the explicit configuration-lamp game with its entropy, formation and dimension bounds. We state the inputs we use with precise pointers in \cref{app:companion}. The realization and matched coefficient laws used in \cref{sec:arithmetic,prob:dense} are supplied by~\cite[Theorem~1.1, Theorem~16.6 and Corollary~16.7]{DM-U3}. Proofs identify the imported results at their uses; the remaining arguments are written in the text or appendices. The native class laws of \cref{thm:native,thm:native-enlarged}
 are \emph{conditional} on estimates from our manuscript on immediate delivery~\cite{DM-ID} and on an aggregate estimate, which have
 not been proved self-containedly. The specifications of the restricted linear compiler for several copies
 (\cref{thm:rational-linear-k}: arity, amplification, algorithm and exports) are \emph{conditional} on a self-contained proof of that
 compiler; the existence of linear system games with every positive rational exponent is not (\cref{cor:linear-existence}), and
 neither are the Boolean constraint family and the one-copy linear family. The $I_{3322}$ statement
-\cref{thm:i3322} is \emph{conditional} on the spatial attainment theorem and tail estimate of~\cite{Dou26}. Every result except
-those labelled in \cref{tab:status} has been read by at least one blind review by a model of a developer other than the one that
-derived it; how each result was checked is recorded there and in the section \hyperref[sec:methods]{How this work was done}.
+\cref{thm:i3322} is \emph{conditional} on the spatial attainment theorem and tail estimate of~\cite{Dou26}. \Cref{tab:status} identifies the proof locations and computational scope of the results; the section \hyperref[sec:methods]{How this work was done} describes the process and the accompanying finite checks.
 
 Slofstra and Vidick's proof of~\cite[Proposition~6.2]{SV18} takes from~\cite[Proposition~4.8]{Slo19} a $2d$-dimensional lift in
 which the marked involution is balanced. With two or more non-involutive generators, as in the group behind the Slofstra--Vidick game, the literal
@@ -421,7 +416,7 @@ Petz and pretty-good recovery~\cite{Petz86,BK02,BCW14,IRS17,Ren17}, the uncertai
 Bounded literature searches found no exact preemption of the composed headline statements; this is not an exhaustive priority
 verdict, and we make no claim of being first.
 
-We do not claim a classification of all games, an exact description of the possible coefficients, a device-independent protocol,
+We do not claim a classification of all games or an exact description of the full mixed-state usable-entanglement coefficient spectrum. The positive pure original-state spectrum is classified by \cref{thm:pure-spectrum}. We do not claim a device-independent protocol,
 efficient decoders, a matching quarter exponent for the point game, or a logarithmic floor for every nonattaining game; these and
 other open targets are stated in
 \cref{sec:open}. Constants are deliberately poor and depend on the fixed game.
@@ -471,5 +466,5 @@ coefficients and the arithmetic of coefficients),
 the obstructions (\cref{sec:obstructions}), the conditional Bell-gap contrast (\cref{sec:boundary}), the logarithmic floor on a
 class and a sufficient criterion for a counterexample (\cref{sec:floor}) and open problems (\cref{sec:open}), followed by a
 discussion and an account of how the work was done. The appendices give the proof of the white-box protocol, a table of the status of
-every result, the history of the reviews, the results used from our companion papers, a tapered reservoir for the game of Ji, Leung and Vidick, the candidate
-classes and method obstructions for the logarithmic floor, and an obstruction to raw cross-copy estimates for the point window.
+every result, reproducibility commands and computational scope, the results used from our companion papers, a tapered reservoir for the game of Ji, Leung and Vidick, the candidate
+classes and method obstructions for the logarithmic floor, and, for the point window, the six-type far-commutator fillings, the fixed-holonomy subdivision estimate and an obstruction to raw cross-copy estimates.

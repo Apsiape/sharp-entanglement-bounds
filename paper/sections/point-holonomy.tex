@@ -1,0 +1,14 @@
+\begin{holonomyproposition}[Fixed-holonomy subdivision from the magnetic-cycle estimate]\label{prop:fixed-holonomy}
+Let $A\ge1$, $F_A\cdots F_1=V=e^{iK}$ be finite-dimensional unitaries with $K=K^*$ and $\operatorname{spec}K\subset[-\pi,\pi]$, and let $\rho$ be a density matrix. If $[\rho,V]=0$, then
+\[
+ \frac1A\sum_j\|(F_j-I)\sqrt\rho\|_2^2\ge4\Tr\bigl(\rho\sin^2(K/(2A))\bigr),
+\]
+with equality for $F_j=e^{iK/A}$. Without commutation,
+\[
+ \frac1A\sum_j\|(F_j-I)\sqrt\rho\|_2^2\ge A^{-2}\|(V-I)\sqrt\rho\|_2^2.
+\]
+For normalized trace and $V=I-2Q$, the infimum is exactly $4\tau(Q)\sin^2(\pi/(2A))$. For the fixed bulk holonomy and area of \cref{prop:collective}, this is $\Theta(M^{-4})$, so changing only its subdivision cannot improve its root-defect order.
+\end{holonomyproposition}
+\begin{proof}
+The complete proof is in \cref{app:fixed-holonomy}. The scalar input is the magnetic-cycle spectrum~\cite[Lemma~2.9]{CTT11} and its equal-distribution minimization~\cite[Proposition~4.6(b)]{BGKLM20}; the arbitrary-state estimate is elementary telescoping. The application fixes the holonomy, representation, visibility and factor-count relation, and does not exclude changing them.
+\end{proof}

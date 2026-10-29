@@ -1,0 +1,470 @@
+%======================================================================
+\section{Introduction}\label{sec:intro}
+%======================================================================
+
+\subsection{The question}\label{sec:intro-question}
+
+In a nonlocal game a referee asks two players questions and accepts if their answers satisfy a fixed predicate. The players
+cannot communicate, but they may share an entangled state. Some games of quantum value one cannot be won exactly by any
+finite-dimensional strategy, although finite strategies come arbitrarily close~\cite{Slo19}. Such nonattainment forces the
+dimension of finite near-winning strategies to diverge as their loss $\eps$ tends to zero. A large dimension certifies only a
+large space, which may hold a separable state, so we ask when nonattainment also forces the distillable entanglement of their
+original mixed states to diverge, and at what rate.
+
+``Entanglement'' can mean several different things here, and they behave differently. The local \emph{dimension} of a strategy,
+or the Schmidt rank of a pure one, counts the size of the Hilbert space. The \emph{entanglement entropy} of a pure strategy counts
+ebits. The \emph{entanglement of formation} of a mixed strategy is the least average entropy over pure decompositions. Dimension,
+marginal entropy and entanglement of formation do not in general lower-bound the distillable entanglement of an arbitrary mixed
+strategy: a large dimension or a large marginal entropy is compatible with a separable state, and a pure decomposition is a
+mathematical expansion, not a label the players can read. A mixed state can even have positive entanglement of formation
+and no distillable entanglement at all~\cite{HHH98}. For pure states, entropy does equal the asymptotic Bell-pair
+rate~\cite{BBPS96}. We
+seek guarantees on the actual mixed state without access to a label of one of its pure decompositions, so the resource we bound
+is the \emph{distillable} entanglement of the actual shared state, the rate at which local operations and classical communication
+turn copies of it into Bell pairs. We work with the one-way version, $\ED^{A\to B}$, and define the \emph{demand} of a game as
+\[
+d_G^\to(\eps)=\inf\bigl\{\ED^{A\to B}(\rho_{AB}):\ \text{some finite-dimensional strategy on }\rho_{AB}\text{ has loss}\le\eps\bigr\}.
+\]
+The infimum is over arbitrary mixed states and measurements, so a lower bound on $d^\to_G$ is a statement about every
+near-winning strategy, with all its noise and all its correlations with an environment. Throughout, the \emph{original state}
+is the shared state $\rho_{AB}$ that the players hold before they measure. Playing the game consumes it, and we make no claim
+about entanglement that survives play. That question is addressed by Arnon-Friedman and Bancal, who certify,
+device-independently, one-shot distillable entanglement in the state that remains after a test~\cite{AFB18}, and Bhavsar,
+Wooltorton and Bae give a composable device-independent certification of states that a source prepares as a finite sequence of
+independent, not necessarily identical, states~\cite{BWB25}. Our bounds concern the state before the game is played, and they hold
+for every strategy of a fixed game rather than for a protocol that tests a source.
+
+Winning with loss $\eps$ controls the players' operators to precision about $\sqrt\eps$, measured in their shared state. Through
+this precision a game sees a group or an algebra, its \emph{source}, and the demand is a property of that source at precision
+$\sqrt\eps$. A source group always comes with marked data: a central involution $J$, which must act as $-1$ on the state, or at
+least stay visibly away from $1$ there. Without this requirement the trivial representation would satisfy every relation at no
+cost. Our thesis is that \emph{the geometry of groups is the price of precision}: the absence of finite-dimensional
+representations makes usable entanglement diverge, and quantitative invariants of the source (areas of fillings, spectra of
+dilations, the growth of short addresses) set how fast.
+
+\subsection{What was known}\label{sec:intro-known}
+
+Man\v{c}inska and Vidick gave a two-player game, with answers of unbounded length, whose optimal value no finite amount of
+entanglement attains~\cite{MV14}; the games below have finite answer sets. Slofstra showed that every finitely presented group
+embeds in a solution group~\cite{Slo20}, and used embeddings of this kind to prove that the set of quantum correlations is not
+closed and that deciding whether a linear system game has a finite-dimensional perfect strategy is undecidable~\cite{Slo19}.
+Non-closure was later proved by other routes: via graphs~\cite{DPP19}, via correlation matrices
+and factorizable channels that require infinite-dimensional ancillas~\cite{MR20}, and via embezzlement~\cite{Col20}; and Beigi
+separated the quantum, spatial quantum and approximate quantum correlation sets~\cite{Bei21}. Slofstra and Vidick connected the entanglement of a linear system game to the hyperlinear profile of its
+solution group, and built a fixed game whose least local dimension lies between $\eps^{-1/6}$ and $\eps^{-1/2}$, from a group whose
+profile lies between $\eps^{-2/3}$ and $\eps^{-1}$~\cite[Theorem~1.1 and Proposition~3.2]{SV18}. Slofstra then built a finitely
+presented group with at least subexponential hyperlinear profile, and from it a two-player game of commuting-operator value one in
+which success probability $1-\eps$ needs dimension at least $\exp(c\,\eps^{-a})$ for some $a>0$; whether that game has quantum value
+one is left open there~\cite[Theorem~1.2 and Corollary~1.4]{Slo18}. Ji, Leung and Vidick gave a three-player game of quantum value
+one in which success probability $1-\eps$ needs local dimension $2^{\Omega(\eps^{-c})}$~\cite[Theorem~1]{JLV20}. Coladangelo gave a
+two-player game, based on embezzlement, in which a strategy whose expected score is within $\eps$ of the optimum needs dimension
+$2^{\Omega(\eps^{-1/8})}$~\cite[Theorems~1 and~5]{Col20}. His game is scored by a real-valued function, so his $\eps$ is a gap below an
+optimal Bell score, not a loss from winning probability one; his exponent and the exponents below are therefore measured under
+different contracts and are not directly comparable. Our companion paper gives an explicit linear system game of quantum value
+one whose near-winners need entanglement entropy, and mixed strategies entanglement of formation, $\eps^{-1+o(1)}$, so that
+$\log\Ent(G,\eps)=\eps^{-1+o(1)}$~\cite[Theorem~A]{DM-game}; it is built on the configuration lamps of our earlier
+paper~\cite{DM-lamps}. Ostrev and Vidick showed that the $\mathrm{CHSH}(n)$ games need $\Omega(\eps^{-1/5})$ ebits at relative
+precision $\eps$, that is, at a bias within a factor $1-\eps$ of the optimum~\cite{OV16}, and the companion paper improves this to
+the optimal order $\Theta(\min(n,1/\eps))$ for entanglement entropy and formation~\cite[Theorem~E]{DM-game}. None of these bounds
+the distillable entanglement of a mixed near-winner.
+
+Near-perfect strategies can often be rounded to better ones, at the price of replacing the state. Paddock rounds near-perfect
+strategies of constraint system and synchronous games to strategies on a new maximally entangled state, close to the original
+measurements on its support~\cite[Corollaries~4.14 and~4.28]{Pad22}. Vidick approximates almost synchronous strategies by convex
+combinations of projective strategies on maximally entangled states~\cite[Theorem~3.1]{Vid22}, and Marrakchi and de la Salle extend
+this to infinite-dimensional strategies~\cite{MdlS23}; for projection games Culf rounds to approximately tracial
+strategies~\cite{Cul26}. None of these extracts Bell pairs from the original state. Robust self-testing of many EPR
+pairs~\cite{NV17,CRSV18,CS18,McK16} and constant-sized self-tests of unbounded dimension~\cite{Fu22,MPS21} are established, and,
+under mild conditions on the ideal strategy, self-tests proved for pure states with projective measurements extend to arbitrary
+mixed states and POVMs~\cite[Theorem~4.1]{Bap25}. For synchronous games, robust self-testing against projective maximally entangled
+strategies lifts to all POVM strategies~\cite[Theorem~1.2]{VZ26}, and, for extreme synchronous correlations, to arbitrary
+mixed-state strategies~\cite[Theorem~3.3]{CZ26}. For games with a robust game algebra, among them synchronous and binary constraint
+system games, Zhao characterizes robust self-testing through uniqueness of an amenable tracial state on the universal measurement
+algebra satisfying the game relations, with that unique trace finite-dimensional~\cite[Theorem~7.10]{Zha24}; Kar gives a
+corresponding formulation for synchronous game algebras~\cite[Theorem~5.5]{Kar25}. The results just cited certify a prescribed ideal
+strategy of a fixed finite dimension. Self-tests whose ideal has no finite-dimensional realization also exist, in the abstract-state
+formulation of self-testing of Paddock, Slofstra, Zhao and Zhou~\cite[Section~7]{PSZZ24}: a correlation that is both a
+commuting-operator and a quantum-approximate self-test~\cite[Section~6.1, Proposition~6.2]{CZ26}, and a commuting-operator self-test
+for exact embezzlement of entanglement~\cite[Theorem~1.1]{PaSc26}. Each asserts that one exact correlation is realized by a unique
+abstract state. Theorem~A below is a statement of another kind. Its games have no finite-dimensional perfect strategy, it specifies
+no ideal strategy, and its conclusion is extraction of any prescribed number of Bell pairs, by one pair of local isometries, from
+the original mixed state of every sufficiently good finite-dimensional strategy of the fixed game. Universal distillation from
+unknown mixed states in a fixed finite dimension is also established~\cite{TWMAH26,TMGL26}, building on protocols for compound
+sources~\cite{BJ14}.
+
+In infinite dimensions the mechanism behind Theorem~A is exact. For hyperfinite factors in Haag duality that generate all
+bounded operators, Keyl, Matsui, Schlingemann and Werner prove the infinite-one-copy-entanglement statement for every normal
+joint state when the factors are not of type~I~\cite[Theorem~4.9]{KMSW06}. Van Luijk, Stottmeister, Werner and Wilming remove
+hyperfiniteness for extraction from pure vector states by operations in the closure of LOCC~\cite[Theorem~54]{vLSWW25}; their
+all-density-matrix Bell statement retains approximate finite dimensionality. Theorem~A uses the same dichotomy of types, but only
+for a tracial limit of finite-dimensional strategies, and it proves its finite-strategy mixed-state assertion directly, by
+extracting from those strategies themselves. Normal infinite-dimensional correlations that have no finite-dimensional
+realization were constructed by Coladangelo and Stark~\cite{CoSt20}; the finite-block conclusion for the classes of Theorem~A
+(\cref{prop:normal-perfect}) has a more restricted scope, perfect strategies of games in those classes.
+
+Prior work includes operational distillation certification and quantitative entanglement bounds for specified self-tests. Our
+question is different: for a fixed finite consistency-tested game, does the original mixed-state one-way distillable entanglement
+of every near-winner diverge as its loss tends to zero, and can its growth be sharp?
+
+\subsection{The main results}\label{sec:intro-results}
+
+We state the results in plain terms and point to the precise theorems. Logarithms are to base two. Two classes of games carry the
+law: \emph{synchronous games} in which every diagonal question pair is tested with positive probability, and
+\emph{constraint-variable consistency games}, in which Alice answers a satisfying assignment to a constraint, Bob the value of one
+of its variables, and every incidence is tested (\cref{def:law-classes}). Linear system games and Boolean constraint games belong to
+the second class. Here \emph{Boolean} refers to the constraint variables: Bob answers one bit, but Alice answers an assignment to all
+variables of her constraint. Single-bit answers on both sides would not do, since a game in which both players answer one bit and
+which has a perfect finite-dimensional quantum strategy has a perfect classical one~\cite[Theorem~3]{CHTW04}.
+
+\begin{theoremA}[Unreachable perfection forces usable entanglement; \cref{thm:A}]
+Let $G$ be a finite game of quantum value one in either class. Then $G$ has no finite-dimensional perfect strategy if and only if
+$d^\to_G(\eps)\to\infty$ as $\eps\to0$. More precisely, if $G$ has no finite-dimensional perfect strategy, then for every $r$
+and $\gamma>0$ there is $\eps_0>0$ such that every
+finite-dimensional mixed strategy of loss at most $\eps_0$ admits product local isometries producing $r$ Bell pairs with fidelity at
+least $1-\gamma$, the environment, untouched, being part of the junk.
+\end{theoremA}
+
+The proof takes a tracial limit of Bob's moments, uses the absence of finite perfect strategies to exclude every finite type~I
+summand of the limit, approximates Pauli matrices there by bounded polynomials, and evaluates the polynomials back on the original
+strategies, where actual mirrors between the players' operators let them act on the original state. Three further results sharpen the
+picture. For rational games in class~(S), and rational binary constraint-variable games in class~(C), a threshold $\eps_0$ for
+fixed $r$ and rational $\gamma$ is computable under the promise of quantum value one and no finite-dimensional perfect strategy,
+with finite rational certificates, once the polynomial moment relations are imposed on both sides (\cref{thm:effective}). Among
+games promised to have quantum value one, whether the demand is bounded or divergent is undecidable, and the divergent branch is
+not even semidecidable, already for games with contexts of arity four, sixteen answers for Alice and two for Bob
+(\cref{thm:undecidable}). The reduction keeps the promise by construction: each instance is gated against a fixed game of
+Slofstra that has value one and no finite-dimensional perfect strategy, so every instance has value one and only the existence of
+a finite perfect strategy varies. For the same rational games under the same promise, if the players have independent copies
+of the state and coherent white-box access to their own measurement circuits, as specified in \cref{thm:protocol}, one finite
+protocol, independent of the hidden state and its dimension, extracts the pairs from one retained copy; this model is not
+device-independent.
+
+Theorem~A gives no rate. A logarithmic floor does hold on an explicit class: if every near-winner of a fixed game supplies, with
+actual mirrors on its original state, unitaries satisfying a sign relation $WY=-YW$ and an even dilation $XYX^*=Y^m$, then
+$d^\to_G(\eps)\ge\log(1/\eps)/(4\log m)-O(\log\log(1/\eps))$, and the Boolean constraint game compiled from Abels' finitely
+presented solvable group is an instance (\cref{thm:floor-class,cor:abels}). Whether every game of Theorem~A has such a floor is
+open; \cref{sec:floor} gives a sufficient criterion for a counterexample, and \cref{app:floor} the candidate classes that cannot meet
+it (\cref{prob:floor}).
+
+The demand has a direction, and one might fear that a game could demand usable entanglement only from Alice to Bob. It cannot,
+for the large class of agreement games, in which acceptance means agreement of labels of the two answers.
+
+\begin{theoremB}[Directions are interchangeable at a loss factor of three; \cref{thm:factor-three,thm:factor-three-sharp}]
+For every finite agreement game, one channel applied by Alice alone, followed by a measurement of whole answers, turns a strategy
+of loss $\eps$ into one of loss at most $3\eps$ whose two directional rates are equal and no larger than either original rate. So
+$d^\to_G(\eps)\ge d^\leftarrow_G(3\eps)$ and conversely, uniformly in the game. The factor three is optimal for this mechanism: no
+deterministic Alice-local channel that symmetrizes the state while keeping Bob's system, marginal and measurements fixed gives a
+smaller factor, whatever legal decoding follows.
+\end{theoremB}
+
+The optimality concerns this mechanism, not every comparison of the two demand profiles (\cref{prob:direction}). For
+$\eps\le\frac12$ the loss bound improves to $1-(1-\eps)^3$ (\cref{thm:factor-three}), and the guarantee of this channel and
+decoder holds for a predicate exactly when the predicate has the agreement form (\cref{thm:factor-three-sharp}). The channel
+keeps Bob's operators and
+marginal, so every source budget measured on Bob is unchanged. Its output is the reflected
+state of Dutta and Faulkner~\cite{DF19}, reached by a Petz recovery map~\cite{Petz86} in the pretty-good form of Barnum and
+Knill~\cite{BK02,BCW14}, and the factor three is the polynomial inequality $h^3\ge3h-2$ on $[-1,1]$ applied to KMS-adjoint
+correlation maps, related to the correlation-operator framework of Beigi's quantum maximal correlation~\cite{Bei13}.
+
+Changing the finite presentation of the marked group changes the precision of every model by at most a constant factor and keeps
+the state (\cref{prop:algebraic-map} and the paragraph after it). A constant factor changes $\alpha\log(1/e)$ only by $O(1)$ and
+leaves every exponent unchanged, so all the laws below are independent of the presentation; a change of precision by a power
+would change them, and none occurs. For the normalized trace, Chapman, Vidick and Yuen transfer stability moduli between
+presentations with the same kind of constant rescaling~\cite[Lemma~2.6]{CVY26}; here the state is kept, and conjugations are paid
+for through state commutators. For permutation and metric models, Cornulier's sofic profile is defined from the finite pieces of the
+group itself~\cite{Cor13}, and the profiles of Arzhantseva and Cherix do not depend on the generating set up to the usual
+equivalence~\cite{AC24}. The next theorem collects the fixed games whose demand we can compute; all are finite games fixed
+before $\eps$ is chosen.
+
+\begin{theoremC}[A spectrum of fixed games; \cref{thm:rational-games,thm:renyi,thm:rational-ED,cor:linear-existence,cor:coefficient-set,thm:lamps-ED,thm:SV,thm:SV-entropy,thm:point-window}]
+\leavevmode
+\begin{enumerate}[label=(\roman*),itemsep=2pt]
+\item \emph{A dense set of coefficients.} Let $\alpha=\frac12\sum_i\log_{m_i}q_i$ for finitely many (at least one) pairs of integers $m_i\ge2$ and
+$q_i=2^{r_i}$ with $r_i\ge1$ and $q_i$ dividing $m_i$; these numbers form a dense subset of $(0,\infty)$ that contains every positive rational and some transcendental numbers, such
+as $\frac12\log_62$. For each such $\alpha$ there are a fixed Boolean constraint game and a fixed linear system game with
+$d^\to(\eps)=\alpha\log(1/\eps)+O(\log\log(1/\eps))$ for small $\eps$, minimum Schmidt rank of a pure strategy $\Theta(\eps^{-\alpha})$, and
+minimum pure entropy and formation $\alpha\log(1/\eps)+O(1)$. For rational $\alpha$ the games can be chosen so that, over pure
+strategies, the coefficient of $\log(1/\eps)$ in the minimum R\'enyi entropy $H_\beta$ is $\alpha$ for $0\le\beta\le1$ and
+$\min\{\alpha,\beta/(\beta-1)\}$ for $1<\beta<\infty$ (\cref{thm:renyi}, which also treats $H_\infty$, smooth min-entropy and
+one-shot concentration).
+\item \emph{Almost inverse loss.} The configuration-lamp game of~\cite{DM-game} has $d^\to(\eps)=\eps^{-1+o(1)}$, with an explicit
+lower bound $c\,\eps^{-1}2^{-4(24+\log\log(1/\eps))^2}$ and upper bound $O(\eps^{-1}\log(1/\eps))$.
+\item \emph{The Slofstra--Vidick baseline.} Slofstra and Vidick bounded the least dimension of their game~\cite{SV18} between
+$\eps^{-1/6}$ and $\eps^{-1/2}$; our companion paper shows that it is $\Theta(\eps^{-1/2})$ and that the source has profile
+$\Theta(1/e)$ at every visibility~\cite[Theorem~F]{DM-game}. The game's least pure entropy and formation are
+$\frac12\log(1/\eps)+O(1)$.
+\item \emph{A polynomial window.} A fixed Boolean constraint game built from Pauli lamps on the points of Houghton's group $H_3$ has
+$c\,\eps^{-\beta}\le d^\to(\eps)\le C\eps^{-1/4}$, where $\beta=(2\log_2\lambda+1)^{-1}=0.0734595360384268649\ldots$ and $\lambda$ is specified in \cref{prop:point-fill-sharp}.
+\end{enumerate}
+By Theorem~B each holds in both directions.
+\end{theoremC}
+
+In (i) the source is a finitely presented group $L_{q,m}$ with a dilation $xyx^{-1}=y^m$ and $q$ lamps cyclically permuted by $y$:
+the spectral law of $y$ is nearly invariant under multiplication by $m$ and rotation by $1/q$. Every invariant law satisfies a
+Frostman bound of exponent $s=\log_mq$, hence has dimension at least $s$. This fixes the minimum spectral scale relevant to the
+profile, and matching approximate models attain the corresponding rank and entropy rates. The exponents of independent copies
+add, without a joint spectral measure (\cref{thm:lamp,thm:additive}). The usable-entanglement
+coefficient comes from a triangular extraction on the original state with cyclic labels (\cref{thm:triangular,lem:cyclic-triangular}).
+The transcendence of $\frac12\log_62$ is the Gelfond--Schneider theorem. In the other direction, the logarithmic coefficient of a fixed
+game of value one, when it exists, is left-c.e.\ relative to the second Turing jump $0''$ (\cref{thm:arithmetic}). Every positive $\Delta^0_2$ real occurs with a matched original-mixed-state usable law~\cite[Theorem~16.6 and Corollary~16.7]{DM-U3}; the full usable spectrum remains open (\cref{prob:dense}). The positive pure original-state entropy spectrum is exactly the positive $\Delta^0_2$ reals (\cref{thm:pure-spectrum}). In (ii) the source has $2^N$ Pauli
+lamps whose pairwise commutators have area $2^{O(\log^2N)}$; the companion paper counts them in an arbitrary state, with errors
+summed in squares, and an extraction that counts Bell-error entropy rather than fidelity gives the usable rate
+(\cref{thm:count,thm:signed-regular}). In (iv)
+Houghton's far commutators have area $O(R^{\log_2\lambda})$ (\cref{prop:point-fill-sharp}), by an explicit six-type refinement of the filling method of~\cite{DM-H3}; on the original state a filling is paid only
+linearly in its area and length (\cref{thm:linear-filling}), and this gives the lower exponent, while an explicit finite model
+that spreads one collective defect over a torus of clocks gives the upper one (\cref{prop:collective}). Whether the demand in
+(iv) has a limiting exponent, and what it is, remain open. On a calibrated native class of strategies the point game has demand $\Theta(\eps^{-1/3})$, a conditional class
+law (\cref{thm:native}; see \cref{sec:status}).
+
+The least usable entanglement of an original state carrying $M$ pairwise approximate Pauli pairs at error $0\le\kappa\le1/100$ is of order $\min\{M,\kappa^{-2}\}$, and exactly $M$ at $\kappa=0$ (\cref{thm:optimal-pair-budget}). The restriction $\kappa\le1/100$ cannot be dropped: at $\kappa=2$ a product state satisfies every defect bound and has rate zero (end of Section~\ref{sec:optimal-pair-budget}). The spectrum refinements in \cref{sec:arithmetic} separate computable pure-state optimization, convex-roof formation and physical one-way leakage; \cref{app:floor} gives quantitative obstructions and sufficient conditions for the logarithmic floor. For the collective point model, the magnetic-cycle estimate fixes the best defect order obtainable by subdividing its fixed holonomy (\cref{prop:fixed-holonomy}), without settling the quarter lower bound.
+
+What a game sees through approximate relations, an exact source sees through exact ones. Under exact relations the demand is
+governed by a single growth function. These results belong to the exact-source contract (EX) of \cref{sec:prelim-usable}, not to
+finite-game loss (\cref{sec:status}).
+
+\begin{theoremD}[The price of an address; \cref{thm:address,thm:exact-point,thm:exact-config,thm:subset,thm:subset-visibility,thm:gamma3}]
+If Bob satisfies the relations of a source exactly, in the sector $J=-I$ of a necessarily infinite-dimensional representation, and
+Alice mirrors each generator with error $e$ on an arbitrary original mixed state, then the demand in both directions is at least
+a fixed positive multiple of the number of independent Pauli qubits addressable by words of length $c/e$. For Pauli lamps on the
+points of $H_3$, on the $k$-subsets of its points, and on its configurations, the demand is $\Theta(1/e)$, $\Theta_k(e^{-k})$ and
+$2^{\Theta(1/e)}$, with matching finite-rank constructions; a five-generator replication source is also exponential. With a central
+reflection of visibility $\Delta$ instead of $J=-I$, the subset sources have, uniformly for $e\le c_k\Delta$, the joint law
+$\Theta_k(\Delta^{k+2}e^{-k})$.
+\end{theoremD}
+
+Exactness can be exponentially expensive. The approximate configuration models of~\cite[Proposition~9.4]{DM-game} cost only $O(e^{-2}\log(1/e))$
+ebits, the exact ones $2^{\Theta(1/e)}$, so a correction that keeps the original state and its resource needs error
+$\Omega(1/\log(1/e))$; the collective point models cost $O(e^{-1/2})$ ebits against $\Theta(1/e)$ for exact ones
+(\cref{prop:correction}).
+
+For near-optimal Bell violations, finite-dimensional nonattainment alone need not force divergent usable entanglement. The
+$I_{3322}$ Bell functional is not attained in finite dimension, as Pauwels~\cite[Theorem~2]{Pau26}, Coladangelo~\cite[Theorem~11.1]{Col26}
+and the first author~\cite[Theorem~1]{Dou26} showed independently; it is attained by an infinite-dimensional spatial
+strategy~\cite[Theorem~11.1]{Col26}, \cite[Theorem~2]{Dou26}, and its least dimension at Bell gap $\varepsilon$ grows like
+$\log(1/\varepsilon)$~\cite[Theorem~6]{Dou26}. The Schmidt coefficients of the attainer of~\cite{Dou26} have exponential
+tails~\cite[Section~5.2]{Dou26}, and bounded usable entanglement is an elementary consequence of those tails. The analytic proofs of
+attainment and of the tails are not formalized, so we state the consequence conditionally.
+
+\begin{theoremE}[A conditional Bell-gap contrast; \cref{thm:i3322}]
+Conditional on the spatial attainment theorem and the tail estimate of~\cite{Dou26}, strategies for the $I_{3322}$ functional
+with Bell gap tending to zero need only bounded usable entanglement, in either direction.
+\end{theoremE}
+
+This changes both the contract and the class (\cref{sec:status}), so it does not decide whether Theorem~A extends beyond
+classes~(S) and~(C). What the contrast does show is a difference in the kind of nonattainment. The infinite-dimensional
+construction of the $I_{3322}$ optimum and the optimality conjecture are due to P\'al and V\'ertesi~\cite{PV10}; the cited 2026
+papers concern its analytic resolution. In the
+classes of Theorem~A a normal perfect strategy of any entropy already has a finite perfect block, by a theorem of Kim, Paulsen
+and Schafhauser~\cite{KPS18} and its standard analogue for constraint games (\cref{prop:normal-perfect}), whereas, by
+\cite[Theorem~2 and Section~5.2]{Dou26}, the $I_{3322}$ optimum is attained by a normal strategy of finite entropy.
+
+\paragraph{The engine.} Behind these results is a set of tools that keep the state; the first two are proved in our companion
+paper~\cite{DM-game} and are used here as stated there. In the hyperlinear-profile route of
+Slofstra and Vidick, the passage from a general strategy to a normalized-trace model, through a spectral projection of the
+reduced state, changes the precision from order $\sqrt\eps$ to order $\eps^{1/4}$~\cite[Theorem~5.1 and Lemmas~5.5,
+5.6]{SV18}, and rounding to a maximally entangled strategy~\cite{Pad22} replaces the state. Our arguments keep the
+state-weighted model through these steps. Original-state self-testing and mixed-state assumption lifting were discussed
+above; what differs here is the nonattaining fixed-game regime and its resource laws. (For the memory of a repeatedly used
+channel, the weighted one-round theorem of our earlier paper already works with a non-flat state~\cite[Theorem~10.1]{DM-lamps};
+the tools below do this for both players of a game.)
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item \emph{A qubit count in an arbitrary state} (\cref{thm:count}, from~\cite[Theorem~C]{DM-game}): pairwise relations among $2M$
+approximate Pauli involutions, measured in the state and summed in squares, together with their commutators with the square root
+of the state, bound its entropy below by about $M$.
+\item \emph{Transfer and return with the state kept} (\cref{thm:transfer,thm:return}, from~\cite[Theorem~D]{DM-game}, and
+\cref{thm:boolean-correspondence}): the cost of a linear or Boolean constraint game is a state-weighted profile of its algebra at
+precision $\Theta(\sqrt\eps)$, in both directions, with the whole spectrum of the state preserved.
+\item \emph{A retained-state compiler} (\cref{thm:universal}): every finite presentation with a central involution is compiled into
+a Boolean constraint game of arity three, with a split algebraic retraction that keeps the whole state; corner maps
+(\cref{prop:corner}) recover a group inside a game algebra without cutting out a sector.
+\item \emph{Extraction on the original mixed state} (\cref{sec:extract}): triangular and signed regular extraction, aggregate and
+finite-group versions with a center-aware one-way protocol, and Alice-local recovery for the forward direction.
+\item \emph{A linear filling charge} (\cref{thm:linear-filling}): on the original state, a null word of length $n$ with a filling
+of $A$ cells has error $O((A+n)e)$ at precision $e$, although the conjugators of its cells can be long.
+\end{itemize}
+The tools added here are the Boolean case of the correspondence, the compilers and the original-state extraction; they turn the
+entropy and dimension bounds of the companion into bounds on usable entanglement.
+
+\subsection{The ideas of the proofs}\label{sec:intro-ideas}
+
+\paragraph{Precision lives in the state.} If Bob's reduced state is $\rho$ and $\xi=\rho^{1/2}$, a strategy of loss $\eps$ gives Bob
+operators that satisfy the relations of the game up to $\sqrt\eps$ in the norm $\hs{Y\xi}=\Tr(Y^*Y\rho)^{1/2}$, and that nearly
+commute with $\xi$, again to order $\sqrt\eps$: consistency between Alice and Bob forces it (\cref{lem:consistency}). Fixing a state
+is not like fixing a trace: conjugation by a unitary moves the state, and the price is the commutator with $\xi$. Every estimate
+in this paper is made in such a norm, and the only cost of changing the state is a commutator of this kind. Errors are summed in
+squares wherever possible, because the counting and extraction arguments below charge each qubit only the sum of squares of its
+pair errors.
+
+\paragraph{Counting qubits without flattening.} Exact Pauli pairs $X_i,Z_i$ force dimension $2^M$. To see approximately the same in a
+state, the companion paper's argument~\cite[Section~4]{DM-game} proceeds as follows: embed the space coherently into a register indexed by $\{0,1\}^M$ through the products $Z_1^{g_1}\cdots Z_M^{g_M}$; on the
+register the shifts and signs are exact Pauli operators, and the embedding intertwines them with the $X_i,Z_i$ up to an error
+that the two-sided twirl of \cref{lem:twirl} computes as a sum of squares of pair relations; pinching the embedded state then
+gives about one bit per pair (\cref{thm:count}).
+
+\paragraph{From a count to Bell pairs.} A count bounds the entropy of Bob's marginal, which a separable state can also have. To get
+usable entanglement, both players apply the coherent embedding, each to their own operators; actual mirrors then make the two
+exact label registers nearly agree, and every Bell stabilizer of the output fails with probability $O(M\kappa^2)$
+(\cref{thm:signed-regular}). The decisive point is to use these failures through their \emph{entropy}: after a Pauli twirl the
+output is Bell-diagonal, and hashing gives $M-\sum_kh(p_k)$ ebits however the errors are correlated. A fidelity bound for the
+whole register would add the failures and lose a factor $M$.
+
+\paragraph{Why unreachable perfection is enough.} In Theorem~A there is no rate and no explicit source. The tracial limit of Bob's
+moments is a finite von Neumann algebra. When the game has no finite-dimensional perfect strategy, the limit has no type~I piece,
+since such a piece would yield one; so the limit is of type~II and contains every matrix algebra. Pauli matrices there are
+approximated, in the trace norm, by bounded polynomials in the game's measurements; evaluated on the original strategies, on both sides, and rounded locally, they are
+approximate Pauli pairs with small mirrors, and the fixed-size extraction lemma (\cref{lem:fixed-size}) applies.
+
+\paragraph{Why the directions agree.} Alice can map her half of a purification to a conjugate copy of Bob's side; on the output the
+two parties hold mirror images, so the two one-way rates coincide, and they are no larger than before. To keep playing an
+agreement game, Alice measures the image of her old measurements under the correlation map $S$; the new success is $\langle w,H^3w\rangle$ for the
+self-adjoint contraction $H$ whose quadratic form is the old success, and $h^3\ge3h-2$ on $[-1,1]$ gives the factor three.
+
+\paragraph{Rates from transport.} For a source with $xyx^{-1}=y^m$ and lamps rotated by $y$, the relations make the spectral law of $y$,
+measured in the state, nearly invariant under multiplication by $m$ and under rotation by $1/q$. A nearly invariant law is close to an
+invariant one, and every invariant law satisfies a Frostman bound of exponent $\log_mq$, hence has dimension at least $\log_mq$;
+so a law with few atoms is far from all of them. Entropy, rather than
+dimension, needs the commutator of $y$ with $\xi$ once more: it lets both halves of a purification read the same spread spectral
+law (\cref{thm:entropy-transport}). For several copies we cannot use a joint spectral measure; instead we measure spectral arcs of
+short words in reverse order of depth, so that the errors form geometric series (\cref{thm:additive}).
+
+\paragraph{Rates from areas.} For lamps on configurations or points of Houghton's group, the qubits come from transported Pauli
+pairs, and the cost of making two transported pairs commute is governed by the area of a filling. On a non-flat state each cell of
+a filling is reached through a conjugator, and charging every cell its own conjugator costs area times length. Cutting the van
+Kampen diagram into a tree of faces, and substituting the whole boundary of each subdiagram at once, shares the conjugators, so a
+filling costs only linearly in its area and length (\cref{thm:linear-filling}). Quasi-polynomial areas give the
+configuration-lamp rate, and polynomial areas the lower end of the point window.
+
+\paragraph{Exact sources and collective models.} When the relations are exact, every independent qubit is free, and the cost is the
+number of qubits addressable by short words. Approximate models are cheaper because they can merge addresses or, as in the
+collective model of the point game, replace a sum of many small defect logarithms by the logarithm of their product, which is a
+single bounded projection. The difference can be exponential (\cref{prop:correction}).
+
+\subsection{How the results fit}\label{sec:intro-map}
+
+\Cref{tab:map} lists the main results with the resource each controls and the mechanism behind it. Read down the table, the
+picture is as follows. Theorem~A is qualitative and uses only the absence of finite-dimensional representations of the game
+algebra: type~II limits contain arbitrarily large matrix algebras, and the actual mirrors pull them back to the original state. The
+rates need quantitative invariants of a source, and each invariant enters through one tool. The Frostman exponent of the
+measures invariant under the dilation and the rotation gives the logarithmic coefficients, a dense set containing every positive
+rational; areas of commutators in Houghton's group give the configuration-lamp rate and
+the point window; and the growth of short addresses gives the exact-source laws. The conversions of errors behind every rate,
+from loss to mirrors, relation errors, Bell-stabilizer failures and ebits, are collected once in \cref{sec:prelim-usable}. For
+agreement games, which include class~(C), each directional demand at loss $\eps$ is at least the other at loss $3\eps$
+(\cref{thm:factor-three}); for general games in class~(S), \cref{prop:sync-repair} gives only the weaker square-root repair, with
+$\eps+C_G\sqrt\eps$ in place of $3\eps$.
+
+\begin{table}[ht]
+\centering\small\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}L{0.24\textwidth}L{0.2\textwidth}L{0.24\textwidth}L{0.26\textwidth}@{}}
+\toprule
+object & resource & law & mechanism\\
+\midrule
+games in classes (S), (C) & usable $\ED$, both directions & divergent iff no finite perfect strategy & type~II limit, bounded lifts, actual
+mirrors\\
+games with a sign and an even dilation (e.g.\ Abels' group) & $\ED$ & at least $\frac{\log(1/\eps)}{4\log m}-O(\log\log\frac1\eps)$ &
+actual-mirror decoder, triangular extraction\\
+agreement games & $\ED^{A\to B}$ vs $\ED^{B\to A}$ & equal up to loss factor $3$, optimal for Bob-fixed local symmetrization &
+reflected state, KMS correlation maps\\
+lamp-sum families (Boolean constraint and linear games), $\alpha$ in a dense set & $\ED$; pure Schmidt rank; R\'enyi ($\alpha$ rational) &
+$\alpha\log\frac1\eps-O(\log\log\frac1\eps)$; $\Theta(\eps^{-\alpha})$; finite-order spectrum & dilation $\times m$ and rotation $\frac1q$:
+Frostman exponent $\log_mq$\\
+configuration-lamp game & $\ED$ & $\eps^{-1+o(1)}$ & $2^N$ lamps, quasi-polynomial pair areas\\
+Slofstra--Vidick game & dimension; entropy & $\Theta(\eps^{-1/2})$; $\frac12\log\frac1\eps+O(1)$ & doubling and half-turn: Haar law\\
+point-Pauli game & $\ED$ & between $\eps^{-\beta}$ and $\eps^{-1/4}$, $\beta=\frac1{2\log_2\lambda+1}$ & polynomial far-commutator
+area, linear filling charge; collective model\\
+exact sources & $\ED$, both directions & $\Theta(\frac1e)$, $\Theta(e^{-k})$, $2^{\Theta(1/e)}$ & growth of short addresses\\
+$I_{3322}$ (Bell gap) & $\ED$ & bounded near the Bell optimum (conditional on~\cite{Dou26}) & normal attainer with geometric
+tails\\
+\bottomrule
+\end{tabular}
+\caption{The main results. $\eps$ is a game loss from value one, except in the $I_{3322}$ row, where it is a gap below the Bell
+optimum; $e$ is a source precision; all games are fixed before $\eps$ varies.}
+\label{tab:map}
+\end{table}
+
+\FloatBarrier
+\subsection{Scope and status}\label{sec:status}
+
+We state the scope once here, and the later sections refer to this subsection. Three distinctions run through the paper.
+\emph{Original state versus replacement state}: every lower bound on usable entanglement is a bound on the distillable
+entanglement of the original mixed state, with its purifying environment untouched; bounds on marginal entropy, pure Schmidt
+rank, entanglement of formation or dimension are stated as such and are never used as bounds on $\ED$. \emph{Loss versus Bell
+gap}: $\eps$ is a game loss from value one, except in \cref{sec:boundary}, where a gap below the Bell optimum of $I_{3322}$ is
+used, which no affine rescaling turns into a game loss (\cref{sec:i3322}). \emph{Unrestricted versus class laws}: a demand is an
+infimum over all finite-dimensional strategies; the native laws of \cref{sec:point-native} are laws on a restricted, calibrated
+class of strategies, and the exact-source laws of \cref{sec:exact} are laws for a different contract, exact source relations and
+approximate mirrors.
+
+The companion paper~\cite{DM-game} proves the qubit count, transfer and return for linear system games, the $\mathrm{CHSH}(n)$ and Slofstra--Vidick rates, and the explicit configuration-lamp game with its entropy, formation and dimension bounds. We state the inputs we use with precise pointers in \cref{app:companion}. The realization and matched coefficient laws used in \cref{sec:arithmetic,prob:dense} are supplied by~\cite[Theorem~1.1, Theorem~16.6 and Corollary~16.7]{DM-U3}. Proofs identify the imported results at their uses; the remaining arguments are written in the text or appendices. The native class laws of \cref{thm:native,thm:native-enlarged}
+are \emph{conditional} on estimates from our manuscript on immediate delivery~\cite{DM-ID} and on an aggregate estimate, which have
+not been proved self-containedly. The specifications of the restricted linear compiler for several copies
+(\cref{thm:rational-linear-k}: arity, amplification, algorithm and exports) are \emph{conditional} on a self-contained proof of that
+compiler; the existence of linear system games with every positive rational exponent is not (\cref{cor:linear-existence}), and
+neither are the Boolean constraint family and the one-copy linear family. The $I_{3322}$ statement
+\cref{thm:i3322} is \emph{conditional} on the spatial attainment theorem and tail estimate of~\cite{Dou26}. \Cref{tab:status} identifies the proof locations and computational scope of the results; the section \hyperref[sec:methods]{How this work was done} describes the process and the accompanying finite checks.
+
+Slofstra and Vidick's proof of~\cite[Proposition~6.2]{SV18} takes from~\cite[Proposition~4.8]{Slo19} a $2d$-dimensional lift in
+which the marked involution is balanced. With two or more non-involutive generators, as in the group behind the Slofstra--Vidick game, the literal
+lift is unbalanced, so that step does not apply as written. This affects only the dimension factor of the upper bound: their value
+one, their lower bounds and the non-triviality of $J$, which they take from~\cite[Lemma~5.2]{Slo19}, do not use the lift. Our
+linear games therefore use a balanced construction (\cref{prop:extended}), and our companion paper proves the lift for the
+Slofstra--Vidick group~\cite[Lemma~11.13]{DM-game}, so~\cite[Theorem~1.1]{SV18} holds as stated (\cref{sec:transport-game}).
+
+The results are compositions of established tools with new accounting, and we say so at each result: tracial and synchronous
+correspondences~\cite{CM14,PSSTW16,KPS18}, Kaplansky density, Pauli and regular-representation extraction~\cite{GH17,NV17},
+Petz and pretty-good recovery~\cite{Petz86,BK02,BCW14,IRS17,Ren17}, the uncertainty relation with memory~\cite{BCCRR10} and hashing~\cite{DW05,BDSW96}.
+Bounded literature searches found no exact preemption of the composed headline statements; this is not an exhaustive priority
+verdict, and we make no claim of being first.
+
+We do not claim a classification of all games or an exact description of the full mixed-state usable-entanglement coefficient spectrum. The positive pure original-state spectrum is classified by \cref{thm:pure-spectrum}. We do not claim a device-independent protocol,
+efficient decoders, a matching quarter exponent for the point game, or a logarithmic floor for every nonattaining game; these and
+other open targets are stated in
+\cref{sec:open}. Constants are deliberately poor and depend on the fixed game.
+
+\subsection{Related work and credits}\label{sec:intro-related}
+
+The Hilbert--Schmidt picture of a shared state, with the reduced state as a factor $\xi$, is the standard form of the state; Slofstra
+and Vidick use it for general strategies~\cite{SV18}, and Marrakchi and de la Salle use it to round near-synchronous
+strategies~\cite{MdlS23}. The coupling of two spectral measures in one state is Connes' joint distribution~\cite{Con76}. Defect bounds
+in the state of a near-perfect strategy of a boolean constraint system game, and embeddings of group algebras into such games with
+finite certificates, are due to Fanizza, Kroell, Mehta, Paddock, Rochette, Slofstra and Zhao~\cite{FKMPRSZ25}, whose
+relation-decomposition bound is Lemma~3.9 of Mehta, Slofstra and Zhao~\cite{MSZ23}; Slofstra's finite gadgets
+and embedding theorem~\cite{Slo19,Slo20} and Paddock's constraint-system machinery~\cite{Pad22} underlie our compiler, whose new part is
+the split retraction. The finite-dimensional structure of perfect synchronous strategies is due to Paulsen, Severini, Stahlke,
+Todorov and Winter and to Kim, Paulsen and Schafhauser~\cite{PSSTW16,KPS18}; approximate tracial rounding to Vidick, Marrakchi and
+de la Salle, Paddock, and Culf~\cite{Vid22,MdlS23,Pad22,Cul26}; Pauli stability for synchronous strategies to de la Salle~\cite{dlS22}.
+Thoma's classification of the characters of the infinite symmetric group~\cite{Tho64}, Cornulier's criterion for finitely presented
+wreath products~\cite{Cor06}, and Johnson's presentation of Houghton's group~\cite{Joh99,Lee12} are used for the exact sources. The
+functional-inequality framework behind the R\'enyi spectrum is that of~\cite{BCLS95,Rum10}, and one-shot concentration is due
+to~\cite{Vid99,LP01,BD10,Nie99}. The undecidable core of \cref{thm:undecidable} is Slofstra's~\cite{Slo19}; the remark after that
+theorem credits the related game disjunction of Man\v{c}inska and Schmidt~\cite{MaSc23} and compares the theorem with the
+RE-completeness of entangled constraint satisfaction problems~\cite{CuMa25}.
+
+The configuration lamps come from our arXiv paper~\cite{DM-lamps}. There, copies of $S_3$ sit on the configurations of the points of
+Houghton's group; the paper bounds the sofic profile of the resulting group and the dimension of its unitary models at
+normalized-trace precision $e$, which is at least $\exp(c\,e^{-2}(\log(1/e))^{-2\kappa})$ with $\kappa=6+\log107$ at fixed
+visibility~\cite[Theorem~A]{DM-lamps}, and its weighted
+one-round theorem bounds the entropy of a non-flat memory state through transported copies of $S_3$~\cite[Theorem~10.1]{DM-lamps}.
+The companion paper~\cite{DM-game} puts Pauli pairs on the same configurations, builds the game and bounds the entropy, formation
+and dimension of its near-winners. Neither paper bounds the distillable entanglement of a strategy for a game; that is what
+\cref{thm:lamps-ED} adds.
+
+\subsection{Organization}\label{sec:intro-org}
+
+For the qualitative law, read \cref{sec:prelim-usable}, the fixed-size extraction lemma (\cref{lem:fixed-size}) and
+\cref{sec:law}. The logarithmic laws need in addition the compiler and extraction tools of \cref{sec:compile,sec:extract}, the
+lamp sources of \cref{sec:rates} and the coefficient family of \cref{sec:rational}. The polynomial demands are in
+\cref{sec:lamps,sec:point}. \Cref{sec:exact} changes to the exact-source contract (EX) of \cref{sec:prelim-usable}.
+
+\Cref{sec:prelim} fixes norms, the standard form, a calculus for words in a state, and the resources and contracts. Part~I, the
+engine, consists of \cref{sec:count} (the qubit count of the companion), \cref{sec:transfer} (transfer and return
+for linear and Boolean constraint games), \cref{sec:compile} (compilers) and \cref{sec:extract} (extraction). Part~II, the law, is
+\cref{sec:law} (Theorem~A and the results around it) and \cref{sec:direction} (directions). Part~III, the spectrum, consists of
+\cref{sec:transport} (the Slofstra--Vidick baseline), \cref{sec:rates} (lamp sources), \cref{sec:rational} (a dense set of
+coefficients and the arithmetic of coefficients),
+\cref{sec:lamps} (the configuration-lamp game), \cref{sec:point} (the point game) and \cref{sec:exact} (exact sources). Part~IV contains
+the obstructions (\cref{sec:obstructions}), the conditional Bell-gap contrast (\cref{sec:boundary}), the logarithmic floor on a
+class and a sufficient criterion for a counterexample (\cref{sec:floor}) and open problems (\cref{sec:open}), followed by a
+discussion and an account of how the work was done. The appendices give the proof of the white-box protocol, a table of the status of
+every result, reproducibility commands and computational scope, the results used from our companion papers, a tapered reservoir for the game of Ji, Leung and Vidick, the candidate
+classes and method obstructions for the logarithmic floor, and, for the point window, the six-type far-commutator fillings, the fixed-holonomy subdivision estimate and an obstruction to raw cross-copy estimates.

@@ -75,6 +75,6 @@
     "maximum_trace_difference": 2.3191507704880176e-16
   },
   "source_trace_cache": 696,
-  "seconds": 51.33555429999251,
+  "seconds": 63.36753000004683,
   "limits": "Complete actual strategies, not optimization or a lower-bound proof. Source and retained-state compiler proofs give the matching one-third rate."
 }

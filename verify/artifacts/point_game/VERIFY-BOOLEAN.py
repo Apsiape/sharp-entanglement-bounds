@@ -1,10 +1,10 @@
-"""PROPOSED independent exact audit of exported BOOLEAN-GAME.json.
+"""Independent exact check of the exported BOOLEAN-GAME.json.
 
 No producer imports. Signed free words and terminating shortening rules are
 derived directly from the exported source relators. A successful reduction
 is a finite defining-relator certificate, never a word-problem oracle.
 An incomplete reduction may give a false failure, never an unjustified PASS.
-Root alone executes; all output next to this file. Single-threaded.
+Run from this folder; writes its output next to this file. Single-threaded.
 """
 import os
 for task_env in ("OMP_NUM_THREADS","OPENBLAS_NUM_THREADS","MKL_NUM_THREADS","NUMEXPR_NUM_THREADS"):

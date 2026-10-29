@@ -1,0 +1,215 @@
+%======================================================================
+\section{Directional invariance}\label{sec:direction}
+%======================================================================
+
+A one-way rate has a direction, and a game could in principle demand usable entanglement in one direction only. This
+section shows that, for agreement games, it cannot: one Alice-local channel turns every near-winning strategy into a
+strategy of at most three times the loss whose two directional rates are equal and no larger than either original rate.
+The channel is a Petz recovery map~\cite{Petz86} in pretty-good form, its output is the reflected state of Dutta and
+Faulkner~\cite{DF19}, and the
+correlation maps below are KMS-adjoint correlation maps, related to the weighted correlation-operator framework of quantum
+maximal correlation~\cite{Bei13}; the theorems of this section are compositions of these known objects, and a bounded search
+found no preemption of them.
+
+\subsection{A local symmetric output that keeps Bob}\label{sec:local-symmetry}
+
+\begin{theorem}[Local symmetry with Bob kept]\label{thm:local-symmetry}
+Let $\rho_{AB}$ be a normal state and let Alice apply the channel of \cref{thm:recovery}, the isometry followed by the
+discard of $\bar E$. Its output $\tau_{\bar BB}$ satisfies
+\[
+\tau_B=\rho_B,\qquad\mathrm{Swap}\,\tau\,\mathrm{Swap}=\bar\tau .
+\]
+The two directional rates of $\tau$ are equal, and this common rate is at most \emph{each} directional rate of $\rho_{AB}$.
+Bob's entire operator tuple and his marginal are unchanged, so every specified Bob word or relator error, state
+commutator, complex phase and visibility is unchanged, including for soft tuples that satisfy no relation exactly. An
+actual Alice mirror of error $e\le\sqrt2$ of a Bob generator becomes the exact transpose with error at most $\phi(e)$, and
+at most $\sqrt2e$ always. Consequently, for any class of sources closed under this local output, the infimum of either
+directional rate at mirror error $e$ dominates the infimum of the other at $\phi(e)$, all Bob budgets fixed.
+\end{theorem}
+
+\begin{proof}
+With $R=\rho_{BE}=\sum_k\lambda_k|u_k\rangle\langle u_k|$, the lifted vector is $|\sqrt R\rangle=\sum_k\sqrt{\lambda_k}|\bar u_k\rangle|u_k\rangle$,
+and exchanging the copy $\bar B\bar E$ with $BE$ sends it to $\sum_k\sqrt{\lambda_k}|u_k\rangle|\bar u_k\rangle$, its complex
+conjugate. Tracing out $E$ and $\bar E$ gives $\mathrm{Swap}\,\tau\,\mathrm{Swap}=\bar\tau$. Conjugating all Kraus operators of
+a one-way protocol gives a protocol with the same direction and the same real Bell target, so $\ED^{A\to B}(\bar\tau)=
+\ED^{A\to B}(\tau)$; exchanging the parties reverses the direction. Hence $\ED^{A\to B}(\tau)=\ED^{A\to B}(\mathrm{Swap}\,\bar\tau\,
+\mathrm{Swap})=\ED^{B\to A}(\tau)$. The channel is Alice-local, so each directional rate of $\tau$ is at most the
+corresponding rate of $\rho$. The mirror statement is \cref{thm:recovery}(b), and Bob is untouched.
+\end{proof}
+
+The output is exactly the reflected state of $\rho_{BE}$ in the sense of Dutta and Faulkner~\cite{DF19}: in the notation of
+the proof, $\tau=\Tr_{E\bar E}|\sqrt R\rangle\langle\sqrt R|$; equivalently, if $\mathcal N$ is the channel with
+$\rho_{AB}=(\mathrm{id}\otimes\mathcal N)(\psi_{\rho_A})$ for the real symmetric purification $\psi_{\rho_A}=\sum_i\sqrt{\lambda_i}|ii\rangle$,
+then $\tau=(\bar{\mathcal N}\otimes\mathcal N)(\psi_{\rho_A})$, which makes the symmetry evident. That Alice's recovery map acts,
+up to complex conjugation, as $\mathcal N$ itself is, up to conventions for transposes and the order of the factors, the
+finite-dimensional case of the correspondence between the Petz recovery map and the swap transpose of quantum
+couplings~\cite[Theorem~1]{BPTV25}; Parzygnat and Fullwood obtain the same identification as a quantum Bayes'
+rule~\cite[(14) and (25)]{PF23}. What is used here is that this known state is reached by an Alice-local isometry, from the
+original state, keeping the original Bob and the original environment; the lift is the Petz recovery map~\cite{Petz86}, in the
+pretty-good form of~\cite{BK02,BCW14,IRS17,Ren17}. The output does not preserve a fixed global rank or
+spectrum, a bound on Alice's dimension smaller than Bob's, or the efficiency of a decoder.
+
+\subsection{A universal factor three for agreement games}\label{sec:factor-three}
+
+A bipartite relation $\mathcal R$ between Alice's and Bob's answers is \emph{difunctional} if
+$(a,b),\allowbreak(a',b),\allowbreak(a',b')\in\mathcal R$ implies $(a,b')\in\mathcal R$; equivalently its bipartite graph is a disjoint union of complete bipartite blocks and isolated
+vertices, that is, there are label maps $l_A,l_B$ into a common set, with private labels for isolated answers, such that
+acceptance is exactly $l_A(a)=l_B(b)$. This is standard relational vocabulary~\cite{Rig48,HT15}. A game is an
+\emph{agreement game} if its acceptance relation on every positively weighted question pair is difunctional; the label maps
+may depend on the pair. Projection games, partial projection games,
+constraint-variable games and constraint-constraint overlap-agreement games (the synchronous BCS games of Kim, Paulsen and
+Schafhauser~\cite[Def.~4.2]{KPS18}) are agreement games; synchronous and graph colouring predicates are not, merely by
+name.
+
+For a finite-dimensional state $\rho_{AB}$ define, on Hermitian operators on the supports of the marginals,
+\[
+S(X)=\rho_B^{-1/2}\Tr_A[(X\otimes I)\rho_{AB}]\rho_B^{-1/2},\qquad T(Y)=\rho_A^{-1/2}\Tr_B[(I\otimes Y)\rho_{AB}]\rho_A^{-1/2},
+\]
+and the real inner products $\langle X,Y\rangle_\rho=\Tr[\sqrt\rho X\sqrt\rho Y]$. We use these KMS-adjoint correlation maps, related to
+the weighted correlation-operator framework of quantum maximal correlation~\cite{Bei13}, where correlations are measured with the
+weighted second moments $\Tr(\rho XX^*)$ rather than with this KMS form; we do not identify the two definitions. The positivity,
+adjointness and contraction needed here are proved below.
+
+\begin{theorem}[Factor-three normal form]\label{thm:factor-three}
+Let $G$ be a finite agreement game, and take an arbitrary finite-dimensional mixed strategy with legal POVMs $\{P_x^a\}$
+for Alice and $\{Q_y^b\}$ for Bob and loss $\eps$. Apply the channel of \cref{thm:local-symmetry}, let Alice use the
+whole-answer POVM $M_x^a=S(P_x^a)^T$ on $\bar B$, and let Bob keep his original tuple. All answers remain legal, every
+original referee weight is kept, and the new loss satisfies
+\[
+\eps_{\mathrm{new}}\le3\eps,\qquad\eps_{\mathrm{new}}\le g(\eps):=1-(1-\eps)^3\quad(0\le\eps\le\tfrac12).
+\]
+There is no dependence on arity, alphabet, game size or smallest question probability. The output has the two equal
+directional rates of \cref{thm:local-symmetry}, below either original rate. Consequently
+\[
+d_G^\to(\eps)\ge d_G^\leftarrow(3\eps),\qquad d_G^\leftarrow(\eps)\ge d_G^\to(3\eps),
+\]
+and the same with $g(\eps)$ in its range. This holds also at every fixed number of input copies and fixed Bell-target size,
+and for one-way secret-key demand when the discarded environments go to the purifying adversary. For an ordinary parallel
+product of agreement games, applying the channel once to the whole correlated strategy gives the factor three, not
+$3^m$.
+\end{theorem}
+
+\begin{proof}
+\emph{Correlation maps.} $S$ and $T$ are positive and unital on the supports, and
+$\langle S(X),Y\rangle_{\rho_B}=\Tr\rho_{AB}(X\otimes Y)=\langle X,T(Y)\rangle_{\rho_A}$, so they are adjoint in the displayed inner
+products, which are positive definite on the supports. Hence $K=TS$ is self-adjoint and positive semidefinite; it is also
+positive and unital, so it contracts the operator norm and its real eigenvalues have modulus at most one. Thus the
+spectrum of $K$ lies in $[0,1]$ and $S$, $T$ are contractions. On a direct sum of outcome-indexed copies,
+$H=\bigl(\begin{smallmatrix}0&T\\S&0\end{smallmatrix}\bigr)$ is a self-adjoint contraction. For any POVM $\{E_b\}$,
+$\sum_b\|E_b\|_\rho^2\le\sum_b\Tr\rho E_b^2\le\sum_b\Tr\rho E_b=1$.
+
+\emph{The new success.} For the channel $C$ of \cref{thm:local-symmetry}, $C^*(R^T)=T(R)$ for Hermitian $R$ on $B$: with the
+Choi matrix $J_C=(\rho_A^{-T/2}\otimes I)\overline{\rho_{AB}}(\rho_A^{-T/2}\otimes I)$,
+$\Tr[C(X)R^T]=\Tr[(X^T\otimes R^T)J_C]=\Tr[\rho_{AB}(\rho_A^{-1/2}X\rho_A^{-1/2}\otimes R)]=\Tr[XT(R)]$. Fix a tested pair $(x,y)$ and
+coarse-grain both answers into the labels of its difunctional relation: $P_\ell=\sum_{l_A(a)=\ell}P_x^a$ and
+$Q_\ell=\sum_{l_B(b)=\ell}Q_y^b$, both lists complete, private labels contributing zero on the other side. With
+$p=(P_\ell)_\ell$, $q=(Q_\ell)_\ell$ and $w=(p,q)/\sqrt2$, $\|w\|\le1$, the original success is
+$s=\sum_\ell\Tr\rho(P_\ell\otimes Q_\ell)=\langle w,Hw\rangle$. Since $S$ is linear, the coarse-grained new effect is exactly
+$S(P_\ell)^T$, and the new success is
+\[
+s'=\sum_\ell\Tr\bigl[\tau(S(P_\ell)^T\otimes Q_\ell)\bigr]=\sum_\ell\langle TS(P_\ell),T(Q_\ell)\rangle_{\rho_A}=\langle w,H^3w\rangle .
+\]
+For $h\in[-1,1]$, $h^3-3h+2=(h-1)^2(h+2)\ge0$, so $s'\ge3s-2\|w\|^2\ge3s-2$, that is, the loss at $(x,y)$ is at most three
+times the original loss. Summing with the original weights gives $\eps_{\mathrm{new}}\le3\eps$. For the refinement, form the
+weighted direct sum $w=\bigoplus\sqrt{\mu_{xy}}w_{xy}$, so that the total original and new successes are $\langle w,Hw\rangle$ and
+$\langle w,H^3w\rangle$; for $s\ge\frac12$, $(h-s)^2(h+2s)\ge0$ on $[-1,1]$ gives $\langle w,H^3w\rangle\ge3s^2\langle w,Hw\rangle-2s^3\|w\|^2\ge
+s^3$. The new effects $S(P^a_x)^T$ are positive and sum to the identity on the support; unused support is assigned to one
+legal answer.
+
+\emph{Resources.} The resource statements follow from \cref{thm:local-symmetry}: a near-winning strategy of loss $\eps$
+yields a strategy of loss at most $3\eps$ whose two directional rates are equal and below either original rate. The same
+precomposition argument applies to a fixed-block one-shot Bell-extraction fidelity and to one-way secret key, since each
+is monotone under deterministic local preprocessing, invariant under full conjugation of protocols, and reversed by the
+swap. A conjunction of block-agreement predicates is block agreement with tuple labels, which gives the statement for
+parallel products.
+\end{proof}
+
+The inequality $s'\ge s^3$ is the three-link analogue of the Barnum--Knill bound $P_{\mathrm{PGM}}\ge P_{\mathrm{opt}}^2$ for the
+pretty-good measurement~\cite{BK02}. That bound is the classical-fidelity case of their main theorem, whose proof for ensembles of
+more than one state was corrected in 2026 (arXiv version~2 of~\cite{BK02}); the proof of $s'\ge s^3$ above is self-contained and does
+not use it. Squaring a strategy through such correlation maps has ancestry in the analysis of projection games by Dinur, Steurer
+and Vidick~\cite[Lemma~6]{DSV15}. The output is generally mixed and is not a maximally
+entangled or tracial strategy; this is a resource normal form, not a strategy rounding of the kind studied by Paddock and
+Culf~\cite{Pad22,Cul26}. The theorem supersedes, in its guarantee, an earlier sequential decoder with a game-dependent loss
+factor; on noisy mixed magic-square strategies that decoder in fact did better (loss ratio about two, against about three for
+the construction here), so the factor three is a uniform guarantee, not the best decoder on every instance. There is also a dual, Bob-local
+construction, with Bob effects $T(Q^b_y)^T$, which produces the identical full correlation table and can keep the smaller
+local dimension; it changes Bob's tuple, so it does not inherit the literal preservation of Bob's source budgets.
+
+\subsection{Sharpness and the exact predicate boundary}\label{sec:factor-three-sharp}
+
+\begin{theorem}[Sharpness of the factor three]\label{thm:factor-three-sharp}
+The factor three is sharp for deterministic Alice-local channels producing $\mathrm{Swap}\,\sigma\,\mathrm{Swap}=\bar\sigma$ on
+$\bar B:B$, complex conjugation being taken in Bob's computational basis, with the original Bob and his measurements fixed, even allowing an alternative symmetrizing channel and
+optimal legal decoding. For $N\ge2$ and $0<p<1$ take
+$\rho=N^{-1}\sum_i|i\rangle\langle i|\otimes\beta_i$ with $\beta_i=p|0\rangle\langle0|+(1-p)|i\rangle\langle i|$; Alice's answers are the $N$
+one-hot words, Bob is asked a uniform $j$ and tests $|j\rangle\langle j|$. The original loss is $p/N$, and the best new loss under
+this contract is
+\[
+\frac pN\Bigl[1+2(1-p)\Bigl(1-\frac1N\Bigr)\Bigr],
+\]
+whose ratio to $p/N$ tends to three. At $N=3$, $p=\frac18$ the loss goes from $\frac1{24}$ to $\frac{13}{144}$, ratio $\frac{13}6$.
+Difunctionality is the exact boundary for this channel-and-whole-answer guarantee: a nondifunctional relation has a
+classical source with three accepted corners, of original loss zero, for which the new rejected probability is $\frac1{12}$.
+\end{theorem}
+
+\begin{proof}
+Alice returns her label $i$; Bob sees $0$ with probability $p$, in which case the two disagree exactly at $j=i$, so the
+original loss is $p/N$. Since $\rho_A=I/N$, the channel sends $|i\rangle\langle i|$ to $\beta_i$ and
+$\tau=N^{-1}\sum_i\beta_i\otimes\beta_i$, which is classical. On it any POVM of Alice reduces, for this score, to a classical
+decision on her label. If she sees $i\ge1$, answering $e_i$ is optimal and loses $p/N$ on that branch. If she sees $0$
+(probability $p$), all one-hot answers tie and an answer $e_k$ disagrees with Bob at $j=k$ if he sees $0$, and at two
+queries if he sees $i\ne k$; the conditional loss is $[p+2(1-p)(1-1/N)]/N$. Adding the branches gives the display.
+
+Now let $\Lambda$ be any deterministic Alice-local channel with output of Bob's dimension and $\sigma=(\Lambda\otimes\mathrm{id})\rho$
+satisfying the symmetry, and write $\alpha_i=\Lambda(|i\rangle\langle i|)$, so $\sigma=N^{-1}\sum_i\alpha_i\otimes\beta_i$. Bob's side is
+diagonal, so the symmetry makes $\sigma$ diagonal on Alice's side too, and each $\alpha_j$, the Bob block $j\ge1$ divided by
+$(1-p)/N$, is diagonal. Equality of Alice's marginal with Bob's conjugate marginal gives $\sum_j\alpha_j(i)=1-p$ for $i\ge1$,
+and the symmetry of the entries $(0,i)$ and $(i,0)$ gives $(1-p)\alpha_i(0)=p\sum_j\alpha_j(i)$, so $\alpha_i(0)=p$. Hence
+$\alpha_i(j)=(1-p)W_{ji}$ for a symmetric doubly stochastic $W$, and $\sigma=(\Lambda_W\otimes\mathrm{id})(\tau)$, where $\Lambda_W$ fixes
+$0$ and applies $W$ to the other labels: every permitted output is a local degradation of $\tau$, and no legal decoder on
+it beats the optimal decoder on $\tau$.
+
+For the boundary, take answers $a,a'$ and $b,b'$ with $(a,b),(a',b),(a',b')$ accepted and $(a,b')$ rejected, and the
+classical state with joint probabilities $P(a,b)=P(a',b)=P(a',b')=\frac13$, $P(a,b')=0$. The canonical output has table
+$\tau(b,b)=\frac12$, $\tau(b,b')=\tau(b',b)=\tau(b',b')=\frac16$, and Alice's new effect for $a$ is $\mathrm{diag}(\frac12,0)$, so
+the rejected pair has probability $\frac12\cdot\frac16=\frac1{12}$.
+\end{proof}
+
+The sharpness does not depend on the choice of conjugation: if $J=UK$ is any antiunitary on Bob's space with $U\bar U=\pm I$,
+applied to both factors, and one requires $\mathrm{Swap}\,\sigma\,\mathrm{Swap}=(U\otimes U)\bar\sigma(U\otimes U)^*$, then every
+$\alpha_i$ is diagonal in the rotated basis $\{U|m\rangle\}$ and rotating Alice's output by $U^*$ reduces to the case above. The example is separable and its game has a
+perfect classical strategy; its force is a sharp local normal form, not an entanglement bound. Sharpness is not claimed for an unrestricted rescaling of demand profiles, for operations that change
+Bob, or for two-party preprocessing. With an illegal all-zero answer allowed, the ratio in the example would drop to
+$2(1-p)$; the original legal alphabet is essential.
+
+\subsection{Synchronous games, and what the directions share}\label{sec:direction-sync}
+
+Synchronous predicates need not be difunctional off the diagonal, and the factor three need not apply to them. The
+tested diagonals still give a fixed-game comparison.
+
+\begin{proposition}[Synchronous repair]\label{prop:sync-repair}
+Let $G$ be a game in class~(S). There is $C_G$ such that, for every finite-dimensional strategy of loss $\eps$, the
+construction of \cref{thm:factor-three} gives a strategy of loss at most $\eps+C_G\sqrt\eps$ with equal directional rates
+below either original rate. Hence $d_G^\leftarrow(\eps+C_G\sqrt\eps)\le d_G^\to(\eps)$ and symmetrically.
+\end{proposition}
+
+\begin{proof}
+For a diagonal question $x$ with success $s_x$, put $d_{xa}=\langle P_{xa},(I-TS)P_{xa}\rangle_{\rho_A}$ and $d_x=\sum_ad_{xa}$. By
+Cauchy--Schwarz, $\sum_a\|SP_{xa}\|^2\ge(\sum_a\langle SP_{xa},Q_{xa}\rangle)^2/\sum_a\|Q_{xa}\|^2\ge s_x^2$, so
+$d_x\le1-s_x^2\le2(1-s_x)\le2\eps/\mu(x,x)$. The new probability of $(a,b)$ at $(x,y)$ differs from the old by
+$\langle(TS-I)P_{xa},T(Q_{yb})\rangle$, which, since $(I-TS)^2\le I-TS$, is at most $\sqrt{d_{xa}}\,\|T(Q_{yb})\|$ in modulus. Summing
+over the finitely many weighted effects with Cauchy--Schwarz bounds the total change of loss by $C_G\sqrt\eps$.
+\end{proof}
+
+\begin{corollary}[Directional agreement of the spectra]\label{cor:direction-spectra}
+For the agreement games of \cref{thm:rational-ED,thm:lamps-ED,thm:point-window}, the reverse infima have the same
+asymptotic exponents and leading logarithmic laws as the forward ones, by \cref{thm:factor-three} with a universal
+rescaling of the loss. For the exact sources of \cref{sec:exact}, \cref{thm:recovery,thm:local-symmetry} and the separate
+pure upper constructions give the stated orders in both physical directions. For an arbitrary game in class~(S),
+\cref{prop:sync-repair} transfers a logarithmic floor between the directions but does not supply the sharp constant.
+None of this asserts that the two rates of a given original state are equal.
+\end{corollary}
+
+The native class laws of \cref{sec:point-native} keep their conditions, constants and classes under the applicable
+closure (\cref{sec:status}).

@@ -50,13 +50,13 @@ def build(left, right):
             'answer_rule': 'Alice returns a satisfying full context assignment; Bob returns the queried variable bit; accept iff the bits agree.',
             'scope': 'General Boolean constraint-system game; conditional parity is not a linear parity equation.',
             'fallback_provenance': {'path': FALLBACK.relative_to(ROOT).as_posix(), 'sha256': digest(FALLBACK),
-                                    'quantum_value_and_nonattainment': 'Inherited internally reviewed Sprint06 source/compiler theorem, not established by this generator.'}}
+                                    'quantum_value_and_nonattainment': 'Inherited from the source/compiler theorem cited in the paper; not established by this generator.'}}
 
 
 def main():
     original_hash = digest(FALLBACK)
     native = json.loads(FALLBACK.read_text(encoding='utf-8'))
-    fallback = {'name': 'Sprint06 L_(4,8) one-third-rate fixed linear game',
+    fallback = {'name': 'L_(4,8) one-third-rate fixed linear game',
                 'variables': list(native['variables']), 'rows': native['rows']}
     counts = []
     for name, left in (('MAGIC', magic_square()), ('CONTRADICTION', contradiction())):

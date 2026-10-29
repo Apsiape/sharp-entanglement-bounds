@@ -65,8 +65,8 @@
   "maximum_imaginary_probability_or_correlation": 0.0,
   "minimum_raw_probability": 0.0,
   "minimum_incident_error_probability": 0.0,
-  "peak_process_bytes": 143605760,
-  "seconds": 11.653483500005677,
+  "peak_process_bytes": 143568896,
+  "seconds": 15.81411279994063,
   "arithmetic": "complex floating point; physical tensor-permutation traces independently dense-audited; no source-relator simplification",
   "limits": "Complete actual strategy evaluation for the exported finite game; no optimization, lower-bound proof, or asymptotic matching inference from these finite sizes."
 }

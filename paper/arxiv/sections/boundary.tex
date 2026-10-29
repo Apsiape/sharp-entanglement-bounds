@@ -1,0 +1,75 @@
+%======================================================================
+\section{A Bell-gap contrast and finite blocks}\label{sec:boundary}
+%======================================================================
+
+This section uses the Bell-gap contract of \cref{sec:prelim-usable} for its conditional $I_{3322}$ statement, then returns to
+classes~(S) and~(C) for the finite-block observation. The two contracts are compared in \cref{sec:status}; whether Theorem~A
+extends beyond classes~(S) and~(C) is open, and this section does not decide it.
+
+\subsection{The \texorpdfstring{$I_{3322}$}{I3322} contrast}\label{sec:i3322}
+
+We use~\cite{Dou26} in its arXiv version~2, whose mathematical content is that of version~4.1.0 of its archive. In its
+Collins--Gisin normalization it proves finite-dimensional nonattainment of the quantum supremum $S$, certified to lie in
+$(0.2508753845015185,0.250875388108398]$, for mixed states and POVMs~\cite[Theorem~1]{Dou26}; attainment by a normal spatial
+strategy on $\ell^2(\Z)\otimes\ell^2(\Z)$~\cite[Theorem~2]{Dou26}; and $D(\varepsilon)=\Theta(\ln(1/\varepsilon))$ for the least local dimension at
+Bell gap $\varepsilon=S-B$, with eventual upper coefficient $23.9010650$ in natural logarithms, not asserted optimal and with no
+explicit onset~\cite[Theorem~6]{Dou26}. Nonattainment was proved independently by Pauwels~\cite[Theorem~2]{Pau26}, and nonattainment
+together with attainment by a spatial strategy on separable infinite-dimensional Hilbert spaces by
+Coladangelo~\cite[Theorem~11.1]{Col26}; the infinite-dimensional construction of the optimum, and the conjecture that finite
+dimension does not reach it, are due to P\'al and V\'ertesi~\cite{PV10}. The tail estimate
+we use is that of~\cite[Section~5.2]{Dou26}: the Schmidt coefficients of the spatial attainer constructed there decay exponentially
+at both ends. Machine checks cover only parts of these works. Pauwels' Lean formalization covers pure states and projective
+measurements, and the reduction from mixed states and POVMs lies outside it~\cite[Appendix~D]{Pau26}; the Lean checks
+of~\cite{Dou26} cover selected numerical, scalar and finite accounting statements, and its analytic proofs, including spatial
+attainment and the tail estimate, are not formalized. We carry that status.
+
+\begin{theorem}[A conditional Bell-gap contrast]\label{thm:i3322}
+Conditional on the spatial attainment theorem~\cite[Theorem~2]{Dou26} and the tail bound $\kappa_\pm\ge0.08367827985$
+of~\cite[Section~5.2]{Dou26}, the infimum of the original one-way distillable entanglement, in either direction, over strategies with Bell gap at most $\varepsilon$ is $O(1)$ as $\varepsilon\to0$, although no finite-dimensional strategy
+attains $S$ and the least dimension grows like $\ln(1/\varepsilon)$.
+\end{theorem}
+
+\begin{proof}
+The normal pure attainer of~\cite{Dou26} is $\sum_j\lambda_j|j,j\rangle$ with geometric tails: for each small $\eta>0$,
+$\lambda_j^2\le A_\eta\exp[-(\kappa_\pm-\eta)|j|]$ on the two tails, with $\kappa_\pm\ge0.08367827985$ per index~\cite[Section~5.2]{Dou26}.
+So $p_j=\lambda_j^2$ has finite Shannon entropy $H(p)$; finite norm alone would not give this. The near-optimal finite strategies
+of~\cite[Section~5.2]{Dou26} are the renormalized windows of this same Schmidt vector on finite intervals $I$, with
+$Z_I=\sum_{j\in I}p_j\to1$, and their Bell gaps tend to zero. Their Schmidt distributions $q_j=p_j/Z_I$ satisfy
+\[
+H(q)=Z_I^{-1}\sum_{j\in I}(-p_j\log p_j)+\log Z_I\le H(p)/Z_I,
+\]
+since every term is nonnegative and $\log Z_I\le0$. These states are pure, so both directional rates equal $H(q)$, which stays bounded.
+\end{proof}
+
+No matching positive lower bound, exact limit or minimizing state is asserted, and the logarithmic dimension theorem does not
+force any growth of $\ED$. The contract cannot be changed by rescaling: the nonsignaling value of $I_{3322}$ is one, above the
+quantum optimum $S\simeq0.2509$. With the joint coefficients $\bigl(\begin{smallmatrix}1&1&1\\1&1&-1\\1&-1&0\end{smallmatrix}\bigr)$ and
+marginal coefficients $(-1,0,0)$ and $(-2,-1,0)$, the behaviour with all marginals $\frac12$ and $P(1,1)=\frac12$ on the positive
+entries and $0$ on the negative ones has value $-2+\frac62=1$, so an affine rescaling $aB+b$ with quantum maximum one would score
+$1+a(1-S)>1$ on it, impossible for a probability of winning.
+
+\subsection{Normal perfect strategies have finite perfect blocks}\label{sec:normal-perfect}
+
+\begin{remark}[Finite blocks; known]\label{prop:normal-perfect}
+In either class of \cref{def:law-classes}, any normal spatial perfect strategy, even with infinite-dimensional ambient systems and an
+arbitrary normal mixed input, yields a finite-dimensional perfect strategy.
+\end{remark}
+
+\begin{proof}
+For the synchronous class this is the theorem of Kim, Paulsen and Schafhauser that $C^s_q(n,m)=C^s_{qs}(n,m)$~\cite[Theorem~3.10 and
+Corollary~3.11]{KPS18}. Directly: after local projectivization, perfect diagonal consistency gives $P^A_{xa}\Psi=Q^B_{xa}\Psi$ on a
+purification; taking partial traces, the trace-class Bob marginal commutes with every Bob projection. A nonzero eigenvalue has a
+finite-dimensional eigenspace invariant under these projections, and the losing products, which annihilate the support (move one
+factor to Alice), vanish on it; the transpose maximally entangled realization of this block is a finite perfect strategy. For a
+native constraint-variable game the same argument applies with the incidence mirrors and Alice's commuting legal row
+projections, which is the standard operator-solution reconstruction~\cite{CM14}.
+\end{proof}
+
+So a game in the classes of Theorem~A without a finite perfect strategy has no normal perfect strategy at all, of any entropy.
+Normal infinite-dimensional correlations that have no finite-dimensional realization were constructed by Coladangelo and
+Stark~\cite{CoSt20}; the finite-block conclusion has a more restricted scope, perfect strategies of games in the two classes.
+The $I_{3322}$ attainer is normal and of finite entropy, so a normality-preserving adapter that turned it into a perfect strategy
+of a fixed target game in the classes of Theorem~A without a finite-dimensional perfect strategy would give that target a normal
+spatial perfect strategy, which it does not have. For such a target, any sequence of finite-dimensional near-perfect strategies has
+diverging total one-way distillable entanglement, by Theorem~A. A claim about the additional resources an adapter needs would
+require a specified conversion contract, which we do not give.

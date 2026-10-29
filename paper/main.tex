@@ -1,6 +1,7 @@
 % The price of precision: usable entanglement in nonlocal games and the geometry of groups.
-% Build: pdflatex main && bibtex main && pdflatex main && pdflatex main
+% Build: python build.py (four pdflatex passes and BibTeX).
 \documentclass[11pt,a4paper]{article}
+\newcommand{\DoNotLoadEpstopdf}{}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -9,6 +10,13 @@
 \usepackage[margin=1.1in]{geometry}
 \usepackage{booktabs}
 \usepackage{longtable}
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{0pt}
+\usepackage{etoolbox}
+\makeatletter
+\newcommand{\fixlongtablefill}{\patchcmd{\LT@output}{\vss}{\vfil}{\fixlongtablefill}{}}
+\fixlongtablefill
+\makeatother
 \usepackage{placeins}
 \usepackage{array}
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
@@ -31,6 +39,12 @@ constraint system games, Houghton's group, approximate representations, hyperlin
 \sharedtheorem{corollary}{Corollary}
 \sharedtheorem{lemma}{Lemma}
 \sharedtheorem{problem}{Problem}
+\newtheorem{fillingproposition}{Proposition}
+\renewcommand{\thefillingproposition}{13.6a}
+\crefname{fillingproposition}{Proposition}{Propositions}
+\newtheorem{holonomyproposition}{Proposition}
+\renewcommand{\theholonomyproposition}{13.9a}
+\crefname{holonomyproposition}{Proposition}{Propositions}
 \newtheorem*{theoremA}{Theorem A}
 \newtheorem*{theoremB}{Theorem B}
 \newtheorem*{theoremC}{Theorem C}
@@ -71,12 +85,11 @@ constraint system games, Houghton's group, approximate representations, hyperlin
 \newcommand{\GSV}{G_{\mathrm{SV}}}
 \newcommand{\EF}{E_{\mathrm F}}
 \newcommand{\ED}{E_{\mathrm D}}
-% The identifier of the companion paper, used once, in its bibliography entry. Replace by its archive identifier at release.
 \newcommand{\companionref}{Version 1.0.0, Zenodo. Unrefereed preprint; result numbers refer to this version}
 
 \title{The price of precision: usable entanglement in nonlocal games\ and the geometry of groups}
 \author{Seth Douglas \and Nidhal Mghirbi}
-\date{Version 1.0.0, October 2026}
+\date{Version 1.1.0, October 2026}
 
 \begin{document}
 \maketitle
@@ -125,7 +138,8 @@ constraint system games, Houghton's group, approximate representations, hyperlin
 \input{sections/app-floor}
 \input{sections/app-window}
 
-\bibliographystyle{plainurl}
-\bibliography{refs}
+\IfFileExists{refs.bib}{%
+  \bibliographystyle{plainurl}\bibliography{refs}%
+}{\input{main.bbl}}
 
 \end{document}

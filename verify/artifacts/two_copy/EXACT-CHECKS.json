@@ -27,7 +27,7 @@
   "monomial_product_cache": 19064,
   "source_word_cache": 60,
   "factor_product_cache": 82,
-  "peak_process_bytes": 121085952,
-  "seconds": 1.6131574000464752,
+  "peak_process_bytes": 122327040,
+  "seconds": 1.5763174999738112,
   "limits": "Exact audit in the full negative product-HNN algebra, including all final rows. Finite identities do not replace the written arbitrary-state theorem."
 }

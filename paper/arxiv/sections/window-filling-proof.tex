@@ -1,0 +1,352 @@
+\subsection{The six-type filling construction}\label{app:point-filling}
+This proves \cref{prop:point-fill-sharp}. The retained-relator, doubling and rewriting method is credited to~\cite[Appendix~A and Remark~A.3]{DM-H3}; see~\cite[Section~4.2]{Lee12} for the broader filling framework. The choice of six types and the raw block order below give the stated matrix.
+\begin{proof}
+All areas in this proof are ultimately measured in the original five Johnson relators. No relator is added to the game.
+
+Put
+\[
+\sigma_i=a^isa^{-i},\qquad q=\sigma_{-2},\qquad
+t=b^{-1}a,\qquad h_n=b^{-n}a^n.
+\]
+Write
+\[
+A(d)=\operatorname{Area}[s,\sigma_d].
+\]
+Conjugation, inversion, and inversion of either commutator entry preserve area. Therefore the far-commutator problem reduces to bounding \(A(d)\) for \(2\le d\le R\).
+
+\paragraph{Six relation types for substitution}
+
+Use the following ordered list of relation words:
+\[
+\begin{aligned}
+F_2&=[s,\sigma_2],\\
+H&=aba^{-1}b^{-1}s^{-1},\\
+J_0&=bsb^{-1}\sigma_1^{-1},\\
+N_2&=[\sigma_{-2},b],\\
+N_3&=[\sigma_{-3},b],\\
+J_1&=b\sigma_1b^{-1}\sigma_2^{-1}.
+\end{aligned}
+\]
+Here \(J_0,J_1\) are labels for Houghton relations, unrelated to the marked central generator \(J\).
+
+Their filling costs in the original presentation are at most
+\[
+(1,1,1,9,12,4).
+\]
+
+The three auxiliary costs follow from the following fillings.
+
+For \(N_2\), two \(H\)-cells give
+\[
+a^2ba^{-2}=\sigma_1sb.
+\]
+Replacing both occurrences in \([s,a^2ba^{-2}]\) costs four \(H\)-cells. One \(J_0\)-cell turns the resulting commutator into
+\[
+s\sigma_1s\sigma_1^{-1}s^{-1}\sigma_1^{-1}.
+\]
+Three square cells turn this into \((s\sigma_1)^3\), and one braid cell fills it. Conjugation by \(a^{-2}\) proves \(N_2\) at cost \(9\).
+
+For \(N_3\), conjugate \(N_2\) by \(a^{-1}\). In both occurrences substitute
+\[
+a^{-1}ba=\sigma_{-1}^{-1}b
+\]
+at cost two \(H\)-cells. The additional commutator
+\([\sigma_{-3},\sigma_{-1}]\) costs one \(F_2\)-cell. Thus the cost is \(9+2+1=12\).
+
+For \(J_1\), use \(ba=s^{-1}ab\) and its inverse, then \(J_0\):
+\[
+b\sigma_1b^{-1}
+=s^{-1}a(bsb^{-1})a^{-1}s
+=s^{-1}\sigma_2s.
+\]
+One \(F_2\)-cell finishes the transfer. The total cost is \(2+1+1=4\).
+
+During recursion these six types remain atomic. After recursion, every auxiliary cell is expanded into its fixed original filling. The resulting count is van Kampen area in the original presentation.
+
+\paragraph{Elementary transfer fillings}
+
+Vectors below count the six retained cell types in the displayed order. Let \(\mathbf f_d,\mathbf n_k,\mathbf j_i,\mathbf c_m\) be filling vectors for
+\[
+[s,\sigma_d],\quad [\sigma_{-k},b],\quad
+b\sigma_i b^{-1}\sigma_{i+1}^{-1},\quad
+\sigma_m(b^msb^{-m})^{-1},
+\]
+respectively.
+
+Begin with the corresponding unit vectors:
+\[
+\mathbf f_2=\mathbf e_{F_2},\quad
+\mathbf n_2=\mathbf e_{N_2},\quad
+\mathbf n_3=\mathbf e_{N_3},\quad
+\mathbf j_0=\mathbf e_{J_0},\quad
+\mathbf j_1=\mathbf e_{J_1}.
+\]
+
+The following constructions give componentwise upper bounds:
+\begin{alignat*}{2}
+\mathbf j_i
+&=\mathbf j_{i-1}+2\mathbf e_H+\mathbf f_{i+1},
+&&i\ge2, \tag{G.F1}\\
+\mathbf c_0&=0,\qquad
+\mathbf c_m=\mathbf c_{m-1}+\mathbf j_{m-1}, \tag{G.F2}\\
+\mathbf f_{k+j}
+&\preceq \mathbf f_k+2j\mathbf n_k+2\mathbf c_j,
+&&k\ge2,\ j\ge1, \tag{G.F3}\\
+\mathbf n_m
+&=\mathbf n_{m-1}+\mathbf f_{m-1}+2\mathbf e_H,
+&&m\ge4. \tag{G.F4}
+\end{alignat*}
+
+The recurrences follow from these substitutions:
+
+\begin{itemize}[leftmargin=*]
+\item In (G.F1), substitute \(ba=s^{-1}ab\) and its inverse, apply the \(a\)-conjugate of the preceding transfer, then commute \(s\) past \(\sigma_{i+1}\).
+\item Equation (G.F2) conjugates the preceding transfer by \(b\) and applies \(J_{m-1}\).
+\item For (G.F3), conjugate the target to \([\sigma_{-k},\sigma_j]\), replace \(\sigma_j\) and its inverse by \(b^jsb^{-j}\), and commute \(\sigma_{-k}\) through the \(2j\) letters \(b^{\pm1}\). The remaining commutator is a conjugate of \(F_k\).
+\item For (G.F4), conjugate \(N_{m-1}\) by \(a^{-1}\), use \(a^{-1}ba=\sigma_{-1}^{-1}b\) twice, and commute \(\sigma_{-m}\) with \(\sigma_{-1}\).
+
+\end{itemize}
+Choose
+\[
+\begin{aligned}
+\mathbf f_3&=\mathbf f_2+2\mathbf n_2+2\mathbf c_1,\\
+\mathbf f_4&=\mathbf f_3+2\mathbf n_3+2\mathbf c_1,\\
+\mathbf f_5&=\mathbf f_3+4\mathbf n_3+2\mathbf c_2,\\
+\mathbf f_6&=\mathbf f_3+6\mathbf n_3+2\mathbf c_3.
+\end{aligned}
+\]
+These choices are noncircular: \(\mathbf c_3\) needs \(\mathbf j_2\), which needs only \(\mathbf f_3\).
+
+They give
+\[
+\begin{array}{c|rrrrrr}
+&F_2&H&J_0&N_2&N_3&J_1\\ \hline
+\mathbf f_2&1&0&0&0&0&0\\
+\mathbf f_3&1&0&2&2&0&0\\
+\mathbf f_4&1&0&4&2&2&0\\
+\mathbf f_5&1&0&4&2&4&2\\
+\mathbf f_6&3&4&8&6&6&4\\
+\mathbf n_4&1&2&2&2&1&0\\
+\mathbf n_5&2&4&6&4&3&0\\
+\mathbf n_6&3&6&10&6&7&2
+\end{array}
+\]
+
+\paragraph{The six-type doubling matrix}
+
+Define a homomorphism of the free group by
+\[
+D(a)=a^2,\qquad D(b)=b^2,\qquad
+D(s)=[a^2,b^2]=T.
+\]
+
+The free identity
+\[
+[a^2,b^2]
+=(a[a,b]a^{-1})(ab[a,b]b^{-1}a^{-1})
+[a,b](b[a,b]b^{-1})
+\]
+gives, with four \(H\)-cells and two \(J_0\)-cells,
+\[
+T=\Pi:=\sigma_1\sigma_2\sigma_0\sigma_1.
+\]
+Write
+\[
+\mathbf v=4\mathbf e_H+2\mathbf e_{J_0}.
+\]
+
+Keep this raw order, including the final positive \(\sigma_1\). The six image fillings have vectors
+\[
+\begin{aligned}
+D(F_2):\;&4\mathbf v+\mathbf f_2+4\mathbf f_3
+ +6\mathbf f_4+4\mathbf f_5+\mathbf f_6,\\
+D(H):\;&0,\\
+D(J_0):\;&2\mathbf v+\mathbf j_0+3\mathbf j_1
+ +3\mathbf j_2+\mathbf j_3,\\
+D(N_2):\;&2\mathbf v+2(2\mathbf n_3+\mathbf n_2+\mathbf n_4),\\
+D(N_3):\;&2\mathbf v+2(2\mathbf n_5+\mathbf n_4+\mathbf n_6),\\
+D(J_1):\;&2\mathbf v+\mathbf j_2+3\mathbf j_3
+ +3\mathbf j_4+\mathbf j_5.
+\end{aligned}\tag{G.F5}
+\]
+
+Here is the counting behind every row.
+
+For \(D(F_2)=[T,a^4Ta^{-4}]\), four conversions replace \(T\) by \(\Pi\). Commuting its four factors past the four shifted factors requires sixteen far commutators. Their distances \(2,3,4,5,6\) occur with multiplicities \(1,4,6,4,1\).
+
+The word \(D(H)\) is freely trivial by the definition of \(T\).
+
+For \(D(J_0)\), compare \(b^2\Pi b^{-2}\) with \(a^2\Pi a^{-2}\). A factor \(\sigma_i\) uses \(J_i\) and \(J_{i+1}\). The indices \(0,1,2\) occur in \(\Pi\) with multiplicities \(1,2,1\), giving the stated sum.
+
+For \(D(N_2)\), the shifted factors have indices
+\[
+-3,-2,-4,-3.
+\]
+Commuting each through \(b^2\) uses twice its \(N\)-filling. For \(D(N_3)\), the indices are
+\[
+-5,-4,-6,-5.
+\]
+Finally, \(D(J_1)\) uses two-step transfers on the indices \(3,4,2,3\).
+
+Substitution of (G.F1)--(G.F4) into (G.F5) yields the matrix
+\[
+M=
+\begin{pmatrix}
+18&20&64&34&34&12\\
+0&0&0&0&0&0\\
+5&18&17&10&2&7\\
+2&12&8&6&6&0\\
+16&40&52&32&28&4\\
+22&52&72&44&36&20
+\end{pmatrix}. \tag{G.F6}
+\]
+
+Square and braid cells appear only when the retained auxiliary relations are expanded at the end. They do not enter the recursive substitution. Preservation of these six relation types suffices; the argument does not require a claim that \(D\) preserves every original relator.
+
+\paragraph{An all-depth rewriting of \(h_n\)}
+
+Put
+\[
+u_i=t^{-i}qt^i.
+\]
+The identities
+\[
+\sigma_{-3}=u_1,\qquad \sigma_{-4}=u_2
+\]
+cost, respectively,
+\[
+\mathbf e_{N_2},\qquad
+3\mathbf e_{N_2}+\mathbf e_{N_3}.
+\]
+
+Indeed,
+\[
+t^{-1}qt=a^{-1}bqb^{-1}a
+\]
+uses \(N_2\) once. For the second identity, conjugate the first by \(a^{-1}\). Since \(a=bt\),
+\[
+a^{-1}u_1a=t^{-1}b^{-1}u_1bt.
+\]
+Commuting \(u_1\) with \(b\) costs two replacements by \(\sigma_{-3}\) and one \(N_3\)-cell. Including the initial replacement gives the stated cost.
+
+Define formal substitutions in \(t,q\):
+\[
+\begin{aligned}
+d(t)&=t^2q,&d(q)&=u_1qu_2u_1,\\
+E(t)&=t^2qt^{-1},&E(q)&=q,\\
+o&=E\circ d.
+\end{aligned}
+\]
+They represent \(D(t),D(q)\), and their conjugates by \(b^{-1}\).
+
+The costs and freely reduced formal lengths are
+\[
+\begin{array}{c|rrrrrr|r}
+&F_2&H&J_0&N_2&N_3&J_1&\text{length}\\ \hline
+d(t)&0&1&0&0&0&0&3\\
+d(q)&0&4&2&5&1&0&10\\
+o(t)&0&3&0&1&0&0&7\\
+o(q)&0&10&2&9&1&0&26
+\end{array} \tag{G.F7}
+\]
+
+To verify these costs, \(h_2=t^2q\) uses one \(H\)-cell. The conversion for \(D(q)\) gives
+\[
+\sigma_{-3}q\sigma_{-4}\sigma_{-3},
+\]
+so its cost is \(\mathbf v+5\mathbf e_{N_2}+\mathbf e_{N_3}\). Conjugation by \(b^{-1}\) acts on \(t\) at one \(H\)-cell and on \(q\) at one \(N_2\)-cell. The reduced word \(d(q)\) contains six signed \(t\)-letters and four signed \(q\)-letters, which gives the last row. The third row follows from the two \(t\)-letters and one \(q\)-letter of \(d(t)\).
+
+Now set
+\[
+W_1=t,\qquad
+W_{2m}=d(W_m),\qquad
+W_{2m+1}=o(W_m)t,
+\]
+freely reducing after substitution.
+
+The free identities
+\[
+h_{2m}=D(h_m),\qquad
+h_{2m+1}=b^{-1}D(h_m)bt
+\]
+prove by induction that \(h_n=W_n\) has a certificate using the six retained relation types for every \(n\).
+
+Let \(\mathbf z_n\) be its row vector of cell counts and let \(\ell_n=|W_n|\). Equations (G.F6)--(G.F7) imply
+\[
+\mathbf z_n\preceq
+\mathbf z_{\lfloor n/2\rfloor}M
++\ell_{\lfloor n/2\rfloor}\mathbf b,
+\qquad
+\ell_n\le26\ell_{\lfloor n/2\rfloor}+1,
+\tag{G.F8}
+\]
+where one may take
+\[
+\mathbf b=(0,10,2,9,1,0).
+\]
+The \(t\)-exponent of \(W_n\) is \(n\), so \(\ell_n\ge1\). Hence
+\[
+\ell_n\le27\ell_{\lfloor n/2\rfloor}.
+\]
+
+\paragraph{Solve the recurrence}
+
+The characteristic polynomial is
+\[
+\det(tI-M)
+=t\bigl(t^5-89t^4+824t^3-3416t^2-6672t+19648\bigr).
+\]
+
+Deleting the zero row and its corresponding column leaves a nonnegative \(5\times5\) matrix whose square is strictly positive. Its Perron eigenvalue \(\lambda\) is therefore simple and strictly dominates the moduli of its other eigenvalues.
+
+An entirely integer upper certificate is
+\[
+w=(200,1,53,24,151,248)^T,
+\]
+for which
+\[
+Mw=(15938,0,4197,1886,11984,19720)^T\le80w.
+\]
+Thus \(\lambda\le80\). If \(Q\) denotes the degree-five polynomial above, then
+\[
+Q(79)=-5063370,\qquad Q(80)=30871488.
+\]
+There is an eigenvalue in \((79,80)\), so
+\[
+79<\lambda<80,\qquad \|M^k\|=O(\lambda^k).
+\]
+
+For \(k=\lfloor\log_2n\rfloor\), unrolling (G.F8) bounds the cell counts by a constant times
+\[
+\sum_{j=0}^{k-1}27^j\lambda^{k-1-j}=O(\lambda^k),
+\]
+because \(\lambda>27\). Expansion of the auxiliary cells costs only the fixed linear functional with coefficients \((1,1,1,9,12,4)\). Therefore
+\[
+\operatorname{Area}(h_nW_n^{-1})=O(n^p),
+\qquad p=\log_2\lambda.
+\]
+
+Both \([s,t]\) and \([s,q]\) cost one original cell: respectively a conjugate of \(J_0^{\pm1}\) and a conjugate of \(F_2\). Replacing the two occurrences of \(h_n\) by \(W_n\), then commuting \(s\) past its letters, gives
+\[
+U(n):=\operatorname{Area}[h_n,s]=O(n^p). \tag{G.F9}
+\]
+
+The transfer relation
+\[
+\sigma_n=b^nsb^{-n}
+\]
+has a filling of cost \(U(n)\), since its relation word is conjugate to \([h_n,s]\). Applying (G.F3) with \(k=2,j=n\), and expanding \(N_2\) at cost \(9\), gives
+\[
+A(n+2)\le1+18n+2U(n).
+\]
+Together with (G.F9), this proves
+\[
+\boxed{A^*(R)=O(R^{\log_2\lambda})}.
+\]
+
+Numerically,
+\[
+p=6.30646825401196\ldots.
+\]
+
+\end{proof}

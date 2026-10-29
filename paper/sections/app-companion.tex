@@ -2,10 +2,9 @@
 \section{Results used from our companion papers}\label{app:companion}
 %======================================================================
 
-\Cref{tab:companion} lists every result of our companion papers~\cite{DM-game,DM-lamps,DM-H3,DM-ID,Dou26} on which an argument
+\Cref{tab:companion} lists every result of our companion papers~\cite{DM-game,DM-lamps,DM-H3,DM-ID,Dou26,DM-U3} on which an argument
 here depends, and where it is used. Results mentioned only for comparison are marked as such. The results of~\cite{DM-game} listed
-here are stated in this paper, with a pointer, and proved only there: the two papers are split so that each theorem is proved in
-exactly one of them.
+here are stated in this paper with a pointer to their complete proofs there. The table identifies the precise imported results used by each argument.
 
 {\small
 \begin{longtable}{@{}L{0.45\textwidth}L{0.21\textwidth}L{0.26\textwidth}@{}}
@@ -51,9 +50,14 @@ the game $G$, $m=1687$, $s=3$; entropy, formation and upper bounds & \cite[Thm.~
 the $S_3$ configuration lamps: profile, unitary models, weighted one-round theorem (comparison) & \cite[Thm.~A, Thm.~10.1]{DM-lamps} &
 \cref{sec:intro-related,sec:lamps}\\
 \midrule
+actual-state extraction & \cite[Lemma~12.1]{DM-U3} & \cref{prop:matched-coefficient}\\
+matched laws and weak rounding & \cite[Section~12]{DM-U3} & \cref{prop:matched-weak-rounding}\\
+limit-computable realization & \cite[Theorem~1.1]{DM-U3} & \cref{prob:dense}\\
+matched logarithmic dimension and original-state usable laws & \cite[Thm.~16.6, Cor.~16.7]{DM-U3} & \cref{sec:arithmetic,prob:dense}\\
+\midrule
 Johnson's relators in $a,b,\alpha$ & \cite[(1)]{DM-H3} & \cref{sec:point-source}\\
-reweighted far-commutator area $135M^{\log107}$ & \cite[Thm.~3.2]{DM-H3} & \cref{thm:point-window}\\
-asymptotic refinement $O(M^{\log\rho})$ (comparison) & \cite[Rem.~A.3]{DM-H3} & after \cref{thm:point-window}, \cref{sec:open}\\
+far-commutator filling method & \cite[Thm.~3.2, App.~A]{DM-H3} & \cref{prop:point-fill-sharp,app:point-filling}\\
+retained-relator refinement framework & \cite[Rem.~A.3]{DM-H3} & \cref{app:point-filling}\\
 quadratic lower bound for far commutators (comparison) & \cite[Prop.~3.4]{DM-H3} & \cref{sec:open}\\
 polynomial Dehn function (comparison) & \cite[Thm.~3.3]{DM-H3} & \cref{rem:lamps-poly}\\
 corner models; rotating links; regions and spanning trees; spreading a defect & \cite[Prop.~6.1, Lemmas~6.3, 6.4, proof of Prop.~6.5]{DM-H3} & \cref{prop:collective}, \cref{app:window}\\
@@ -64,5 +68,5 @@ sharp Houghton cost with moderate flavour growth (conditional input) & \cite[App
 nonattainment, spatial attainment, rate, geometric tails & \cite[Thms.~1, 2, 6, \S5.2]{Dou26} & \cref{thm:i3322}\\
 \bottomrule
 \caption{Results of our companion papers used here. Numbers refer to version 1.0.0 of~\cite{DM-game}, arXiv version~1 of~\cite{DM-lamps}, version 1.1.2
-of~\cite{DM-H3}, version 1.0.0 of~\cite{DM-ID} and arXiv version~2 of~\cite{Dou26}, whose content is that of its version 4.1.0.}\label{tab:companion}
+of~\cite{DM-H3}, version 1.0.0 of~\cite{DM-ID}, version 3.0.0 of~\cite{DM-U3} and arXiv version~2 of~\cite{Dou26}, whose content is that of its version 4.1.0.}\label{tab:companion}
 \end{longtable}}

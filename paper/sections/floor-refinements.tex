@@ -1,0 +1,127 @@
+\subsection{Continuous amplification, algebraic augmentation and kernel leakage}
+
+\begin{proposition}[Continuous amplification after marker compression]\label{prop:continuous-thin-obstruction}
+Keep exactly the thin tuple $U_n,V_n$ of \cref{ex:thin-bs} in $K_n=U(2)^n\rtimes C_n$, for odd $n\ge3$. Fix a finite presentation containing $u,v,J$, the BS relator $vu^2v^{-1}u^{-3}$, $J^2$ and all centrality relators $[J,s]$. Fix a free derivation of $J$ as a product of $a\ge1$ conjugates of $w^{\pm1}$, $w=[u,vuv^{-1}]$, and $b$ relator conjugates; $a,b$ and the derivation do not vary with $n$.
+
+For any continuous finite-dimensional unitary representation $\pi$ of $K_n$, assign $u=\pi(U_n)$, $v=\pi(V_n)$ and arbitrary other unitaries. Suppose the maximal operator-norm defining defect $\eta$ tends to zero and $\opn{T_J-I}>\eta$. Let $k$ be the negative rank of the nearest-sign rounding of $T_J$. Then
+\[
+ \log_2k\ge\frac{\log_2(1/\eta)}{3a^2\log_23}-O_{\Pres}(1).
+\]
+The bounded term may depend on the fixed derivation. Multiplicities, highest weights and ambient dimensions may vary arbitrarily. Continuity and exactness of the group representation are hypotheses; this is not a statement about arbitrary nearly represented tuples.
+\end{proposition}
+\begin{proof}
+Round $T_J$ to $H$ and put $P=(I-H)/2$. For small $\eta$, $\opn{H-T_J}\le\eta$, $\opn{[P,T_s]}\le3\eta/2$, and $P\ne0$. Block-polar repair as in \cref{lem:compression} gives $Q_s$ commuting with $P$, $\opn{Q_s-T_s}\le3\eta$ and defining defects at most $C\eta$, $C=1+3L_0$, where $L_0$ is the maximal defining-relator length. Telescope the eight-letter $w$ and evaluate the fixed derivation in $P$'s normalized Hilbert--Schmidt norm:
+\[
+ 2\le a\|(w(T)-I)P\|_{HS}/\sqrt k+(24a+bC)\eta.
+\]
+Put $q=3^n-2^n$. The local BS defect is in one $SU(2)$ block with eigenangles $\pm\theta$, where $2\sin(\theta/2)=\sqrt2\sin(\pi/q)$ and $\theta\ge2\sqrt2/q$. A local irreducible of highest weight $\ell$ has weights $-\ell,-\ell+2,\ldots,\ell$. If $\ell\theta\ge\pi/2$, one weight angle lies in $[\pi/2,\pi/2+2\theta]$, forcing defect at least $\sqrt2$, impossible for $\eta<1/2$. Otherwise the sine bound gives $\ell\le\pi\eta q/(4\sqrt2)<\eta q$. Cyclic conjugation gives this at every block. Thus a local $g\in SU(2)$ satisfies $\opn{\pi(g)-I}\le(\pi/2)\eta q\opn{g-I}$.
+
+The exact local calculation in the thin tuple gives an order-three diagonal $D_0$ with $\opn{W-D_0}\le10\pi/(3q)$, $W=[U_n,V_nU_nV_n^*]$. Hence $\opn{\pi(W)-\pi(D_0)}<17\eta$. Set $G_j=\pi(V_n^jD_0V_n^{-j})$ and $B_j=\pi(V_n^{j+1}U_nV_n^{-j-1})$, $0\le j<n$. The $G_j$ commute, $G_j^3=I$, $[B_j,G_l]=0$ for $l>j$, and $\opn{B_j^*G_jB_j-G_j^*}<10\eta$. Indeed the local near-Pauli-$X$ conjugator has $SU(2)$ error at most $2\pi/q$, giving $\pi^2\eta<10\eta$. Word transport gives
+\[
+ \opn{[P,G_j]}\le(46+3j)\eta,\qquad \opn{[P,B_j]}\le(4.5+3j)\eta.
+\]
+In $P/k$, put $p_j=\Pr(G_j\ne1)$. The marker inequality gives $p_0\ge1/(3a^2)$ eventually; approximate invariance under $\pi(V_n)$ gives $p_j\ge1/(3a^2)-3j\eta/2$. The marker also forces a nontrivial local highest weight, so $q>1/\eta$ and $m=\lfloor\log_3(1/\eta)\rfloor<n$ is available.
+
+Jointly measure $G_0,\ldots,G_{m-1}$, obtaining ternary $X_j$. Conjugation by $B_j$ approximately flips the $\pm$ labels and preserves all later labels; its total-variation error is $t_j\le25m\eta$. Averaging with that law preserves the tail marginal and activity and makes active signs equiprobable conditional on the tail. The three-valued conditional-entropy estimate of Alhejji and Smith~\cite{AS20} gives
+\[
+ H(X_j\mid X_{j+1},\ldots)\ge p_j-h(t_j/2)-t_j/2.
+\]
+There is no exponential dependence on the number of tail labels. Summing gives $H(X)\ge m/(3a^2)-(3/4)m^2\eta-m[h(12.5m\eta)+12.5m\eta]$.
+
+Joint pinching of $P/k$ has outside-$P$ mass $\alpha\le(46m^2\eta)^2=\alpha_*$ and rank at most $3^mk$. Pinch again across $P$ and its complement: its entropy is at most $\log k+h(\alpha)+\alpha m\log_23$, and is at least $H(X)$. In the small-parameter monotone range,
+\[
+ \log k\ge\frac m{3a^2}-\frac34m^2\eta
+ -m[h(12.5m\eta)+12.5m\eta]-h(\alpha_*)-\alpha_*m\log_23.
+\]
+All error terms tend to zero for the chosen $m$, proving the negative-sector rank bound. At the certified loss $\eps=C\eta^2$ of \cref{prop:criterion}, the particular upper state $\Phi_{12k}$ therefore costs a positive multiple of $\log(1/\eps)$ up to constants. This does not lower-bound every compiled-game strategy, nor compare with a smaller actual loss or independently improved precision.
+\end{proof}
+
+\begin{proposition}[Spectral multiplicity obstruction]\label{prop:spectral-multiplicity}
+Let a finitely presented group have an explicitly central involution $J$ and no nonzero finite-dimensional representation with $J=-I$. Suppose $J$ lies in the normal closure of $w$, with a fixed derivation using $a$ conjugates of $w^{\pm1}$ and $b$ relator conjugates. Any separated operator-norm models with $\eta_n\to0$ and $\opn{T_J-I}>\eta_n$ satisfy
+\[
+ \rank1_{[t,\infty)}(|w(T_n)-I|)\longrightarrow\infty\quad(0<t<2/a).
+\]
+In particular, a uniformly bounded unnormalized Schatten-$p$ norm of $w(T_n)-I$, for any finite $p$, prevents this route.
+\end{proposition}
+\begin{proof}
+Round $J$ to $H$ with negative rank $k$. Replace the eigenvalues of $W=w(T)$ within distance $t$ of $1$ by $1$, obtaining $W_0$ with $\opn{W-W_0}\le t$ and $\rank(W_0-I)=N_t(W)$. Substitute $W_0$ in the derivation and omit relator factors. The product $A_0$ has $\rank(A_0-I)\le aN_t(W)$ and $\opn{H-A_0}\le(b+1)\eta+at<2$ eventually. If $k>aN_t(W)$, a vector in the negative-$H$ space and $\ker(A_0-I)$ contradicts this. Thus $1\le k\le aN_t(W)$. Bounded multiplicity along a subsequence would give bounded nonzero compressed dimensions. Block-polar repair makes their defects tend to zero; a fixed-dimensional compact subsequence gives an exact forbidden representation. Finally $t^pN_t(W)\le\|W-I\|_p^p$.
+\end{proof}
+
+\begin{proposition}[Polynomial identities of the slow-recovery tuple]\label{prop:slow-polynomial-augmentation}
+For positive summable $\alpha_j$ with infinitely many distinct values, form $U=\exp(i\sum\alpha_jZ_j)$, $V=\exp(i\sum\alpha_jX_j)$, and the four $P_\ell$ as in \cref{prop:slow-recovery}. Every noncommutative $*$-polynomial equation of this tuple, with arbitrary complex coefficients, holds simultaneously at
+\[
+ P_0^{(0)}=\begin{pmatrix}1&0\\0&0\end{pmatrix},\qquad
+ P_1^{(0)}=P_2^{(0)}=P_3^{(0)}=\tfrac12\begin{pmatrix}1&1\\1&1\end{pmatrix}.
+\]
+This includes $\alpha_j=2^{-2^j}$. Finitely many explicit polynomial auxiliaries also transfer, including their projection, reflection or unitary domain equations. Independently introduced implicit variables, nonpolynomial spectral functions and arbitrary norm inequalities are not covered. A perfect polynomial realization in the faithful product trace therefore cannot define a game without a finite perfect strategy.
+\end{proposition}
+\begin{proof}
+Put $A(z)=zE_++z^{-1}E_-$ and $B(z)=zF_++z^{-1}F_-$. Every nontrivial cyclically reduced free word has nonconstant Laurent-polynomial trace. For a mixed alternating word, its coefficient at exponent $\sum|n_i|+|m_i|$ is the cyclic product of nonzero overlaps between $Z$ and $X$ eigenvectors, hence is nonzero; a pure power is immediate. Cyclic reduction preserves trace. Determinant one makes a scalar word value $\pm I$, so it occurs at only finitely many nonzero $z$. Distinct free words are therefore noncollinear at infinitely many distinct sites $z_j=e^{i\alpha_j}$.
+
+Summability gives norm-convergent infinite tensor products. In a finite linear dependence of word values, fix one word and choose for each competitor a distinct site where their local values are noncollinear. Slice there by a functional killing the competitor but not the chosen word. Their finite tensor product kills every other word and leaves a nonzero scalar times a unitary, so the chosen coefficient is zero. Thus $\C[F_2]\to UHF$ is algebraically injective.
+
+The four projections are formal elements of $M_2(\C[F_2])$. Injectivity makes every polynomial relation of the concrete tuple formal. Apply augmentation $u,v\mapsto1$ to obtain the displayed tuple, substituting any explicit polynomial auxiliaries first. For a perfect game in the faithful trace, a supported losing product has $\tau(QR)=\tau((QR)^*(QR))=0$, hence $QR=0$. Partitions, context commutations and forbidden products transfer. The augmented projections and transposes on $\Phi_2$ give a perfect synchronous strategy; for a constraint-variable game use the joint PVM in each commuting augmented context. Discontinuity of the algebraic augmentation in the $C^*$ norm is allowed and does not contradict the completed UHF algebra's absence of finite-dimensional representations.
+\end{proof}
+
+\begin{proposition}[An original-state bound conditional on leakage]\label{prop:source-leakage-floor}
+Let $U_s$ be actual Bob source unitaries and $W_s$ actual Alice unitary mirrors on a purification of the original $\rho$, with summed squared mirror errors at most $C_0\eps$. Let fixed bounded residuals $R_i$, including $U_J+I$, satisfy $Q=\sum_i\|R_i(U)\psi\|^2\le C_1\eps$ and $\sum_i\opn{R_i(U)}^2\le K^2$. Assume every irreducible $d$-dimensional unitary tuple $V$ satisfies
+\[
+ d^{-1}\sum_i\|R_i(V)\|_{HS}^2\ge A d^{-\varkappa},\qquad A,\varkappa>0.
+\]
+Apply the Alice-local recovery of \cref{thm:recovery} to obtain $\sigma$ on $\overline B:B$. Put
+\[
+ H_U=\sum_s(U_s^T\otimes I-I\otimes U_s)^*(U_s^T\otimes I-I\otimes U_s),\quad
+ P_0=1_{\{0\}}(H_U),\quad q=\Tr\sigma(I-P_0).
+\]
+Then $\Tr\sigma H_U\le2C_0\eps$. For $q<1$ set $Q_*=(\sqrt Q+K\sqrt q)^2/(1-q)$ and $u=Q_*M^\varkappa/A+\sqrt q$. Every integer $M\ge2$ with $u\le1/2$ satisfies
+\[
+ \ED^{A\to B}(\rho)\ge(1-2u)\log M-h(u).
+\]
+\end{proposition}
+\begin{proof}
+Recovery is an existing Alice-local channel, so cannot increase the rate; Bob's marginal and residual expectations are unchanged. Compare $\sigma$ with $\tau=P_0\sigma P_0/(1-q)$ at half trace distance at most $\sqrt q$. Applying the residual row operator to the projected purification bounds total defect by $Q_*$, without commuting with $P_0$.
+
+Decompose Bob's tuple algebra into $M_{d_\lambda}$ tensor identity on multiplicities. Vectorizing the kernel identifies the commutant, giving $\Phi_{d_\lambda}$ tensor multiplicity spaces with common local labels. Residuals act only on irreducible factors, so $Q_*\ge A\sum p_\lambda d_\lambda^{-\varkappa}$. Sectors with $d_\lambda<M$ have mass at most $Q_*M^\varkappa/A$. Discard multiplicities and convert every large $\Phi_d$ to $\Phi_M$ by the subset instrument in \cref{prop:physical-leakage}, using default product outputs elsewhere~\cite{Nie99}. The ideal singlet fraction is at least $1-Q_*M^\varkappa/A$; on $\sigma$ it is at least $1-u$ by contraction. Isotropic twirling and hashing give $\log M-h(u)-u\log(M^2-1)$, at least the claimed bound. The subset instrument, local discards, twirling and hashing form the stated one-way protocol.
+\end{proof}
+
+For $z=\eps+q\to0$, $Q_*\le Cz$. Choose $M=\lfloor[A/(Cz\log(1/z))]^{1/\varkappa}\rfloor$, eventually at least two. Then $u\le1/\log(1/z)+\sqrt z$ and
+\[
+ \ED^{A\to B}(\rho)\ge\varkappa^{-1}\log\frac1{\eps+q}
+ -\varkappa^{-1}\log\log\frac1{\eps+q}-O(1).
+\]
+In particular $q\le C'\eps^a$, $a>0$ fixed, gives coefficient $\min(1,a)/\varkappa$ with $O(\log\log(1/\eps))$ loss. No such leakage estimate is asserted for an arbitrary game.
+
+\begin{proposition}[Locally Schatten-stable sources]\label{prop:stable-tracial-defect}
+Let a source with central involution $J$ be locally stable in the unnormalized Schatten-$p$ norm, $1\le p<\infty$, in the sense of \cref{thm:stable}, and have no nonzero finite-dimensional representation with $J=-I$. Include a finite stability relation list for tolerance one and marker residual $V_J+I$. Every $d$-dimensional unitary tuple satisfies
+\[
+ d^{-1}\sum_i\|R_i(V)\|_{HS}^2\ge b^2d^{-\varkappa},\qquad
+ b=\min\{\delta(1),1\},\quad\varkappa=\max\{1,2/p\}.
+\]
+\end{proposition}
+\begin{proof}
+Every finite-dimensional representation kills $J$, since otherwise its negative eigenspace supplies a forbidden representation. If all listed residuals had Schatten-$p$ norm below $b$, stability gives $\|V_J-I\|_p<1$, while $\|V_J+I\|_p<1$. Their sum is below two, contradicting $\|2I_d\|_p=2d^{1/p}\ge2$. Thus one residual has norm at least $b$. For $p\le2$ use $\|X\|_p\le d^{1/p-1/2}\|X\|_{HS}$; for $p\ge2$, use $\|X\|_p\le\|X\|_{HS}$. Square and divide by $d$.
+\end{proof}
+
+The exactly mirrored coefficient in \cref{prop:source-leakage-floor} is therefore $\min(1,p/2)$. Exact mixing of mirrored sectors, with arbitrary multiplicities and sector coherence, cannot create a sublogarithmic family under these source assumptions. Fixed relator derivations and actual mirrors transfer added stability words with $O(\sqrt\eps)$ constants if the tested presentation differs. Neither normalized Hilbert--Schmidt stability nor property~(T) alone substitutes for this hypothesis; see~\cite{DGLT20,LO20} for related stability and nonapproximability results.
+
+\begin{proposition}[Necessary populated slow modes]\label{prop:populated-slow-modes}
+Under \cref{prop:source-leakage-floor}'s fixed-source tracial-defect hypothesis, if $\eps_n\to0$ and $\ED^{A\to B}(\rho_n)/L_n\to0$, then, for every fixed $a>0$, $q_n>\eps_n^a$ eventually. Equivalently $\log(1/q_n)/L_n\to0$. If $\beta_0=2C_0>0$, then
+\[
+ \Tr\bigl[\sigma_n1_{(0,\,2\beta_0\eps_n/q_n]}(H_n)\bigr]\ge q_n/2.
+\]
+Thus the state must put $\eps_n^{o(1)}$ weight on nonzero eigenmodes at most $\eps_n^{1-o(1)}$. An unused block with a tiny gap is insufficient.
+\end{proposition}
+\begin{proof}
+An infinite subsequence with $q_n\le\eps_n^a$ contradicts the logarithmic bound on that subsequence. Taking logarithms gives equivalence. Since $\Tr\sigma_nH_n\le \beta_0\eps_n$, spectral Markov bounds mass above $2\beta_0\eps_n/q_n$ by $q_n/2$, leaving the claimed mass. If $C_0=0$, then $q=0$ and the preceding bound already excludes a sublogarithmic sequence; no positive-threshold expression is needed.
+
+If the smallest positive eigenvalue is at least $c\eps_n^\beta$, $0\le\beta<1$, then $q_n\le C\eps_n^{1-\beta}$ and the rate is at least $(1-\beta)L_n/\varkappa-(\log L_n)/\varkappa-O(1)$. Replace $U_s$ by $V_s$ with $\max_s\opn{V_s-U_s}\le L_0\sqrt\eps$ for fixed $L_0$. Their transpose-mirror errors on the same recovered $\sigma$ are still $O_{L_0}(\sqrt\eps)$; fixed polynomial residuals change by that order by telescoping. The whole proof applies to $H_V$. A sublogarithmic sequence therefore cannot admit such perturbations with polynomially small kernel leakage. A small gap alone is not asserted sufficient for a counterexample.
+\end{proof}
+
+\begin{remark}[Qualitative thresholds and selectable depth]\label{prop:selectable-depth}
+Positive fixed-target thresholds alone cannot imply an exponential-in-target lower bound: $2^{-2^r}$ is an explicit counterexample to that numerical implication, even if the proposed exponential constant is non-effective. A sublogarithmic family can still have diverging entanglement, so fixed-target divergence does not exclude it.
+
+For the depth bookkeeping write $\ell(e)=\ln(1/e)$. An estimate $m\ge c\ell(e)$, $\eta\le e\exp(Cm)$, with $cC<1$, does not ensure small $\eta$ without an upper control on the chosen $m$. A selectable $m=\lfloor a\ell(e)\rfloor$, $aC<1$, or a comparable upper bound, is sufficient: $\eta$ is a positive power of $e$ and $m^4\eta\to0$.
+\end{remark}
+\begin{proof}
+Every $2^{-2^r}$ is positive but it is smaller than $e^{-Cr}$ for all large $r$, for any fixed $C$. A lower bound on $m$ permits arbitrarily large $e\exp(Cm)$. For the selectable depth, $\eta\le e^{1-aC}$ and the logarithmic factor $m^4$ cannot offset its positive exponent. If the depth is instead measured with $\log_2(1/e)$, the equivalent condition is $aC<\ln2$; the explicit natural logarithm here fixes that convention.
+\end{proof}

@@ -1,0 +1,295 @@
+%======================================================================
+\section{The floor: candidate classes and method obstructions}\label{app:floor}
+%======================================================================
+
+This appendix proves the statements about the logarithmic floor that \cref{prob:floor} summarizes. The first four subsections concern candidate sources. The remaining subsections study method obstructions, continuous amplification, polynomial augmentation and original-state kernel leakage. Throughout,
+operator norms are written $\opn\cdot$, and $\|\cdot\|_{2,k}$ is the normalized Hilbert--Schmidt norm on $\C^k$.
+
+\subsection{Centralizing a Baumslag--Solitar commutator kills it}\label{app:floor-bs}
+
+The Baumslag--Solitar relation $vu^2v^{-1}=u^3$ has exponentially accurate unitary models of small dimension, whose commutator
+witness $W=[u,vuv^{-1}]$ is visible in operator norm (\cref{ex:thin-bs}). Making that witness itself the central marker kills it.
+
+\begin{proposition}\label{prop:bs-central}
+Let $A,B$ be unitaries, $W=ABA^*B^*$, $\delta=\opn{B^2-A^3}$, $\gamma_A=\opn{WA-AW}$ and $\gamma_B=\opn{WB-BW}$. Then
+$\opn{W-I}\le4\delta+3\gamma_A+\gamma_B$. If $B=VAV^*$ for a unitary $V$ with $\gamma_V=\opn{WV-VW}$, then
+$\opn{W-I}\le4\delta+4\gamma_A+2\gamma_V$. Consequently, if a unitary $J$ has $\opn{J-W}$, $\opn{JA-AJ}$, $\opn{JV-VJ}$ and $\delta$ all at
+most $\tau$, then $\opn{J-I}\le23\tau$.
+\end{proposition}
+
+\begin{proof}
+The identities
+\[
+AB^2A^*B^{-2}=W\,(BWB^*),\qquad A^3BA^{-3}B^{-1}=(A^2WA^{-2})(AWA^{-1})W
+\]
+hold in every group. In the first, replacing $B^2$
+by $A^3$ twice turns the left side into $I$ at cost $2\delta$, and replacing $BWB^*$ by $W$ costs $\gamma_B$; so
+$\opn{W^2-I}\le2\delta+\gamma_B$. In the second, replacing $A^3$ by $B^2$ twice costs $2\delta$, and the conjugates of $W$ by $A^2$ and $A$
+differ from $W$ by at most $2\gamma_A$ and $\gamma_A$; so $\opn{W^3-I}\le2\delta+3\gamma_A$. Since $W=W^3(W^2)^*$,
+$\opn{W-I}\le\opn{W^3-I}+\opn{W^2-I}$. If $B=VAV^*$, then
+$WB-BW=(WV-VW)AV^*+V(WA-AW)V^*+VA(WV^*-V^*W)$, so $\gamma_B\le\gamma_A+2\gamma_V$. For the last claim, $\gamma_A\le\opn{JA-AJ}+2\opn{J-W}
+\le3\tau$ and likewise $\gamma_V\le3\tau$, so $\opn{W-I}\le4\tau+12\tau+6\tau$ and $\opn{J-I}\le23\tau$.
+\end{proof}
+
+So no extension that identifies the central marker with the commutator, up to a vanishing error, keeps the marker separated from
+$I$; the relations $W^2=1$ and $W^3=1$ that centrality forces are coprime.
+
+\subsection{Clocked witnesses and copied normal-closure gadgets}\label{app:floor-clock}
+
+A subtler extension keeps the old Baumslag--Solitar matrices and puts the marker into the normal closure of their commutator. The
+following two statements show that this fails at constant error whenever the old witness lives on one cell of a clock.
+
+\begin{lemma}[Clock projections]\label{lem:clock-proj}
+Let a unitary $V$ cyclically permute orthogonal projections $E_0,\dots,E_{n-1}$ with $\sum_jE_j=I$, that is $VE_jV^*=E_{j-1}$ with
+indices modulo $n$, of arbitrary ranks. Let $P$ be a nonzero projection of finite rank $k$, $p_j=\Tr(PE_j)/k$ and
+$\gamma=\opn{PV-VP}$. Then $\max_jp_j\le1/n+\gamma$.
+\end{lemma}
+
+\begin{proof}
+Measuring $\{E_j\}$ in the state $VPV^*/k$ gives the probabilities $\Tr(VPV^*E_j)/k=\Tr(PE_{j+1})/k=p_{j+1}$, a cyclic shift of $(p_j)$.
+Measurement contracts the trace norm, so $\sum_j|p_{j+1}-p_j|\le\trn{P-VPV^*}/k\le2\opn{P-VPV^*}=2\gamma$, using
+$\rank(P-VPV^*)\le2k$. A cyclic sequence has total variation at least twice its range, so $\max_jp_j-\min_jp_j\le\gamma$, and
+$\min_jp_j\le1/n$.
+\end{proof}
+
+\begin{proposition}[Copied normal-closure gadgets]\label{prop:copied-gadget}
+Let $U,V$ be unitaries on $\C^d$ such that $V$ cyclically permutes orthogonal projections $E_0,\dots,E_{n-1}$ summing to $I$, and
+$W=[U,VUV^*]$ satisfies $(W-I)^*(W-I)\le4E_0$. Let $\mathcal P=\langle S\mid R\rangle$ be a finite presentation containing generators
+$u,v,J$ and the relators $J^2$ and $[J,s]$ for $s\in S$, with largest relator length $L$, and suppose that $J$ is freely equal to a
+product of $a\ge1$ conjugates of $w^{\pm1}$, $w=[u,vuv^{-1}]$, and $b$ conjugates of relators. Every unitary assignment with
+$u\mapsto U\otimes I_q$, $v\mapsto V\otimes I_q$ for some $q\ge1$, operator-norm relator errors at most $\tau$ and $\opn{U_J-I}>\tau$
+satisfies
+\[
+2\ \le\ 2a\sqrt{1/n+3\tau/2}+(24a+b(1+3L))\tau .
+\]
+In particular, if $n\ge8a^2$, then $\tau\ge\min\{1/(24a+b(1+3L)),\,1/(12a^2)\}$.
+\end{proposition}
+
+\begin{proof}
+\Cref{lem:compression} gives unitaries $Q_s$ with $\opn{Q_s-U_s}\le3\tau$, all commuting with a nonzero projection $P$ of rank $k$,
+with $Q_J=-I$ on the range of $P$ and relator errors at most $C\tau$, $C=1+3L$. Its proof also gives
+$\opn{[P,U_v]}=\frac12\opn{[H,U_v]}\le\frac32\tau$. Apply \cref{lem:clock-proj} to $V\otimes I_q$ and the projections $E_j\otimes I_q$:
+$\Tr(P(E_0\otimes I_q))/k\le1/n+\frac32\tau$. Since $w(U)=W\otimes I_q$ and $(W-I)^*(W-I)\le4E_0$,
+\[
+\|(w(U)-I)P\|_{\mathrm{HS}}^2/k=\Tr\bigl(P((W-I)^*(W-I)\otimes I_q)P\bigr)/k\le4(1/n+\tfrac32\tau).
+\]
+The word $w$ has eight letters, so $\opn{w(Q)-w(U)}\le24\tau$, and in the normalized norm of the range of $P$,
+$\|w(Q)|_P-I\|_{2,k}\le2\sqrt{1/n+3\tau/2}+24\tau$. On the other hand the normalized norm is unitarily invariant, so evaluating the
+fixed derivation of $J$ on the restricted unitaries gives
+$2=\|Q_J|_P-I\|_{2,k}\le a\|w(Q)|_P-I\|_{2,k}+bC\tau$. The two bounds give the inequality. If $n\ge8a^2$ and $(24a+bC)\tau\le1$, it
+forces $1/n+\frac32\tau\ge1/(4a^2)$, hence $\tau\ge1/(12a^2)$.
+\end{proof}
+
+The bound holds for every number $q$ of copies and survives perturbations of the copied generators that tend to zero in operator
+norm. It does not cover representation-changing amplifications, a new Baumslag--Solitar tuple, or extensions in which $J$ is not in
+the normal closure of the old witness.
+
+\begin{example}[Thin Baumslag--Solitar models]\label{ex:thin-bs}
+Let $n\ge3$ be odd, $q=3^n-2^n$, $h=(q-1)/3$ and $a_j=3^j2^{n-1-j}$ for $0\le j<n$. On $\C^{2n}$ with basis $e_{r,j}$, $r\in\{1,2\}$,
+$j\in\Z/n\Z$, put $Ue_{r,j}=\exp(2\pi ic_ra_j/q)e_{r,j}$ with $c_1=1$ and $(c_2-c_1)a_0\equiv h\pmod q$, and $V=RV_0$, where
+$V_0e_{r,j}=e_{r,j-1}$ and $R$ is the real Hadamard matrix on $E_0=\mathrm{span}\{e_{1,0},e_{2,0}\}$ and the identity elsewhere. Since
+$2a_{j+1}=3a_j$ and $2a_0=2^n\equiv3^n=3a_{n-1}\pmod q$, $V_0U^2V_0^*=U^3$ exactly, so $VU^2V^*=RU^3R^*$. On $E_0$ the two eigenvalues of
+$U^3$ differ by the factor $\exp(2\pi i\cdot3h/q)=\exp(-2\pi i/q)$, so $\opn{VU^2V^*-U^3}=\sqrt2\sin(\pi/q)$: the error is exponentially
+small in the dimension $2n$. The projections $E_j=\mathrm{span}\{e_{1,j},e_{2,j}\}$ are permuted cyclically by $V$. The unitary
+$VUV^*=RV_0UV_0^*R^*$ preserves $E_0$ and is diagonal off $E_0$, so $W=[U,VUV^*]$ is the identity off $E_0$ and
+$(W-I)^*(W-I)\le4E_0$; and $W\ne I$, because on $E_0$ the eigenvalues of $U$ differ by $\exp(2\pi ih/q)\ne1$ and $VUV^*$ has the nonzero
+off-diagonal entry $\frac12(\nu_1-\nu_2)$, where $\nu_2/\nu_1=\exp(2\pi i(c_2-c_1)a_1/q)=-\exp(-\pi i/q)$. By
+\cref{prop:copied-gadget}, no fixed extension in which the central marker lies in the normal closure of $w$ turns copies of these
+models into negative models at vanishing error; and by \cref{prop:bs-central}, neither does identifying the marker with $W$.
+\end{example}
+
+\subsection{Locally stable groups}\label{app:floor-stable}
+
+Let $\Gamma$ be a group with a finite generating set $S$. It is \emph{locally Schatten-$p$ stable}, $1\le p<\infty$, if for every
+$a>0$ there are $\delta(a)>0$ and a finite set $R_a$ of words in $S$ trivial in $\Gamma$ such that every unitary assignment
+$U:S\to\mathrm U(D)$, in any dimension $D$, with $\max_{r\in R_a}\|r(U)-I\|_p<\delta(a)$ in the unnormalized Schatten norm, satisfies
+$\max_s\|U_s-\pi(s)\|_p<a$ for some homomorphism $\pi:\Gamma\to\mathrm U(D)$. For $p=2$ this is Frobenius
+stability~\cite{DGLT20,BLSW23}: if every asymptotic homomorphism of $\Gamma$ is close to a homomorphism, the local form follows by the
+standard compactness argument, choosing $R_a$ among longer and longer finite lists of relations.
+
+\begin{theorem}[Stable sources]\label{thm:stable}
+Let $\Gamma$ be locally Schatten-$p$ stable, with a central involution $J\in S$ that every finite-dimensional unitary representation
+sends to $I$. Let $R$ be a finite set of words trivial in $\Gamma$ containing $J^2$, $[J,s]$ for $s\in S$, and $R_1$, with largest
+length $L$. Every unitary assignment on $\C^D$ with $\max_{r\in R}\opn{r(U)-I}\le\eta$ and $\opn{U_J-I}>\eta$ has
+\[
+D\ \ge\ \Bigl(\frac{\delta(1)}{(1+3L)\eta}\Bigr)^p,\qquad\log D\ge p\log(1/\eta)-O(1).
+\]
+\end{theorem}
+
+\begin{proof}
+\Cref{lem:compression} gives unitaries $V_s$ on $\C^k$, $1\le k\le D$, with $V_J=-I_k$ and $\opn{r(V)-I}\le(1+3L)\eta$ for $r\in R$, hence
+$\|r(V)-I\|_p\le k^{1/p}(1+3L)\eta$. If this were below $\delta(1)$ for all $r\in R_1$, there would be a representation $\pi$ of
+$\Gamma$ on $\C^k$ with $\|V_J-\pi(J)\|_p<1$; but $\pi(J)=I$ and $\|-I_k-I_k\|_p=2k^{1/p}\ge2$. So $k^{1/p}(1+3L)\eta\ge\delta(1)$.
+\end{proof}
+
+So no locally Schatten-stable group satisfies the hypothesis $\log D_n=o(\log(1/\eta_n))$ of \cref{prop:criterion}. The theorem does
+not say that all approximate models are close to exact ones; it prices separated models polynomially.
+
+\begin{example}[The higher-rank Deligne extension]\label{ex:deligne}
+Let $E$ be the preimage of $\mathrm{Sp}(8,\Z)$ in the universal cover of $\mathrm{Sp}(8,\R)$, let $z$ generate the infinite cyclic
+kernel of $E\to\mathrm{Sp}(8,\Z)$, and put $Q=E/\langle z^4\rangle$ and $J=z^2\langle z^4\rangle$, a central involution with $J\ne1$. Deligne's
+theorem~\cite{Del78}, stated there for $\mathrm{Sp}(2n,\Z)$ with $n\ge2$, says that every finite-index subgroup of $E$ contains $z^2$;
+see also~\cite{BCRR18}. A
+finite-dimensional unitary representation of the finitely generated group $Q$ has a finitely generated linear image, which is
+residually finite by Mal'cev's theorem~\cite{Mal40}; if it did not kill $J$, some finite quotient of $Q$, hence of $E$, would not kill
+$z^2$. So every finite-dimensional unitary representation sends $J$ to $I$. The group $E$ has property~$[T_2]$, since
+$\mathrm{Sp}(8,\R)$ is simple of real rank four~\cite[Theorem~2.10]{BLSW23}; groups with vanishing second cohomology in every unitary
+representation are Frobenius stable, by the theorem of De Chiffre, Glebsky, Lubotzky and Thom~\cite{DGLT20} in the form
+of~\cite[Theorem~1.1(F)]{BLSW23}; and $\langle z^4\rangle$ lies in the intersection of the finite-index
+subgroups of $E$, so the quotient $Q$ is Frobenius stable~\cite[Lemma~2.12]{BLSW23}. By \cref{thm:stable} with $p=2$, every
+operator-norm model of $Q$ with $J$ separated has $D\ge c_Q\eta^{-2}$. These are imported results; their statements have been checked
+against the primary sources, not their proofs.
+\end{example}
+
+\subsection{The dyadic pattern and Abels' group}\label{app:floor-dyadic}
+
+\begin{corollary}\label{cor:dyadic-models}
+Let $\langle S\mid R\rangle$ contain generators $w,x,y,J$ and the relators $J^2$, $[J,s]$ for $s\in S$, $wyw^{-1}y^{-1}J^{-1}$ and
+$xyx^{-1}y^{-2}$, with largest relator length $L$. Every unitary assignment on $\C^D$ with operator-norm relator errors at most
+$\eta$ and $\opn{U_J-I}>\eta$ has $D\ge1/(2(1+3L)\eta)$.
+\end{corollary}
+
+\begin{proof}
+\Cref{lem:compression} gives $V_s$ on $\C^k$, $k\le D$, with $V_J=-I$ and relator errors at most $C\eta$, $C=1+3L$. The first relator
+gives $\opn{V_wV_yV_w^*V_y^*+I}\le C\eta$, hence $\opn{V_wV_yV_w^*+V_y}\le C\eta$; the second gives $\opn{V_xV_yV_x^*-V_y^2}\le C\eta$.
+\Cref{prop:dyadic} gives $k\ge1/(2C\eta)$.
+\end{proof}
+
+The Abels quotient $B$ of \cref{sec:floor-abels} has these words, so its separated operator-norm models need $\log D\ge\log(1/\eta)-O(1)$
+and it cannot meet the criterion of \cref{prop:criterion}; this is consistent with \cref{cor:abels}, which proves the floor for its
+game. The same holds for every source in which the marker is in the normal closure of a dyadic sign-and-dilation pattern by a
+fixed derivation, since a fixed derivation changes the errors only by a constant factor.
+
+\subsection{Sign and dilation in the limits of Theorem~A}\label{app:floor-typeII}
+
+The class theorem needs the sign and the dilation on the original operators, with controlled cost. In the limits of the proof of
+Theorem~A for a game without a finite-dimensional perfect strategy they are always present, the sign exactly and the dilation to
+every accuracy.
+
+\begin{proposition}\label{prop:typeII}
+Let $\mathcal M$ be a finite von Neumann algebra with a faithful normal tracial state and no type~I central summand, for instance a
+limit $\mathcal M$ of the proof of \cref{thm:A} for a game without a finite-dimensional perfect strategy. For every $n\ge1$,
+$\mathcal M$ contains unitaries $X,Y$ and a reflection $T$ with
+$TYT=-Y$ and $\opn{XYX^*-Y^2}=2\sin(\pi/2^n)$.
+\end{proposition}
+
+\begin{proof}
+$\mathcal M$ contains a unital copy of $M_d(\C)$ for every $d$~\cite[Lemma~1.4]{CETW22}. In $M_d$, $d=2^n$, put $Y=\mathrm{diag}(z_j)$
+with $z_j=e^{2\pi ij/d}$, let $T$ exchange $e_j$ and $e_{j+d/2}$, and let $X$ be the permutation unitary with $Xe_{\varpi(j)}=e_j$,
+$\varpi(j)=2(j\bmod d/2)+\lfloor 2j/d\rfloor$. Then $TYT=-Y$ since $z_{j+d/2}=-z_j$, and $XYX^*Y^{-2}$ is $I$ on the first half of the
+coordinates and $e^{2\pi i/d}I$ on the second, as in~\cite[Example~11.11]{DM-game}.
+\end{proof}
+
+So the limit algebra cannot distinguish the class of \cref{thm:floor-class}. Bounded polynomial approximation recovers these
+operators from the tested generators to any fixed accuracy, for
+each perfect trace, but gives no bound on the degree and coefficients of the polynomials as the accuracy decreases, and no uniform
+neighbourhood of the trace. The class theorem has these data because its operators are actual local operators on the original
+state, available before any limit is taken. The next proposition shows how large the missing bound can be.
+
+\subsection{Slow recovery from four projections}\label{app:floor-slow}
+
+For a word polynomial $F=\sum_wc_ww$ in finitely many letters put $B(F)=\sum_w|c_w||w|$. This is the quantity in the actual-mirror
+transport estimate~\eqref{eq:opposite-poly}: if every tested generator has mirror error $\delta$, then $F$ has mirror error at most
+$B(F)\delta$. Let $\mathcal A=\bigotimes_{j\ge1}M_2$ be the dyadic UHF algebra with its product trace, $Z_j,X_j$ the Pauli reflections at site
+$j$, $\alpha_j=2^{-2^j}$, $a=\sum_j\alpha_jZ_j$, $b=\sum_j\alpha_jX_j$, $U=e^{ia}$ and $V=e^{ib}$. In $\widetilde{\mathcal A}=M_2(\mathcal A)$ let
+\[
+S_0=\begin{pmatrix}1&0\\0&-1\end{pmatrix},\quad S_1=\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad S_2=\begin{pmatrix}0&U\\U^*&0\end{pmatrix},\quad
+S_3=\begin{pmatrix}0&V\\V^*&0\end{pmatrix},\quad P_\ell=\tfrac12(1+S_\ell).
+\]
+
+\begin{proposition}[Slow recovery]\label{prop:slow-recovery}
+The four projections $P_\ell$ generate $\widetilde{\mathcal A}$, which has no nonzero finite-dimensional representation and whose closure in its
+faithful trace is the hyperfinite $\mathrm{II}_1$ factor. For $r\ge3$ let $F_1,\dots,F_{2r}$ be word polynomials in four letters that
+are formally self-adjoint, $F_j=F_j^*$, with $\opn{F_j(P)}\le2$ and, in the normalized trace norm $\|\cdot\|_2$,
+\[
+\|F_j(P)^2-1\|_2\le\kappa_r,\qquad\|F_j(P)F_k(P)-s_{jk}F_k(P)F_j(P)\|_2\le\kappa_r,\qquad\kappa_r=10^{-6}r^{-5/2},
+\]
+where $s_{jk}$ are the signs of the standard $r$-qubit Pauli array of \cref{thm:signed-regular}. Then
+$\max_jB(F_j)>5\cdot10^{-7}\,r^{-5/2}\,2^{2^{r-1}}$. A polynomial whose value at $P$ is self-adjoint can be replaced by $\frac12(F+F^*)$,
+which has the same value and no larger $B$.
+\end{proposition}
+
+\begin{proof}
+\emph{Generation.} Since $\opn a,\opn b<1$, the continuous logarithm recovers $a,b$ from $U,V$. The $Z_j$ commute and
+$\alpha_j>\sum_{k>j}\alpha_k$, so the map $\sigma\mapsto\sum_j\alpha_j\sigma_j$ is a homeomorphism of $\{\pm1\}^{\N}$ onto the spectrum of $a$, and
+every $Z_j$ is a continuous function of $a$. Next $[Z_j,[Z_j,b]]=4\alpha_jX_j$, so $X_j\in C^*(a,b)$, and the $Z_j,X_j$ generate $\mathcal A$. In
+$\widetilde{\mathcal A}$, $S_0$ and $S_1$ give the matrix units of $M_2$, and the corners of $S_2,S_3$ give $U,V$. A nonzero
+finite-dimensional representation would restrict to unital representations of the unital subalgebras $M_{2^k}$ for all $k$ in one fixed
+dimension, which is impossible. The trace is the product trace, whose closure is the hyperfinite $\mathrm{II}_1$ factor.
+
+\emph{Truncation.} Let $a_n,b_n,U_n,V_n$ and $P^{(n)}_\ell$ be obtained by stopping the sums at site $n$; they lie in
+$M_2\otimes M_{2^n}=M_{D_n}$, $D_n=2^{n+1}$, a unital subalgebra on which the trace is the normalized matrix trace. With
+$\tau_n=\sum_{j>n}\alpha_j\le2\cdot2^{-2^{n+1}}$, $\opn{e^{ia}-e^{ia_n}}\le\opn{a-a_n}\le\tau_n$, so $\opn{P_\ell-P^{(n)}_\ell}\le\tau_n$; telescoping
+each word, whose letters are contractions, gives $\opn{F(P)-F(P^{(n)})}\le B(F)\tau_n$.
+
+\emph{Contradiction.} Take $n=r-2$, so $D_n=2^{r-1}$, and suppose $t=\max_jB(F_j)\tau_n\le\kappa_r$. The matrices $H_j=F_j(P^{(n)})$ are
+self-adjoint, because $F_j$ is formally self-adjoint and the $P^{(n)}_\ell$ are self-adjoint, and $\opn{H_j}\le3$. Replacing $F_j(P)$ by
+$H_j$ changes the square by at most $5t$ and each ordered product by at most $5t$, so $\|H_j^2-1\|_2\le6\kappa_r$ and
+$\|H_jH_k-s_{jk}H_kH_j\|_2\le11\kappa_r$. Let $Q_j=\sgn(H_j)$, with $\sgn0=1$; the scalar inequality $|\sgn x-x|\le|x^2-1|$ gives
+$\|Q_j-H_j\|_2\le6\kappa_r$, and $\|Q_jQ_k-H_jH_k\|_2\le\|(Q_j-H_j)Q_k\|_2+\|H_j(Q_k-H_k)\|_2\le24\kappa_r$, so the reflections $Q_j$ have
+signed pair defects at most $59\kappa_r$. Let Bob use the $Q_j$ and Alice their transposes on $\Phi_{D_n}$: the mirrors are exact and
+both parties have these defects. \Cref{lem:fixed-size}, with $m=2r$, $C_r=2r(1+4r)\le10r^2$ and $p=(2C_r+1)^2(59\kappa_r)^2/4$, gives an
+output $\Phi_{2^r}$ with singlet infidelity at most $2rp\le\frac{441}2\cdot59^2\cdot10^{-12}<10^{-6}$. But product local isometries applied
+to $\Phi_{D_n}$ give singlet fraction at most $D_n/2^r=\frac12$ with $\Phi_{2^r}$, by the Schmidt-rank bound of \cref{prop:separation}.
+So $\max_jB(F_j)>\kappa_r/\tau_n\ge5\cdot10^{-7}r^{-5/2}2^{2^{r-1}}$.
+\end{proof}
+
+The accuracy $\kappa_r$ is inverse-polynomial in $r$, of the order of the fixed-fidelity tolerance in the proof of \cref{thm:A}. So no proof
+that uses only finitely many tested projections, absence of finite-dimensional representations and a type~II tracial closure can bound
+the transport budget of its Pauli polynomials by $e^{Cr}$: here the budget is doubly exponential, at one faithful trace, in a nuclear and
+hyperfinite example. This is not a counterexample to the floor: no finite game presenting this tuple, and no retained-state upper
+strategy, is constructed, and other decoders might avoid these polynomials.
+
+\subsection{Single-copy thresholds}\label{app:floor-threshold}
+
+For a finite-dimensional state $\rho_{AB}$ let $f_r(\rho_{AB})$ be the largest overlap $\langle\Phi_{2^r}|\sigma|\Phi_{2^r}\rangle$ of a state $\sigma$
+obtained from $\rho_{AB}$ by product local isometries followed by discarding junk. For a game $G$ in class~(S) or~(C), with quantum
+value one and no finite-dimensional perfect strategy, and $0<\gamma<\frac12$, let $\Theta_G(r;\gamma)$ be the supremum of the losses
+$\eps\le1$ such that every finite-dimensional strategy of loss at most $\eps$ has $f_r\ge1-\gamma$; Theorem~A says that this threshold
+is positive.
+
+\begin{proposition}[Exponential thresholds suffice]\label{prop:threshold}
+If $\Theta_G(r;\gamma)\ge e^{-C_Gr}$ for all $r\ge1$, then $d^\to_G(\eps)\ge\frac{1-2\gamma}{C_G}\ln(1/\eps)-O_{G,\gamma}(1)$.
+\end{proposition}
+
+\begin{proof}
+Given $\eps$, let $r=\lfloor\ln(1/\eps)/C_G\rfloor-1$. If $r\ge1$, then $\eps<e^{-C_Gr}\le\Theta_G(r;\gamma)$, so every strategy of loss at
+most $\eps$ has $f_r\ge1-\gamma$,
+and~\eqref{eq:singlet-hashing} with $D=2^r$ gives $\ED^{A\to B}\ge(1-2\gamma)r-h(\gamma)$; local isometries and discarding do not increase the
+directional rates.
+\end{proof}
+
+The converse cannot be derived from the definitions: a large distillable entanglement does not give a good single-copy extraction at
+a target logarithmic in it.
+
+\begin{proposition}[A separation]\label{prop:separation}
+\begin{enumerate}[label=(\alph*),itemsep=1pt]
+\item If a unit vector has Schmidt rank at most $s$, then every product local isometry followed by discarding junk gives overlap
+at most $s/K$ with $\Phi_K$.
+\item For $n=2^t$ let $\psi_n=\frac12|00\rangle\otimes\Phi_n+\frac{\sqrt3}2|11\rangle\otimes\Phi_{2^n}$, with orthogonal local flags. Then
+$\ED^{A\to B}(\psi_n)=h(\frac14)+\frac t4+\frac{3n}4$; for every fixed $r$ and $t\ge r$, $f_r(\psi_n)=1$; but at $r_n=2t$,
+\[
+f_{r_n}(\psi_n)\ \le\ \Bigl(\frac1{2\sqrt n}+\frac{\sqrt3}2\Bigr)^2\ \longrightarrow\ \frac34 .
+\]
+\end{enumerate}
+So for every fixed $\gamma<\frac14$ and large $n$, single-copy extraction of $r_n=2\log n$ pairs at fidelity $1-\gamma$ fails, although
+the distillable entanglement is of order $n=2^{r_n/2}$.
+\end{proposition}
+
+\begin{proof}
+(a) Product local isometries do not increase the Schmidt rank. Discarding junk systems $A_j,B_j$ from a vector
+$\sum_{k\le s}\sqrt{\lambda_k}\,a_k\otimes b_k$ leaves the mixture of the vectors $\sum_k\sqrt{\lambda_k}\langle\alpha|a_k\rangle\otimes\langle\beta|b_k\rangle$ over
+basis vectors $\alpha,\beta$ of the junk, each of Schmidt rank at most $s$. For a vector $v=\sum_{k\le s}c_kx_k\otimes y_k$ with orthonormal
+$(x_k),(y_k)$, $|\langle\Phi_K,v\rangle|\le K^{-1/2}\sum_k|c_k|\le\sqrt{s/K}\,\|v\|$ by Cauchy--Schwarz; summing over the mixture gives $s/K$.
+
+(b) $\psi_n$ is pure with Schmidt coefficients $\frac1{4n}$ ($n$ times) and $\frac3{4\cdot2^n}$ ($2^n$ times), so its directional rates are its
+entanglement entropy~\cite{BBPS96}, as displayed. For $t\ge r$ both $n$ and $2^n$ are multiples of $2^r$, and controlled local isometries,
+reading the flags, factor $\Phi_n$ and $\Phi_{2^n}$ as $\Phi_{2^r}$ times a maximally entangled junk exactly. At $r_n=2t$, $K=n^2$; for product
+local isometries $V$ and the projection $\Pi$ onto $\Phi_K$ times the junk, $\|\Pi V\psi_n\|\le\frac12\|\Pi V(|00\rangle\Phi_n)\|+\frac{\sqrt3}2\le
+\frac12\sqrt{n/K}+\frac{\sqrt3}2$ by (a), and $f_{r_n}$ is the supremum of $\|\Pi V\psi_n\|^2$.
+\end{proof}
+
+No game's loss is identified with these states, so the proposition is not a counterexample to any game-specific converse: it shows
+that a converse needs information about the game. Extraction fails here only for target infidelities below about $\frac14$.
+
+\input{sections/floor-refinements}

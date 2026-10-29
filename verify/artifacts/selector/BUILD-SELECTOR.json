@@ -2,13 +2,13 @@
   "status": "BUILT",
   "fallback": {
     "path": "l4m8/L4M8-LINEAR-GAME.json",
-    "sha256": "9cc63bb337c2d3d61b4feff535d5b3439a85a891b1d1d2e2eddfcab7446a4cb6",
+    "sha256": "7d37caac99fc5b6a9c5e19684905eeccdd281a2b898ce0b53b06fb1b12ece2f7",
     "unchanged_during_build": true
   },
   "objects": [
     {
       "path": "SELECTOR-MAGIC.json",
-      "sha256": "a72e61c28f78ea99f2609c69442e69a96f84954ecaed5d2c6275692883ee42d2",
+      "sha256": "9ec542b6c3c52f6bec9f6e24f97b7d4b07e65f7bddb986cb533a20a64aec734e",
       "variables": 6808,
       "contexts": 5659,
       "incidences": 22637,
@@ -16,7 +16,7 @@
     },
     {
       "path": "SELECTOR-CONTRADICTION.json",
-      "sha256": "03bc42656e3f3151ed84c2a20ba9756aee00818eb76ea5a4798e7f0de9653e63",
+      "sha256": "447420368eb96135a8166717518fb20b53a3c3def216698c5d1f0c4970731c15",
       "variables": 6800,
       "contexts": 5655,
       "incidences": 22617,

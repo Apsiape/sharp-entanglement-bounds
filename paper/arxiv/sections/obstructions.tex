@@ -1,0 +1,385 @@
+%======================================================================
+\section{Obstructions and refutations}\label{sec:obstructions}
+%======================================================================
+
+This section records what does \emph{not} hold, or what a proof cannot do, with proofs. Several entries refute statements we
+once expected; they are kept because they mark the boundary of the method.
+
+\subsection{Positivity under partial transposition is not distillability}\label{sec:ppt}
+
+\begin{theorem}[A PPT gap]\label{thm:ppt-gap}
+Let a finite binary linear system with nonempty rows be classically inconsistent, let every incidence be tested with
+probability at least $p_{\min}>0$, and choose a parity-contradiction certificate, a set of rows in which every variable occurs an
+even number of times and whose signs multiply to $-1$, with total number $N$ of variable occurrences. Every finite-dimensional
+strategy on a state with positive partial transpose has loss at least $4p_{\min}/(N^3+3N^2+N)^4$.
+\end{theorem}
+
+\begin{proof}
+Relabelling illegal answers and local Naimark dilations with pure ancillas preserve PPT and do not increase the loss. Let
+$A_{ij}$ be Alice's commuting row reflections, $\prod_{j\in V_i}A_{ij}=b_iI$, and $B_j$ Bob's, so $\|(A_{ij}-B_j)\sqrt\rho\|_2\le d=2\sqrt{\eps/p_{\min}}$,
+with $\eps$ the loss and the norm taken with the joint density. Choose one row reflection $A_j$ per variable. If
+$\sigma=\rho^{T_B}\ge0$, then $B_j^T$ mirrors $A_j$ in $\sigma$ with the same error, since $\Tr\sigma(A_j\otimes I-I\otimes B_j^T)^2=
+2-2\Tr\rho(A_j\otimes B_j)$. For $W=A_jA_k\otimes B_jB_k$, $|\Tr\rho W-1|\le2d$; $\Tr\rho W=\Tr\sigma(A_jA_k\otimes B_k^TB_j^T)$, and transferring
+the two Bob factors to Alice in $\sigma$ costs $2d$ and gives $A_jA_kA_jA_k$, whose expectation is the same in $\rho$ and $\sigma$. So
+$\Re\Tr\rho A_jA_kA_jA_k\ge1-4d$ and $\|[A_j,A_k]\sqrt\rho\|_2^2\le8d$. For a certificate row $i$ with representative word $R_i$,
+replacing its letters by the row reflections costs at most $r_i(r_i+1)d$, so $\|(R_i-b_i)\sqrt\rho\|_2\le r_i(r_i+1)d$; telescoping
+against scalars, the ordered product $P$ of the certificate words has $\|(P+I)\sqrt\rho\|_2\le(N^2+N)d$. Every letter of $P$ occurs
+an even number of times; sorting with at most $N^2/2$ adjacent interchanges, each costing at most $\sqrt{8d}+2Nd$ with its suffix
+moved to Bob, gives $\|(P-I)\sqrt\rho\|_2\le\sqrt2N^2\sqrt d+N^3d$. Hence $2\le(N^3+N^2+N)d+\sqrt2N^2\sqrt d$, which for $d\le1$ is
+at most $(N^3+3N^2+N)\sqrt d$, and the bound follows; if $d>1$ the loss exceeds $p_{\min}/4$.
+\end{proof}
+
+Sufficiently good near-winners of such a game are therefore entangled with negative partial transpose. This alone proves
+neither distillability nor any growing rate, and it does not bypass the NPT distillability problem; PPT relaxations of
+device-independent entanglement constraints are due to Moroder et al.~\cite{MBLHG13}. The operational theorems of
+\cref{sec:extract,sec:law} are separate proofs.
+
+\subsection{No exact output from full-rank mixed states}\label{sec:no-exact}
+
+\begin{remark}[No exact entangled output; standard]\label{thm:no-exact}
+If $\rho_{AB}$ is a full-rank finite-dimensional state, no nonzero stochastic separable operation on finitely many copies, and
+hence no branch of an LOCC protocol, outputs an exact entangled pure state with nonzero probability. Every near-winning strategy
+can be made full rank by an arbitrarily small depolarization at an arbitrarily small increase of loss.
+\end{remark}
+
+\begin{proof}
+If $\rho\ge\lambda I$ with $\lambda>0$ and $\Lambda(\rho)=p|\Phi\rangle\langle\Phi|$ for a separable completely positive $\Lambda$, then
+$0\le\lambda\Lambda(I)\le p|\Phi\rangle\langle\Phi|$; a positive separable operator supported on an entangled line is zero, so $\Lambda(I)=0$
+and $\Lambda=0$. The same applies to $\rho^{\otimes n}$. For the second claim mix a strategy of loss $\eps/2$ with weight $t\le\eps/2$ of
+the maximally mixed state.
+\end{proof}
+
+So the exact-output statements for pure strategies (\cref{thm:renyi}) and exactly synchronous strategies (\cref{thm:exact-sync})
+cannot be extended to arbitrary mixed near-winners; approximate extraction is the theorem. This is standard finite-copy logic,
+not a new no-distillation result.
+
+\subsection{Restricted universal linear compilers}\label{sec:no-linear}
+
+\begin{proposition}[Two exclusions]\label{prop:no-linear}
+\emph{(a)} There is no split finite linear envelope ($\sigma F=I_N\otimes\mathrm{id}$, with $\sigma$ into $M_N$ of the negative quotient)
+in which every source generator is recovered as a fixed scalar times \emph{one} group word in the involutive constraint
+generators. \emph{(b)} A finite group $K$ with central involution $J$ whose negative group algebra is a single matrix algebra $M_d$ has
+negative character values in $\{0,\pm d\}$, so it cannot contain a coordinate transposition of four sectors, of trace two, as a
+group-word anchor.
+\end{proposition}
+
+\begin{proof}
+(a) Take the source $\Z\times C_2$ with the negative central involution and its characters $u\mapsto z$, $z\in\Tor$. Composing $\sigma$
+with a character gives an $N$-dimensional representation of the game algebra in which every involutive generator has determinant
+$\pm1$, so a fixed scalar $\lambda$ times a fixed word has determinant $\pm\lambda^N$; but $\sigma F(u)=I_N\otimes u$ has determinant $z^N$.
+So $z^N\in\{\pm\lambda^N\}$ for every $z$, which is impossible. (b) The tensor cube of the unique negative irreducible representation
+is again negative, so $\chi^3=d^2\chi$ pointwise.
+\end{proof}
+
+A tested polynomial \emph{minority-frame} decoder, which recovers each source generator in the corner selecting the minority
+coordinate of four commuting involutions with product $-1$, also fails: tensoring three lifted models of the source
+$\langle u,v,q,w\mid uvq^{-1},w^2,[w,\cdot]\rangle$ gives an exact $128$-dimensional model of every frame relation in which the decoded
+relator $uvq^{-1}$ equals $-I_{32}$ on one sector. This refutes that candidate at zero model error, not arbitrary polynomial
+decoders. \Cref{thm:universal} produces Boolean constraint games, and the restricted grammar of \cref{thm:rational-linear-k} survives; neither establishes
+nor rules out an unrestricted linear compiler (\cref{sec:open}).
+
+\subsection{Raw pair bounds below the exponent three halves}\label{sec:raw-pairs}
+
+\begin{proposition}[Raw pairs]\label{prop:raw-pairs}
+For every $M\ge\lceil384\pi\rceil$ there is a native model $\mathcal N_M$ of \cref{sec:point-native}, namely the model
+of~\cite[Proposition~6.5]{DM-H3} with the spanning trees chosen in the proof, such that on its flat maximally entangled
+purification, with all actual word mirrors exact and source squared error at most $14.26M^{-3}$, the raw lamp commutator satisfies
+$\|[x,a^{4M}za^{-4M}]-I\|_2^2\ge1/(128\pi)$ in the normalized Hilbert--Schmidt norm. Consequently no estimate
+$\|([x,a^nza^{-n}]-I)\Psi\|\le Cn^ue$ with $u<\frac32$ holds uniformly over models and distances; flag dilution, weight $p$ on such a
+block and $1-p$ on a more accurate one, keeps this failure at an arbitrarily small critical budget $N^3e^2\le C'p$, with ratio to
+$N^{2u}e^2$ growing like $M^{3-2u}$.
+\end{proposition}
+
+\begin{proof}
+\emph{The model.} We use the data of~\cite[Section~6]{DM-H3} in its conventions: $\ell=2M+2$, the reduced colour coordinates
+$1,\dots,L$ with $L=4M+4$, clocks $(i,j)\in(\Z/M\Z)^2$, the reverse cycles $c_r=(1\ r\ r{-}1\ \cdots\ 2)$, the base $a$-links
+$A_{i,j}=c_{\ell-i-j}$, the base $b$-links, and the two exact moves $\eta_1$, on the $a$-link at $(M-1,M-1)$, and $\eta_2$, on a $b$-link.
+The plaquette $(i,j)$ has bottom and top edges the $a$-links at $(i,j)$ and $(i,j+1)$, and left and right edges the $b$-links at
+$(i,j)$ and $(i+1,j)$. The regions are those of~\cite[proof of Proposition~6.5]{DM-H3}: for $5\le t\le M+3$ the bulk region $R_t$, with
+source $(M-1,M-1)$, consists of its source, the column plaquettes $(M-1,j)$ with $1\le j\le M-2$, and the staircase plaquettes $(i,j)$
+with $0\le i\le M-3$, $0\le j\le M-2$, $i+j\le t+M-8$; the region $T$, with source $(0,M-2)$, consists of its source and the plaquettes
+with $i+j\le M-3$; signs and labels are as given there. These regions satisfy the four regional hypotheses of~\cite[Lemma~6.4]{DM-H3}, every label at the
+initial vertex of an interior edge has both coordinates at least $5$~\cite[proof of Proposition~6.5]{DM-H3}, and
+$|R_t|\ge M(M-1)/2$, $|T|=1+(M-1)(M-2)/2$. Lemma~6.4 of~\cite{DM-H3} solves $\mathrm{curl}\,\varphi_R=F_R-s_R\pi\delta_{q_0}$, for the
+constant fields $F_{R,q}=s_R\pi/|R|$, along an \emph{arbitrary} spanning tree of the plaquettes of $R$ joined through interior edges,
+rooted at the source, with zero potential off the tree. The resulting H4 holonomies depend only on the fields, so the bound
+$\|\mathrm{H4}-I\|_2^2\le14.26M^{-3}$ of~\cite[Proposition~6.5]{DM-H3} holds for every tree; and the rotations act in the label planes,
+which avoid the coordinates $1,\dots,4$, so the other Houghton relators~\cite[Lemma~6.4]{DM-H3} and the lamp relators
+(\cref{sec:point-native}) stay exact whatever tree is used. On the flat maximally entangled purification with Alice's transposes
+every mirror is exact and every state commutator vanishes, so the model has precision $e_M\le\sqrt{14.26}\,M^{-3/2}$.
+
+\emph{Row-spine trees.} For $R_t$: on each row $1\le j\le M-2$ join the staircase plaquettes $(0,j),(1,j),\dots$ consecutively
+through their common $b$-links, and join $(0,j)$ to the column plaquette $(M-1,j)$ through the $b$-link at $(0,j)$, across the seam;
+join the column plaquettes consecutively through the $a$-links at $(M-1,j)$, $2\le j\le M-2$, and $(M-1,M-2)$ to the source through
+its bottom edge. Row~$0$ cannot cross the seam, since $(M-1,0)\notin R_t$: join its plaquettes to $(0,0)$ through $b$-links, and $(0,0)$
+to $(0,1)$ through the $a$-link at $(0,1)$. For $T$: join each row to its plaquette $(0,j)$ through $b$-links, and the plaquettes
+$(0,0),\dots,(0,M-3)$ and the source $(0,M-2)$ through the $a$-links at $(0,j)$, $1\le j\le M-2$. These edges are interior, the trees
+are spanning and acyclic, and each source is a leaf attached by its bottom edge, as the third regional hypothesis of~\cite[Lemma~6.4]{DM-H3} requires.
+
+\emph{Angles.} If a tree edge $e$ separates a subtree $S$ not containing the source from the rest, summing the curl equation over
+$S$, in which every edge inside $S$ cancels and every other edge but $e$ carries zero potential, gives $|\varphi_R(e)|=\pi|S|/|R|$.
+Below the spine edge at $(M-1,j)$, $j\ge2$, lie the column plaquettes $(M-1,1),\dots,(M-1,j-1)$ and the staircase rows $0,\dots,j-1$, at
+most $j(M-1)$ plaquettes, so $|\varphi_{R_t}|\le2\pi j/M$; below the $T$-spine edge at $(0,j)$ lie at most $j(M-2)$ plaquettes, so
+$|\varphi_T|\le2\pi j/(M-1)$; the edge at $(0,1)$ of $R_t$ carries an angle at most $2\pi/M$. On a row $j\ge2$ the only $a$-links with
+nonzero potentials are thus those at $(M-1,j)$, carrying the rotations of the bulk regions, and at $(0,j)$, carrying that of $T$. The
+bulk rotations act in disjoint planes, so the first link factor is within $\max_t|\varphi_{R_t}|\le2\pi j/M$ of $I$ in operator norm,
+not within the sum, and the second within $2\pi j/(M-1)$. Neither $\eta$-move lies on an $a$-link of a row $2\le j\le M-2$.
+
+\emph{The unperturbed circuit.} In the representation of~\cite[Section~6.2]{DM-H3} the generator $a$ is the adjoint of the
+right-action operator, so $a$ moves the clock by $-e_1$ and applies the inverse of the link at the new clock to the one-particle
+space $\C^L$. From the clock $(0,j)$ the $M$-step circuit along row $j$ therefore applies, in chronological order, the forward cycles
+$d_r=c_r^{-1}=(1\ 2\ \cdots\ r)$ of lengths $r=d+1,d+2,\dots,R$, where $d=M+2-j$ and $R=M+d$. Following the points,
+\[
+P(v)=\begin{cases}v+M,&1\le v\le d,\\ R-v+1,&d<v\le R,\\ v,&v>R:\end{cases}
+\]
+for $v\le d$ every cycle increments $v$; for $d<v\le R$ the cycles shorter than $v$ fix it, the cycle of length $v$ sends it to $1$, and
+the remaining $R-v$ cycles increment it. For $j\ge3$, $d<M$, so $P$ exchanges the low block $[1,d]$ with the high block $[M+1,R]$, $P^2$
+reflects each of them, and $P$ reflects the middle block $[d+1,M]$; hence $P^4=I$. A circuit from another clock of the row applies a
+cyclic rotation of the same factors, which is conjugate to $P$ and has fourth power $I$. The orientation matters: the same cycles
+applied in the opposite chronological order, or their inverses in the same order, do not in general give an element of order
+four. The order used here is that of the single unitary $a$; its inverse gives the inverse circuits, with the same property.
+
+\emph{The perturbed circuit.} The one-particle holonomy $W_{i,j}(a^{4M})$ of $a^{4M}$ from a clock $(i,j)$ of row $j$ uses every link of the
+row four times, and the rotated links differ from the base links only in the columns $M-1$ and $0$. Telescoping against the
+unperturbed product, which is $I$, gives
+\[
+\opn{W_{i,j}(a^{4M})-I}\le4\Bigl[\frac{2\pi j}M+\frac{2\pi j}{M-1}\Bigr]\le\frac{24\pi j}M ,
+\]
+uniformly in $i$. For $3\le j\le\lfloor M/(64\pi)\rfloor$ this is at most $\frac38$, so $|W_{i,j}(a^{4M})_{1,1}|\ge\frac12$; for
+$M\ge\lceil384\pi\rceil$ these rows number at least $M/(128\pi)$, so they carry a fraction at least $1/(128\pi)$ of the clocks. This is a
+one-particle estimate; it is not claimed that fermionic quantization keeps operator norms small on the whole space.
+
+\emph{A Gaussian identity.} The lamps are $x=i\gamma_{1,1}\gamma_{1,2}$ and $z=i\gamma_{1,2}\gamma_{1,3}$, where $\gamma_{1,1},\gamma_{1,2}$ are the
+Majorana operators of the first flavour at the coordinate $1$ and $\gamma_{1,3}$ one of the second flavour there. At each clock
+$a^nza^{-n}$ is the conjugate of $z$ by the fermionic quantization of the one-particle holonomy $W$ of $a^n$ there, or of its inverse,
+which has the same diagonal moduli. This conjugation sends $\gamma_{1,2}$ to a unit real combination $A$ of first-flavour Majorana
+operators and $\gamma_{1,3}$ to a unit real combination $B$ of second-flavour ones. Write $A=A_\parallel+A_\perp$ with $A_\parallel$ in the
+span of $\gamma_{1,1},\gamma_{1,2}$; its squared coefficient norm is $|W_{1,1}|^2$, so $A_\parallel^2=|W_{1,1}|^2I$. Conjugation by $x$ reverses
+$A_\parallel$ and fixes $A_\perp$ and $B$, so $x(iAB)-(iAB)x=-2iA_\parallel Bx$ and, since $B^2=I$,
+\[
+\|x(iAB)-(iAB)x\|_2^2=4|W_{1,1}|^2 .
+\]
+The normalized Hilbert--Schmidt norm is unitarily invariant, so averaging over clocks gives the exact identity
+$\|[x,a^nza^{-n}]-I\|_2^2=4\,\mathbb E_c|W_c(a^n)_{1,1}|^2$, and at $n=4M$ the good rows give at least $4\cdot\frac14\cdot\frac1{128\pi}$.
+
+\emph{Consequences.} With $n=4M$, $n^ue_M\le4^u\sqrt{14.26}\,M^{u-3/2}\to0$ for $u<\frac32$, while $\|([x,a^nza^{-n}]-I)\Psi\|$, the
+normalized norm on the flat purification, stays at least $(128\pi)^{-1/2}$. For the dilution take the direct sum, with weights $p$ and
+$1-p$, of this model and a native model $\mathcal N_{M'}$ with $(1-p)e_{M'}^2\le pe_M^2$, each on its maximally entangled purification:
+the operators are block diagonal, the mirrors stay exact, the state commutators vanish, $e^2\le2pe_M^2\le29pM^{-3}$, and the squared raw
+residual is at least $p/(128\pi)$. With $N=4M$, $N^3e^2\le64\cdot29\,p$, while the squared raw residual divided by $N^{2u}e^2$ is at least
+$M^{3-2u}/(128\pi\cdot29\cdot16^u)$.
+\end{proof}
+
+This refutes a uniform raw estimate, not the endpoint $u=\frac32$, a decoder adapted to another architecture, or a suitably weighted
+aggregate theorem; it is not legitimate to call the endpoint settled. The proposition is stated for the row-spine trees; we do not
+need, and do not claim here, that the return amplitudes are the same for every legal tree.
+
+\subsection{The finite-table gate and what refutes its cheap forms}\label{sec:table}
+
+\begin{proposition}[A finite-table gate]\label{prop:table}
+Let $G=\F_2^N\times\F_2^N$, $\omega(p,q)=(-1)^{t_p\cdot s_q}$ for $p=(s_p,t_p)$, let $U_p$ be arbitrary Bob unitaries and $M_p$ arbitrary
+Alice unitaries, and put
+\[
+\mu^2=\mathbb E_q\|(M_q-U_q)\Psi\|^2,\qquad\Delta_N=\mathbb E_{p,q}\|(U_pU_q-\omega(p,q)U_{p+q})\Psi\|^2 .
+\]
+There are product local isometries with Bell overlap at least $1-2\mu^2-2\Delta_N$, and vector distance at most
+$\sqrt{2\mu^2+2\Delta_N}$ from a Bell state of dimension $2^N$ times a residual purification. If $p_0=2\mu^2+2\Delta_N<\frac12$, then
+$\ED^{A\to B}\ge(1-2p_0)N-h(p_0)$.
+\end{proposition}
+
+\begin{proof}
+Bob's isometry $V_B|v\rangle=2^{-N}\sum_pU_p|v\rangle\otimes|p\rangle$ is always valid. On the fresh label register
+$R_q|r\rangle=\omega(r+q,q)|r+q\rangle$ is an exact projective regular representation, $R_qR_r=\omega(q,r)R_{q+r}$, so it splits as $N$ standard
+qubits times multiplicity. The coefficient of $R_qV_B|v\rangle$ at label $p$ is $\omega(p,q)U_{p+q}|v\rangle/2^N$, so
+$\|(V_BU_q-R_qV_B)\Psi\|^2=\mathbb E_p\|(U_pU_q-\omega(p,q)U_{p+q})\Psi\|^2$, and $\mathbb E_q\|(M_q-R_q)V_B\Psi\|^2\le2\mu^2+2\Delta_N$. The coherent Alice-label
+construction of \cref{thm:exact-point}, applied to the exact $R_q$ and the individual $M_q$, uses only this average.
+\end{proof}
+
+For the raw sorted point-source table, words of length at most $4N$ give $\mu^2\le16N^2e^2$, so the gate reduces to controlling the
+same-state $\Delta_N$; it does not assume that perfect mirrors imply Pauli multiplicativity. In an exact negative representation
+$\Delta_N=0$ and \cref{thm:exact-point} is recovered.
+
+\begin{proposition}[What the collective witness refutes]\label{prop:collective-refutes}
+On the collective models of \cref{prop:collective}, with $e_M=\Theta(M^{-2})$, pure cost $(4+o(1))M$ and all word mirrors exact, the
+sorted table satisfies $\Delta_N\ge1-D_M/2^N$. Consequently no bound $\Delta_N\le CN^\alpha e^2$ with $\alpha<4$, and no modulus tending to zero
+with $N^3e^2$, holds on all actual finite point-source tuples; no Bell-error-density law $b_N\le\omega(N^3e^2)$ with $\omega(t)\to0$ and
+the hashing guarantee holds; and the raw aggregate estimate $E_B\le CN^4e^2$, inserted in \cref{thm:aggregate}, is false. The
+quartic \emph{table} estimate $\Delta_N\le CN^4e^2$ is not refuted.
+\end{proposition}
+
+\begin{proof}
+With exact mirrors the cross term vanishes and the Bell failure of \cref{prop:table} is at most $\Delta_N$, while a local channel
+applied to a pure state of Schmidt rank $D_M$ has overlap at most $D_M/2^N$ with $\Phi_{2^N}$. At $N=16M$ the lower bound tends to one,
+while $N^\alpha e_M^2=O(M^{\alpha-4})\to0$. A density law would give a rate $N(1-o(1))$ at $N=16M$, exceeding the original $(4+o(1))M$ ebits;
+the raw aggregate estimate would give $b_N=O(1/N)$ since $M_2=0$, with the same contradiction.
+\end{proof}
+
+These refutations do not exclude the matching quarter lower bound for the game.
+
+\subsection{Corrections that keep the resource must be accurate}\label{sec:corrections}
+
+\begin{proposition}[Correction costs]\label{prop:correction}
+Apply a Bob-local isometry, or an explicitly reversible local lift, to the original collective state of \cref{prop:collective},
+keeping Alice's actual mirrors, and suppose the target signed generators compare on that state within weighted error $\eta$. If
+the target is an exact negative representation, then $\eta=\Omega(M^{-1})=\Omega(\sqrt{e_M})$, with infinite target dimension
+allowed. If the target lies in the enlarged native class of \cref{thm:native-enlarged}, then $\eta=\Omega(M^{-3/2})=\Omega(e_M^{3/4})$,
+conditional on that theorem. For the finite soft configuration models, of pure cost $O(e^{-2}\log(1/e))$ with exact mirrors, a
+correction to an exact negative representation needs $\eta=\Omega(1/\log(1/e))$.
+\end{proposition}
+
+\begin{proof}
+The lifted state has the same directional rates, and since the old mirrors are exact, fixed word comparisons cost at most their
+length times $\eta$: the lift is a model of the target at precision $O(e_M+\eta)$ with mirror errors $\eta$. For an exact target,
+\cref{thm:exact-point} forces $S_M+1\ge c/(e_M+\eta)$ with $S_M=\Theta(M)$; for the native target \cref{thm:native-enlarged} forces
+$S_M+1\ge c(e_M+\eta)^{-2/3}$. For the configuration models \cref{thm:exact-config} forces $S_e\ge\frac342^{\lfloor1/(24\eta)\rfloor}$, so
+$\eta\ge1/[24(1+\log(4S_e/3))]$.
+\end{proof}
+
+These obstruct only the stated correction contract, not replacing the state, buying more entanglement, or qualitative
+comparisons with vanishing error.
+
+\subsection{Restricted phase schemes}\label{sec:phase}
+
+\begin{proposition}[Scalar Weyl phases]\label{prop:phase}
+Suppose actual unitaries on an original purification satisfy $\|(U_A-U_B)\Psi\|\le\delta$, $\|(V_A-V_B)\Psi\|\le\delta$ and
+$\|(U_A^*V_AU_A-\lambda V_A)\Psi\|\le\delta$ for a \emph{fixed scalar} $\lambda\in\Tor$, and a game supplies $\delta\le C_G\sqrt\eps$. For a reduced
+$p/q$ with $\zeta=e^{2\pi ip/q}$, $\Delta=|\lambda-\zeta|$, $2\le N\le q$, $m=\lfloor q/N\rfloor$, $P=mN/q$ and
+$\eta=\sqrt{2q\delta}+N^{3/2}\delta+\sqrt{3qN\delta+qN\Delta}$, there is a one-way protocol succeeding with probability exactly $P$ whose output
+has singlet fraction at least $1-\eta^2/P$. Consequently: for every irrational phase, $\ED^{A\to B}\ge c\log(1/\eps_n)$ along a sequence
+$\eps_n\to0$; under polynomial growth of the continued-fraction denominators, for every small $\eps$; and so for every algebraic
+$\lambda$ that is not a root of unity. A finite commuting-scalar rational semialgebraic gadget whose admitted phases avoid all
+roots of unity admits only finitely many phases, all algebraic.
+\end{proposition}
+
+\begin{proof}
+All operators are finite-dimensional, opposite-party operators commute, and commuting unitaries of the two parties have a
+positive joint spectral measure on $\Psi$. Angles are in turns.
+
+\emph{Random cuts across the parties.} For $t$ uniform in $[0,1/q)$ let $I_k(t)=[t+k/q,t+(k+1)/q)$, $k\in\Z/q\Z$, and for a unitary
+$S$ let $E_k(S)$ be its spectral projection on $I_k(t)$. If $S_A$ and $T_B$ are unitaries of the two parties with
+$\|(S_A-T_B)\Psi\|\le h$, then
+\begin{equation}\label{eq:phase-cut}
+\mathbb E_t\sum_k\|(E_k(S_A)-E_k(T_B))\Psi\|^2\le2qh .
+\end{equation}
+Indeed, for the joint spectral measure $\nu$ of $(S_A,T_B)$ on $\Psi$ the sum is twice the $\nu$-probability that the two
+spectral values $z,w$ lie in different arcs; two points at angular distance $d$ are separated with probability
+$\min(1,qd)\le q|z-w|/4$; and $\int|z-w|\,d\nu\le h$ by Cauchy--Schwarz. Relabel the arcs by $j$ through $k=pj\bmod q$, a bijection, and let $P^A_j$, $P^B_j$ be the relabelled spectral
+projections of $V_A$, $V_B$. By~\eqref{eq:phase-cut}, $\mathbb E_t\sum_j\|(P^A_j-P^B_j)\Psi\|^2\le2q\delta$.
+
+\emph{Conjugation powers.} Put $C_a=U_A^{-a}V_AU_A^a$ and $b_a=\|(C_a-\lambda^aV_A)\Psi\|$. For an Alice operator $R$ with $\opn R\le2$,
+$\|RU_A\Psi\|\le\|R\Psi\|+2\delta$ by \cref{lem:transfer-parties}(b) with the parties exchanged. Since
+$C_{a+1}-\lambda^{a+1}V_A=U_A^{-1}(C_a-\lambda^aV_A)U_A+\lambda^a(U_A^*V_AU_A-\lambda V_A)$, this gives $b_1\le\delta$ and $b_{a+1}\le b_a+3\delta$. With
+$|\lambda^a-\zeta^a|\le a\Delta$ and the $V$ mirror,
+\[
+\|(C_a-\zeta^aV_B)\Psi\|\le(3a+1)\delta+a\Delta\qquad(a\ge0).
+\]
+The relabelled spectral projections of $C_a$ are $U_A^{-a}P^A_jU_A^a$, and those of $\zeta^aV_B$ are $P^B_{j-a}$, since $\zeta^a$ rotates the
+circle by $pa/q$. So~\eqref{eq:phase-cut} gives
+\begin{equation}\label{eq:phase-transport}
+\mathbb E_t\sum_j\|(U_A^{-a}P^A_jU_A^a-P^B_{j-a})\Psi\|^2\le2q\bigl[(3a+1)\delta+a\Delta\bigr],
+\end{equation}
+and \cref{lem:transfer-parties}(c) gives $\|(U_B^a-U_A^a)\Psi\|\le a\delta$. No same-party difference of powers is used.
+
+\emph{The instruments.} Let $r$ be uniform in $\Z/q\Z$, independent of $t$. Call the $mN$ labels $j=r+bN+a\bmod q$, $0\le b<m$, $0\le a<N$,
+good, and the other $q-mN$ the tail. Alice applies the local instrument whose success branch is
+\[
+W_A=\sum_{b,a}|b,a\rangle\otimes U_A^{-a}P^A_{r+bN+a},\qquad W_A^*W_A=\sum_{j\ \mathrm{good}}P^A_j ,
+\]
+and Bob the isometry $W_B=\sum_{b,a}|b,a\rangle\otimes U_B^aP^B_{r+bN+a}+\sum_{j\ \mathrm{tail}}|\mathrm{tail},j\rangle\otimes P^B_j$. Alice
+announces $r$, $t$ and her success flag; Bob does not postselect. Averaged over $r$ every label is good with probability $mN/q$, so
+the success probability on the original state is exactly $P=mN/q$, with no assumption on the spectrum.
+
+\emph{The comparison.} Work in the Hilbert direct sum over $(r,t)$ with their uniform weights, the record of $(r,t)$ kept in the
+purification; for finite-dimensional operators the projections are piecewise constant in $t$ with finitely many breakpoints, so
+the average over $t$ is a finite weighted sum. Let $\omega=(W_A\otimes W_B\otimes I_E)\Psi$ and
+\[
+y=\sum_{b,a}|b,a\rangle_A|b,a\rangle_B\otimes P^B_{r+bN}\Psi=\Phi_N\otimes\chi,\qquad\chi=\sqrt N\sum_b|b,b\rangle\otimes P^B_{r+bN}\Psi,
+\]
+with $\Phi_N$ the maximally entangled state of the two $a$-registers. Both have squared norm $P$; for $y$, average
+$N\sum_b\|P^B_{r+bN}\Psi\|^2$ over $r$. We make three replacements.
+(i) Replace $\omega$ by the vector with diagonal labels and coefficients $U_A^{-a}P^A_jU_B^a\Psi$, $j=r+bN+a$. For each good $j$ the
+changed and discarded Bob components have squared norm $2\|P^A_j(I-P^B_j)\Psi\|^2$, and the sum of this over all $j$ is
+$\sum_j\|(P^A_j-P^B_j)\Psi\|^2$, so the averaged squared error is at most $2q\delta$.
+(ii) Replace $U_B^a$ by $U_A^a$ in these coefficients. For fixed $a$ the projections $P^A_{r+bN+a}$ are orthogonal, so the squared
+error is at most $\sum_{a<N}a^2\delta^2\le N^3\delta^2$.
+(iii) Replace $U_A^{-a}P^A_{r+bN+a}U_A^a\Psi$ by $P^B_{r+bN}\Psi$. Averaged over $r$, for each $a$ every label occurs with probability
+$m/q\le1/N$, so by~\eqref{eq:phase-transport} the squared error is at most
+$\frac1N\sum_{a<N}2q[(3a+1)\delta+a\Delta]\le3qN\delta+qN\Delta$.
+By Minkowski's inequality $\|\omega-y\|\le\eta$. The normalized successful output $\omega/\sqrt P$ is therefore within $\eta/\sqrt P$ of the
+unit vector $\Phi_N\otimes\chi/\sqrt P$, and its two $a$-registers have singlet fraction at least $1-\eta^2/P$; the environment, the
+original systems, the $b$-registers and the public record are all in the junk.
+
+\emph{Rates.} If $\gamma=\eta^2/P<\frac12$, Alice's heralded filtering (\cref{sec:prelim-usable}) and~\eqref{eq:singlet-hashing} give
+$\ED^{A\to B}(\rho_{AB})\ge P[(1-2\gamma)\log N-h(\gamma)]$, with all communication from Alice to Bob. The decoder depends on the
+strategy and is not efficient.
+
+\emph{Consequences.} For a convergent $p_n/q_n$ of $\theta=\arg\lambda/2\pi$, $|\theta-p_n/q_n|<1/(q_nq_{n+1})$ gives
+$q_n^2|\lambda-e^{2\pi ip_n/q_n}|\le2\pi$. Take $N=\lfloor cq_n\rfloor$ with a small fixed $c$ and $\delta\le q_n^{-4}$: then $P\ge1-c$, the first two
+terms of $\eta$ tend to zero and $qN\Delta\le2\pi c$, so $\gamma=O(c)$ for large $n$ and the rate is at least $0.99\log q_n-O(1)$ once $c$ is
+small. With $\eps_n=C_G^{-2}q_n^{-8}$ every strategy of loss at most $\eps_n$ has $\delta\le q_n^{-4}$, which gives the logarithmic bound
+along $\eps_n\to0$. If $q_{n+1}\le Kq_n^B$, given $\delta$ choose the largest $q_n\le\delta^{-1/4}$; then $q_n\ge K^{-1/B}\delta^{-1/(4B)}$, and the bound
+holds at every small $\eps$. For algebraic non-torsion $\lambda$, Baker--W\"ustholz~\cite{BW93} gives $|\lambda^q-1|\ge aq^{-A}$ for $q\ge1$, and
+$|\lambda^{q_n}-1|\le2\pi/q_{n+1}$ yields $q_{n+1}\le(2\pi/a)q_n^A$. For the gadget, the admitted set is semialgebraic over the real algebraic
+numbers by Tarski--Seidenberg~\cite{Sei54}, so it has finitely many connected components, points or arcs; a nontrivial arc contains a
+root of unity, so only finitely many isolated points remain, and these have real algebraic coordinates.
+\end{proof}
+
+These statements do not cover an uncontrolled central-operator phase or unrestricted noncommutative encodings, and they provide no
+fixed rational game compiler; no game below the logarithmic floor is obtained.
+
+\subsection{Finite-support variants give integer growth}\label{sec:finite-support}
+
+\begin{proposition}[Finite supports]\label{prop:finite-support}
+Let $H_3$ act transitively on a set of objects. Fix a $k$-element set $S\subseteq Y$ and suppose that the stabilizer $K$ of a base
+object $o$ satisfies $\mathrm{Fix}_{H_3}(S)\le K\le\mathrm{Stab}_{H_3}(S)$, the pointwise and the setwise stabilizer of $S$. Then
+$L=K/\mathrm{Fix}_{H_3}(S)$ is a subgroup of $S_k$, the orbit is $\mathrm{Inj}([k],Y)/L$, the object $ho$ has support $h(S)$, and the
+number of objects supported in the first $N$ points is $|\mathrm{Inj}([k],[N])|/|L|$, of integer polynomial order $N^k$.
+\end{proposition}
+
+\begin{proof}
+Fix a bijection $\iota:[k]\to S$. $H_3$ contains all finitary permutations, so it acts transitively on injections $[k]\to Y$ by
+$h\cdot f=h\circ f$, with stabilizer $\mathrm{Fix}(S)$ at $\iota$, and restriction to $S$ maps $\mathrm{Stab}(S)$ onto $\mathrm{Sym}(S)\cong S_k$
+with kernel $\mathrm{Fix}(S)$. So $\mathrm{Fix}(S)$ is normal in $K$ and $L=K/\mathrm{Fix}(S)$ embeds in $S_k$, acting on injections by
+precomposition. The map $hK\mapsto(h\circ\iota)L$ is well defined, since $h\kappa\circ\iota=h\circ\iota\circ\iota^{-1}\kappa|_S\iota$ for
+$\kappa\in K$, and bijective; and $L$ acts freely on injections. The count follows.
+\end{proof}
+
+The two-sided hypothesis is needed: the lower bound $\mathrm{Fix}(S)\le K$ alone does not make $S$ a least support. A trivial
+one-object action has $K=H_3$, which contains $\mathrm{Fix}(S)$ for every finite $S$, so it admits declared supports of every size,
+while its orbit has one element.
+
+Finite colours, orderings and finite quotient patterns within this architecture therefore do not create a fractional exact law;
+\cref{thm:gamma3} escapes by replication, not by refuting the premise. This is standard finite-support reasoning, not a
+classification of all finitely presented actions.
+
+\subsection{Operator accuracy without trace visibility}\label{sec:trace-visibility}
+
+\begin{proposition}[Invisible witnesses]\label{prop:invisible}
+\emph{(a)} A $D$-dimensional unitary $W$ with $\rank(W-I)\le r$ has $\|W-I\|_{2,D}^2\le4r/D$. \emph{(b)} If $J$ lies in the normal closure
+of a word $w$ in a fixed extension presentation, then in the tracial normalized setting with root relator error $e$,
+$\|J-I\|_2\le C\|w-I\|_2+C'e$. \emph{(c)} Consider the relations $S^*S=I-P_N$, $SS^*=I-P_0$, $XS=SX^2$, $XP_0=\frac12P_0$, $XP_N=0$,
+with $P_0,P_N$ projections and $X$ positive. For every $D$ they have matrix models with all relations exact except
+$\|XP_N\|=2^{-2^{D-1}}$, and with $\|P_0\|=1$ but $\mathrm{tr}_D(P_0)=1/D$; and every exact model in a finite von Neumann algebra with a
+faithful normal tracial state, in particular every exact finite-dimensional model, has $P_0=0$.
+\end{proposition}
+
+\begin{proof}
+(a) $\Tr(W-I)^*(W-I)\le4\rank(W-I)$. (b) A fixed derivation writes $J$ as a product of conjugates of $w^{\pm1}$ and relators; unitary
+invariance of the normalized norm and telescoping give the bound. (c) The shift $Se_i=e_{i+1}$ ($i<D-1$), $Se_{D-1}=0$ on $\C^D$, with
+$P_0$ and $P_N$ the projections onto $e_0$ and $e_{D-1}$ and $X=\mathrm{diag}(2^{-2^i})$, satisfies all but the last relation exactly. In an
+exact model, let $P_0v=v\ne0$. Then $Xv=\frac12v$, and $XS=SX^2$ gives $XS^kv=2^{-2^k}S^kv$ for every $k$ by induction. Since $X$ is
+self-adjoint, each $S^kv$ with $S^kv\ne0$ lies in an eigenspace with nonzero eigenvalue, hence is orthogonal to $\ker X\supseteq\mathrm{ran}\,P_N$,
+so $\|S^{k+1}v\|^2=\langle S^kv,(I-P_N)S^kv\rangle=\|S^kv\|^2$. Thus $S^k$ is isometric on $\mathrm{ran}\,P_0$, the projections
+$E_k=S^kP_0S^{*k}$ are equivalent to $P_0$, and they lie in distinct eigenspaces of $X$, hence are mutually orthogonal. A faithful normal
+tracial state $\tau$ then gives $(n+1)\tau(P_0)=\tau(E_0+\dots+E_n)\le1$ for every $n$, so $\tau(P_0)=0$ and $P_0=0$. For finite matrices
+alone positivity of $X$ is not needed: $\ker S=\ker S^*S=\mathrm{ran}\,P_N\subseteq\ker X$, so inductively every $S^kv$ is a nonzero
+eigenvector of $X$ with eigenvalue $2^{-2^k}$; these are linearly independent, which is impossible in finite dimension.
+\end{proof}
+
+So exponentially accurate operator relations with a bounded-rank witness have normalized visibility $O(D^{-1/2})$, and
+normal-closure compilation cannot promote vanishing trace visibility into $J=-I$ at vanishing error on the whole space.
+Baumslag--Solitar near-collision models~\cite{SV18,Fri12} have exponentially accurate operator relations of exactly this
+invisible kind. A central marker that is visible in operator norm can always be compressed to a negative sector without loss
+(\cref{lem:compression}); for these models the obstruction then reappears on the compressed sector
+(\cref{prop:bs-central,prop:copied-gadget}). The known weak dimension lower bound for $\mathrm{BS}(2,3)$ is not a
+polylogarithmic upper bound, and no claim is made that these routes are impossible in general.

@@ -61,8 +61,7 @@ dimension $O(e^{-2\alpha})$ give strategies of Schmidt rank $16\cdot O(e^{-2\alp
 \cref{thm:rational-games}. For $\alpha=a/b\le\frac12$ take $r=2a$ and $m=2^b$.
 \end{proof}
 
-The campaign that produced these results also built its own restricted linear compiler, which eliminates the non-involutive
-generators in order (a generator $Y$ becomes the product $fv$ of two new involutions, and a power relation $UYU^{-1}=Y^m$ the
+We also use a restricted linear compiler of our own, which eliminates the non-involutive generators in order (a generator $Y$ becomes the product $fv$ of two new involutions, and a power relation $UYU^{-1}=Y^m$ the
 conjugacy $UvU^{-1}=p_m$ with the involutive palindrome $p_m=v(fv)^{m-1}$), adds a parity cover with first-negative corner
 selectors, which is the multi-corner map of \cref{prop:corner}, and finishes with Slofstra's gadgets. For one copy it gives
 amplification $16$ and was used for the explicit exports below. The balanced construction behind \cref{prop:extended} has the same
@@ -491,6 +490,8 @@ $d_H^\to(\eps/a)\le d_G^\to(\eps)\le d_H^\to(\eps/b)$, and likewise for $D$. A f
 and leaves every limit of the three kinds unchanged.
 \end{proof}
 
+The same reweighting comparison holds for the pure original-state demand $p_G$: $p_H(\eps/a)\le p_G(\eps)\le p_H(\eps/b)$. The conditional losses are unchanged on restricting to pure strategies, so the logarithmic coefficient of $p_G$ is unchanged as well. This is the pure-state use of \cref{lem:reweighting} below.
+
 Replacing positive real weights by the uniform distribution on their support, the sets $\mathcal A_{\log}$ and $\mathcal A_{\dim}$ are countable.
 By \cref{thm:rational-ED}, and with zero from a game that has a perfect product strategy, $\{0\}\cup\mathcal S$ lies in both.
 
@@ -570,10 +571,12 @@ $\beta=\lim_n\log(1+d^\to_G(2^{-n}))/n$, and since $t\mapsto\log(1+t)/n$ is incr
 $d^\leftarrow_G$ exchange the parties.
 \end{proof}
 
-So $\{0\}\cup\mathcal S\subseteq\mathcal A_{\log}$, and every element of $\mathcal A_{\log}$ is left-c.e.\ relative to $0''$. The two classes do not
-match, and no optimality is claimed for the upper one: it neither shows that coefficients must be computable nor realizes a noncomputable
-coefficient. Dimension and one-way demand differ here, through the regularization, the minimization over strategies and the unbounded
+Thus $\{0\}\cup\mathcal S\subseteq\mathcal A_{\log}$, and the matched laws of~\cite[Theorem~16.6 and Corollary~16.7]{DM-U3} give the stronger inclusion
+$\Delta^0_2\cap(0,\infty)\subseteq\mathcal A_{\log}$. Every element of $\mathcal A_{\log}$ is left-c.e.\ relative to $0''$.
+These two bounds do not classify the full usable spectrum. Dimension and one-way demand differ here, through the regularization, the minimization over strategies and the unbounded
 local dimension. The promise itself has a known place in the arithmetical hierarchy: Mousavi, Nezhadi and Yuen show that deciding
 whether a game has quantum value one is $\Pi^0_2$-complete~\cite[Theorem~1.1]{MNY22}. Here value one is assumed, not decided, and the
 objects we place in the hierarchy are the dimension exponents and one-way coefficients of games that have it. A zero coefficient
 for a game of Theorem~A without a finite-dimensional perfect strategy would be a counterexample to the floor of \cref{prob:floor}.
+
+\input{sections/spectrum-refinements}

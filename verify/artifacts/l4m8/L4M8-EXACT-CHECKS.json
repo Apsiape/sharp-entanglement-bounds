@@ -13,5 +13,5 @@
   "number_of_failures": 0,
   "input": "L4M8-LINEAR-GAME.json",
   "normal_form_engine": "verify/check_linear_games.py, l48_scalar",
-  "seconds": 0.96
+  "seconds": 0.94
 }

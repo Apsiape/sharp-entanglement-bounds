@@ -2,10 +2,7 @@
 \section{The floor: candidate classes and method obstructions}\label{app:floor}
 %======================================================================
 
-This appendix proves the statements about the logarithmic floor that \cref{prob:floor} summarizes. The first four subsections
-concern candidate sources for a counterexample through the criterion of \cref{prop:criterion}; each shows that a natural class
-of operator-norm models has dimension at least polynomial in the inverse error, or cannot be centralized at vanishing error. The
-last three concern the method: what a proof of the floor for every game of Theorem~A could and could not use. Throughout,
+This appendix proves the statements about the logarithmic floor that \cref{prob:floor} summarizes. The first four subsections concern candidate sources. The remaining subsections study method obstructions, continuous amplification, polynomial augmentation and original-state kernel leakage. Throughout,
 operator norms are written $\opn\cdot$, and $\|\cdot\|_{2,k}$ is the normalized Hilbert--Schmidt norm on $\C^k$.
 
 \subsection{Centralizing a Baumslag--Solitar commutator kills it}\label{app:floor-bs}
@@ -294,3 +291,5 @@ local isometries $V$ and the projection $\Pi$ onto $\Phi_K$ times the junk, $\|\
 
 No game's loss is identified with these states, so the proposition is not a counterexample to any game-specific converse: it shows
 that a converse needs information about the game. Extraction fails here only for target infidelities below about $\frac14$.
+
+\input{sections/floor-refinements}

@@ -44,11 +44,11 @@
     "conservative_C_K": 1633
   },
   "arithmetic": {
-    "p": 6.741466986401147,
-    "old_beta": 0.035757874632929836,
-    "new_beta": 0.06904678305362118,
-    "source_N_power": 0.13809356610724235,
-    "Ne_decay_power": 0.8619064338927577,
+    "p": 6.3064682540119605,
+    "beta_per_cell_conjugators": 0.03813028452429748,
+    "beta_linear_filling": 0.07345953603842686,
+    "source_N_power": 0.14691907207685373,
+    "Ne_decay_power": 0.8530809279231463,
     "balance_power_of_e": 0.0
   }
 }

@@ -9,6 +9,15 @@ Herbert Abels.
 \newblock \href {https://doi.org/10.1017/CBO9781107325449.008}
   {\path{doi:10.1017/CBO9781107325449.008}}.
 
+\bibitem{AS20}
+Mohammad~A. Alhejji and Graeme Smith.
+\newblock A tight uniform continuity bound for equivocation.
+\newblock In {\em 2020 IEEE International Symposium on Information Theory
+  (ISIT)}, pages 2270--2274, 2020.
+\newblock \href {https://arxiv.org/abs/1909.00787} {\path{arXiv:1909.00787}},
+  \href {https://doi.org/10.1109/ISIT44484.2020.9174350}
+  {\path{doi:10.1109/ISIT44484.2020.9174350}}.
+
 \bibitem{AFB18}
 Rotem Arnon-Friedman and Jean-Daniel Bancal.
 \newblock Device-independent certification of one-shot distillable
@@ -99,6 +108,15 @@ Charles~H. Bennett, Herbert~J. Bernstein, Sandu Popescu, and Benjamin
   {https://doi.org/10.1103/PhysRevA.53.2046}
   {\path{doi:10.1103/PhysRevA.53.2046}}.
 
+\bibitem{BDS97}
+Charles~H. Bennett, David~P. DiVincenzo, and John~A. Smolin.
+\newblock Capacities of quantum erasure channels.
+\newblock {\em Phys. Rev. Lett.}, 78(16):3217--3220, 1997.
+\newblock \href {https://arxiv.org/abs/quant-ph/9701015}
+  {\path{arXiv:quant-ph/9701015}}, \href
+  {https://doi.org/10.1103/PhysRevLett.78.3217}
+  {\path{doi:10.1103/PhysRevLett.78.3217}}.
+
 \bibitem{BDSW96}
 Charles~H. Bennett, David~P. DiVincenzo, John~A. Smolin, and William~K.
   Wootters.
@@ -133,6 +151,13 @@ Mario Berta, Patrick~J. Coles, and Stephanie Wehner.
   \href {https://doi.org/10.1103/PhysRevA.90.062127}
   {\path{doi:10.1103/PhysRevA.90.062127}}.
 
+\bibitem{BMZ26}
+Archishna Bhattacharyya, Arthur Mehta, and Yuming Zhao.
+\newblock On the undecidability of quantum channel capacities, 2026.
+\newblock Result numbers refer to the cited arXiv text.
+\newblock URL: \url{https://arxiv.org/abs/2601.22471v3}, \href
+  {https://arxiv.org/abs/2601.22471v3} {\path{arXiv:2601.22471v3}}.
+
 \bibitem{BWB25}
 Rutvij Bhavsar, Lewis Wooltorton, and Joonwoo Bae.
 \newblock Composable framework for device-independent state certification.
@@ -147,6 +172,14 @@ Holger Boche and Gisbert Jan{\ss}en.
 \newblock {\em J. Math. Phys.}, 55(8):082208, 2014.
 \newblock \href {https://arxiv.org/abs/1401.6063} {\path{arXiv:1401.6063}},
   \href {https://doi.org/10.1063/1.4893635} {\path{doi:10.1063/1.4893635}}.
+
+\bibitem{BGKLM20}
+Michel Bonnefont, Sylvain Golénia, Matthias Keller, Shiping Liu, and Florentin
+  Münch.
+\newblock {Magnetic-Sparseness and Schr\"odinger Operators on Graphs}.
+\newblock {\em Ann. Henri Poincar\'e}, 21(5):1489--1516, 2020.
+\newblock \href {https://doi.org/10.1007/s00023-020-00885-6}
+  {\path{doi:10.1007/s00023-020-00885-6}}.
 
 \bibitem{Bri02}
 Martin~R. Bridson.
@@ -190,6 +223,16 @@ Jorge Castillejos, Samuel Evington, Aaron Tikuisis, and Stuart White.
 \newblock \href {https://arxiv.org/abs/1912.04207} {\path{arXiv:1912.04207}},
   \href {https://doi.org/10.1093/imrn/rnaa282}
   {\path{doi:10.1093/imrn/rnaa282}}.
+
+\bibitem{CRSV17}
+Rui Chao, Ben~W. Reichardt, Chris Sutherland, and Thomas Vidick.
+\newblock Overlapping qubits.
+\newblock In {\em 8th Innovations in Theoretical Computer Science Conference
+  (ITCS 2017)}, volume~67 of {\em Leibniz International Proceedings in
+  Informatics (LIPIcs)}, pages 48:1--48:21, 2017.
+\newblock \href {https://arxiv.org/abs/1701.01062} {\path{arXiv:1701.01062}},
+  \href {https://doi.org/10.4230/LIPIcs.ITCS.2017.48}
+  {\path{doi:10.4230/LIPIcs.ITCS.2017.48}}.
 
 \bibitem{CRSV18}
 Rui Chao, Ben~W. Reichardt, Chris Sutherland, and Thomas Vidick.
@@ -279,6 +322,14 @@ Andrea Coladangelo and Jalex Stark.
   \href {https://doi.org/10.1038/s41467-020-17077-9}
   {\path{doi:10.1038/s41467-020-17077-9}}.
 
+\bibitem{CTT11}
+Yves Colin~de Verdière, Nabila Torki-Hamza, and Françoise Truc.
+\newblock Essential self-adjointness for combinatorial {Schr\"odinger}
+  operators {III}---{Magnetic} fields.
+\newblock {\em Ann. Fac. Sci. Toulouse Math. (6)}, 20(3):599--611, 2011.
+\newblock \href {https://doi.org/10.5802/afst.1319}
+  {\path{doi:10.5802/afst.1319}}.
+
 \bibitem{Con76}
 Alain Connes.
 \newblock Classification of injective factors. {C}ases {II}$_1$, {II}$_\infty$,
@@ -301,6 +352,15 @@ Yves Cornulier and Romain Tessera.
 \newblock \href {https://arxiv.org/abs/1203.4696} {\path{arXiv:1203.4696}},
   \href {https://doi.org/10.1112/jtopol/jtt019}
   {\path{doi:10.1112/jtopol/jtt019}}.
+
+\bibitem{Cubitt15}
+Toby Cubitt, David Elkouss, William Matthews, Maris Ozols, David
+  Pérez-García, and Sergii Strelchuk.
+\newblock Unbounded number of channel uses may be required to detect quantum
+  capacity.
+\newblock {\em Nature Commun.}, 6(1):6739, 2015.
+\newblock URL: \url{https://arxiv.org/abs/1408.5115}, \href
+  {https://doi.org/10.1038/ncomms7739} {\path{doi:10.1038/ncomms7739}}.
 
 \bibitem{Cul26}
 Eric Culf.
@@ -396,6 +456,14 @@ Seth Douglas and Nidhal Mghirbi.
 \newblock \href {https://doi.org/10.5281/zenodo.23198907}
   {\path{doi:10.5281/zenodo.23198907}}.
 
+\bibitem{DM-U3}
+Seth Douglas and Nidhal Mghirbi.
+\newblock The uncomputable price of precision, 2026.
+\newblock Version 3.0.0, Zenodo. Unrefereed preprint; result numbers refer to
+  this version.
+\newblock \href {https://doi.org/10.5281/zenodo.23736188}
+  {\path{doi:10.5281/zenodo.23736188}}.
+
 \bibitem{DF19}
 Souvik Dutta and Thomas Faulkner.
 \newblock A canonical purification for the entanglement wedge cross-section.
@@ -419,6 +487,13 @@ Marco Fanizza, Larissa Kroell, Arthur Mehta, Connor Paddock, Denis Rochette,
   value, 2025.
 \newblock Result numbers refer to arXiv version~4.
 \newblock \href {https://arxiv.org/abs/2510.04943} {\path{arXiv:2510.04943}}.
+
+\bibitem{Fil69}
+P.~A. Fillmore.
+\newblock On similarity and the diagonal of a matrix.
+\newblock {\em Amer. Math. Monthly}, 76(2):167--169, 1969.
+\newblock \href {https://doi.org/10.1080/00029890.1969.12000162}
+  {\path{doi:10.1080/00029890.1969.12000162}}.
 
 \bibitem{Fri12}
 Tobias Fritz.
@@ -645,6 +720,14 @@ Hoi-Kwong Lo and Sandu Popescu.
 \newblock \href {https://doi.org/10.1103/PhysRevA.63.022301}
   {\path{doi:10.1103/PhysRevA.63.022301}}.
 
+\bibitem{LO20}
+Alexander Lubotzky and Izhar Oppenheim.
+\newblock Non {$p$}-norm approximated groups.
+\newblock {\em J. Anal. Math.}, 141(1):305--321, 2020.
+\newblock URL: \url{https://arxiv.org/abs/1807.06790}, \href
+  {https://doi.org/10.1007/s11854-020-0119-2}
+  {\path{doi:10.1007/s11854-020-0119-2}}.
+
 \bibitem{LS77}
 Roger~C. Lyndon and Paul~E. Schupp.
 \newblock {\em Combinatorial Group Theory}, volume~89 of {\em Ergebnisse der
@@ -709,6 +792,16 @@ Arthur Mehta, William Slofstra, and Yuming Zhao.
 \newblock \href {https://arxiv.org/abs/2312.05617} {\path{arXiv:2312.05617}},
   \href {https://doi.org/10.4171/JEMS/1786} {\path{doi:10.4171/JEMS/1786}}.
 
+\bibitem{Mey11}
+Tom Meyerovitch.
+\newblock Growth-type invariants for {Z}$^d$ subshifts of finite type and
+  arithmetical classes of real numbers.
+\newblock {\em Invent. Math.}, 184(3):567--589, 2011.
+\newblock Theorem numbers refer to the cited arXiv text.
+\newblock URL: \url{https://arxiv.org/abs/0902.0223}, \href
+  {https://doi.org/10.1007/s00222-010-0296-1}
+  {\path{doi:10.1007/s00222-010-0296-1}}.
+
 \bibitem{DM-game}
 Nidhal Mghirbi and Seth Douglas.
 \newblock An explicit nonlocal game of quantum value one that needs exponential
@@ -734,6 +827,14 @@ Tobias Moroder, Jean-Daniel Bancal, Yeong-Cherng Liang, Martin Hofmann, and
 \newblock {\em Phys. Rev. Lett.}, 111(3):030501, 2013.
 \newblock \href {https://doi.org/10.1103/PhysRevLett.111.030501}
   {\path{doi:10.1103/PhysRevLett.111.030501}}.
+
+\bibitem{MCL06}
+Tobias Moroder, Marcos Curty, and Norbert Lütkenhaus.
+\newblock One-way quantum key distribution: Simple upper bound on the secret
+  key rate.
+\newblock {\em Phys. Rev. A}, 74(5):052301, 2006.
+\newblock \href {https://doi.org/10.1103/PhysRevA.74.052301}
+  {\path{doi:10.1103/PhysRevA.74.052301}}.
 
 \bibitem{MNY22}
 Hamoon Mousavi, Seyed~Sajjad Nezhadi, and Henry Yuen.
@@ -781,6 +882,15 @@ Michael~A. Nielsen.
   {\path{arXiv:quant-ph/9811053}}, \href
   {https://doi.org/10.1103/PhysRevLett.83.436}
   {\path{doi:10.1103/PhysRevLett.83.436}}.
+
+\bibitem{HN05}
+Marcin~L Nowakowski and Pawel Horodecki.
+\newblock A simple test for quantum channel capacity.
+\newblock {\em J. Phys. A: Math. Theor.}, 42(13):135306, 2009.
+\newblock Result numbers refer to the cited arXiv version 2.
+\newblock URL: \url{https://arxiv.org/abs/quant-ph/0503070v2}, \href
+  {https://doi.org/10.1088/1751-8113/42/13/135306}
+  {\path{doi:10.1088/1751-8113/42/13/135306}}.
 
 \bibitem{OV16}
 Dimiter Ostrev and Thomas Vidick.
@@ -912,6 +1022,13 @@ Michel Rumin.
 \newblock \href {https://arxiv.org/abs/0906.2902} {\path{arXiv:0906.2902}},
   \href {https://doi.org/10.1007/s00039-010-0075-6}
   {\path{doi:10.1007/s00039-010-0075-6}}.
+
+\bibitem{SS26}
+Lukas Schmitt and David Sutter.
+\newblock Distillable entanglement is continuous, 2026.
+\newblock Result numbers refer to the cited arXiv text.
+\newblock URL: \url{https://arxiv.org/abs/2610.35722v1}, \href
+  {https://arxiv.org/abs/2610.35722v1} {\path{arXiv:2610.35722v1}}.
 
 \bibitem{Sch35}
 Theodor Schneider.
@@ -1060,6 +1177,23 @@ C{\'e}dric Villani.
 \newblock Springer, Berlin, 2009.
 \newblock \href {https://doi.org/10.1007/978-3-540-71050-9}
   {\path{doi:10.1007/978-3-540-71050-9}}.
+
+\bibitem{Winter16}
+Andreas Winter.
+\newblock Tight uniform continuity bounds for quantum entropies: Conditional
+  entropy, relative entropy distance and energy constraints.
+\newblock {\em Comm. Math. Phys.}, 347(1):291--313, 2016.
+\newblock Result numbers refer to the cited arXiv version 2.
+\newblock URL: \url{https://arxiv.org/abs/1507.07775v2}, \href
+  {https://doi.org/10.1007/s00220-016-2609-8}
+  {\path{doi:10.1007/s00220-016-2609-8}}.
+
+\bibitem{WCPG12}
+Michael~M. Wolf, Toby~S. Cubitt, and David Perez-Garcia.
+\newblock Are problems in quantum information theory (un)decidable?, 2011.
+\newblock Result numbers refer to the cited arXiv text.
+\newblock URL: \url{https://arxiv.org/abs/1111.5425}, \href
+  {https://arxiv.org/abs/1111.5425} {\path{arXiv:1111.5425}}.
 
 \bibitem{Zha24}
 Yuming Zhao.

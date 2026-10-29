@@ -1,100 +1,36 @@
-%======================================================================
-\section{Review history}\label{app:audits}
-%======================================================================
+\section{Reproducibility and computational scope}\label{app:audits}
 
-This appendix records the twelve audits of the whole manuscript that are summarized in the section
-\hyperref[sec:methods]{How this work was done}; they followed the four blind reviews and the second read described there.
+The mathematical evidence is the written proof at each result and its explicitly cited external inputs. \Cref{tab:status} records proof locations and the associated finite computational scope; \cref{app:companion} identifies the companion results. The programs below check specified finite instances and exported objects. They do not prove an asymptotic estimate, decide an unrestricted optimization problem, or constitute a formal verification of this manuscript.
 
-A model of another developer then audited the complete manuscript blind, refutation first, with
-its scripts and with every reference checked against its primary source. It found one false statement: the extraction clause of
-Theorem~A had lost the hypothesis that the game has no finite-dimensional perfect strategy. It also found an explicit decoder
-stated without its small-loss domain (\cref{thm:rational-ED}), game-variable counts that included the central symbol $J$,
-computations described beyond what \texttt{verify/} reproduced, and several points of wording. All were repaired. The linear
-filling charge (\cref{thm:linear-filling}) was found after this audit.
+\paragraph{Dependencies and execution.}
+The checks require Python~3, NumPy and SciPy. Run the following commands from the repository root, one runner at a time. Set each of these environment variables to \texttt{1}:
+\begin{quote}\ttfamily\small
+OMP\_NUM\_THREADS, OPENBLAS\_NUM\_THREADS, MKL\_NUM\_THREADS\par
+NUMEXPR\_NUM\_THREADS, VECLIB\_MAXIMUM\_THREADS\par
+BLIS\_NUM\_THREADS, PYTHONDONTWRITEBYTECODE
+\end{quote}
+The README gives the corresponding shell commands.
+\begin{quote}\ttfamily\small
+python -I -X utf8 -B verify/run\_all.py\par
+python -I -X utf8 -B verify/run\_artifacts.py
+\end{quote}
+The first runner writes one log per check under \texttt{verify/logs/}, with structured outputs where specified by each script. The second records its steps under \texttt{verify/logs/artifacts/} and writes the exported-object results beside the corresponding scripts. Rerunning intentionally refreshes those outputs. The input manifest \texttt{verify/artifacts/SHA256SUMS} is checked before replay; refresh it only when an input is intentionally changed.
 
-A second blind audit, by a model of another developer, read
-the revised manuscript and its scripts refutation first, replayed every check and inspected every reference against its primary
-source. It found no counterexample to any theorem, including the linear filling charge, and four points that are repaired here:
-the companion paper on which several results depend was not obtainable, which the split of the two papers and their joint release
-resolve; the infinite-dimensional comparison gave a pure-vector theorem a mixed-state scope (\cref{sec:intro-known},
-\cref{rem:A-scope}); the archived L4M8 game was checked exactly only through a rebuilt copy, and the exact check of the archived file
-is now part of the replay; and the last open question compared two profiles more broadly than shown. It also suggested four earlier
-references, now cited at their uses~\cite{BBPS96,Uhl76,CoSt20,PV10}, and a consolidation of the scope statements into
-\cref{sec:status}.
+\paragraph{Exact computations.}
+The artifact checks use integer and rational arithmetic, literal free words, finite permutations and the stated normal-form procedures. They compare the point-game source relators with those printed in the paper, and check the exported variables, contexts, squares, products, commutators and recovery maps. The archived L4M8 checker tests the actual game file using the normal-form engine of \texttt{check\_linear\_games.py}; those programs share that engine. The two-copy checker works in the negative source algebra. The selector checker verifies its finite conditional-parity predicates, incidence weights and an explicit perfect strategy. Subset and replication checks test the literal source presentations on bounded exact instances. These are finite identities and constructions; their extension to arbitrary strategies uses the written proofs.
 
-A third blind audit, by a model of another developer, read the manuscript with the floor and window results,
-replayed both runners and looked up every reference in a primary record. It found no counterexample to any theorem and four points,
-repaired here: \cref{prop:window-dilution} allowed an arbitrarily large second block while bounding its entanglement by the minimal
-size, and the block size is now fixed; the discussion of \cref{prob:floor} treated the sufficient criterion of \cref{prop:criterion} as
-necessary; the proof of \cref{thm:lamps-ED} invoked \cref{prop:interface}, which needs a source marker equal to $-1$, where the
-transfer identities of \cref{lem:transfer-parties} and the companion's relator certificates give what is used; and the threshold of
-\cref{app:floor-threshold} was called positive without the promise of Theorem~A. It also suggested three related works, now cited at
-their uses~\cite{MV14,vDH03,CW26}.
+\paragraph{Floating-point computations.}
+The numerical suites test matrix identities, norms, entropies, transport inequalities, mixed-state extraction and explicit lamp models at their recorded dimensions and tolerances. They include singular and non-flat states, perturbed mirrors and negative controls. The refinement suite checks arithmetic arrays, flagged ensembles, physical leakage, floor diagnostics, Laurent freeness and the small-error pairwise budget on the listed finite instances. Numerical eigenvalues, entropy values and fitted slopes are floating-point observations, not interval certificates or universal error bounds. Where high-precision arithmetic is used, the recorded precision is part of the computational scope.
 
-A fourth blind audit, by a model of another developer, read the manuscript with the coefficient
-results, replayed the runners and the coefficient checks, and looked up every reference in a primary record. It found no counterexample
-to any theorem and three points, repaired here: the one-stage proof of \cref{lem:cyclic-triangular} asserted that the unrecorded vectors
-of different labels are orthogonal, which is false, and the estimate now uses only the sum of their squared norms and the orthogonal
-recorded labels; the input convention for effectively algebraic games did not select a root of a polynomial; and the limit lemma was
-used without a reference~\cite{Sho59}. It also suggested five related works, now cited at their uses~\cite{Gao15,KMW19,Cor13,AC24,BWB25}.
+\paragraph{Word certificates and the point window.}
+The two window engines independently verify one common set of word certificates, produced by the first engine. Each checks the core and transfer identities before and after literal auxiliary-relator expansion; the second also checks finite holonomy examples. They are separate verifiers of the same certificates, and do not supply two independent generation procedures. The recorded matrices, spectra, constants and certificate outcomes support reproducibility. The filling and original-state extraction arguments in the paper supply the asymptotic conclusion.
 
-A fifth blind audit, by a model of another developer, read the revised manuscript, including the repaired proof of
-\cref{lem:cyclic-triangular}, replayed the three runners and looked up every reference in a primary record. It found no
-counterexample to any theorem and two prose summaries wider than their theorems, repaired here: the introduction stated the factor
-three for all games, where \cref{thm:factor-three} proves it for agreement games and \cref{prop:sync-repair} gives only a
-square-root repair in class~(S); and the discussion excluded type~I limits without the hypothesis that the game has no
-finite-dimensional perfect strategy. It also asked for three clarifications, made here: the finite-dimensional convention of
-\cref{sec:prelim} now names its exceptions, the divisibility before \cref{thm:rational-ED} is stated as $2^{r_i}\mid m_i$, and the
-comparison with self-testing now includes self-tests without a finite-dimensional ideal~\cite{CZ26}. It suggested four related
-works, now cited at their uses~\cite{PaSc26,PSZZ24,MaSc23,MNY22}.
+\paragraph{Building the paper.}
+With plain pdflatex and BibTeX installed, run:
+\begin{quote}\ttfamily\small
+python paper/build.py
+\end{quote}
+The helper performs four pdflatex passes with BibTeX between the first and second, disables shell escape, and keeps intermediate files outside the release tree. It requires a final log without warnings, undefined references or overflowing boxes. The arXiv folder contains the active TeX inputs and the matching BBL, and builds with plain pdflatex without the verification programs.
 
-A sixth blind audit, by a model of another developer, read the
-revised manuscript, replayed the three runners and looked up every reference in a primary record. It found no counterexample to any
-theorem and one summary wider than its theorems, repaired here: the abstract and the introduction stated computable thresholds and
-the white-box protocol without the restriction of \cref{thm:effective,thm:protocol} to rational games in class~(S) and rational
-binary games in class~(C). It also found three local points, repaired here: one step of the proof of \cref{prop:interface} cited
-\cref{lem:transfer-parties}(b), which concerns unitary words, for a polynomial suffix, and now uses~\eqref{eq:opposite-poly}; the
-overview of the conversions of errors in \cref{sec:prelim-usable} denied the further power losses that the proofs account for; and
-the coherent sign rounding of \cref{app:protocol} gave a sign to complex eigenvalues rather than to the cosine of their phase. Of the
-related works it suggested, those on moment hierarchies and $\mathrm{MIP}^*=\mathrm{RE}$ are now cited at their
-uses~\cite{NPA08,PNA10,BuKl12,JNVWY20}.
-
-A seventh blind audit, by a model of another developer, read the revised manuscript, replayed
-the three runners and looked up every reference in a primary record. It found no counterexample to any theorem and one exact cost
-stated too low, repaired here: the compiled native witness after \cref{thm:native} uses the amplified flat state, so its rates include
-$\log12$; it also found a discrepancy between one book chapter and its publisher's record~\cite{Abe79}, now resolved.
-
-An eighth blind
-audit, by a model of another developer, read the revised manuscript, replayed the three runners and looked up every reference in a
-primary record. It found no counterexample to any theorem and four local points, repaired here: the coefficient domain of the
-abstract and Theorem~C admitted the power of two $1$; the rigidity sentence of \cref{prob:analytic}(iii) lacked its hypotheses and
-references~\cite{Rud90,Joh92}; the chapter~\cite{Abe79} now follows the record its DOI links; and a summary of the floor in
-\cref{sec:open} is narrowed to the games for which a demand law is proved.
-
-A ninth blind audit, by a model of another developer, read the
-revised manuscript, replayed the three runners and looked up every reference in a primary record. It found no counterexample to any
-theorem and two points, repaired here. The proof of~\cite[Proposition~6.2]{SV18} lifts a representation with a balanced marked
-involution only for one non-involutive generator, so the amplification $8$ that we had taken from it was not supported for the lamp
-sources; \cref{prop:extended} now rests on a balanced construction proved here, with amplification $2^{l+2}$, and the lift for the
-group of~\cite{SV18} itself, first written out in \cref{sec:transport-game}, is now proved in our companion
-paper~\cite[Lemma~11.13]{DM-game}. And the opening of \cref{sec:lamps} stated as an equality for every strategy a law whose lower
-bound alone holds for every strategy; the equality holds for the infimum demand. It also found two local points in the text, repaired
-here: the adapter sentence of \cref{sec:normal-perfect} named a resource cost without a conversion contract, and the comparison with
-Culf and Mastel after \cref{thm:undecidable} called their arities and alphabets smaller without saying which.
-
-A tenth blind audit, by a
-model of another developer, read the revised manuscript, replayed the three runners and looked up every reference in a primary
-record; it checked the balanced construction, with code of its own, and the lift for the group of~\cite{SV18}. After it had found its
-two points, it also saw, while checking, this account of the earlier reviews and the status table of \cref{app:status}, so its
-reading was not blind throughout. It found no counterexample to any theorem and two points of wording, repaired here: the comparison
-with self-testing in \cref{sec:intro-known} gave Zhao and Kar one characterization on the game algebra, where Zhao's uses the
-universal measurement algebra and requires the unique trace to be finite-dimensional, and Kar's is stated for synchronous game
-algebras; and the opening of \cref{sec:point} could be read as giving the point game a power-law exponent, where
-\cref{thm:point-window} proves a window between two positive powers.
-
-Two further audits, by models of another developer, then
-read the whole manuscript in parallel, refutation first; each saw part of this account of the earlier reviews by accident, so
-neither was blind throughout. Neither found a counterexample or an error in a main statement. They asked for two local repairs,
-made here: the rounding function in the proof of \cref{lem:S3-round} is defined with its exception at $-1$, and class~(C)
-discards variables that occur in no constraint, so that every variable has an incident constraint (\cref{def:law-classes}).
-They also suggested the citations of~\cite{HHH98,DPP19,MR20,Bei21}, added in the introduction.
+\paragraph{Limits of the evidence.}
+Finite tests do not establish compactness arguments, convergence rates, arbitrary-state lower bounds, the full group normal-form theorems, the universal game reduction or the operational entanglement-rate theorems. A negative control demonstrates detection of the stated alteration, not all possible defects. Imported theorems and conditional hypotheses remain identified at their uses. No formal verification of this manuscript is claimed. Reports of the checks are available from the authors.

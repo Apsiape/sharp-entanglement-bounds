@@ -1,0 +1,29 @@
+\subsection{Fixed visible holonomy and its subdivisions}\label{app:fixed-holonomy}
+\begin{proof}[Proof of \cref{prop:fixed-holonomy}]
+Assume $[\rho,V]=0$ and simultaneously diagonalize them, $\rho v_k=r_kv_k$, $Vv_k=e^{i\theta_k}v_k$, $|\theta_k|\le\pi$. Set $w_j=F_A\cdots F_{j+1}v_k$, $0\le j\le A$. Then $w_0=e^{i\theta_k}v_k$, $w_A=v_k$, every $w_j$ is unit, and exactly
+\[
+ w_{j-1}-w_j=F_A\cdots F_{j+1}(F_j-I)v_k.
+\]
+Left unitarity gives the same-input norm $\|w_{j-1}-w_j\|=\|(F_j-I)v_k\|$; both sides use the same input vector. The twisted boundary is $w_A=e^{-i\theta_k}w_0$. Its Fourier frequencies are $(-\theta_k+2\pi l)/A$, $0\le l<A$. The least discrete-energy eigenvalue is $4\sin^2(\theta_k/(2A))$ by the magnetic-cycle computation~\cite[Lemma~2.9]{CTT11}; the scalar equal-distribution formula is also~\cite[Proposition~4.6(b)]{BGKLM20}. Parseval and $\sum_{j=0}^{A-1}\|w_j\|^2=A$ give
+\[
+ \sum_{j=1}^A\|(F_j-I)v_k\|^2\ge4A\sin^2\frac{\theta_k}{2A}.
+\]
+Multiply by $r_k$, sum and divide by $A$. On the $-1$ eigenspace, either endpoint $\theta=\pm\pi$ gives the same sine square. The factors $F_j=e^{iK/A}$ attain equality; competing factors need neither commute with each other nor preserve $\rho$.
+
+For an arbitrary state, the exact suffix telescope is
+\[
+ V-I=\sum_{j=1}^AF_A\cdots F_{j+1}(F_j-I).
+\]
+Multiply by the original $\sqrt\rho$. Left unitarity, the triangle inequality and Cauchy--Schwarz give $\|(V-I)\sqrt\rho\|_2^2\le A\sum_j\|(F_j-I)\sqrt\rho\|_2^2$, as claimed, without right prefixes or state-invariance assumptions.
+
+For $\rho=I/d$, $V=I-2Q$ and $K=\pi Q$, the commuting bound and its attained equality yield
+\[
+ \inf_{F_A\cdots F_1=I-2Q}\frac1A\sum_j\|F_j-I\|_{2,d}^2
+ =4\tau(Q)\sin^2\frac\pi{2A}.
+\]
+A product of $M-1$ disjoint qubit swaps has normalized trace $2^{-(M-1)}$: its tensor permutation has $M-1$ fewer cycles than the identity. The negative spectral projection therefore has trace $(1-2^{-(M-1)})/2$. The bulk area is $A_B=M(M-1)/2$, so the exact optimum is
+\[
+ 2(1-2^{-(M-1)})\sin^2\frac\pi{M(M-1)}=\Theta(M^{-4}).
+\]
+Subdividing this fixed visible holonomy into $O(M^2)$ factors cannot improve the $M^{-2}$ root-defect order. The infimum includes every factorization and logarithm branch. This leaves changes to the holonomy, representation, visibility or factor-count-versus-resource relation open. For general original states, relating transported based-face errors to raw game-relator errors still needs the actual mirror and state-commutator accounting.
+\end{proof}

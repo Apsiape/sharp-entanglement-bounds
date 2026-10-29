@@ -1,0 +1,58 @@
+\subsection{The return direction}\label{sec:return}
+
+Conversely, a model that satisfies \ref{S1}--\ref{S3} at precision $e$ gives a strategy that loses with probability
+$O(e^2)$, on a purification of the same state~\cite[Theorem~5.4]{DM-game}. For the flat state this is the classical direction
+of the correspondence~\cite[Proposition~4.4(a)]{SV18}. The point is that the state, and with it its spectrum, is kept: the game
+and the state-weighted profile then determine each other up to constant factors in the precision.
+
+Let $\rho$ be a density matrix on $\C^d$ and $\xi=\rho^{1/2}$. The isometry $\Theta:\C^d\otimes\C^d\to M_d(\C)$ with
+$\Theta(v\otimes w)=wv^T$ satisfies $\Theta((Q\otimes I)x)=\Theta(x)Q^T$ and $\Theta((I\otimes Y)x)=Y\Theta(x)$. The
+\emph{canonical purification} of $\rho$ is $\psi_\rho=\Theta^{-1}(\xi)$. Bob's reduced state is $\rho$, Alice's is
+$\rho^T$, and we write $\eta=\xi^T$ for its square root. So $\lVert(C\otimes I)\psi_\rho\rVert=\hs{\xi C^T}=\hs{C\eta}$ for
+operators $C$ on Alice's side, and, for an operator $B$ on Bob's side,
+\begin{equation}\label{eq:canonical}
+\lVert(B^T\otimes I-I\otimes B)\psi_\rho\rVert=\hs{\xi B-B\xi}=\hs{[B,\xi]} .
+\end{equation}
+Alice therefore imitates Bob's observable $B$ by measuring $B^T$, at a cost equal to its state commutator.
+
+\begin{theorem}[Return; {\cite[Theorem~5.4]{DM-game}}]\label{thm:return}
+Let $G=G(A,b)$ be a binary linear system game and $s=\max_i|V_i|$. Let $\varphi:F(x_1,\dots,x_n,J)\to\mathrm U(d)$ and a
+density matrix $\rho$ on $\C^d$ satisfy \ref{S1}--\ref{S3} for the presentation of \cref{def:lsg} and $w=J$, at precision
+$e$. Put $B_j=\mathrm r(\varphi(x_j))$. Consider the strategy on $\psi_\rho$ in which Bob, on question $j$, measures $B_j$,
+and Alice, on question $i$ with $V_i=\{j_1<\dots<j_r\}$, measures the binary projective measurements
+$\{\frac12(I\pm B_{j_1}^T)\},\dots,\{\frac12(I\pm B_{j_r}^T)\}$ in turn and answers the recorded signs, flipping the last one if their product is not $(-1)^{b_i}$. Every
+question pair $(i,j)$ with $j\in V_i$ is lost with probability at most $C_se^2$, where
+\[
+\beta_l=3\Bigl(1+\frac{(l-1)(l-2)}2\Bigr)+\frac{13(l-1)}{\sqrt2},\qquad C_s=\frac14\Bigl[\beta_s^2+\Bigl(s^2+2+\sum_{l=1}^s\beta_l\Bigr)^2\Bigr].
+\]
+The strategy has local dimensions $d$, and Bob's reduced state is $\rho$.
+\end{theorem}
+
+The proof~\cite[Section~5.2]{DM-game} rounds the generators by \cref{lem:rounding}, bounds the commutators and the parity
+of each equation in the state, and controls Alice's sequential records through the branch commutators $[K_a,\rho_A^{1/2}]$ of
+her Kraus operators~\cite[Lemma~5.3]{DM-game}.
+
+For $s=3$ the constant is $C_3\approx788.2$; it is far from optimal. Nothing is postselected: every run of Alice's
+procedure produces a valid answer, and the shared state is $\psi_\rho$ itself.
+
+\begin{corollary}[Two-sided correspondence; {\cite[Corollary~5.5]{DM-game}}]\label{cor:correspondence}
+Let $G=G(A,b)$ be a binary linear system game with $\omega_q(G)=1$ and question distribution $\pi$, put
+$C_G=2\max(s,4)/\sqrt{\pi_{\min}}$, and let $C_s$ be as in \cref{thm:return}.
+\begin{enumerate}[label=(\alph*),itemsep=1pt]
+\item For every $\eps>0$, $\hlp^\rho_\Gamma(J;C_G\sqrt\eps)\le\Ent(G,\eps)\le\hlp^\rho_\Gamma(J;\sqrt{\eps/C_s})$.
+\item Let $h^S_\Gamma(e)$ be the infimum of $S(\rho)$ over all models satisfying \ref{S1}--\ref{S3} for $w=J$ at precision
+$e$, in any dimension, and $q(\eps)$ the infimum of the entanglement entropy of pure-state strategies that win with
+probability at least $1-\eps$. Then $h^S_\Gamma(C_G\sqrt\eps)\le q(\eps)\le h^S_\Gamma(\sqrt{\eps/C_s})$.
+\item Let $e_\Gamma(d)$ be the infimum of the precisions $e$ with $\hlp^\rho_\Gamma(J;e)\le d$, and $\ell_G(d)$ the
+infimum of the losing probabilities of strategies with $H_A=H_B=\C^d$. Then
+$e_\Gamma(d)^2/C_G^2\le\ell_G(d)\le C_s\,e_\Gamma(d)^2$ for every $d$.
+\end{enumerate}
+\end{corollary}
+
+The state commutators in~\ref{S2} are needed for the return direction, not only for counting~\cite[Example~5.6]{DM-game}.
+That flat approximate representations give strategies with quadratically small loss on a maximally entangled state is due to
+Slofstra and Vidick~\cite[Proposition~4.4(a)]{SV18}, following~\cite[Proposition~3.4]{Slo19}, and Paddock develops the
+correspondence between near-optimal strategies and approximate representations, including rounding to maximally entangled
+strategies~\cite{Pad22}. Since both directions keep an arbitrary state, the dimension, the entanglement entropy, or any other
+function of the spectrum that does not change when zero eigenvalues are added can be read off the state-weighted profile
+(\cref{cor:spectrum}).

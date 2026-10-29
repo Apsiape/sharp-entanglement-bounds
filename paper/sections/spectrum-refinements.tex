@@ -1,0 +1,221 @@
+\subsubsection{Pure original states and the limits of rounding}
+Throughout this subsection $L=L(\eps)=\log_2(1/\eps)$, $d_G=d_G^\to$ is the demand on the original mixed state, and $p_G$ is the same infimum restricted to pure original states. Games are finite and have quantum value one whenever an asymptotic coefficient is discussed. All local dimensions are finite but unrestricted. A positive question distribution can be reweighted to uniform support by \cref{lem:reweighting} before an effective-computability argument. The operational inputs are the pure-state entropy law~\cite{BBPS96} and Devetak--Winter hashing and regularization~\cite[Theorems~10 and~13]{DW05}.
+
+For the extraction criterion below, the notation of~\cite[Lemma~12.1]{DM-U3} is as follows. The integer $m$ is the number of extraction stages. For each party $Y\in\{A,B\}$, $(P^Y_{j,\perp},P^Y_{j,0},P^Y_{j,1})$ is the exact three-outcome PVM at stage $j$, $U_j^B$ is Bob's reflection and $U_j^A$ Alice's unitary control. Write $F_j=F_j^B=P^B_{j,0}+P^B_{j,1}$ for Bob's active projection. On a purification $\psi$ of the original state, a column $(T_\ell)_\ell$ has error $(\sum_\ell\|T_\ell\psi\|^2)^{1/2}$. The scalar $\eta_{\rm ext}$ bounds the projection and control mirrors, the earlier-stage projection/control commutator columns and the active-swap columns specified in that lemma. Its accumulated comparison error is $\kappa_{\rm ext}=7m^3\eta_{\rm ext}$; it is separate from the pairwise Pauli error of Section~\ref{sec:optimal-pair-budget}. The correction function is $g(t)=(1+t)h(t/(1+t))$, with $h$ the binary entropy of Section~\ref{sec:prelim}. These symbols refer to the cited extraction interface, not to additional game variables.
+
+\begin{proposition}[Matched extraction]\label{prop:matched-coefficient}
+Suppose there is a fixed $C>0$ such that every loss-$\eps$ strategy satisfies~\cite[Lemma~12.1]{DM-U3} on its original state, with bounds uniform over these strategies,
+\[
+ \sum_j\Tr(\rho_BF_j)\ge\log D_G(C\eps)-r(\eps),\qquad
+ \tfrac12m(m-1)\eta_{\rm ext}+6m\kappa_{\rm ext}+2g(\kappa_{\rm ext})\le s(\eps),
+\]
+where $\kappa_{\rm ext}=7m^3\eta_{\rm ext}\le1/2$, $g(t)=(1+t)h(t/(1+t))$, and $r,s=o(L)$. If $d_G/L$ has a finite limit $c$, then $\log D_G/L$ has the same limit and $c$ is $\Delta^0_2$.
+\end{proposition}
+\begin{proof}
+The cited lemma and its actual-state bridge give $d_G(\eps)\ge\log D_G(C\eps)-o(L)$; the reverse comparison $d_G(\eps)\le\log D_G(\eps)$ uses only the local-dimension bound on entanglement. Substitute $\eps/C$ into the first inequality to squeeze $\log D_G(\eps)$ between $d_G(\eps)$ and $d_G(\eps/C)+o(L)$. The limits agree. Apply \cref{prop:arithmetic-dim} after reweighting if necessary. Uniformity of the little-$o$ errors and a fixed $C$ are essential; no effective rate of convergence is required. The extraction hypotheses are not asserted for an arbitrary game.
+\end{proof}
+
+The lower inclusion in \cref{thm:pure-spectrum}, realizing every positive $\Delta^0_2$ real, is imported from \cite[Theorem~1.1]{DM-U3}, \emph{The uncomputable price of precision} (\href{https://doi.org/10.5281/zenodo.23736188}{10.5281/zenodo.23736188}). The upper-class inclusion is proved here.
+
+\begin{theorem}[Pure original-state coefficients]\label{thm:pure-spectrum}
+Every finite limit $p_G(\eps)/L(\eps)$ is $\Delta^0_2$. Together with~\cite[Theorem~16.6 and Corollary~16.7]{DM-U3}, the positive spectrum of $p_G$ is exactly the positive $\Delta^0_2$ reals.
+\end{theorem}
+The entropy classification of Hochman and Meyerovitch~\cite{HM10} and Meyerovitch's study of entropy dimensions of multidimensional shifts of finite type~\cite{Mey11} are precedents for relating asymptotic invariants to arithmetical classes. The invariant here is a fixed-game precision cost, and its upper-class proof uses finite-dimensional entropy optimization.
+\begin{proof}
+For pure states, the one-way rate equals the marginal entropy. Fix rational question weights after reweighting. Set $\eps_n=2^{-n}$, $\tau_n=4^{-n}$ and $R_n=2^{n^24^n}$. In local dimension $R_n$, the set $K_n$ of pure strategies losing at most $2\eps_n$ is compact semialgebraic. Its emptiness is decidable. If nonempty, its minimum entropy $m_n$ is computable: uniformly approximate $\eta(x)=-x\log x$ on $[0,1]$ by rational polynomials to error $2^{-n-2}/R_n$ and minimize $\Tr P(\rho_B)$ by real quantifier elimination. The logarithm is not assumed semialgebraic. Choose a rational $q_n$ within $2^{-n}$ of $m_n$, or $q_n=0$ when $K_n$ is empty.
+
+Suppose $p_G(\eps_n)/n\to c<\infty$. Eventually an arbitrarily near-optimal pure strategy has Schmidt entropy $H<n^2$. For its decreasing probabilities $\lambda_i$, the tail $T$ beyond $R_n$ satisfies $T\log R_n\le H$, hence $T\le\tau_n$. Truncating and normalizing has half trace distance $\sqrt T\le\eps_n$. Compressing the original POVMs to the retained Schmidt supports preserves valid measurements; the game loss increases by at most $\eps_n$. The truncated entropy is
+\[
+ \frac{-\sum_{i\le R_n}\lambda_i\log\lambda_i}{1-T}+\log(1-T)
+ \le H/(1-\tau_n).
+\]
+Consequently $K_n$ is eventually nonempty and
+\[
+ p_G(2\eps_n)\le m_n\le p_G(\eps_n)/(1-\tau_n).
+\]
+Thus $q_n/n$ is a computable rational sequence converging to $c$. A $0'$ oracle finds a Cauchy tail, proving the upper class.
+
+Conversely, \cite[Theorem~16.6 and Corollary~16.7]{DM-U3} give a rational BCS game with $d_G$ and $\log D_G$ having any prescribed positive $\Delta^0_2$ coefficient. The sandwich $d_G\le p_G\le\log D_G$ proves the assertion.
+\end{proof}
+
+\begin{proposition}[Locally flagged mixtures]\label{prop:flagged-pure-spectrum}
+Let $t_G$ be the original-state demand restricted to finite states
+\[
+ \rho=\sum_i p_i|ii\rangle\langle ii|\otimes|\psi_i\rangle\langle\psi_i|,
+\]
+where both flags are retained physical registers and measurements may depend on them. Then, at every feasible error,
+\[
+ \ED^{A\to B}(\rho)=\sum_i p_iS(\psi_{i,B}),\qquad t_G\le p_G\le t_G+1.
+\]
+In particular their finite logarithmic coefficients coincide, and their positive spectra are both the positive $\Delta^0_2$ reals.
+\end{proposition}
+\begin{proof}
+The flagged state's coherent information is the displayed mean entropy, so hashing gives the lower bound. For the reverse, its flagged pure decomposition has mean entanglement $\sum_i p_iS(\psi_{i,B})$; the formation upper bound on distillation gives equality~\cite{BDSW96,DW05}. Equivalently, on any tensor power and any one-Kraus-per-outcome Alice instrument, Bob's orthogonal input flags make the conditional coherent information the mean pure-branch entropy. Entropy concavity bounds the average output entropy for each fixed input branch sequence by the original Bob entropy; regularization gives the same upper bound.
+
+For any finite collection of branch losses $\ell_i$ and entropies $S_i$, minimize $\sum_iq_iS_i$ under $\sum_iq_i=1$ and $\sum_iq_i\ell_i\le\eps$. An optimal vertex has at most two branches. Coherently superpose them with local orthogonal flags. Block-diagonal measurements retain the same loss, and the resulting pure entropy is $H(q)+\sum_iq_iS_i\le1+\sum_ip_iS_i$. Take infima. No readable label is supplied to an arbitrary unflagged state.
+\end{proof}
+
+The zero-diagonal step in \cref{prop:equal-loss-ensemble} is classical; see Fillmore~\cite{Fil69} on similarity and prescribed diagonals. For the traceless Hermitian matrix used here, Fourier transformation of an orthonormal eigenbasis gives the unitary construction explicitly.
+
+\begin{proposition}[Equal-loss components and joint mixing entropy]\label{prop:equal-loss-ensemble}
+For every original strategy $(\rho,A,B)$ with loss at most $\eps$,
+\[
+ p_G(\eps)\le S(\rho_B)\le\ED^{A\to B}(\rho)+S(\rho).
+\]
+This changes neither the physical local spaces nor the loss of the selected pure component. Component selection is an existence proof for $p_G$, not a local procedure on $\rho$.
+
+If near-minimizers have $S(\rho_\eps)=o(L)$, then $p_G-d_G=o(L)$. The same follows from $\rank\rho_\eps=\eps^{-o(1)}$. If a finite usable coefficient is not $\Delta^0_2$, there are $\gamma>0$ and $\eps_j\downarrow0$ with $p_G(\eps_j)-d_G(\eps_j)\ge2\gamma L_j$. Every state at these errors with $\ED^{A\to B}\le d_G+\gamma L_j$ then has $S(\rho)\ge\gamma L_j$ and $\rank\rho\ge\eps_j^{-\gamma}$.
+\end{proposition}
+\begin{proof}
+Let $\Lambda$ be the loss effect, $\ell=\Tr\rho\Lambda$, and $H=\sqrt\rho(\Lambda-\ell I)\sqrt\rho$ on $\supp\rho$. It is traceless Hermitian. Fourier-transform an orthonormal eigenbasis of $H$ to a basis $u_i$ with every diagonal expectation zero. Put $v_i=\sqrt\rho u_i$ and $q_i=\|v_i\|^2$. They decompose $\rho$, and every normalized $v_i$ has loss exactly $\ell$. Entropy concavity bounds their mean Bob entropy by $S(\rho_B)$, so at least one is no larger. Hashing proves the other inequality. The consequences use $S(\rho)\le\log\rank\rho$ and \cref{thm:pure-spectrum}: if the same-loss gap were $o(L)$, the pure coefficient would equal the usable coefficient.
+\end{proof}
+
+\begin{proposition}[Computable fixed states]\label{prop:fixed-state-cut}
+For any uniformly computable family of finite-dimensional density matrices with effectively given dimensions, the strict lower cut $\{(e,q):\ED^{A\to B}(\rho_e)>q\}$ is c.e. Each fixed such rate is left-c.e. and therefore $\Delta^0_2$. A computable robust reduction of a non-c.e. predicate to a strict rate threshold is impossible.
+
+Also $\ED^{A\to B}(\rho^{\otimes k})=k\ED^{A\to B}(\rho)$. If computable nonnegative integers $k_n$ satisfy $k_n/n\to a<\infty$ and $d_G(2^{-n})=k_n\ED^{A\to B}(\rho)+o(n)$ for one computable fixed state, the coefficient $a\ED^{A\to B}(\rho)$ is $\Delta^0_2$. This particular repeated-state mechanism cannot separate the spectra.
+\end{proposition}
+\begin{proof}
+Devetak--Winter~\cite[Theorem~13]{DW05} gives $\ED^{A\to B}(\rho)=\sup_Nf_N(\rho)$, where $f_N$ maximizes $D^{(1)}(\rho^{\otimes n})/n$ over $1\le n\le N$. Each finite-block optimization is uniformly computable on an effectively compact instrument domain, as in \cref{thm:arithmetic}. Unnormalized branch entropies make zero-probability outcomes harmless. A strict inequality above a rational is witnessed by finite $N$ and is semidecidable by rational error bounds; dovetail the witnesses. A promised positive gap is handled by its midpoint. Equality and non-strict comparisons are not thereby decided.
+
+Superadditivity and regularization show that the subsequence of block lengths divisible by $k$ has the same limiting rate, proving the tensor-power identity. The computable limit $k_n/n$ and the left-c.e. fixed rate are both computable from $0'$, as is their product. This is not a theorem about every varying mixed-state construction.
+\end{proof}
+
+\begin{proposition}[An abstract arithmetic obstruction]\label{prop:abstract-arithmetic-array}
+The numerical properties used in the arithmetic argument alone do not force $\Delta^0_2$ coefficients. Precisely, for every $\alpha\in(0,1)$ left-c.e. in $0''$, there are computable rationals $a(n,D,N)$, $D\ge2^n$, with $0\le a\le n\le\log D$, increasing in $N$ and $n$ and decreasing in $D$ on common domains, such that
+\[
+ F(n)=\inf_{D\ge2^n}\sup_Na(n,D,N),\qquad F(n)/n\longrightarrow\alpha.
+\]
+$F$ is nondecreasing, both extrema are attained for each fixed choice of the other parameters, and $Na(n,D,N)$ is superadditive in $N$. This is an obstruction for the listed abstract properties, not a quantum-game realization theorem.
+\end{proposition}
+\begin{proof}
+Write $q<\alpha$ iff $\exists u\,\forall v\,\exists w\,R(q,u,v,w)$ with $R$ decidable, and enumerate pairs $(q_i,u_i)$ with $q_i\in\mathbb Q\cap[0,1]$. Let $P_i$ be their $\forall v\exists w$ statement and $x_n=\max(\{0\}\cup\{q_i:i\le n,P_i\})$. Then $x_n\uparrow\alpha$. Set
+\[
+ a(n,D,N)=n\max\bigl(\{0\}\cup\{q_i:i\le n,\ \forall v\le D\ \exists w\le N\ R(q_i,u_i,v,w)\}\bigr).
+\]
+All quantifiers are bounded. For fixed $n,D$ every true candidate eventually passes. Taking $D$ beyond a failed $v$ for every one of the finitely many false candidates gives $\inf_D\sup_Na=nx_n$. The finite candidate indicators stabilize in $N$, proving supremum attainment; the same counterexample choice proves infimum attainment. Monotonicity gives $(N+M)a_{N+M}\ge Na_N+Ma_M$.
+
+An abstract strategy $s_{m,D}$ with loss $2^{-m}$, dimension $D\ge2^m$ and cost $\sup_Na(m,D,N)$ has dimension demand $2^n$ and cost demand $nx_n$ at precision $2^{-n}$. Its bounded-dimension domains are finite and compact, with computable finite-block objectives. No embedding into physical state spaces or convexity of quantum strategies is asserted.
+
+For $\alpha$ left-c.e. in $0'$, use $\exists u\forall vR(q,u,v)$ and the exact computable cost $b(n,D)=n\max(\{0\}\cup\{q_i:i\le n,\forall v\le D\ R(q_i,u_i,v)\})$. The same proof gives the coefficient without a regularization supremum. For example $\alpha=1/4+\sum_{e\in0''}4^{-(e+2)}$ has degree $0''$: a missing base-four digit leaves a tail at most one third of its weight, while a present digit contributes its whole weight, so the digits can be recovered from a Cauchy name. These are applications of arithmetical normal forms~\cite{Sho59}.
+\end{proof}
+
+\begin{proposition}[Weak rounding from matched laws]\label{prop:matched-weak-rounding}
+If $d_G(\eps)=cL+o(L)$ and $\log D_G(\eps)=cL+o(L)$, $c$ finite, then for every fixed $0<a<1$,
+\[
+ p_G(\eps^a)\le d_G(\eps)-(1-a)cL+o(L).
+\]
+\end{proposition}
+\begin{proof}
+Bound $p_G(\eps^a)$ by $\log D_G(\eps^a)=acL+o(L)$ and subtract the first law. This applies to the full realizations of~\cite[Theorem~16.6 and Corollary~16.7]{DM-U3}, as well as the matched laws in its Section~12. No joint mixing-entropy assumption is needed.
+\end{proof}
+
+We say that $G$ has \emph{weak pure rounding} if $p_G(\eps^a)\le d_G(\eps)+o(L)$ for every fixed $0<a<1$. A sequence of strategies of loss at most $\eps$ is \emph{efficient} if $\ED^{A\to B}(\rho_\eps)\le d_G(\eps)+o(L)$. Efficiency here refers to the resource rate.
+
+For the near-minimizer converse in \cref{prop:formation-rounding-gap}, assume $d_G=O(L)$; this is the growth hypothesis used when dividing by $1-\eps^{1-a}$.
+
+\begin{proposition}[Formation versus directional distillation]\label{prop:formation-rounding-gap}
+For every loss-$\eps$ original mixed strategy and $\eps<\delta<1$,
+\[
+ (1-\eps/\delta)p_G(\delta)\le\EF(\rho),
+\]
+where $\EF$ is the single-copy convex roof. If $d_G/L\to c<\infty$ and $p_G(\eps_n^a)\ge d_G(\eps_n)+\gamma L_n$ along a sequence for fixed $0<a<1$ and $\gamma>0$, every strategy sequence with rate at most $d_G(\eps_n)+o(L_n)$ has
+\[
+ \EF(\rho_n)-\ED^{A\to B}(\rho_n)\ge(\gamma-o(1))L_n,\quad
+ S(\rho_n)\ge(\gamma-o(1))L_n,\quad
+ \rank\rho_n\ge\eps_n^{-\gamma+o(1)}.
+\]
+If near-minimizers with $\EF-\ED^{A\to B}=o(L)$ exist at every sufficiently small error, weak pure rounding holds for every fixed $a<1$. Appending independent local mixed junk leaves both resources unchanged, although it adds its entropy to $S(\rho)$.
+\end{proposition}
+\begin{proof}
+For any pure decomposition with the original measurements, mean nonnegative loss is at most $\eps$. Markov leaves weight at least $1-\eps/\delta$ at loss at most $\delta$, each with entropy at least $p_G(\delta)$. Infimize over decompositions~\cite{BDSW96}. Set $\delta=\eps_n^a$; the discarded weight times the specified $O(L_n)$ lower rate is $o(L_n)$, proving the gap. Entropy concavity and hashing give $\EF-\ED^{A\to B}\le S(\rho)\le\log\rank\rho$. Divide by $1-\eps^{1-a}$ for the near-minimizer converse. Free local preparation and discard prove junk invariance.
+\end{proof}
+
+\begin{proposition}[Exactly synchronous original states]\label{prop:synchronous-pure-rounding}
+For an exactly synchronous projective mixed strategy of loss at most $\eps$,
+\[
+ (1-\eps/\delta)p_G(\delta)\le\ED^{A\to B}(\rho)\quad(\eps<\delta<1).
+\]
+Thus a game with $d_G=O(L)$ and exactly synchronous near-minimizers up to $o(L)$ satisfies weak pure rounding. In fact, at the same error,
+\[
+ p_G(\eps)\le\ED^{A\to B}(\rho)+1.
+\]
+\end{proposition}
+\begin{proof}
+The exact-synchronous structure is the existing intertwiner theorem of \cref{thm:exact-sync} and~\cite{PSSTW16}. On marginal supports $(A_{x,b}-B_{x,b})\supp\rho=0$ identifies support vectors with intertwiners. Decomposing the finite-dimensional free-PVM representations into matching irreducibles places the support in a direct sum of $\Phi_{d_\lambda}$ tensor multiplicity spaces. Local central measurements give a common $\lambda$ and leave $\Phi_{d_\lambda}\otimes\tau_\lambda$. All game measurements are block diagonal; sector losses satisfy $\sum w_\lambda\ell_\lambda\le\eps$. Discard multiplicities, obtaining a locally flagged pure ensemble of rate $\sum w_\lambda\log d_\lambda$. Low-loss sectors have weight at least $1-\eps/\delta$ and each has $\log d_\lambda\ge p_G(\delta)$, proving the first bound and its consequence. The same ensemble is a valid same-mean-loss strategy of cost at most the original rate; \cref{prop:flagged-pure-spectrum} proves the stronger same-error bound.
+\end{proof}
+
+\begin{proposition}[Spectral leakage on the physical spaces]\label{prop:physical-leakage}
+Let $\rho$ be a projective synchronous-game strategy of loss at most $\eps$, and set
+\[
+ H=\sum_{x,b}\nu_{x,b}(A_{x,b}\otimes I-I\otimes B_{x,b})^2,\quad
+ P=1_{\{0\}}(H),\quad q=\Tr\rho(I-P)<1,
+\]
+with positive weights. For $\eps<\delta<1$ define
+\[
+ t=\sqrt q,\qquad b=(\sqrt\eps+\sqrt q)^2/(1-q),\qquad k=1-b/\delta-2t.
+\]
+If $k>0$, then $p_G(\delta)\le1+[\ED^{A\to B}(\rho)+2t+g(t)]/k$, with $g(t)=(1+t)h(t/(1+t))$.
+
+More generally the same conclusion holds if $\sigma$ is any exactly synchronous comparison state on the same physical $A,B$ spaces, with possibly different projective measurements, loss at most $b$ and half trace distance at most $t$ from $\rho$, provided $k=1-b/\delta-2t>0$.
+\end{proposition}
+\begin{proof}
+The normalized projection $\sigma=P\rho P/(1-q)$ is within half trace distance $\sqrt q$, by projecting a purification. For the positive game loss effect $\Lambda$, the Hilbert--Schmidt triangle inequality gives $\|\sqrt\Lambda P\sqrt\rho\|_2\le\sqrt\eps+\sqrt q$, so its loss is at most $b$. The projection defines the comparison state; the subset instrument below defines the one-way channel.
+
+In the exact-synchronous decomposition, sectors of loss at most $\delta$ have total weight $s\ge1-b/\delta$ and dimension at least $2^p$, where $p=p_G(\delta)$. Put $M=\lfloor2^p\rfloor$. On each good sector convert $\Phi_d$ deterministically to $\Phi_M$~\cite{Nie99}. Explicitly, for every $M$-subset $S\subset\{1,\ldots,d\}$ Alice uses
+\[
+ A_S={\binom{d-1}{M-1}}^{-1/2}\sum_{i\in S}|\operatorname{rank}_S(i)\rangle\langle i|.
+\]
+Every basis element belongs to $\binom{d-1}{M-1}$ subsets, so the instrument is complete. Alice announces $S$ and Bob reindexes its support, completing his operation arbitrarily on its orthogonal complement. Use product outputs on bad sectors, retain only a binary good/bad flag and discard other systems; define local default operations on unmatched sectors. This is a one-way channel on the entire original input space.
+
+Its ideal output on $\sigma$ has coherent information $s\log M$ and local dimension $2M$. Its output on $\rho$ is within $t$ by contraction. Winter's conditional-entropy continuity bound~\cite[Lemma~2]{Winter16} decreases coherent information by at most $2t\log(2M)+g(t)$. Hashing and monotonicity yield
+\[
+ \ED^{A\to B}(\rho)\ge k\log M-2t-g(t).
+\]
+Since $\log\lfloor2^p\rfloor\ge p-1$, this proves the formula; $M=1$ is immediate. Starting with a comparison state proves the general version.
+\end{proof}
+
+For $\delta=\eps^a$, $q=o(\eps^a)$ gives $k=1-o(1)$ and, on an $O(L)$ efficient-state rate, $p_G(\eps^a)\le\ED^{A\to B}(\rho)+o(L)$. The comparison-state version needs only $b=o(\eps^a)$ and $t=o(1)$. If $\Delta$ is the smallest positive eigenvalue of $H$, then $q\le\Tr(\rho H)/\Delta$. Thus $\Tr(\rho H)\le C\eps$ and $\Delta/\eps^{1-a}\to\infty$ suffice; a subpolynomial inverse gap suffices for every fixed $a<1$. Set $q=0$ if $H=0$. Spectral-gap stability is studied in~\cite{dlS22}; no universal kernel-leakage estimate follows from it here.
+
+For projective strategies of a synchronous game, under the gap hypothesis of \cref{prop:formation-rounding-gap}, with coefficient $c$ and efficient original states, the exact-kernel leakages satisfy
+\[
+ \liminf_n\frac{q_n}{\eps_n^a}\ge\frac\gamma{c+\gamma}.
+\]
+Otherwise take a subsequence with this ratio bounded strictly below $\theta=\gamma/(c+\gamma)$. Then $q_n\to0$, $b_n/\delta_n=q_n/\delta_n+o(1)$ and $k_n$ is bounded strictly above $1-\theta$ in the lower-bound sense. The proved rate bound exceeds $cL_n$ by a fixed positive multiple of $L_n$, a contradiction. If also $\Tr\rho_nH_n\le C\eps_n$, then
+\[
+ \Delta_n\le[C(c+\gamma)/\gamma+o(1)]\eps_n^{1-a}.
+\]
+
+For the two-reflection example below, the reflection-mirror Hamiltonian means the unnormalized operator $\sum_{x=1,2}(R_x\otimes I-I\otimes S_x)^2$, where $R_x$ and $S_x$ are Alice's and Bob's reflections. Its normalization is distinct from the weighted Hamiltonian in \cref{prop:physical-leakage}.
+
+\begin{proposition}[Small mirror errors need no exact kernel]\label{prop:no-exact-kernel}
+Alice's qubit reflections $Z,X$ and Bob's $Z,\cos\theta X+\sin\theta Z$, $0<\theta<\pi/2$, have no common exact synchronous vector, but their reflection-mirror Hamiltonian has $\Phi_2$ expectation $2(1-\cos\theta)$, tending to zero.
+\end{proposition}
+\begin{proof}
+A kernel vector vectorizes to $D$ with $ZD=DZ$, hence $D=\operatorname{diag}(u,v)$. The second intertwiner identity's diagonal entries force $u\sin\theta=v\sin\theta=0$, so $D=0$. Expanding the squared $X$-mirror difference on $\Phi_2$ gives the expectation. The example rules out exact-kernel inference with fixed measurements; weak rounding remains open.
+\end{proof}
+
+The state in \cref{prop:half-erasure} is the Choi state of the $50\%$ erasure channel. Its zero one-way distillability is the classical erasure-channel obstruction of Bennett, DiVincenzo and Smolin~\cite{BDS97}; the symmetric-extension method is also treated in~\cite{HN05,MCL06}.
+
+\begin{proposition}[The half-erasure obstruction]\label{prop:half-erasure}
+On $A=\C^d$ and $B=\C^d\oplus\operatorname{span}\{e\}$, let $\rho_d=(\Phi_d+I_A/d\otimes|e\rangle\langle e|)/2$. Then
+\[
+ \ED^{A\to B}(\rho_d)=0,\quad \EF(\rho_d)=\tfrac12\log d,\quad
+ S(\rho_d)=S(\rho_{d,B})=1+\tfrac12\log d,\quad S(\rho_{d,A})=\log d.
+\]
+For any fixed game with classical value $\omega_c<1$, every measurement choice on $\rho_d$ loses at least $(1-\omega_c)/2$. If $\omega_c=1$, a perfect deterministic product strategy makes both demands zero. Thus this family obstructs state-only arguments but is not a fixed-game separating family.
+\end{proposition}
+\begin{proof}
+The symmetric extension $(\Phi_{AB}\otimes e_{B'}+\Phi_{AB'}\otimes e_B)/2$ is preserved by one-way protocols after broadcasting Alice's transcript to the second Bob; symmetric-extension obstructions are standard~\cite{HN05,MCL06}. For a $K$-dimensional target the two singlet projections $P,Q$ satisfy $PQP=K^{-2}P$ and $\|P+Q\|=1+1/K$. Hence the extension bounds singlet fraction by $(1+1/K)/2$, which cannot approach one for a nontrivial distilled target. This proves zero directional rate, not merely nonpositive unprocessed coherent information.
+
+The displayed pure/product ensemble gives $\EF\le\log d/2$. Bob's erasure flag gives the reverse by monotonicity on average of pure entropy in every decomposition~\cite{BDSW96}. Orthogonal-sector entropies give the formulas. Assigning a purification entirely to Alice costs $S(B)$, and assigning it entirely to Bob costs $S(A)$, both logarithmically above the zero rate. Finally the erased sector is separable, so it cannot beat the classical value; its weight is one half.
+\end{proof}
+
+\begin{proposition}[What a coefficient outside $\Delta^0_2$ would force]\label{prop:nonlimit-coefficient-gap}
+If $c=\lim d_G/L$ is finite and not $\Delta^0_2$, there are fixed $a\in(0,1)$, $\gamma>0$ and $\eps_n\to0$ with $p_G(\eps_n^a)\ge d_G(\eps_n)+\gamma L_n$. Therefore all efficient original states along that sequence have the formation/distillation gap of \cref{prop:formation-rounding-gap} and, for synchronous strategies, the leakage obstruction of \cref{prop:physical-leakage}.
+\end{proposition}
+\begin{proof}
+If for every fixed $a<1$ the limsup of $(p_G(\eps^a)-d_G(\eps))/L$ were nonpositive, rescaling $\delta=\eps^a$ would give $\limsup p_G(\delta)/L(\delta)\le c/a$. The opposite liminf is at least $c$, since $d_G\le p_G$. Let $a\uparrow1$ to obtain pure coefficient $c$, contradicting \cref{thm:pure-spectrum}. A positive limsup supplies $\gamma$ and a subsequence.
+\end{proof}
+
+These deductions leave the full mixed-state usable spectrum and unrestricted weak pure rounding open. A fixed computable state's directional rate is left-c.e.; finite-word channel reachability or failure of a universal fixed block length for quantum capacity does not prove otherwise~\cite{WCPG12,Cubitt15}. Quantum-capacity hardness and a restricted entanglement-assisted one-shot zero-error undecidability result~\cite[Theorems~1.1--1.2]{BMZ26} concern different quantities. Unrestricted-LOCC continuity~\cite[Theorem~1.2]{SS26} is not a directional-rate theorem or an input above. Exact synchrony, recovery, hashing, convex roofs and entropy continuity are credited existing tools; the assertions here are their stated applications.

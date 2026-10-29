@@ -1,0 +1,100 @@
+%======================================================================
+\section{The point window: fillings and subdivision obstructions}\label{app:window}
+%======================================================================
+
+Appendix~\ref{app:point-filling} proves \cref{prop:point-fill-sharp}, and Appendix~\ref{app:fixed-holonomy} proves \cref{prop:fixed-holonomy}. The remaining subsection gives the raw cross-copy obstruction.
+
+The lower bound of \cref{thm:point-window} uses copies $S_i=a^{3i}sa^{-3i}$, $T_i=a^{3i+1}sa^{-3i-1}$, $0\le i<N$, of the three-cycle
+pair, and bounds every raw cross-copy commutator, a far commutator of length $O(N)$, by $\eta_0\le CN^ue$ when the far-commutator
+areas grow like $R^u$; balancing $N\kappa^2$ against $\kappa\le CN^ue$ gives the exponent $1/(2u+1)$. This appendix proves that no
+such worst-pair estimate holds with $u<2$ on the original source models, even at the scale $N\asymp e^{-2/(2u+1)}$ at which the proof
+uses it. So this route stops at $u=2$, that is at $\eps^{-1/5}$, whatever the true growth of the areas; reaching the quarter needs a
+different estimate or a different extraction.
+
+The models are the collective models of \cref{prop:collective} with one particular legal choice of the spanning trees. The curl
+equations of that proof may be solved along any spanning tree of interior edges of each region in which the source is a leaf
+attached by its bottom edge: the holonomy at every plaquette depends only on the fields, and the protected supports only on the
+labels. We use the row-spine trees of the proof of \cref{prop:raw-pairs}, for the region $B=R_5$ and for $T$.
+
+\begin{lemma}\label{lem:window-angles}
+In the collective model with row-spine trees, on every row $2\le j\le M-2$ the only $a$-links carrying a nonzero rotation are the one
+at column $M-1$, with the factor $\exp(i\varphi_BQ_B)$, $|\varphi_B|\le2\pi j/M$, and the one at column $0$, with the factor
+$\exp(i\varphi_TQ_T)$, $|\varphi_T|\le2\pi j/(M-1)$. For $3\le j\le M-2$ and every clock $c$ of row $j$, the block $W_c$ of $a^{4M}$ at $c$,
+a unitary on $(\C^2)^{\otimes L}$, satisfies $\opn{W_c-I}\le24\pi j/M$ on the whole qubit space.
+\end{lemma}
+
+\begin{proof}
+The angles are those computed in the proof of \cref{prop:raw-pairs} for the same trees: a tree edge that cuts off a subtree $S$ not
+containing the source carries $|\varphi_R|=\pi|S|/|R|$, the subtree below the spine edge of row $j$ has at most $j(M-1)$ plaquettes of $B$
+and at most $j(M-2)$ of $T$, and $|B|=M(M-1)/2$, $|T|\ge(M-1)(M-2)/2$; the other $a$-links of these rows are not tree edges, and neither
+exact move lies on them. Here each region contributes one rotation $\exp(i\varphi Q_R)$ with a projection $Q_R$, so
+$\opn{\exp(i\varphi Q_R)-I}\le|\varphi|$ on the whole space. The generator $a$ uses the base links of~\cite[\S6]{DM-H3} in the convention of
+the proof of \cref{prop:raw-pairs}, through their qubit-permutation representation, so without the rotations the $M$-step circuit of
+row $j$ from any column is the qubit permutation of a colour permutation conjugate to the $P$ of that proof, with $P^4=I$ for $j\ge3$.
+The product $W_c$ of the $4M$ link factors traverses the row four times and differs from the unrotated product, which is $I$, in eight
+factors; telescoping gives $\opn{W_c-I}\le4[2\pi j/M+2\pi j/(M-1)]\le24\pi j/M$.
+\end{proof}
+
+\begin{theorem}[The raw cross-copy obstruction]\label{thm:raw-obstruction}
+For every integer $M\ge1152\pi$ the collective model of \cref{prop:collective} with row-spine trees, on $\Phi_{D_M}$ with Alice's
+transposes, has all $22$ relators exact except H4, $J=-I$, every signed mirror exact, precision $e_M\le8\pi/M^2$, directional rates
+$4M+4+2\log M$, and
+\[
+\|([s,a^{4M+1}sa^{-4M-1}]-I)\Phi_{D_M}\|^2\ \ge\ \frac1{1536\pi}. \tag{O}
+\]
+If $3$ divides $M$ and $N=4M/3+1$, then $[s,a^{4M+1}sa^{-4M-1}]=[S_0,T_{N-1}]$. Consequently there is no constant $C$ such that
+$\|([S_i,T_j]-I)\Psi\|\le CN^ue$ for all $i\ne j$, all $N$ and all original source tuples of precision $e$ with exact mirrors, if $u<2$.
+\end{theorem}
+
+\begin{proof}
+The statements other than (O) are \cref{prop:collective}, which holds for every legal choice of trees. In the collective model $s$ is the
+qubit swap $\Pi((1\ 2))$ and $t=asa^{-1}$ acts at every clock as $\Pi((2\ 3))$: the base links carry $(1\ 2)$ to $(2\ 3)$ and the rotations
+commute with $\Pi((2\ 3))$ (proof of \cref{prop:collective}). The power $a^{4M}$ returns every clock to itself, so $a^{4M+1}sa^{-4M-1}=a^{4M}ta^{-4M}$
+acts at the clock $c$ as $W_ctW_c^*$. With $h=\opn{W_c-I}$, $\opn{W_ctW_c^*-t}\le2h$, and since $s$ is an involution the group commutators
+satisfy $\opn{[s,W_ctW_c^*]-[s,t]}\le4h$. The commutator $[s,t]$ is the qubit permutation of a three-cycle of three tensor factors, of normalized
+trace $\frac14$, so $\|[s,t]-I\|_2^2=2-2\cdot\frac14=\frac32$. On the rows $3\le j\le\lfloor M/(192\pi)\rfloor$, \cref{lem:window-angles} gives $h\le\frac18$, so the
+normalized defect at each of their clocks is at least $\sqrt{3/2}-\frac12>\frac12$; for $M\ge1152\pi$ these rows number at least
+$M/(384\pi)$ and carry a fraction at least $1/(384\pi)$ of the clocks. On the maximally entangled state the squared residual is the
+average over clocks of the squared normalized defect, which proves (O). If $3\mid M$, then $3(N-1)+1=4M+1$, so the word is
+$[S_0,T_{N-1}]$, with $N\le2M$; and the defect divided by $N^ue_M$ is at least $M^{2-u}/(8\pi2^u\sqrt{1536\pi})$, unbounded for $u<2$.
+\end{proof}
+
+The theorem concerns the raw worst-pair architecture, not the game demand: these models carry $\Theta(M)=\Theta(e_M^{-1/2})$ ebits, the
+order of the quarter itself. In them the shadow of $[S_0,T_{N-1}]$ in the plane of $a$ and $b$ uses only $a$-edges and has zero winding
+at every plaquette, so its signed area vanishes; a bound by signed area plus perimeter cannot give the exponent $\frac32$ either. Every
+filling of $[s,a^{4M+1}sa^{-4M-1}]$ needs at least $M^2/(8\pi\sqrt{1536\pi})$ cells H4, since all other relators are exact and the operator
+norm of the word is at least its normalized defect; \cite[Proposition~3.4]{DM-H3} gives a stronger quadratic lower bound for these words.
+
+At $N=4M/3+1$ the undiluted models have $N^4e_M^2$ bounded, while the window proof uses $N\asymp e^{-2/(2u+1)}$, at which $N^4e^2\to0$ for
+$u>\frac32$. Diluting the defect on a flag sector of weight decreasing with $M$ reaches that scale.
+
+\begin{proposition}[The obstruction at the scale of the window proof]\label{prop:window-dilution}
+Let $\frac32<u<2$. For sufficiently large $M$ divisible by $3$ put $p=M^{3-2u}$, choose $M'=\lceil p^{-1/4}M\rceil$, and let $\Psi=\sqrt p\,\Phi_{D_M}\oplus
+\sqrt{1-p}\,\Phi_{D_{M'}}$, the two summands in orthogonal local flag sectors of both parties, with the collective model of \cref{thm:raw-obstruction}
+at $M$ on the first and a collective model at $M'$ on the second, block diagonal, and Alice's transposes. Then $J=-I$, every relator other
+than H4 is exact, every mirror is exact, every state commutator vanishes, and the precision is at most $\bar e=8\sqrt2\pi\,M^{-(2u+1)/2}$.
+With $N=4M/3+1$, so that $N\asymp\bar e^{-2/(2u+1)}$,
+\[
+\frac{\|([S_0,T_{N-1}]-I)\Psi\|}{N^u\bar e}\ \ge\ \frac{M^{2-u}}{2^u\,8\sqrt2\pi\sqrt{1536\pi}}\ \longrightarrow\ \infty .
+\]
+The original state has entanglement $h(p)+p\log D_M+(1-p)\log D_{M'}=O(M')=O(\bar e^{-1/2})$.
+\end{proposition}
+
+\begin{proof}
+The operators are block diagonal for the flags, so all exact relations stay exact, the mirrors of Alice's transposes are exact on each
+summand, and Bob's marginal is a direct sum of multiples of identities on the two blocks, with which block-diagonal operators commute. The
+squared H4 residual on $\Psi$ is at most $p(8\pi/M^2)^2+(1-p)(8\pi/M'^2)^2\le2p(8\pi/M^2)^2$, because $M'^4\ge M^4/p$; this is $\bar e^2$ with
+$p=M^{3-2u}$. The squared raw residual is at least $p/(1536\pi)$ by (O), from the first block. Dividing $\sqrt{p/(1536\pi)}$ by
+$N^u\bar e\le(2M)^u\,8\sqrt2\pi\,M^{-(2u+1)/2}$ and using $\sqrt p=M^{(3-2u)/2}$ gives the displayed ratio. Finally $M\asymp\bar e^{-2/(2u+1)}$ and,
+since $p^{-1/4}M\le M'\le p^{-1/4}M+1\le2p^{-1/4}M$, $M'\asymp p^{-1/4}M=M^{(2u+1)/4}\asymp\bar e^{-1/2}$; with $\log D_n=4n+4+2\log n$
+(\cref{thm:raw-obstruction}) the entanglement is $O(M')$.
+\end{proof}
+
+So the worst-pair raw cross-copy route, whatever area bound feeds it, cannot give a lower exponent beyond $\frac15$, the value at $u=2$; a
+quadratic area bound would reach exactly that value and no more. The diluted models do not refute the quarter: their entanglement is
+of the quarter order. They also leave the same-state quartic table target of \cref{prop:table} open, since an averaged table defect sees
+the bad flag sector only with its weight.
+
+
+\input{sections/window-filling-proof}
+\input{sections/window-holonomy-proof}

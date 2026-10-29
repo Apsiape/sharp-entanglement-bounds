@@ -1,0 +1,72 @@
+%======================================================================
+\section{Results used from our companion papers}\label{app:companion}
+%======================================================================
+
+\Cref{tab:companion} lists every result of our companion papers~\cite{DM-game,DM-lamps,DM-H3,DM-ID,Dou26,DM-U3} on which an argument
+here depends, and where it is used. Results mentioned only for comparison are marked as such. The results of~\cite{DM-game} listed
+here are stated in this paper with a pointer to their complete proofs there. The table identifies the precise imported results used by each argument.
+
+{\small
+\begin{longtable}{@{}L{0.45\textwidth}L{0.21\textwidth}L{0.26\textwidth}@{}}
+\toprule
+result & source & used in\\
+\midrule
+\endhead
+compressing a strategy to the Schmidt supports & \cite[Rem.~2.9]{DM-game} & \cref{sec:prelim-norms}\\
+standard form, consistency, calculus in a state, conjugator lengths, rounding, rotating the state & \cite[Lemmas~3.1--3.4,
+3.6, 3.7]{DM-game} & \cref{sec:prelim}\\
+projection products; two-sided twirls; sector states; entropy facts & \cite[Lemmas~3.8--3.10, \S3.7]{DM-game},
+\cite[Lemma~4.1]{DM-H3} & \cref{sec:prelim}\\
+qubit count in a state; uniform errors; Jensen--Shannon bound; entropy of a sector & \cite[Thm.~4.1, Cor.~4.2, Lemmas~4.8,
+4.9]{DM-game} & \cref{sec:count}\\
+$\mathrm{CHSH}(n)$ pure entropy and formation (comparison) & \cite[Thm.~E]{DM-game} & \cref{rem:count-comparison}\\
+transfer, return and two-sided correspondence for linear system games & \cite[Thms.~5.1, 5.4, Cor.~5.5]{DM-game} &
+\cref{sec:transfer}\\
+\midrule
+measures on the circle; coupling in one state & \cite[Lemmas~11.7, 11.8]{DM-game} & \cref{sec:transport}\\
+profile of $c$ in a state; spectral measure of $y$ in a state; flat model; profile of $c$; balanced lift for $K$; the
+Slofstra--Vidick game & \cite[Thm.~11.9, Prop.~11.10, Ex.~11.11, Cor.~11.12, Lemma~11.13, Thm.~11.14]{DM-game} &
+\cref{sec:transport}\\
+\midrule
+$E\Gamma_0$ presentations & \cite[Def.~10.1]{DM-game} & \cref{thm:compile}\\
+the four gadget steps; $\Psi$ and $x_{j_0}$ with (G1), (G2); block words & \cite[Lemma~B.1, Table~3]{DM-game} &
+\cref{thm:compile,thm:universal}, \cref{sec:lamps}\\
+embedding theorem, flat and in a state (comparison) & \cite[Thm.~B.3]{DM-game} & after \cref{thm:compile}\\
+\midrule
+Houghton's group, its action, its map to $\Z^2$ and the presentation $P_H$ & \cite[Def.~6.1, (5), (6), App.~A]{DM-game} &
+\cref{sec:exact-subset}, \cref{thm:exact-config}\\
+the certificate $\RP$ & \cite[Def.~7.1, Table~2]{DM-game} & \cref{sec:lamps}, \cref{thm:exact-config}\\
+point stabilizers; transporters & \cite[Lemma~7.4, Def.~7.5]{DM-game} & \cref{thm:exact-config}\\
+pair areas and their growth & \cite[Thm.~7.8, Rem.~7.10]{DM-game} & \cref{sec:lamps}, \cref{thm:exact-config}\\
+transporting $J$ & \cite[Lemma~7.11]{DM-game} & \cref{sec:lamps}, \cref{thm:exact-config}\\
+the sector theorem, its proof's estimates, and its polynomial form & \cite[Thm.~8.1, Rem.~8.3]{DM-game} & \cref{sec:lamps}\\
+amenability of $\GP$, the quotient $\Z^2$ & \cite[Prop.~6.8]{DM-game} & \cref{thm:exact-config}\\
+the clock lemma & \cite[Lemma~9.3]{DM-game} & \cref{thm:exact-config}\\
+hash models (comparison) & \cite[Prop.~9.4]{DM-game} & \cref{sec:intro-results}, \cref{prop:correction}\\
+the presentation $\Pres$, words $\hat s$, area $A_*=60$ & \cite[Prop.~10.3]{DM-game} & \cref{sec:lamps}\\
+the game $G$, $m=1687$, $s=3$; entropy, formation and upper bounds & \cite[Thm.~A, Thm.~10.5, Cor.~10.6]{DM-game} &
+\cref{sec:lamps}\\
+\midrule
+the $S_3$ configuration lamps: profile, unitary models, weighted one-round theorem (comparison) & \cite[Thm.~A, Thm.~10.1]{DM-lamps} &
+\cref{sec:intro-related,sec:lamps}\\
+\midrule
+actual-state extraction & \cite[Lemma~12.1]{DM-U3} & \cref{prop:matched-coefficient}\\
+matched laws and weak rounding & \cite[Section~12]{DM-U3} & \cref{prop:matched-weak-rounding}\\
+limit-computable realization & \cite[Theorem~1.1]{DM-U3} & \cref{prob:dense}\\
+matched logarithmic dimension and original-state usable laws & \cite[Thm.~16.6, Cor.~16.7]{DM-U3} & \cref{sec:arithmetic,prob:dense}\\
+\midrule
+Johnson's relators in $a,b,\alpha$ & \cite[(1)]{DM-H3} & \cref{sec:point-source}\\
+far-commutator filling method & \cite[Thm.~3.2, App.~A]{DM-H3} & \cref{prop:point-fill-sharp,app:point-filling}\\
+retained-relator refinement framework & \cite[Rem.~A.3]{DM-H3} & \cref{app:point-filling}\\
+quadratic lower bound for far commutators (comparison) & \cite[Prop.~3.4]{DM-H3} & \cref{sec:open}\\
+polynomial Dehn function (comparison) & \cite[Thm.~3.3]{DM-H3} & \cref{rem:lamps-poly}\\
+corner models; rotating links; regions and spanning trees; spreading a defect & \cite[Prop.~6.1, Lemmas~6.3, 6.4, proof of Prop.~6.5]{DM-H3} & \cref{prop:collective}, \cref{app:window}\\
+unitary models, $14.26M^{-3}$ & \cite[Prop.~6.5]{DM-H3} & \cref{prop:collective}, \cref{sec:point-native}\\
+\midrule
+sharp Houghton cost with moderate flavour growth (conditional input) & \cite[App.~R]{DM-ID} & \cref{thm:native,thm:native-enlarged}\\
+\midrule
+nonattainment, spatial attainment, rate, geometric tails & \cite[Thms.~1, 2, 6, \S5.2]{Dou26} & \cref{thm:i3322}\\
+\bottomrule
+\caption{Results of our companion papers used here. Numbers refer to version 1.0.0 of~\cite{DM-game}, arXiv version~1 of~\cite{DM-lamps}, version 1.1.2
+of~\cite{DM-H3}, version 1.0.0 of~\cite{DM-ID}, version 3.0.0 of~\cite{DM-U3} and arXiv version~2 of~\cite{Dou26}, whose content is that of its version 4.1.0.}\label{tab:companion}
+\end{longtable}}

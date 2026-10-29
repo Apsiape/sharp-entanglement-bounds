@@ -1,0 +1,120 @@
+%======================================================================
+\section{Open problems}\label{sec:open}
+%======================================================================
+
+We state the open targets precisely, with what has failed and what would count as progress. The first two are the central ones.
+
+\begin{problem}[The quarter lower bound]\label{prob:quarter}
+Prove $d^\to_{G_{\mathrm{pt}}}(\eps)\ge c\,\eps^{-1/4}$ eventually, for the exact fixed game of \cref{thm:point-window}, against all original
+finite-dimensional mixed strategies. By \cref{thm:factor-three} the reverse direction would follow up to a fixed loss rescaling. A bound
+only on $S(\rho_B)$, only on Schmidt rank of pure strategies, or only on the native classes of \cref{sec:point-native} is not this result.
+\end{problem}
+
+The window is $[\beta,\frac14]$ with $\beta=(2\log_2\lambda+1)^{-1}=0.0734595360384268649\ldots$.
+The proof of its lower end balances $N\kappa^2$ against a raw cross-copy bound $\eta_0\le C(A+N)e$ from the linear filling charge
+(\cref{thm:linear-filling}), so far-commutator areas of order $R^u$ give the exponent $1/(2u+1)$.
+The geometric gap is open: $R^2/16\le A^*(R)\le CR^p$ for every integer $R\ge23$, where $p=\log_2\lambda=6.3064682540119605963\ldots$;
+the lower bound is~\cite[Proposition~3.4]{DM-H3} and the upper bound is \cref{prop:point-fill-sharp}.
+Quadratic area would give $\eps^{-1/5}$, and
+cubic area $\eps^{-1/7}$. That is also the limit of this route: the worst-pair raw cross-copy estimate $\eta_0\le CN^ue$ is false
+for every $u<2$ on the original source models, already at the scale $N\asymp e^{-2/(2u+1)}$ at which the proof uses it, with exact
+mirrors and only H4 inexact (\cref{thm:raw-obstruction,prop:window-dilution}). So the raw cross-copy route stops at $u=2$, that is at
+$\eps^{-1/5}$, whatever the true growth of the areas, and the quarter needs a different estimate or a different extraction.
+\Cref{prop:raw-pairs} refutes the analogous uniform raw estimates for lamp commutators below the exponent $\frac32$. One different route
+is a same-state quartic \emph{table} bound $\Delta_N\le CN^4e^2$, in the regime needed for \cref{prop:table} and with all actual mirrors
+counted, which would suffice at $N=ce^{-1/2}$ through a different decoder; \cref{prop:collective-refutes} refutes every smaller power
+and the raw quartic aggregate shortcut, and the diluted models of \cref{prop:window-dilution} do not refute the table target, since an
+averaged table defect sees their bad sector only with its weight. Another original-state operational method would also qualify. An
+estimate or counterexample that moves the window is what counts; another conditional native layer is not.
+
+\begin{problem}[The logarithmic floor]\label{prob:floor}
+For every fixed game $G$ in the classes of Theorem~A with value one and no finite-dimensional perfect strategy, are there $c_G>0$ and
+$\eps_G>0$ with $d^\to_G(\eps)\ge c_G\log(1/\eps)$ for $0<\eps<\eps_G$? The constants may depend non-effectively on $G$. A counterexample
+needs one fixed permitted game and a sequence $\eps_n\downarrow0$ with $d^\to_G(\eps_n)/\log(1/\eps_n)\to0$.
+\end{problem}
+
+Every nonattaining game in the permitted classes for which this paper establishes a demand law has at least logarithmic demand;
+the $I_{3322}$ contrast of \cref{sec:i3322} lies outside the permitted format, so it does not refute the floor. The precise state is as follows; every assertion is proved in \cref{sec:floor,app:floor}.
+
+\emph{A class with the floor.} Every game that recovers, with actual mirrors on the original state, a sign relation $WY=-YW$ and an
+even dilation $XYX^*=Y^m$ has $d^\to_G(\eps)\ge\log(1/\eps)/(4\log m)-O(\log\log(1/\eps))$, with an exponential fixed-target
+threshold (\cref{thm:floor-class}); the Boolean constraint game compiled from Abels' finitely presented solvable group is an
+instance, with value one and no finite perfect strategy (\cref{cor:abels}).
+
+\emph{A criterion for a counterexample.} A finite presentation with a marked central involution, no finite-dimensional
+representation with $J=-I$, and operator-norm models with $\opn{U_J-I}>\eta_n\to0$ and $\log D_n=o(\log(1/\eta_n))$ gives, through
+the universal compiler, a fixed game of class~(C) that violates the floor (\cref{prop:criterion}); the compression of
+\cref{lem:compression} removes any concern about the trace fraction of the negative sector.
+
+\emph{Excluded candidate classes.} The criterion fails for the following sources. Thin Baumslag--Solitar models, whose operator
+accuracy is exponential in the dimension: identifying the marker with their commutator kills it (\cref{prop:bs-central}), and every
+fixed extension that places the marker in the normal closure of the commutator while retaining copies of the models needs a constant
+relator error (\cref{prop:copied-gadget,ex:thin-bs}). Locally Schatten-$p$-stable groups, whose separated models have
+$\log D\ge p\log(1/\eta)-O(1)$ (\cref{thm:stable}), including the higher-rank Deligne extension of $\mathrm{Sp}(8,\Z)$ (\cref{ex:deligne}).
+Sources containing the dyadic sign-and-dilation pattern, such as Abels' group, whose separated models have $D\ge c/\eta$
+(\cref{prop:dyadic,cor:dyadic-models}).
+
+\emph{Obstructions to the method of Theorem~A.} The sign holds exactly and the dilation to every accuracy in every type~II limit of
+the proof (\cref{prop:typeII}), so their presence in the limit does not distinguish the class of \cref{thm:floor-class}, which needs them on the
+original operators at polynomial cost. Recovering Pauli arrays by bounded polynomials in finitely many tested projections can need a
+doubly exponential coefficient budget, even with a hyperfinite faithful tracial closure (\cref{prop:slow-recovery}). An exponential
+single-copy extraction threshold suffices for the floor (\cref{prop:threshold}), but is not necessary on general grounds: states with
+distillable entanglement of order $2^{r/2}$ can fail single-copy extraction of $r$ pairs at every fixed infidelity below about
+$\frac14$ (\cref{prop:separation}).
+
+\emph{What would reopen or settle the problem.} A quantitative original-state extraction or compression theorem that gives the rate
+for every game of Theorem~A, for instance a threshold $\eps_0(G,r,\gamma)\ge\exp(-C_Gr)$ at one fixed good $\gamma$, would prove the
+floor; it must produce its decoders from the tested operators with controlled cost, which the type~II limit alone does not do. A
+counterexample must give one fixed game in the permitted classes, of value one and without a finite-dimensional perfect strategy, and
+original-state upper strategies with sublogarithmic demand along a sequence of losses tending to zero. One sufficient construction is
+\cref{prop:criterion}. A construction through that proposition must avoid the operator-norm obstructions of \cref{app:floor}, including
+local Schatten stability, the dyadic pattern and copied Baumslag--Solitar models. Those obstructions alone do not rule out a different
+construction using arbitrary mixed states.
+
+\begin{problem}[A dense spectrum]\label{prob:dense}
+(i) Determine the full set $\mathcal A_{\log}$ of usable-entanglement logarithmic coefficients of fixed games of \cref{sec:arithmetic}. Every positive $\Delta^0_2$ real is already in this set, on the original mixed state, by~\cite[Theorems~1.1 and~16.6, Corollary~16.7]{DM-U3}; whether the full usable spectrum is larger remains open. (ii) Find fixed games with
+power laws $d^\to_G(\eps)=\eps^{-\beta+o(1)}$ for a dense set of exponents $\beta$ in some interval, or with another new asymptotic shape,
+with complete two-sided operational accounting. (iii) Find a finitely presented exact source with a genuinely new noninteger or
+intermediate demand law, or a dense interval of laws, with both an original-state lower bound and a finite-rank exact upper construction.
+\end{problem}
+
+For (i), the known inclusion is $(\Delta^0_2\cap(0,\infty))\subseteq\mathcal A_{\log}$, by the matched original-state laws of~\cite[Theorem~16.6 and Corollary~16.7]{DM-U3}. Every element of $\mathcal A_{\log}$ is left-c.e.\ relative to $0''$ (\cref{thm:arithmetic}); these bounds do not classify the full mixed-state usable spectrum. In contrast, the positive pure original-state entropy spectrum is exactly the positive $\Delta^0_2$ reals (\cref{thm:pure-spectrum}). For (ii), finite sums of
+logarithmic demands remain logarithmic, so $\mathcal S$ says nothing about power laws. The only exponents known for the games of this paper
+are $\beta=1$, for the configuration-lamp game (\cref{thm:lamps-ED}), and $\beta=0$, for the logarithmic laws; the point window of
+\cref{thm:point-window} does not identify an exponent. For
+(iii), the subset sources give the positive integers and the configuration and replication sources exponential order. Dimension
+exponents, logarithmic coefficients and exact-source laws are different quantities, and none of these results settles the others.
+\Cref{prop:finite-support} closes only the finite-support architecture with full stabilizers.
+
+\begin{problem}[An unrestricted linear compiler]\label{prob:linear}
+Construct, for every finite presentation with a marked central involution, a finite linear system game with split algebraic maps
+and retained-state precision sufficient for the profiles. \Cref{prop:no-linear} excludes word decoders, so a polynomial-corner or
+another architecture is needed; \cref{thm:universal} solves the case of Boolean constraint games only.
+\end{problem}
+
+Supplying self-contained proofs of the inputs of \cref{thm:native,thm:native-enlarged}, and of the restricted compiler of
+\cref{thm:rational-linear-k}, would remove their conditions; this is consolidation, not a new discovery. Linear games with every
+coefficient of \cref{cor:coefficient-set} already exist by \cref{thm:rational-ED}, so that compiler matters only for its explicit
+specifications.
+
+\begin{problem}[Remaining analytic gaps in the rational family]\label{prob:analytic}
+(i) Improve the lower remainder of \cref{thm:rational-ED} to $O(1)$. (ii) Close the $O(\log\log)$ gap for $H_\infty$ at $\alpha=1$ in
+\cref{thm:renyi}. (iii) Settle the shared-dilation source with $4$ and $9$, presently between rank $\Omega(e^{-1/2})$ and $O(e^{-1})$;
+for an exact spectral law invariant under multiplication by $4$ and $9$, joint ergodicity and positive entropy for one of these
+maps imply Haar measure by the theorem of Rudolph and Johnson~\cite{Rud90,Joh92}, but that exact-invariance result supplies no
+stability modulus for the approximately invariant laws of our source models.
+\end{problem}
+
+\begin{problem}[Directional normalization beyond agreement]\label{prob:direction}
+Determine the optimal loss and resource conversion between the two directions for games that are not agreement games, or improve
+the rescaling of demand profiles under a larger, physically specified contract. \Cref{thm:factor-three-sharp} gives a mechanism
+boundary with Bob fixed, not optimality for all profile comparisons, and \cref{prop:sync-repair} gives only a square-root loss. In a
+search over small synchronous strategies with non-difunctional off-diagonal predicates no loss ratio above three was found (the
+largest was $2.997$), which suggests that the square-root repair is loose.
+\end{problem}
+
+Beyond these, two questions inherited from the tool results remain. It remains open whether a state-weighted central-involution
+profile can be asymptotically much smaller than its flat profile. They agree up to constant precision rescaling for the matching
+families computed here; the point-source window does not settle this comparison in general. And it is open whether near-optimal
+strategies for $\mathrm{CHSH}(n)$ contain $\Omega(\min(n,1/\eps))$ distillable ebits; for that game only the entanglement entropy and
+the entanglement of formation are controlled~\cite[Theorem~E]{DM-game}.

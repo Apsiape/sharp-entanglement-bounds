@@ -1,105 +1,17 @@
-%======================================================================
 \section*{How this work was done}\label{sec:methods}
 \addcontentsline{toc}{section}{How this work was done}
-%======================================================================
 
-\paragraph{Roles.} This paper is the work of its two authors together with current frontier AI models from more than one
-developer. The authors set the direction throughout: they chose the questions, fixed the scope and the standards of proof and
-review, decided which lines to pursue and which to stop, and take full responsibility for every claim. The models did most of the
-exploration, derivation, computation and drafting, in a sequence of short research sprints. Each sprint ran several independent
-lines on one question, with an adversarial line attacking the others, and recorded its results in written proof files with their
-status; a consolidated ledger of the surviving theorems, their exact hypotheses, dependencies and corrections was then the sole
-source for this write-up. Statements that a sprint proposed and a later sprint or review refuted are recorded as such; several of
-them appear in \cref{sec:obstructions}.
+The authors selected the questions and scope, directed the research and take responsibility for every claim. AI models from more than one developer assisted with exploration, derivation, computation and drafting. The models were set against each other in refutation-first checks and repeated whole-paper adversarial reviews, with exact computation. Reports of the checks are available from the authors.
 
-\paragraph{Validation.} The evidence for the results is of three kinds: complete written proofs and computations by the
-scripts in \texttt{verify/}, which the reader can check, and independent blind reviews, summarized below. The reviews served to
-find errors; they do not replace the proofs.
-\begin{itemize}[leftmargin=*,itemsep=2pt]
-\item \emph{Proofs.} Every theorem is proved in the text or the appendices, or, for the results of our companion
-paper~\cite{DM-game}, stated with a pointer to its proof there; each theorem is proved in exactly one of the two papers.
-Conditional results name their missing inputs.
-\item \emph{Blind reviews.} Four independent reviews, each by a model of a different developer from the one that derived the
-results, read only the proof files and the literature, formed their verdicts before reading any internal assessment, worked
-refutation first, and wrote their own checks. The first covered the universal compiler and the Boolean return; the second the
-rational source family, its Boolean constraint games, the R\'enyi spectrum, the shared-dilation source, the operational extraction tools and
-the rational and configuration-lamp rates; the third Theorem~A, its certificates, the undecidability and protocol theorems, the
-point window, the native class laws and the exact point and configuration sources; the fourth the directional results, the subset
-and replication sources, the obstructions of \cref{sec:phase,sec:finite-support,sec:trace-visibility} and the $I_{3322}$ contrast. None of these four
-reviews found a false statement. They found gaps that are repaired here: the moment hierarchy needs the projection relations on both sides; the
-unrestricted point-game upper bound is $\eps^{-1/4}$, below the native law, which is therefore labelled as a class law; the protocol
-is coherent white-box, not device-independent; Slofstra's construction already has ternary equations; the block lemma of
-\cref{prop:normal-perfect} is known; and several attributions were added. The reviews also left two statements conditional, and
-they are labelled so. The tool results inherited from our earlier draft (the count, the transfer and return, the compiler on
-virtual retracts, $\mathrm{CHSH}(n)$ and the Slofstra--Vidick results) were reviewed in the same way before; those that are now
-proved in the companion paper are reviewed with it.
-\item \emph{A second read.} The finished manuscript was then read as a whole by a model of another developer, not blind, since
-it had seen the discovery history; a separate fresh-context reader of the manuscript alone contributed to it. It compared every
-statement with the ledger, wrote out the two proofs that had been outlined (\cref{prop:raw-pairs,prop:phase}), which were then checked
-step by step, checked the several-copy route to linear games (\cref{cor:linear-existence}), which was then rederived, and ran a
-citation snowball. It found
-statements that were false as written, all repaired here: an inference from the $I_{3322}$ contrast to the classes of Theorem~A,
-the domain of the R\'enyi formula in Theorem~C, the dimension of invariant measures, a permutation convention in
-\cref{thm:shared}, an equality case in the Jensen--Shannon bound of the count and a missing hypothesis in \cref{prop:finite-support}; and several
-attributions were added.
-\item \emph{Audits of the whole manuscript.} The complete manuscript was then audited twelve times, each time by a model of another
-developer; the first ten audits also used the scripts and checked every reference against a primary record. The first nine audits
-were blind; the tenth saw this account of the earlier reviews and the status table after it had found its points, and the last two
-each saw part of this account by accident. The first audit found one false statement, repaired here: the extraction clause of
-Theorem~A had lost the hypothesis that the game has no finite-dimensional perfect strategy. No later audit found a counterexample
-to any theorem. Their findings, all repaired here, included gaps in proofs and in the checks, statements wider than what was
-proved, and points of wording and citation; the substantive ones were a false orthogonality claim in the one-stage proof of
-\cref{lem:cyclic-triangular}, now proved without it; the lift in the proof of~\cite[Proposition~6.2]{SV18} for several
-non-involutive generators, now replaced by \cref{prop:extended} and~\cite[Lemma~11.13]{DM-game}; the block size in
-\cref{prop:window-dilution}; an interface hypothesis in the proof of \cref{thm:lamps-ED}; and summaries wider than the theorems
-in the abstract, the introduction and the opening of \cref{sec:lamps} (the factor three, the computable thresholds, the
-coefficient domain, a law stated for every strategy). \Cref{app:audits} lists each audit and its findings.
-\item \emph{Two proof checks of new results.} The floor results of \cref{sec:floor,app:floor} and the window obstruction of
-\cref{app:window} were derived after the second audit and proof-checked by a model of another developer. It found all of them to
-hold and asked for repairs, all made here: the certificate transfer is stated only where \cref{prop:interface} proves it; the value-one
-chain for Abels' group and the constants from relators to the interface are written out; the separation of single-copy thresholds is
-claimed only below infidelity about $\frac14$; the polynomials of \cref{prop:slow-recovery} are formally self-adjoint; and the dilution
-of \cref{prop:window-dilution} uses a weight depending on $M$, so that it covers the scale of the window proof. An exact form of type~II
-sign and dilation, which rested on two imported theorems that had not been checked, was then removed from \cref{prop:typeII}. The coefficient
-results of \cref{thm:rational-ED} for irrational $\alpha$, \cref{lem:cyclic-triangular} and \cref{sec:coefficient-set,sec:arithmetic} were
-derived during the third audit and proof-checked by a model of another developer, which found all of them to hold and asked for
-repairs, all made here: the small-loss domain of \cref{thm:rational-ED}; the extension of \cref{prop:interface} to selector
-polynomials; an explicit cross-party bound for cuts with $q$ arcs; and the wording of the transcendence example, with the original
-Gelfond and Schneider papers cited. The sharper arithmetic bound of \cref{thm:arithmetic}, left-c.e.\ relative to $0''$ rather than
-computable relative to $0'''$, was sketched by that check and is proved here.
-\item \emph{Computation.} The scripts in \texttt{verify/}, run by \texttt{verify/run\_all.py}, attack the inequalities on random,
-perturbed, singular and non-flat instances and record their output in \texttt{verify/logs/}: the qubit count, the lemmas of the
-preliminaries, the return theorems, the Wasserstein-$1$ and transport estimates, the lamp-source models and the arithmetic of their
-orbits, the random-cut and weighted-history lemmas with a nonunital negative control, the cyclic extraction of
-\cref{lem:cyclic-triangular} (one stage exactly, with controls of order other than $q$; the one-stage inequality~\eqref{eq:cyc-stage}
-with constant one on perturbed and random instances, with the non-orthogonal unrecorded vectors as a negative control; and several stages
-on a mixed state with perturbed mirrors, where the error scales linearly with the residuals, with a negative control), the cut bound across the parties with
-$q$ arcs, Fourier-lamp models with non-dyadic dilations, the depth arithmetic of \cref{thm:rational-ED} and the coefficient set of
-\cref{cor:coefficient-set}, the balanced construction of \cref{prop:extended} on random inputs (with the unbalanced literal marker,
-which admits no approximate sign relation, as a negative control) and the lift of~\cite[Lemma~11.13]{DM-game} for the Slofstra--Vidick
-models, replayed independently of the companion's own check, the universal compiler on two sources with
-its split identity checked exactly in the negative quotient, the linear games K4 and L4M8 rebuilt from their sources, and the
-tree of faces behind \cref{thm:linear-filling}, whose free equality is checked on integer edge words before group labels are
-substituted. The larger exported objects are archived in \texttt{verify/artifacts} with their SHA-256 hashes, and
-\texttt{verify/run\_artifacts.py} replays their checks: the point-Pauli Boolean game, checked exactly against the $22$ relators of
-\cref{sec:point-source}; the archived L4M8 game, checked exactly against its source presentation, every square, row and row
-commutator, by applying the normal-form engine of \texttt{verify/check\_linear\_games.py} to the archived file (a check adapted from the
-second audit, which shares that engine), and played completely with Fourier-lamp strategies at four sizes in floating point; the
-two-copy game, checked exactly in the negative source algebra, every square, row and row commutator, and played on every context and
-raw outcome at two sizes; the selector construction of \cref{thm:undecidable} on two small inputs, with the L4M8 game in place of Slofstra's
-fallback and without the ternary reduction; and bounded exact controls of the literal subset-lamp presentation for $k=2$ and of
-the replication presentation of \cref{sec:exact}. No inequality was violated. Finite checks support the proofs and do not replace
-them.
-\end{itemize}
-No argument here has been formally verified; the proofs, the computations and the blind reviews are offered for checking as
-they stand.
+\paragraph{Proof and computational scope.} Each result in \cref{tab:status} identifies its proof, imported input or conditional hypothesis. The companion-source map in \cref{app:companion} records the external results used. The verification scripts test the specified finite constructions and numerical estimates; they do not establish the asymptotic theorems. \Cref{app:audits} gives reproducibility commands, dependencies and computational limitations. No formal verification of this manuscript is claimed.
 
-\paragraph{Priority.} For each headline result, bounded searches of arXiv and the general literature, and the reviews, compared the
-statements with the closest work; the credits they found are given at the results. They found no exact preemption of the composed
-statements, which is not an exhaustive priority verdict. The second read compared the white-box protocol with the two September 2026
-preprints on universal entanglement distillation~\cite{TWMAH26,TMGL26} against their primary texts, and ran a backward and
-forward citation snowball over the bibliography; the ancestry it found (compound-source distillation~\cite{BJ14} and the
-relation-decomposition lemma of~\cite{MSZ23}) is credited at the results. Two further blind sweeps by models of another developer
-compared the claims with the literature up to October 2026, including recent self-testing results~\cite{Bap25,VZ26,CZ26} and the
-concurrent $I_{3322}$ papers~\cite{Pau26,Col26}, and every reference was then checked against its primary source; the comparisons
-are stated at the results.
+\paragraph{Finite computations and exported objects.}
+The scripts in \texttt{verify/}, run by \texttt{verify/run\_all.py}, test the inequalities on random, perturbed, singular and non-flat instances. They record the qubit count, preliminary lemmas, return theorems, Wasserstein-$1$ and transport estimates, lamp-source models and orbit arithmetic, random-cut and weighted-history lemmas, cyclic extraction on mixed states with perturbed mirrors, non-orthogonal unrecorded-vector controls, cross-party cut bounds, Fourier lamps with non-dyadic dilations, depth and coefficient arithmetic, balanced lifts and their unbalanced-marker controls, the universal compiler's exact split identity, finite linear games and tree-of-faces identities. The source relators and their raw finite words are tested before group labels are substituted. These are checks of the enumerated instances, not general proofs.
+
+The larger exported objects are archived in \texttt{verify/artifacts/} with SHA-256 hashes. The runner \texttt{verify/run\_artifacts.py} replays their checks: the point-Pauli Boolean game against all $22$ source relators; the archived L4M8 game against its presentation, squares, rows and row commutators using the normal-form engine of \texttt{check\_linear\_games.py}, with complete Fourier-lamp play at four sizes; the two-copy game in the negative source algebra, with every context and raw outcome played at two sizes; the selector construction on two small inputs using L4M8 in place of the fallback game; and bounded exact controls for the literal subset and replication sources. The archived-game checker shares that normal-form engine, so it is not an independent implementation of the engine.
+
+\paragraph{Spectrum, floor and window checks.} The script \texttt{verify/check\_refinements.py} checks nineteen finite groups of assertions, including arithmetic arrays, flagged ensembles, physical leakage, floor diagnostics, Laurent freeness and the small-error pairwise budget. The current point-window exponent is recorded by \texttt{check\_tree\_filling.py} and the window engines. The script \texttt{verify/check\_window.py} runs two independently implemented free-word verifiers of one certificate set produced by the first engine. Each verifies thirty-seven core and six transfer certificates before and after literal auxiliary-relator expansion; the second also checks sixty holonomy examples. They are two verifiers of the same certificate set, not two independent certificate-generation procedures. Their recorded JSON contains the matrices, spectra, constants and certificate results. The runners execute one process at a time with one numerical-library thread. Rerunning intentionally refreshes the JSON and logs specified in the repository README.
+
+The leakage proof uses Winter's conditional-entropy bound~\cite[Lemma~2]{Winter16}. The magnetic-cycle spectrum and equal-distribution minimization used for holonomy are credited to~\cite[Lemma~2.9]{CTT11} and~\cite[Proposition~4.6(b)]{BGKLM20}. Recovery, exact synchrony, hashing, convex roofs and entropy continuity retain their cited sources at use.
+
+\paragraph{Literature and limits.} Bounded primary-literature searches compare the headline statements with the works credited at the results; they do not establish exhaustive priority. The white-box protocol is compared with universal distillation~\cite{TWMAH26,TMGL26}, compound-source distillation~\cite{BJ14} and relation decomposition~\cite{MSZ23}. Comparisons also include self-testing~\cite{Bap25,VZ26,CZ26}, the $I_{3322}$ literature~\cite{Pau26,Col26}, and the tools listed in \cref{sec:intro-related}. Written proofs remain the evidence for the asymptotic statements; finite computations and reviews support their checking.

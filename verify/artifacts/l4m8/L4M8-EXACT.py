@@ -1,7 +1,6 @@
 """Exact check of the archived L4M8 linear game against its source presentation.
 
-Origin: adapted from the check `check_archived_l4m8_exact.py` written by the second blind audit (October 2026), which found that
-the replay checked the archived file only numerically and the rebuilt game only exactly. This script loads the archived
+The script loads the archived
 L4M8-LINEAR-GAME.json itself and checks, exactly, in the negative quotient of the source L48 (four lamps, m = 8), that every
 variable used in a row squares to the identity, that every row multiplies to its sign, and that the variables of every row
 commute; a negative control flips the sign of one block of one variable and must be detected. Each variable is stored as a block-monomial matrix (`row_to_column`, entries with a sign and a word in the source

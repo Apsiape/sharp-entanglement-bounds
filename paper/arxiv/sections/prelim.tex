@@ -1,0 +1,242 @@
+%======================================================================
+\section{Preliminaries}\label{sec:prelim}
+%======================================================================
+
+Unless stated otherwise, strategies are finite-dimensional. The exceptions are stated where they occur: the Alice-local
+recovery and the local symmetric output accept normal states (\cref{sec:recovery,sec:local-symmetry}), \cref{sec:boundary} treats
+normal spatial strategies, and the exact source representations of \cref{sec:exact} have infinite-dimensional ambient spaces.
+This section fixes the norms in which every
+error is measured, the
+dictionary between a shared pure state and Hilbert--Schmidt operators on one side, and a short calculus for words in
+unitaries measured in a fixed state. The last three subsections recall the projection-product inequality, which makes
+twirls of Hilbert--Schmidt vectors useful, the passage from a state to its restriction to a sector, and the facts about
+relative entropy that the counting argument needs. Except for the polar correction (\cref{lem:polar}) and the transfer
+across the parties (\cref{lem:transfer-parties}), the lemmas of this section are proved in our companion
+paper~\cite[Section~3]{DM-game}, in the same or a stronger form; we state them here, with a pointer, and do not repeat
+their proofs.
+
+\subsection{Norms, states and resources}\label{sec:prelim-norms}
+
+For an operator $T$ between Hilbert spaces, $\hs{T}=(\Tr T^*T)^{1/2}$ is the unnormalized Hilbert--Schmidt norm,
+$\trn{T}$ the trace norm and $\opn{T}$ the operator norm. We use $\hs{XTY}\le\opn X\hs T\opn Y$, Hölder's inequality
+$\trn{ST}\le\hs S\hs T$, and the invariance of $\hs\cdot$ under multiplication by unitaries on either side. On $\C^d$,
+the normalized norm is $\fn{T}=\hs{T}/\sqrt d$. An \emph{involution} is a Hermitian unitary. We write $[S,T]=ST-TS$ and
+$\{S,T\}=ST+TS$ for operators; for words, $[u,v]=uvu^{-1}v^{-1}$ is the group commutator.
+
+Let $\rho$ be a density matrix on $\C^d$ and $\xi=\rho^{1/2}$, so that $\hs\xi=1$. For an operator $Y$ on $\C^d$ we
+call
+\[
+\hs{Y\xi}=\Tr(Y^*Y\rho)^{1/2}\qquad\text{and}\qquad\hs{[Y,\xi]}
+\]
+the \emph{state-weighted norm} of $Y$ and the \emph{state commutator} of $Y$. For the flat state $\rho=I/d$ the first is
+$\fn{Y}$ and the second vanishes. We use without comment that $\hs{XY\xi}\le\opn X\hs{Y\xi}$, that $\hs{Y\xi U}=\hs{Y\xi}$
+for unitary $U$, that $\hs{\xi Y}=\hs{Y^*\xi}$, that $\hs{(U^*-I)\xi}=\hs{(U-I)\xi}$ for unitary $U$, and that
+$[U^*,\xi]=-U^*[U,\xi]U^*$, so $\hs{[U^*,\xi]}=\hs{[U,\xi]}$. For contractions $S,T$ the Leibniz rule
+$[ST,\xi]=S[T,\xi]+[S,\xi]T$ gives $\hs{[ST,\xi]}\le\hs{[S,\xi]}+\hs{[T,\xi]}$.
+
+Logarithms are to base two unless written $\ln$, $h(x)=-x\log x-(1-x)\log(1-x)$ is the binary entropy, $S$ is the von
+Neumann entropy in bits, and $D(A\|B)=\Tr A(\log A-\log B)$ is the relative entropy of positive operators $A,B$ with
+$\supp A\subseteq\supp B$.
+
+\paragraph{Resources.} A unit vector $\psi\in H_A\otimes H_B$ has a Schmidt decomposition
+$\psi=\sum_{k=1}^r\sqrt{\lambda_k}\,e_k\otimes f_k$ with $\lambda_k>0$ and orthonormal families $(e_k)$, $(f_k)$. Its
+reduced density matrices $\rho_A$ and $\rho_B$ have the same nonzero eigenvalues $\lambda_k$. We keep four quantities
+apart: the \emph{Schmidt rank} $r=\rank\rho_B$, which is at most the local dimensions; its logarithm; the
+\emph{entanglement entropy} $S(\rho_A)=S(\rho_B)\le\log r$, the number of ebits of a pure state; and, for a mixed state
+$\sigma$ on $H_A\otimes H_B$, the \emph{entanglement of formation}~\cite{BDSW96}
+\[
+\EF(\sigma)=\inf\Bigl\{\sum_jp_jS\bigl(\Tr_B|\psi_j\rangle\langle\psi_j|\bigr):\ \sigma=\sum_jp_j|\psi_j\rangle\langle\psi_j|\Bigr\}.
+\]
+The distillable entanglement $\ED(\sigma)$ is at most $\EF(\sigma)$, so a lower bound on $\EF$ says nothing about $\ED$.
+
+For a nonlocal game $G$ with quantum value $\omega_q(G)$, $\Ent(G,\eps)$ is the least $d$ such that some strategy with
+$H_A=H_B=\C^d$ wins with probability at least $\omega_q(G)-\eps$~\cite{SV18}. Compressing each player's measurements to
+the support of the reduced state does not change any probability~\cite[Remark~2.9]{DM-game}, so $\Ent(G,\eps)$ is also
+the least Schmidt rank of such a strategy. A lower bound on the Schmidt rank of every strategy that wins with
+probability at least $\omega_q(G)-\eps$ is therefore a lower bound on $\Ent(G,\eps)$; a lower bound on the entanglement
+entropy is a lower bound on $\log\Ent(G,\eps)$.
+
+\subsection{The standard form}\label{sec:prelim-standard}
+
+A shared pure state turns operators of either player into Hilbert--Schmidt operators on one side, with the reduced
+state appearing as a factor $\xi$ on the left or on the right.
+
+\begin{lemma}[Standard form]\label{lem:standard-form}
+Let $\psi\in H_A\otimes H_B$ be a unit vector, $\rho=\rho_B$ and $\xi=\rho^{1/2}$.
+\begin{enumerate}[label=(\alph*),itemsep=1pt]
+\item For every operator $Y$ on $H_B$, $\lVert(I\otimes Y)\psi\rVert=\hs{Y\xi}$.
+\item For every Hermitian operator $A$ on $H_A$ there is a Hermitian operator $\tilde A$ on $H_B$ with
+$\opn{\tilde A}\le\opn A$ such that, for every operator $Y$ on $H_B$,
+\[
+\hs{Y\xi-\xi\tilde A}\ \le\ \lVert(A\otimes I-I\otimes Y)\psi\rVert .
+\]
+\end{enumerate}
+The same holds with the roles of the two factors exchanged.
+\end{lemma}
+
+This is~\cite[Lemma~3.1]{DM-game}. It is the standard form of the state: Slofstra and Vidick start their analysis of general
+strategies from the identity $\langle\psi,(B^T\otimes C)\psi\rangle=\Tr(B\lambda C\lambda)$, $\lambda=\rho^{1/2}$~\cite[proof of
+Proposition~5.4]{SV18}, and Marrakchi and de la Salle use the standard form in the same way for rounding near-synchronous
+strategies~\cite{MdlS23}.
+
+\subsection{Consistency gives state commutation}\label{sec:prelim-consistency}
+
+If an observable of one player agrees with a Hermitian operator of the other on the shared state, the observable
+nearly commutes with the square root of the reduced state, with no loss in the exponent.
+
+\begin{lemma}\label{lem:consistency}
+Let $B$ be an involution and $T$ a Hermitian operator on $\C^d$, of any norm, with $\hs{B\xi-\xi T}\le\theta$. Then
+$\hs{[B,\xi]}\le\sqrt2\,\theta$.
+\end{lemma}
+
+This is~\cite[Lemma~3.2]{DM-game}, the Cauchy--Schwarz argument of~\cite[(5.1)]{SV18} with an explicit constant and with a
+Hermitian partner of arbitrary norm; the constant $\sqrt2$ cannot be improved.
+
+\subsection{State-weighted calculus}\label{sec:prelim-calculus}
+
+Let $S$ be a finite alphabet and $\varphi:F(S)\to\mathrm U(d)$ a homomorphism from the free group, so that
+$\varphi(w)$ depends only on the free reduction of a word $w$. The defect of a relator in the state is
+$\hs{(\varphi(r)-I)\xi}$. Unlike the normalized trace, a fixed state does not ignore conjugation, so conjugators are
+charged through state commutators.
+
+\begin{lemma}\label{lem:calculus}
+Suppose $\hs{[\varphi(s),\xi]}\le e_c$ for every $s\in S$.
+\begin{enumerate}[label=(\alph*),itemsep=1pt]
+\item $\hs{[\varphi(w),\xi]}\le|w|\,e_c$ for every word $w$.
+\item For unitaries $U_1,\dots,U_k$, $\hs{(U_1\cdots U_k-I)\xi}\le\sum_l\hs{(U_l-I)\xi}$.
+\item For unitaries $g,U$, $\hs{(gUg^*-I)\xi}\le\hs{(U-I)\xi}+2\hs{[g,\xi]}$.
+\item If $w$ is freely equal to $\prod_{l=1}^ku_lr_l^{\pm1}u_l^{-1}$ for words $u_l,r_l$ with
+$\hs{(\varphi(r_l)-I)\xi}\le e$ for all $l$, then $\hs{(\varphi(w)-I)\xi}\le\sum_{l=1}^k(e+2|u_l|e_c)$.
+\item For contractions $Y_1,\dots,Y_m$ and unitaries $Y_1',\dots,Y_m'$,
+\[
+\hs{(Y_1\cdots Y_m-Y_1'\cdots Y_m')\xi}\ \le\ \sum_{l=1}^m\Bigl(\hs{(Y_l-Y_l')\xi}+2\sum_{l'>l}\hs{[Y'_{l'},\xi]}\Bigr).
+\]
+\end{enumerate}
+\end{lemma}
+
+This is~\cite[Lemma~3.3]{DM-game}; parts (b), (c) and (e) do not use the hypothesis.
+
+Part (d) needs short conjugators. For relations with bounded area the next lemma supplies them; it is the usual
+relation between area and conjugator length, read off a van Kampen diagram~\cite[Chapter~V, Section~1]{LS77}, \cite[Section~4]{Bri02}.
+Let $R$ be a finite set of words. A word $w$ has \emph{area at most $k$ in $R$} if it is freely equal to a product of $k$
+conjugates of elements of $R^{\pm1}$.
+
+\begin{lemma}[Conjugator lengths]\label{lem:conjugators}
+Let every word of $R$ have length at most $K$. If $w$ has area at most $k$ in $R$, then $w$ is freely equal to a
+product $\prod_{l=1}^{k'}u_lr_l^{\pm1}u_l^{-1}$ with $k'\le k$, $r_l\in R$ and $|u_l|\le|w|+K(k+1)$ for all $l$.
+\end{lemma}
+
+Our companion paper proves the sharper bound $|u_l|\le|w|+kK$~\cite[Lemma~3.4]{DM-game}.
+
+\begin{lemma}[Rounding]\label{lem:rounding}
+For a unitary $U$ let $\mathrm r(U)$ be the involution obtained by replacing each eigenvalue $\lambda$ of $U$ by $1$ if
+$\re\lambda\ge0$ and by $-1$ otherwise. Then
+\[
+\hs{(\mathrm r(U)-U)\xi}\le\hs{(U^2-I)\xi}\qquad\text{and}\qquad\hs{[\mathrm r(U),\xi]}\le\hs{[U,\xi]}+2\hs{(U^2-I)\xi}.
+\]
+\end{lemma}
+
+This is~\cite[Lemma~3.6]{DM-game}.
+
+\begin{lemma}[Rotating the state]\label{lem:rotate}
+For a unitary $U$, $\trn{U^*\rho U-\rho}\le2\hs{[U,\xi]}$.
+\end{lemma}
+
+This is~\cite[Lemma~3.7]{DM-game}.
+
+Operators that are unitary only approximately, in the state, are corrected by their polar part; both one-sided defects
+are needed.
+
+\begin{lemma}[Polar correction]\label{lem:polar}
+Let $A$ be an operator on $\C^d$ and $\xi\ge0$. Every unitary $U$ with $A=U|A|$ satisfies
+\[
+\hs{(U-A)\xi}\le\hs{(A^*A-I)\xi},\qquad\hs{\xi(U-A)}\le\hs{(AA^*-I)\xi},
+\]
+and hence $\hs{[U,\xi]}\le\hs{[A,\xi]}+\hs{(A^*A-I)\xi}+\hs{(AA^*-I)\xi}$.
+\end{lemma}
+
+\begin{proof}
+A square matrix has a polar decomposition $A=U|A|$ with $U$ unitary; let $U$ be any such unitary. For $t\ge0$, $|1-t|\le|1-t^2|$, so
+$(I-|A|)^2\le(I-A^*A)^2$ and $\hs{(U-A)\xi}^2=\hs{(I-|A|)\xi}^2=\Tr(\xi(I-|A|)^2\xi)\le\hs{(A^*A-I)\xi}^2$. Next
+$A^*=|A|U^*=U^*|A^*|$, since $|A^*|=(U|A|^2U^*)^{1/2}=U|A|U^*$; this is a polar decomposition of $A^*$ with the unitary $U^*$, so
+the first bound gives $\hs{(U^*-A^*)\xi}\le\hs{(AA^*-I)\xi}$, and $\hs{\xi(U-A)}=\hs{(U^*-A^*)\xi}$. The last bound follows from
+$[U,\xi]=[A,\xi]+(U-A)\xi-\xi(U-A)$.
+\end{proof}
+
+For the flat state this is the standard polar rounding~\cite[Lemma~2.8(a)]{SV18}. The left defect cannot be dropped: for
+$A=\bigl(\begin{smallmatrix}0&0\\1&0\end{smallmatrix}\bigr)$ and $\xi=\mathrm{diag}(1,0)$ we have $(A^*A-I)\xi=0$, but every
+unitary $U$ with $A=U|A|$ has $\hs{\xi(U-A)}=1$.
+
+\subsection{Hilbert--Schmidt twirls}\label{sec:prelim-twirl}
+
+\begin{lemma}[Projection products; {\cite[Lemma~4.1]{DM-H3}, \cite[Lemma~3.8]{DM-game}}]\label{lem:projection-product}
+Let $P_1,\dots,P_k$ be orthogonal projections on a Hilbert space. Every vector $y$ satisfies
+\[
+\lVert y\rVert^2-\re\langle y,P_k\cdots P_1y\rangle\ \le\ 2\sum_{l=1}^k\lVert(I-P_l)y\rVert^2 .
+\]
+\end{lemma}
+
+The quantum union bounds for sequential projective measurements control instead the probability that all outcomes occur, for
+example $1-\lVert P_k\cdots P_1y\rVert^2\le4\sum_l\lVert(I-P_l)y\rVert^2$ for a unit vector $y$~\cite[Theorem~1]{Gao15}, with a version
+with a tunable parameter by Khabbazi Oskouei, Mancini and Wilde~\cite{KMW19}; the twirls below use the real part of the overlap that the
+lemma bounds.
+
+For an involution $Z$ on $\C^d$, the map $\alpha_Z(v)=ZvZ$ on $M_d(\C)$ with the Hilbert--Schmidt inner product is
+unitary and equal to its inverse, hence self-adjoint, \emph{whatever state is in use}. So $A_Z^\pm=\frac12(I\pm\alpha_Z)$
+are orthogonal projections. The state enters only through the vectors that are twirled.
+
+\begin{lemma}[Two-sided twirls]\label{lem:twirl}
+Let $Z_1,\dots,Z_k$ be involutions on $\C^d$, $v\in M_d(\C)$, and fix signs $\sigma_j\in\{\pm1\}$. For
+$g\in\Z_2^k$ put $s(g)=\prod_j\sigma_j^{g_j}$ and $v_g=Z_k^{g_k}\cdots Z_1^{g_1}vZ_1^{g_1}\cdots Z_k^{g_k}$. Then, for
+uniformly random $g$,
+\[
+\mathbb E_g\hs{s(g)v_g-v}^2\ \le\ \sum_{j:\sigma_j=+1}\hs{[Z_j,v]}^2+\sum_{j:\sigma_j=-1}\hs{\{Z_j,v\}}^2 .
+\]
+\end{lemma}
+
+This is~\cite[Lemma~3.9]{DM-game}.
+
+With a non-flat state, the map $T\mapsto\frac12(T+ZTZ)$ is not an orthogonal projection for the weighted inner product
+$\Tr(\rho S^*T)$; twirling the vectors $v=Z_i\xi$, $X_i\xi$ and $\xi$ avoids this.
+
+\subsection{Changing the state to a sector}\label{sec:prelim-sector}
+
+The counting arguments compress the state, not the operators, to the eigenspace where a central involution acts as
+$-1$.
+
+\begin{lemma}[Sector states]\label{lem:sector}
+Let $J'$ be an involution on $\C^d$, $P_\pm=\frac12(I\pm J')$, $p=\Tr(P_-\rho)>0$, $\rho_-=P_-\rho P_-/p$,
+$\xi_-=\rho_-^{1/2}$ and $\eta=P_-\xi P_-/\sqrt p$.
+\begin{enumerate}[label=(\alph*),itemsep=1pt]
+\item $\hs{\xi_--\eta}\le\hs{P_+\xi P_-}/\sqrt p$, and $\hs{P_+\xi P_-}\le\frac12\hs{[J',\xi]}$.
+\item For every operator $R$, $\hs{R\xi_-}\le\bigl(\hs{RP_-\xi}+\opn R\hs{P_+\xi P_-}\bigr)/\sqrt p$, and
+$\hs{R\xi_-}\le\bigl(\hs{R\xi}+\opn R\hs{[J',\xi]}\bigr)/\sqrt p$.
+\item For every Hermitian contraction $Y$,
+\[
+\hs{[Y,\xi_-]}\le\bigl(2\hs{[Y,P_-]\xi}+\hs{[Y,\xi]}+2\hs{P_+\xi P_-}\bigr)/\sqrt p.
+\]
+For every unitary $Y$,
+\[
+\hs{[Y,\xi_-]}\le\bigl(\hs{[Y,J']\xi}+3\hs{[Y,\xi]}+\hs{[J',\xi]}\bigr)/\sqrt p.
+\]
+\end{enumerate}
+\end{lemma}
+
+This is~\cite[Lemma~3.10]{DM-game}.
+
+For a Hermitian $Y$ of arbitrary norm the proof of (c) gives the same bound with $2\opn Y\hs{P_+\xi P_-}$ as the last
+term; we use (c) only for involutions and unitaries.
+
+\subsection{Entropy}\label{sec:prelim-entropy}
+
+We use three standard facts~\cite[Section~3.7]{DM-game}. If $\mathcal P(\sigma)=\sum_kP_k\sigma P_k$ is the pinching by orthogonal projections
+$P_k$ with $\sum_kP_k=I$, then $\log\mathcal P(\sigma)$ is block diagonal, so $\Tr\sigma\log\mathcal P(\sigma)=
+\Tr\mathcal P(\sigma)\log\mathcal P(\sigma)$ and
+\begin{equation}\label{eq:pinching}
+S(\mathcal P\sigma)-S(\sigma)=D(\sigma\|\mathcal P\sigma)\ \ge0 .
+\end{equation}
+The relative entropy does not increase under quantum channels~\cite{Lin75,Uhl77}. And $D(A\|B)$ is jointly convex in
+pairs of positive operators~\cite{Lie73,Lin74}; since it is also positively homogeneous,
+$D(A_1+A_2\|B_1+B_2)\le D(A_1\|B_1)+D(A_2\|B_2)$.
+
+\input{sections/prelim-usable}

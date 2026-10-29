@@ -1,0 +1,105 @@
+N2_original aux {'H': 4, 'B3': 1, 'S2': 3, 'J0': 1} original [3, 1, 0, 4, 1]
+J1_original aux {'H': 2, 'J0': 1, 'F2': 1} original [0, 0, 1, 2, 1]
+N3_original aux {'H': 2, 'F2': 1, 'N2': 1} original [3, 1, 1, 6, 1]
+F3 aux {'J0': 2, 'N2': 2, 'F2': 1} original [6, 2, 1, 8, 4]
+J2 aux {'H': 2, 'J1': 1, 'J0': 2, 'N2': 2, 'F2': 1} original [6, 2, 2, 12, 5]
+F4 aux {'J0': 4, 'N3': 2, 'N2': 2, 'F2': 1} original [12, 4, 3, 20, 8]
+F5 aux {'J1': 2, 'J0': 4, 'N3': 4, 'N2': 2, 'F2': 1} original [18, 6, 7, 36, 12]
+F6 aux {'J0': 8, 'N2': 6, 'F2': 3, 'J1': 4, 'H': 4, 'N3': 6} original [36, 12, 13, 72, 24]
+J3 aux {'H': 4, 'J1': 1, 'J0': 6, 'N2': 4, 'F2': 2, 'N3': 2} original [18, 6, 5, 34, 13]
+J4 aux {'H': 6, 'J1': 3, 'J0': 10, 'N2': 6, 'F2': 3, 'N3': 6} original [36, 12, 12, 72, 25]
+J5 aux {'H': 12, 'J1': 7, 'J0': 18, 'N2': 12, 'F2': 6, 'N3': 12} original [72, 24, 25, 146, 49]
+C1 aux {'J0': 1} original [0, 0, 0, 0, 1]
+C2 aux {'J1': 1, 'J0': 1} original [0, 0, 1, 2, 2]
+C3 aux {'J0': 3, 'N2': 2, 'F2': 1, 'J1': 2, 'H': 2} original [6, 2, 3, 14, 7]
+N4 aux {'H': 2, 'J0': 2, 'N2': 2, 'F2': 1, 'N3': 1} original [9, 3, 2, 16, 5]
+N5 aux {'H': 4, 'J0': 6, 'N3': 3, 'N2': 4, 'F2': 2} original [21, 7, 5, 38, 13]
+N6 aux {'H': 6, 'J1': 2, 'J0': 10, 'N3': 7, 'N2': 6, 'F2': 3} original [39, 13, 12, 76, 25]
+T_free_expansion aux {} original [0, 0, 0, 0, 0]
+T_to_Pi aux {'H': 4, 'J0': 2} original [0, 0, 0, 4, 2]
+D_F2 aux {'H': 20, 'J0': 64, 'N3': 34, 'N2': 34, 'F2': 18, 'J1': 12} original [204, 68, 64, 384, 144]
+D_H aux {} original [0, 0, 0, 0, 0]
+D_J0 aux {'H': 18, 'J0': 17, 'J1': 7, 'N2': 10, 'F2': 5, 'N3': 2} original [36, 12, 14, 84, 36]
+D_J1 aux {'H': 52, 'J0': 72, 'J1': 20, 'N2': 44, 'F2': 22, 'N3': 36} original [240, 80, 78, 484, 172]
+D_N2 aux {'H': 12, 'J0': 8, 'N3': 6, 'N2': 6, 'F2': 2} original [36, 12, 8, 72, 20]
+D_N3 aux {'H': 40, 'J0': 52, 'N3': 28, 'N2': 32, 'F2': 16, 'J1': 4} original [180, 60, 48, 344, 116]
+sigma_minus3 aux {'N2': 1} original [3, 1, 0, 4, 1]
+sigma_minus4 aux {'N2': 3, 'N3': 1} original [12, 4, 1, 18, 4]
+d_t aux {'H': 1} original [0, 0, 0, 1, 0]
+d_q aux {'H': 4, 'J0': 2, 'N2': 5, 'N3': 1} original [18, 6, 1, 30, 8]
+E_t aux {'H': 1} original [0, 0, 0, 1, 0]
+E_q aux {'N2': 1} original [3, 1, 0, 4, 1]
+o_t aux {'H': 3, 'N2': 1} original [3, 1, 0, 7, 1]
+o_q aux {'H': 10, 'J0': 2, 'N2': 9, 'N3': 1} original [30, 10, 1, 52, 12]
+comm_s_t aux {'J0': 1} original [0, 0, 0, 0, 1]
+comm_s_q aux {'F2': 1} original [0, 0, 1, 0, 0]
+h_even_free aux {} original [0, 0, 0, 0, 0]
+h_odd_free aux {} original [0, 0, 0, 0, 0]
+transfer_free_1 aux {} original [0, 0, 0, 0, 0]
+transfer_free_2 aux {} original [0, 0, 0, 0, 0]
+transfer_free_3 aux {} original [0, 0, 0, 0, 0]
+transfer_free_7 aux {} original [0, 0, 0, 0, 0]
+transfer_free_16 aux {} original [0, 0, 0, 0, 0]
+transfer_free_31 aux {} original [0, 0, 0, 0, 0]
+M = [[18, 20, 64, 34, 34, 12], [0, 0, 0, 0, 0, 0], [5, 18, 17, 10, 2, 7], [2, 12, 8, 6, 6, 0], [16, 40, 52, 32, 28, 4], [22, 52, 72, 44, 36, 20]]
+B = [[18, 64, 34, 34, 12], [5, 17, 10, 2, 7], [2, 8, 6, 6, 0], [16, 52, 32, 28, 4], [22, 72, 44, 36, 20]]
+charpoly = [1, -89, 824, -3416, -6672, 19648, 0]
+Mw = [15938, 0, 4197, 1886, 11984, 19720]
+SPECTRAL {"interval": ["79.147301286835241706968321021346466546420318651751779931391905504308912333", "79.1473012868352417069683210213464665464203186517517799313919055049166286685"], "lambda_": "79.147301286835241706968321021346466546420318651751779931391905504612770501", "p": "6.30646825401196059630578114047385568126616012473176823006698808539154248189", "beta": "0.0734595360384268649149912563574699288069079470685883115264474003064557710075"}
+RULE d_t [0, 1, 0, 0, 0, 0]
+RULE d_q [0, 4, 2, 5, 1, 0]
+RULE o_t [0, 3, 0, 1, 0, 0]
+RULE o_q [0, 10, 2, 9, 1, 0]
+Formal rewriting: n=1..31; t-exponents and lengths checked; max length 21518
+PASS: 43 finite certificates checked both atomically and fully expanded; matrix and spectral certificates verified.
+SL2Z PASS N2_original 9 9
+SL2Z PASS J1_original 4 4
+SL2Z PASS N3_original 4 12
+SL2Z PASS F3 5 21
+SL2Z PASS J2 8 27
+SL2Z PASS F4 9 47
+SL2Z PASS F5 13 79
+SL2Z PASS F6 31 157
+SL2Z PASS J3 19 76
+SL2Z PASS J4 34 157
+SL2Z PASS J5 67 316
+SL2Z PASS C1 1 1
+SL2Z PASS C2 2 5
+SL2Z PASS C3 10 32
+SL2Z PASS N4 8 35
+SL2Z PASS N5 19 84
+SL2Z PASS N6 34 165
+SL2Z PASS T_free_expansion 0 0
+SL2Z PASS T_to_Pi 6 6
+SL2Z PASS D_F2 182 864
+SL2Z PASS D_H 0 0
+SL2Z PASS D_J0 59 182
+SL2Z PASS D_J1 246 1054
+SL2Z PASS D_N2 34 148
+SL2Z PASS D_N3 172 748
+SL2Z PASS sigma_minus3 1 9
+SL2Z PASS sigma_minus4 4 39
+SL2Z PASS d_t 1 1
+SL2Z PASS d_q 12 63
+SL2Z PASS E_t 1 1
+SL2Z PASS E_q 1 9
+SL2Z PASS o_t 4 12
+SL2Z PASS o_q 22 105
+SL2Z PASS comm_s_t 1 1
+SL2Z PASS comm_s_q 1 1
+SL2Z PASS h_even_free 0 0
+SL2Z PASS h_odd_free 0 0
+SL2Z PASS transfer_free_1 0 0
+SL2Z PASS transfer_free_2 0 0
+SL2Z PASS transfer_free_3 0 0
+SL2Z PASS transfer_free_7 0 0
+SL2Z PASS transfer_free_16 0 0
+SL2Z PASS transfer_free_31 0 0
+M = [[18, 20, 64, 34, 34, 12], [0, 0, 0, 0, 0, 0], [5, 18, 17, 10, 2, 7], [2, 12, 8, 6, 6, 0], [16, 40, 52, 32, 28, 4], [22, 52, 72, 44, 36, 20]]
+B^2 = [[1520, 5144, 3072, 2328, 1040], [381, 1297, 772, 572, 327], [184, 624, 376, 288, 104], [1148, 3908, 2328, 1768, 748], [1860, 6296, 3764, 2884, 1312]]
+charpoly = [1, -89, 824, -3416, -6672, 19648, 0]
+Mw = [15938, 0, 4197, 1886, 11984, 19720]
+SPECTRAL {"lambda": "79.1473012868352417069683210213464665464203186517517799313919055049136680396", "p": "6.30646825401196059630578114047385568126616012473176823006698808539702723474", "beta": "0.0734595360384268649149912563574699288069079470685883115264474003063965762262", "interval": ["79.14730128683524170696832102134646654642031865175177993139190550", "79.14730128683524170696832102134646654642031865175177993139190551"]}
+PASS: 43 certificates in faithful exact matrices, both atomic and original; independent counts and spectrum agree.
+HOLONOMY DIAGNOSTICS {"cases": 60, "min_slack10": -2.220446049250313e-16, "min_slack11": 0.0, "max_equal_root_gap": 4.440892098500626e-16, "max_telescope_residual": 3.2841664629499794e-15}
+All window checks passed

@@ -1,0 +1,25 @@
+\subsection{The optimal pairwise budget at small error}\label{sec:optimal-pair-budget}
+\begin{theorem}[The small-error pairwise budget]\label{thm:optimal-pair-budget}
+Define $E(M,\kappa)$ to be the infimum of $\ED^{A\to B}(\rho_{AB})$ over finite-dimensional original mixed states and two-party arrays of $M$ nominal Pauli pairs of reflections, with all signed pair defects on each party and all actual mirror errors, measured on a purification of $\rho$, at most $\kappa$. The signs are anticommuting within a pair and commuting across distinct pairs. One can also include the square-root-state commutator bounds explicitly; the conclusion is the same up to constants. All shared flag registers belong to the original state. Then for integers $M\ge1$ and $0<\kappa\le1/100$,
+\[
+ \frac1{40000}\min\{M,\kappa^{-2}\}\le E(M,\kappa)\le5\min\{M,\kappa^{-2}\}.
+\]
+At $\kappa=0$ the exact value is $M$. The constants are not claimed sharp. This is the precise optimal-scaling interpretation of the $M\kappa^2$ extraction budget.
+\end{theorem}
+\begin{proof}
+Actual mirrors give square-root-state commutators at most $\sqrt2\kappa$ by mirror transfer. Retain any
+\[
+ N=\min\{M,\lfloor(10000\kappa^2)^{-1}\rfloor\}
+\]
+pairs. Apply \cref{thm:signed-regular} with uniform bound $\sqrt2\kappa$; its Bell failure bound is at most $50N\kappa^2\le1/200$. Thus $\ED^{A\to B}\ge N[1-2h_2(1/200)]\ge N/2$. Since $\kappa\le1/100$, the floored quantity is at least one and $N\ge\min\{M,\kappa^{-2}\}/20000$. This proves the lower constant on the original mixed state.
+
+For the upper bound, $M$ actual Bell pairs give $E\le M$. For any integer $K\ge1$, give both players a classical flag $f:[M]\to[K]$, uniformly distributed over all $K^M$ functions, and $K$ Bell pairs:
+\[
+ \rho_{M,K}=K^{-M}\sum_f|f,f\rangle\langle f,f|\otimes\Phi_2^{\otimes K}.
+\]
+Use controlled $X_j=X_{f(j)}$, $Z_j=Z_{f(j)}$, with transposes on Alice. Same-pair anticommutation and mirrors are exact. For $j\ne l$, $X_j$ and $Z_l$ commute unless $f(j)=f(l)$, an event of probability $1/K$. A collision has additive-commutator squared norm four, so the original-state weighted squared norm is $4/K$. All other cross types commute. Marginals are scalar within every flag block, so square-root-state commutators vanish.
+
+The original flagged state's coherent information is $K$: the classical entropy $M\log K$ cancels between Bob and the joint state. Its pure decomposition has average entanglement $K$, so formation and hashing bounds agree at $\ED^{A\to B}=K$. This counts all physical shared registers without treating their classical flags as entanglement. Choose $K=\lceil4/\kappa^2\rceil$, giving $E\le\min\{M,\lceil4/\kappa^2\rceil\}\le5\min\{M,\kappa^{-2}\}$. Exact extraction proves $E(M,0)=M$, attained by Bell pairs.
+\end{proof}
+
+The small-error restriction is essential. At $M=1$, $\kappa=2$, take one-dimensional local spaces, a product state and all nominal $X,Z$ equal to $I$. Mirrors and state commutators vanish; the same-pair anticommutator defect is exactly two. Its rate is zero although $\min\{1,\kappa^{-2}\}=1/4$. The example extends to larger $M$. The lower estimate uses the existing extraction theorem. The flagged construction is related to the Pauli-hash models of~\cite[Proposition~9.4]{DM-game}, to the operator-norm overlapping-qubit constructions of Chao, Reichardt, Sutherland and Vidick~\cite{CRSV17}, and to their subsequent state-dependent self-testing work~\cite{CRSV18}. Their operator-norm construction places $n$ qubits with pairwise overlap at most $\varepsilon$ in dimension $n^{O(1/\varepsilon^2)}$; here the defects are state-weighted, and the cost $\lceil4/\kappa^2\rceil$ does not depend on $M$. The resource is the directional distillable entanglement of the original mixed state.

@@ -1,4 +1,5 @@
 paper/*.aux
+/paper/build/
 paper/*.log
 paper/*.out
 paper/*.toc

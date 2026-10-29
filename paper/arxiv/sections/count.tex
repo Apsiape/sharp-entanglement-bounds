@@ -1,0 +1,56 @@
+%======================================================================
+\section{The qubit count in an arbitrary state}\label{sec:count}
+%======================================================================
+
+Let $X_1,\dots,X_M,Z_1,\dots,Z_M$ be involutions. If the $Z_i$ commute, $X_i$ anticommutes with $Z_i$ and commutes with
+$Z_j$ for $j\ne i$, then the joint eigenspaces of the $Z_i$ carry labels $z\in\{\pm1\}^M$ and $X_i$ maps the label $z$ to
+the label with its $i$-th sign flipped, so the dimension is a multiple of $2^M$. Our companion paper proves a robust form of
+this count in an arbitrary state $\rho$, with every error measured in that state and the errors of different pairs adding in
+squares~\cite[Theorem~C, Theorem~4.1 and Corollary~4.2]{DM-game}. We state it in the form below; the proof is not
+repeated. The price of a non-flat state is the state commutators $\hs{[Z_i,\xi]}$ and
+$\hs{[X_i,\xi]}$, which cannot be dropped~\cite[Example~4.5]{DM-game}; in games they are supplied by consistency
+(\cref{lem:consistency}) or by actual mirrors (\cref{lem:transfer-parties}(d)).
+
+\begin{theorem}[Qubit count; {\cite[Theorem~4.1]{DM-game}}]\label{thm:count}
+Let $X_1,\dots,X_M,Z_1,\dots,Z_M$ be involutions on $\C^d$, $\rho$ a density matrix on $\C^d$ and $\xi=\rho^{1/2}$. Put
+$c^Z_i=\hs{[Z_i,\xi]}$, $c^X_i=\hs{[X_i,\xi]}$, $f(g)=Z_1^{g_1}Z_2^{g_2}\cdots Z_M^{g_M}$ for $g\in\Z_2^M$, and, for
+uniformly random $g$,
+\[
+a_i^2=\mathbb E_g\hs{(f(g+e_i)-f(g)Z_i)\xi}^2,\qquad b_i^2=\mathbb E_g\hs{((-1)^{g_i}X_if(g)-f(g)X_i)\xi}^2 .
+\]
+Then
+\begin{enumerate}[label=(\roman*),itemsep=2pt]
+\item $a_i^2\le2\sum_{j>i}\bigl(\hs{[Z_i,Z_j]\xi}+c^Z_j\bigr)^2+2\sum_{j>i}(c^Z_j)^2$;
+\item $b_i^2\le2\bigl(\hs{\{X_i,Z_i\}\xi}+c^Z_i\bigr)^2+2\sum_{j\ne i}\bigl(\hs{[X_i,Z_j]\xi}+c^Z_j\bigr)^2+2\sum_{j=1}^M(c^Z_j)^2$;
+\item $\displaystyle S(\rho)\ \ge\ \sum_{i=1}^M\Bigl[1-\frac{(b_i+c^X_i)^2}{2\ln2}-h\Bigl(\min\Bigl(\frac{(a_i+c^Z_i)^2}4,\frac12\Bigr)\Bigr)\Bigr].$
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}[Uniform errors; {\cite[Corollary~4.2]{DM-game}}]\label{cor:count-uniform}
+In the setting of \cref{thm:count}, let $M\ge2$ and suppose that, for all $i\ne j$,
+\[
+\hs{[Z_i,Z_j]\xi},\ \hs{[X_i,Z_j]\xi},\ \hs{\{X_i,Z_i\}\xi},\ c^X_i,\ c^Z_i\ \le\ \kappa .
+\]
+If $16M\kappa^2\le\frac1{10}$, then $S(\rho)\ge\frac34M$.
+\end{corollary}
+
+The proof embeds the space coherently into a register indexed by $\{0,1\}^M$ through the products $f(g)$, on which the shifts
+and signs are exact Pauli operators; the two-sided twirl of \cref{lem:twirl} computes the intertwining errors $a_i,b_i$ from the
+pairwise relations, pinching the embedded state gives about one bit per pair, and a Jensen--Shannon bound shows that each
+pinching raises the entropy only a little~\cite[Section~4]{DM-game}. The count is applied on the sector where a central
+involution acts as $-1$, and the entropy of that sector state controls the entropy of the whole state~\cite[Lemma~4.9]{DM-game}.
+
+\begin{remark}[Comparison]\label{rem:count-comparison}
+The stability theorem of Gowers and Hatami~\cite{GH17} needs the defect of an approximate homomorphism of the whole Pauli
+group, and the many-qubit tests of Natarajan and Vidick~\cite{NV17} certify $n$ EPR pairs from a test that samples the
+whole Pauli group, through a state-dependent form of that theorem; Pauli stability for synchronous strategies in a tracial
+von Neumann algebra is in~\cite{dlS22}, and Kaniewski, Tomamichel and Wehner use state-dependent anticommutators for entropic
+uncertainty relations~\cite{KTW14}. The count uses only the pairwise relations of $2M$ involutions, measured in an arbitrary
+state, and its errors add in squares. It bounds the entropy of Bob's marginal, which is not usable entanglement
+(\cref{sec:status}); its operational counterpart on the original mixed state is the signed regular extraction of
+\cref{thm:signed-regular}, which uses the same twirl on both parties. The companion paper also applies the count to the
+$\mathrm{CHSH}(n)$ games: the least pure-state entanglement entropy, and the least entanglement of formation, of a strategy
+within a factor $1-\eps$ of the optimal bias are $\Theta(\min(n,1/\eps))$~\cite[Theorem~E]{DM-game}, which improves the
+exponent $\frac15$ of Ostrev and Vidick~\cite{OV16} to the optimal one. Whether the near-optimal strategies of $\mathrm{CHSH}(n)$
+contain $\Omega(\min(n,1/\eps))$ distillable ebits is open (\cref{sec:open}).
+\end{remark}

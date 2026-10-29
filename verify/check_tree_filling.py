@@ -322,7 +322,7 @@ def main():
     edges, labels, faces, boundary, count = regularize(p, e)
     for _ in range(16):
         records.append(check_disk(edges, faces, boundary, rng))
-    pval = math.log2(107)
+    pval = 6.3064682540119605963
     # Literal, unrounded source words; capitals denote inverse letters.
     commutator = lambda u, v: u + v + inverse(u) + inverse(v)
     a, b, s, x, z, J = ([i] for i in range(1, 7))
@@ -350,8 +350,8 @@ def main():
            'literal_source': {'relator_count': len(relators),
                               'relator_lengths': list(map(len, relators)),
                               'K': K, 'conservative_C_K': constant},
-           'arithmetic': {'p': pval, 'old_beta': 1/(4*pval+1),
-                          'new_beta': 1/(2*pval+1),
+           'arithmetic': {'p': pval, 'beta_per_cell_conjugators': 1/(4*pval+1),
+                          'beta_linear_filling': 1/(2*pval+1),
                           'source_N_power': 2/(2*pval+1),
                           'Ne_decay_power': 1-2/(2*pval+1),
                           'balance_power_of_e': 2-(2*pval+1)*2/(2*pval+1)}}

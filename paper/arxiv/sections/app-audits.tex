@@ -1,0 +1,36 @@
+\section{Reproducibility and computational scope}\label{app:audits}
+
+The mathematical evidence is the written proof at each result and its explicitly cited external inputs. \Cref{tab:status} records proof locations and the associated finite computational scope; \cref{app:companion} identifies the companion results. The programs below check specified finite instances and exported objects. They do not prove an asymptotic estimate, decide an unrestricted optimization problem, or constitute a formal verification of this manuscript.
+
+\paragraph{Dependencies and execution.}
+The checks require Python~3, NumPy and SciPy. Run the following commands from the repository root, one runner at a time. Set each of these environment variables to \texttt{1}:
+\begin{quote}\ttfamily\small
+OMP\_NUM\_THREADS, OPENBLAS\_NUM\_THREADS, MKL\_NUM\_THREADS\par
+NUMEXPR\_NUM\_THREADS, VECLIB\_MAXIMUM\_THREADS\par
+BLIS\_NUM\_THREADS, PYTHONDONTWRITEBYTECODE
+\end{quote}
+The README gives the corresponding shell commands.
+\begin{quote}\ttfamily\small
+python -I -X utf8 -B verify/run\_all.py\par
+python -I -X utf8 -B verify/run\_artifacts.py
+\end{quote}
+The first runner writes one log per check under \texttt{verify/logs/}, with structured outputs where specified by each script. The second records its steps under \texttt{verify/logs/artifacts/} and writes the exported-object results beside the corresponding scripts. Rerunning intentionally refreshes those outputs. The input manifest \texttt{verify/artifacts/SHA256SUMS} is checked before replay; refresh it only when an input is intentionally changed.
+
+\paragraph{Exact computations.}
+The artifact checks use integer and rational arithmetic, literal free words, finite permutations and the stated normal-form procedures. They compare the point-game source relators with those printed in the paper, and check the exported variables, contexts, squares, products, commutators and recovery maps. The archived L4M8 checker tests the actual game file using the normal-form engine of \texttt{check\_linear\_games.py}; those programs share that engine. The two-copy checker works in the negative source algebra. The selector checker verifies its finite conditional-parity predicates, incidence weights and an explicit perfect strategy. Subset and replication checks test the literal source presentations on bounded exact instances. These are finite identities and constructions; their extension to arbitrary strategies uses the written proofs.
+
+\paragraph{Floating-point computations.}
+The numerical suites test matrix identities, norms, entropies, transport inequalities, mixed-state extraction and explicit lamp models at their recorded dimensions and tolerances. They include singular and non-flat states, perturbed mirrors and negative controls. The refinement suite checks arithmetic arrays, flagged ensembles, physical leakage, floor diagnostics, Laurent freeness and the small-error pairwise budget on the listed finite instances. Numerical eigenvalues, entropy values and fitted slopes are floating-point observations, not interval certificates or universal error bounds. Where high-precision arithmetic is used, the recorded precision is part of the computational scope.
+
+\paragraph{Word certificates and the point window.}
+The two window engines independently verify one common set of word certificates, produced by the first engine. Each checks the core and transfer identities before and after literal auxiliary-relator expansion; the second also checks finite holonomy examples. They are separate verifiers of the same certificates, and do not supply two independent generation procedures. The recorded matrices, spectra, constants and certificate outcomes support reproducibility. The filling and original-state extraction arguments in the paper supply the asymptotic conclusion.
+
+\paragraph{Building the paper.}
+With plain pdflatex and BibTeX installed, run:
+\begin{quote}\ttfamily\small
+python paper/build.py
+\end{quote}
+The helper performs four pdflatex passes with BibTeX between the first and second, disables shell escape, and keeps intermediate files outside the release tree. It requires a final log without warnings, undefined references or overflowing boxes. The arXiv folder contains the active TeX inputs and the matching BBL, and builds with plain pdflatex without the verification programs.
+
+\paragraph{Limits of the evidence.}
+Finite tests do not establish compactness arguments, convergence rates, arbitrary-state lower bounds, the full group normal-form theorems, the universal game reduction or the operational entanglement-rate theorems. A negative control demonstrates detection of the stated alteration, not all possible defects. Imported theorems and conditional hypotheses remain identified at their uses. No formal verification of this manuscript is claimed. Reports of the checks are available from the authors.

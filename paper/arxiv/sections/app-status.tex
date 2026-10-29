@@ -1,0 +1,86 @@
+%======================================================================
+\section{Status of the results}\label{app:status}
+%======================================================================
+
+\Cref{tab:status} lists every result of the paper with its status. \emph{Proved}: a complete proof is given here, using
+only the cited results named in the row or the proof. \emph{Checked}: a finite computation or a verified implication from a cited
+manuscript. \emph{Conditional}: the result rests on a named input not proved self-containedly. \emph{Companion}: the result is stated
+here and proved in~\cite{DM-game}. The final column describes the proof or finite computational scope. The references in the location column identify the written proofs; \cref{app:audits} gives commands, arithmetic conventions and limitations for the computations. Finite examples do not substitute for the proofs.
+
+\begin{longtable}{@{}L{0.3\textwidth}L{0.2\textwidth}L{0.18\textwidth}L{0.22\textwidth}@{}}
+\toprule
+result & where & status & proof / finite scope\\
+\midrule
+\endhead
+qubit count in a state & \cref{thm:count,cor:count-uniform} & companion & Cited companion proof\\
+transfer and return, linear & \cref{thm:transfer,thm:return,cor:correspondence} & companion & Cited companion proof\\
+Boolean correspondence & \cref{thm:boolean-correspondence} & proved & Written proof\\
+universal Boolean compiler & \cref{thm:universal} & proved & Exact split identity\\
+compiler on virtual retracts & \cref{thm:compile} & proved, on~\cite[Lemma~B.1]{DM-game} & Written proof\\
+balanced compiler, extended presentations & \cref{prop:extended} & proved & Finite lift controls\\
+actual source interface & \cref{prop:interface} & proved & Written proof\\
+triangular extraction & \cref{thm:triangular} & proved & Written proof\\
+cyclic triangular extraction; selector polynomials & \cref{lem:cyclic-triangular}, paragraph after \cref{prop:interface} & proved & Mixed-state tests\\
+signed regular extraction & \cref{thm:signed-regular,lem:fixed-size} & proved & Written proof\\
+aggregate and finite-group extraction & \cref{thm:aggregate,thm:group-extract,cor:S3,lem:S3-round} & proved & Written proof\\
+Alice-local recovery, forward bound & \cref{thm:recovery} & proved & Written proof\\
+exact synchrony & \cref{thm:exact-sync} & proved & Written proof\\
+optimal small-error pairwise budget & \cref{thm:optimal-pair-budget} & proved & Finite budget tests\\
+Theorem A & \cref{thm:A} & proved & Written proof\\
+effective certificates & \cref{thm:effective} & proved & Written proof\\
+undecidability & \cref{thm:undecidable} & proved & Finite selector tests\\
+white-box protocol & \cref{thm:protocol}, \cref{app:protocol} & proved & Written proof\\
+local symmetry, Bob kept & \cref{thm:local-symmetry} & proved & Written proof\\
+factor three and sharpness & \cref{thm:factor-three,thm:factor-three-sharp} & proved & Written proof\\
+synchronous repair; directions & \cref{prop:sync-repair,cor:direction-spectra} & proved & Written proof\\
+Slofstra--Vidick dimension and profile & \cref{thm:K,cor:K-profile,thm:SV} & companion; upper lift~\cite[Lemma~11.13]{DM-game} & Finite examples\\
+Slofstra--Vidick entropy and formation & \cref{thm:entropy-transport,cor:K-entropy,thm:SV-entropy} & proved & Written proof\\
+one lamp source & \cref{thm:lamp} & proved & Written proof\\
+additive profiles & \cref{thm:additive} & proved & Written proof\\
+shared dilations $4,6$ & \cref{thm:shared} & proved & Written proof\\
+rational Boolean constraint games & \cref{thm:rational-games} & proved & Written proof\\
+one-copy linear family & \cref{thm:rational-linear} & proved & Written proof\\
+restricted compiler, several copies & \cref{thm:rational-linear-k} & conditional & Named hypotheses\\
+linear games, every rational exponent & \cref{rem:SV-route-k,cor:linear-existence} & proved & Written proof\\
+R\'enyi spectrum, concentration & \cref{thm:renyi} & proved & Written proof\\
+sharp $\ED$ coefficient, rational $\alpha$ & \cref{thm:rational-ED} & proved & Written proof\\
+sharp $\ED$ coefficient, every $\alpha\in\mathcal S$ & \cref{thm:rational-ED,rem:binary-route} & proved & Written proof\\
+dense coefficient set; arithmetic bounds & \cref{cor:coefficient-set,lem:reweighting,prop:arithmetic-dim,thm:arithmetic} & proved & Written proof\\
+pure coefficient spectrum & \cref{thm:pure-spectrum} & upper class proved here; lower inclusion~\cite[Theorem~1.1]{DM-U3} & Written proof; cited realization\\
+flagged coefficient spectrum; matched extraction & \cref{prop:flagged-pure-spectrum,prop:matched-coefficient} & proved; extraction interface~\cite[Lemma~12.1]{DM-U3} & Written proofs; finite spectrum checks\\
+mixing, computable fixed states and abstract arithmetic & \cref{prop:equal-loss-ensemble,prop:fixed-state-cut,prop:abstract-arithmetic-array} & proved & Finite spectrum checks\\
+weak rounding from matched laws & \cref{prop:matched-weak-rounding} & proved; realizations~\cite[Theorem~1.1 and Section~12]{DM-U3} & Written proof; cited matched laws\\
+formation, synchrony and physical leakage & \cref{prop:formation-rounding-gap,prop:synchronous-pure-rounding,prop:physical-leakage} & proved & Finite spectrum checks\\
+kernel, half-erasure and nonlimit obstructions & \cref{prop:no-exact-kernel,prop:half-erasure,prop:nonlimit-coefficient-gap} & proved & Finite spectrum checks\\
+configuration-lamp game: entropy, formation, dimension & \cref{thm:lamps-sector,thm:lamps-game} & companion & Cited companion proof\\
+configuration-lamp game: usable entanglement & \cref{thm:lamps-ED} & proved & Written proof\\
+linear filling charge & \cref{thm:linear-filling} & proved & Tree-of-faces tests\\
+point window; six-type fillings & \cref{prop:point-fill-sharp}, \cref{thm:point-window,prop:collective} & proved & Exact word certificates\\
+fixed-holonomy subdivision & \cref{prop:fixed-holonomy} & proved from magnetic-cycle estimate & Cycle examples\\
+native class laws & \cref{thm:native,thm:native-enlarged} & conditional & Named hypotheses\\
+address growth & \cref{thm:address} & proved & Written proof\\
+exact point source and traces & \cref{thm:exact-point,prop:point-structure,prop:point-traces} & proved & Written proof\\
+exact configuration source & \cref{thm:exact-config} & proved & Written proof\\
+subset sources & \cref{prop:subset-presentation,thm:subset,thm:subset-visibility} & proved, on Johnson's presentation & Written proof\\
+replication source & \cref{thm:gamma3} & proved, on Johnson's presentation & Written proof\\
+PPT gap; no exact output & \cref{thm:ppt-gap,thm:no-exact} & proved & Written proof\\
+linear compiler exclusions & \cref{prop:no-linear} & proved & Written proof\\
+raw pair bounds & \cref{prop:raw-pairs} & proved, on the regions of~\cite[\S6]{DM-H3} & Written proof\\
+finite-table gate; refutations & \cref{prop:table,prop:collective-refutes} & proved & Written proof\\
+correction costs & \cref{prop:correction} & proved; native part conditional & Named hypotheses\\
+scalar phase schemes & \cref{prop:phase} & proved & Written proof\\
+finite supports; invisible witnesses & \cref{prop:finite-support,prop:invisible} & proved & Written proof\\
+$I_{3322}$ Bell-gap contrast & \cref{thm:i3322} & checked; conditional on~\cite{Dou26} & Named hypotheses\\
+floor on the sign-and-dilation class; Abels game & \cref{thm:floor-class,cor:abels} & proved & Written proof\\
+compression; dyadic bound; criterion & \cref{lem:compression,prop:dyadic,prop:criterion} & proved & Written proof\\
+excluded candidate classes & \cref{prop:bs-central,prop:copied-gadget,thm:stable,cor:dyadic-models} & proved & Written proof\\
+Deligne extension & \cref{ex:deligne} & proved from imported results~\cite{Del78,BLSW23,DGLT20} & Written proof\\
+method obstructions & \cref{prop:typeII,prop:slow-recovery,prop:threshold,prop:separation} & proved & Written proof\\
+continuous amplification; spectral multiplicity; polynomial augmentation & \cref{prop:continuous-thin-obstruction,prop:spectral-multiplicity,prop:slow-polynomial-augmentation} & proved & Finite refinement checks\\
+source leakage, stability and populated slow modes & \cref{prop:source-leakage-floor,prop:stable-tracial-defect,prop:populated-slow-modes} & proved & Finite refinement checks\\
+qualitative thresholds; selectable depth & \cref{prop:selectable-depth} & proved & Finite refinement checks\\
+raw cross-copy obstruction & \cref{thm:raw-obstruction,prop:window-dilution} & proved & Written proof\\
+finite blocks & \cref{prop:normal-perfect} & known~\cite{KPS18} & Cited result\\
+\bottomrule
+\caption{Status of every result.}\label{tab:status}
+\end{longtable}

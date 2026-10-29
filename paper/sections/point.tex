@@ -182,13 +182,31 @@ separately based conjugators of \cref{lem:conjugators} cost $A(A+n)e$, while the
 and no cancellation between cells is used. For the five Houghton relators $K=12$ and $C_{12}=1633$.
 \end{remark}
 
+\begin{fillingproposition}[Far-commutator area]\label{prop:point-fill-sharp}
+In the five Johnson relators displayed in \cref{sec:point-source}, put $\sigma_i=a^isa^{-i}$, and let $A^*(R)$ be the largest area of
+$[\sigma_i^{\pm1},\sigma_j^{\pm1}]$ with $0\le i,j\le R$ and $|i-j|\ge2$. There is a constant $C$ such that, for every integer $R\ge2$,
+\[
+ A^*(R)\le CR^{\log_2\lambda},\qquad
+ Q(\lambda)=0,\quad Q(t)=t^5-89t^4+824t^3-3416t^2-6672t+19648,
+\]
+where $\lambda\in(79,80)$ is the largest positive root of $Q$. An admissible area exponent is
+\[
+ p=\log_2\lambda=6.3064682540119605963\ldots .
+\]
+\end{fillingproposition}
+\begin{proof}
+\Cref{app:point-filling} gives the complete six-type filling construction, with every auxiliary relator expanded into the literal five-relator presentation. The recurrence follows the filling method of~\cite{DM-H3}; the explicit matrix and certificates in the appendix establish the exponent stated here.
+\end{proof}
+
 \subsection{The window}\label{sec:point-window}
 
 \begin{theorem}[The point window]\label{thm:point-window}
 There are constants $c,C>0$ such that, for all sufficiently small $\eps$,
 \[
-c\,\eps^{-\beta}\ \le\ d_{G_{\mathrm{pt}}}^\to(\eps)\ \le\ C\eps^{-1/4},\qquad\beta=\frac1{2\log107+1}\approx0.0690 .
+c\,\eps^{-\beta}\ \le\ d_{G_{\mathrm{pt}}}^\to(\eps)\ \le\ C\eps^{-1/4},\qquad
+\beta=\frac1{2\log_2\lambda+1}=0.0734595360384268649\ldots .
 \]
+Here $\lambda$ is the root in \cref{prop:point-fill-sharp}. In particular, every original finite-dimensional mixed state of a strategy of loss at most $\eps$ has $\ED^{A\to B}(\rho)\ge c\eps^{-\beta}$.
 By \cref{thm:factor-three} the same window holds for $d^\leftarrow_{G_{\mathrm{pt}}}$. A matching lower exponent $\frac14$ is open
 (\cref{sec:open}).
 \end{theorem}
@@ -216,7 +234,7 @@ By \cref{prop:interface}, applied to the universal compiler, every strategy of l
 generators and Alice opposite mirrors, with relator residuals, mirrors, inverse mirrors and state commutators at most
 $e=C\sqrt\eps$, on the original state. Round $s$ once to a reflection on each party by $\sgn\Re$; by \cref{lem:rounding} and
 \cref{lem:calculus}(e), applied to the fixed relator words, the rounded tuple still has relator residuals, mirrors and state
-commutators $O(e)$. This changes observables, not the state. Put $p=\log107$ and, for $0\le i<N$,
+commutators $O(e)$. This changes observables, not the state. Put $p=\log_2\lambda$ and, for $0\le i<N$,
 \[
 S_i=a^{3i}sa^{-3i},\qquad T_i=a^{3i+1}sa^{-3i-1},
 \]
@@ -224,21 +242,17 @@ reflections on each party (Alice using the reversed mirror words). Then $(S_iT_i
 $S_iT_i$ a conjugate of $\gamma$, by words of length $O(N)$, so the cubic residuals and raw mirrors are $O(Ne)$ and, by
 \cref{lem:point-visibility}, Bob's raw three-cycle visibility is at least $\Delta_0-O(Ne)$. Every cross-copy commutator is a far
 commutator $[\sigma_{p'},\sigma_{q'}]$ with $\sigma_j=a^jsa^{-j}$, $0\le p',q'\le3N+1$ and $|p'-q'|\ge2$, a word of length $O(N)$
-whose area in the five Houghton relators is at most $135(3N+1)^p$ by~\cite[Theorem~3.2]{DM-H3}, used with its literal presentation
-and word orientation. Since $p>1$, \cref{thm:linear-filling} bounds its residual by $C(N^p+N)e\le CN^pe$. The additive and the group
+whose area in the five Houghton relators is at most $C(3N+1)^p$ by \cref{prop:point-fill-sharp}, in the literal presentation and word orientation. Since $p>1$, \cref{thm:linear-filling} bounds its residual by $C(N^p+N)e\le CN^pe$. The additive and the group
 commutator of two reflections differ by a state commutator of a word of length $O(N)$, so Bob's raw cross-commutators are at most
 $\eta_0\le CN^pe$. \Cref{lem:S3-round} gives exact local $S_3$ representations with
 $\kappa\le9\eta_0+144\mu_0+36e_{\mathrm{cub}}\le CN^pe$ and Alice visibility $\Delta\ge\Delta_0/2$ once $Ne$ is small. Take
 $N=\lfloor c\,e^{-2/(2p+1)}\rfloor$ with $c$ small: then $N\kappa^2\le Cc^{2p+1}\le\Delta^2/38400$, while $Ne\to0$ because
-$2/(2p+1)<1$. \Cref{cor:S3} gives $\ED^{A\to B}(\rho_{AB})\ge\Delta^2N/16\ge c'e^{-2/(2p+1)}=c''\eps^{-1/(2p+1)}$, the exponent
+$2/(2p+1)<1$. For sufficiently small $e$, the floor also gives $N\ge(c/2)e^{-2/(2p+1)}\ge1$. \Cref{cor:S3} gives $\ED^{A\to B}(\rho_{AB})\ge\Delta^2N/16\ge c'e^{-2/(2p+1)}=c''\eps^{-1/(2p+1)}$, the exponent
 being halved because $e$ is of order $\sqrt\eps$.
 \end{proof}
 
 Charging each cell its own conjugator (\cref{lem:conjugators}) would give only $\eta_0\le CN^{2p}e$ and the exponent
-$1/(4\log107+1)\approx0.0358$. The area exponent enters only through $\eta_0$. Let $A^*(M)$ be the largest area of a far
-commutator $[\sigma_{p'}^{\pm1},\sigma_{q'}^{\pm1}]$ with $0\le p',q'\le M$ and $|p'-q'|\ge2$. The asymptotic refinement
-$A^*(M)=O(M^{\log\rho})$ of~\cite[Remark~A.3]{DM-H3}, where $\rho\in(106,107)$ is the largest root of
-$x^4-112x^3+572x^2+3328x-14208$, gives in the same way the slightly larger exponent $1/(2\log\rho+1)=0.06913\ldots$;
+$1/(4p+1)$, with $p=\log_2\lambda$ from \cref{prop:point-fill-sharp}. The area exponent enters only through $\eta_0$;
 \cref{sec:open} records what smaller areas would give. The route itself has a limit: no worst-pair estimate $\eta_0\le CN^ue$ with
 $u<2$ holds on all original source models, already at the scale of this proof (\cref{thm:raw-obstruction,prop:window-dilution}), so
 it cannot give a lower exponent beyond $\frac15$.
@@ -268,7 +282,7 @@ Propositions~6.1 and~6.5]{DM-H3}.
 
 \emph{One common region.} Let $B$ be the smallest bulk region $R_5$ of~\cite[proof of Proposition~6.5]{DM-H3} and $T$ the region with
 source $q_T$, with their labels: for every $t=5,\dots,M+3$ the label $S_t(v)$ of $R_t$ restricted to the vertices of $B$, and the
-label $S_T(v)$. Restriction preserves properties (R1)--(R4) of~\cite[Lemma~6.4]{DM-H3}, because $B\subseteq R_t$ for every $t$: every
+label $S_T(v)$. Restriction preserves the four regional properties of~\cite[Lemma~6.4]{DM-H3}, because $B\subseteq R_t$ for every $t$: every
 base link outside the sources carries each $S_t(v)$, hence their product, to the next label; the regions are connected through
 interior edges with zero boundary potentials; base labels avoid $\{1,2\}$ and labels at initial vertices of interior edges avoid
 $\{2,3,4\}$; and labels of different regions are disjoint. Let $P_B(v)=\prod_tS_t(v)$, as a product of disjoint transpositions, and
@@ -303,6 +317,8 @@ strategy of loss at most $K_3C^2e_M^2=O(M^{-4})$ on a maximally entangled state 
 $4M+4+2\log M+\log12$. Taking $M$ of order $\eps^{-1/4}$ gives $d^\to\le C\eps^{-1/4}$.
 \end{proof}
 
+\input{sections/point-holonomy}
+
 \begin{remark}\label{rem:point-collective}
 The actual tracial H4 error of the collective model is $\Theta(M^{-4})$ in squared normalized Hilbert--Schmidt norm, so the root
 precision is genuinely $\Theta(M^{-2})$. The difference from the exterior-algebra models is specific: those take a sum of the
@@ -311,6 +327,7 @@ their product is one bounded projection. The new links do not factor as a native
 below does not apply to them. An exterior-algebra specialization of the same construction also works, at dimension
 $M^22^{8M+8}$.
 \end{remark}
+
 
 \subsection{A conditional law on the calibrated native class}\label{sec:point-native}
 
@@ -336,8 +353,7 @@ lamps, $b_N=9E_B/N+132M_2$, together with four native estimates: the coercivity 
 bad-branch probability $p_{\mathrm{bad}}\le2N/M+4Ne$; the aggregate bound $E_B\le768\,Np_{\mathrm{bad}}$; and hence
 $b_N\le13824N/M+27648Ne+396N^3e^2$, which with $N=c\min\{M,e^{-2/3}\}$ gives $\ED\ge c'e^{-2/3}$. The coercivity and the bad-branch
 estimates rest on the appendix ``Sharp Houghton cost with moderate flavour growth'' of the authors' manuscript on
-immediate delivery~\cite{DM-ID}, whose internals were not rederived by the independent review, and the bound on $E_B$ has a written derivation that has not been independently
-rederived; the theorem becomes unconditional when self-contained proofs of these are supplied. The aggregate theorem itself
+immediate delivery~\cite{DM-ID}, whose proofs are not reproduced here, and the bound on $E_B$ has a written derivation that is not included here; the theorem becomes unconditional when self-contained proofs of these are supplied. The aggregate theorem itself
 (\cref{thm:aggregate}) is proved. The upper bound uses the literal free-unitary lift $I_{12}\otimes\mathcal N_M$ in the compiled game,
 not an assignment correct only modulo the source relations: the recovery polynomial evaluates to $I_{12}\otimes s$ on every
 unitary source tuple. The source witness has flat entropy $8M+8+2\log M$; with the amplified flat state the compiled game

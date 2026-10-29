@@ -1,0 +1,212 @@
+\subsection{A five-generator source with the same profile}\label{sec:rates-five}
+
+The lamps can be replaced by a single central element of order $q$. For $q=2^r$ dividing $m$, let
+$G_{q,m}=\langle a,c,w,x,y\rangle$ with the relators $a^q$, $c^q$, $w^2$, the commutators of $c$ with $a,x,y,w$ and of $w$ with
+$a,x,y$, the relation $w=c^{q/2}$, and $aya^{-1}=cy$, $xyx^{-1}=y^m$, the marked involution being $w$. In the group algebra
+put $P_j=q^{-1}\sum_l\zeta^{-jl}c^l$; these are orthogonal projections commuting with $a,x,y,w$, with $cP_j=\zeta^jP_j$ and
+$\sum_{j\text{ odd}}P_j=\frac12(1-c^{q/2})$. For odd $j$ let $k_j$ be the inverse of $j$ modulo $q$ and put
+$T=\sum_{j\text{ odd}}P_ja^{k_j}$. Then $T^*T=TT^*=\frac12(1-w)$ and $Ty=\zeta yT$ in the full group algebra, by finite derivations
+from the relators, so the conclusion of \cref{lem:rotation-selector} holds for $G_{q,m}$, and with it every argument of this
+section. Hence $G_{q,m}$ has minimum ambient dimension and minimum rank $\Theta(e^{-s})$ and minimum entropy
+$s\log(1/e)+O(1)$, $s=\log_mq$; the abandoned variant with $q=6$ and $c=-1$ does not create a six-way exponent, since its
+negative sector can be two-dimensional. We use the lamp sources below because they lie in the restricted linear input
+class.
+
+\subsection{Additivity over copies, without a joint spectral measure}\label{sec:additive}
+
+For $i=1,\dots,k$ fix $q_i=2^{r_i}$ dividing $m_i$ and a copy of $L_{q_i,m_i}$, identify the marked involutions, and add to the
+relators every commutator between generators of different copies. Call this finite presentation $L_{\mathbf q,\mathbf m}$, and put
+\[
+s_i=\log_{m_i}q_i,\qquad s=\sum_is_i .
+\]
+
+\begin{theorem}[Additive profiles]\label{thm:additive}
+There are constants $c,C>0$, depending on the fixed presentation, such that every model of $L_{\mathbf q,\mathbf m}$ at precision
+$e\le\frac12$, with density matrix $\rho$ on $\C^d$, satisfies
+\[
+S(\rho)\ \ge\ s\log(1/e)-C,\qquad d\ \ge\ \rank\rho\ \ge\ c\,e^{-s},
+\]
+and tensor products of the Fourier-lamp models of \cref{ex:fourier-lamps} give models of dimension at most $Ce^{-s}$ and
+entropy at most $s\log(1/e)+C$. So the minimum dimension and the minimum rank are $\Theta(e^{-s})$, and the minimum entropy is
+$s\log(1/e)+O(1)$.
+\end{theorem}
+
+The difficulty is that the matrices $Y_i$ of different copies commute only approximately, in a weighted norm, and
+$\rho$ may be singular or far from flat. We do not assign them a joint spectral measure, and we do not round them to
+commuting matrices. Instead we measure spectral arcs of short words copy by copy, in reverse order of depth, and show
+that the record has additive entropy and that Alice can predict it at bounded cost.
+
+\emph{Notation.} Norms are unnormalized Hilbert--Schmidt norms, $\hs\xi=1$, and $c(V)=\hs{[V,\xi]}$. Constants $C$ depend on the
+fixed sources and on $k$, never on $e$, the depth, the dimension or $\rho$. Spectral angles are in turns.
+
+\begin{lemma}[Short words]\label{lem:short-words}
+For each copy there is a unitary $U_i$ with $c(U_i)\le Ce$, $\hs{(U_iY_iU_i^*-\zeta_iY_i)\xi}\le Ce$, $\zeta_i=e^{2\pi i/q_i}$, and
+$\hs{[U_i,V]\xi}\le Ce$ for every generator $V$ of another copy. Put $Z_{i,j}=X_i^jY_iX_i^{-j}$ and $T_{i,j}=X_i^jU_iX_i^{-j}$. For
+depths $j,l\le N$,
+\begin{gather*}
+c(Z_{i,j})+c(T_{i,j})\le C(N+1)e,\\
+\hs{[Z_{i,j},Z_{h,l}]\xi}+\hs{[T_{i,j},Z_{h,l}]\xi}\le C(N+1)^3e\quad(i\ne h),\\
+\hs{[Z_{i,j},Z_{i,l}]\xi}\le Ce\bigl(m_i^{|l-j|}+N+1\bigr),\qquad\hs{(T_{i,j}Z_{i,j}T_{i,j}^*-\zeta_iZ_{i,j})\xi}\le C(N+1)e,\\
+\hs{[T_{i,j},Z_{i,l}]\xi}\le Ce\bigl(m_i^{l-j}+N+1\bigr)\quad(l>j).
+\end{gather*}
+\end{lemma}
+
+\begin{proof}
+The unitary $U_i$ is that of \cref{lem:rotation-selector}. The selector polynomial $B_i$ uses only copy-$i$ generators, so its
+commutator with a generator $V$ of another copy has a finite certificate and is $O(e)$ on $\xi$; and $[U_i-B_i,V]\xi$ is
+$O(e)$ because both one-sided differences $(U_i-B_i)\xi$ and $\xi(U_i-B_i)$ are $O(e)$ and $c(V)\le e$.
+
+For unitaries $R,S$, left multiplication by $R$ and right multiplication by $S$ are commuting unitaries on the
+Hilbert--Schmidt space, so
+\begin{equation}\label{eq:left-right-power}
+\hs{R^a\xi-\xi S^a}\le a\hs{R\xi-\xi S}\qquad(a\ge0).
+\end{equation}
+Let $b_d=\hs{(X^dYX^{-d}-Y^{m^d})\xi}$ for one copy. Then $X^{d+1}YX^{-d-1}-Y^{m^{d+1}}=X(X^dYX^{-d}-Y^{m^d})X^{-1}+
+((XYX^{-1})^{m^d}-(Y^m)^{m^d})$. The first term is at most $b_d+2e$ on $\xi$. For the second, the relator gives
+$\hs{XYX^{-1}\xi-\xi Y^m}\le(3m+1)e$, so by~\eqref{eq:left-right-power} and $c(Y^{mn})\le mne$ it is at most $(4m+1)m^de$. Hence
+$b_d\le Cm^de$, with no factor $m^{2d}$.
+
+Conjugating by $X^{\min(j,l)}$, at cost $O((N+1)e)$, reduces $[Z_j,Z_l]$ to $[Y,X^{|l-j|}YX^{-|l-j|}]$, and the second factor is
+within $Cm^{|l-j|}e$ of $Y^{m^{|l-j|}}$, which commutes with $Y$. Applying~\eqref{eq:left-right-power} to $UYU^*$ and $\zeta Y$ gives
+$UY^nU^*$ within $O(ne)$ of $\zeta^nY^n$, and $\zeta^{m^d}=1$ for $d\ge1$ because $q\mid m$; comparing with $b_d$ and conjugating by
+$X^j$ gives the estimate for $[T_j,Z_l]$. The conjugacy estimate is the defining property of $U$ conjugated by $X^j$.
+Words of different copies have length $O(N+1)$ and commute after $O((N+1)^2)$ swaps, each with a suffix of length $O(N+1)$.
+\end{proof}
+
+For a unitary $Z$ and an offset $\vartheta$ uniform modulo $1/q$, let $P_a(Z;\vartheta)$, $a\in\Z_q$, be the spectral projections of
+$Z$ onto the arcs $[\vartheta+a/q,\vartheta+(a+1)/q)$; multiplying $Z$ by $\zeta$ permutes them cyclically, for every offset. For
+partitions put $C(P)=(\sum_a\hs{[P_a,\xi]}^2)^{1/2}$, $D(P,V)=(\sum_a\hs{[P_a,V]\xi}^2)^{1/2}$ and
+$D(P,Q)=(\sum_{a,b}\hs{[P_a,Q_b]\xi}^2)^{1/2}$.
+
+\begin{lemma}[Random spectral cuts]\label{lem:random-cuts}
+For unitaries $R,S$, $\mathbb E\sum_a\hs{P_a(R)\xi-\xi P_a(S)}^2\le\frac q2\hs{R\xi-\xi S}$. Consequently, for unitaries $Z,V,B$,
+\begin{gather*}
+\mathbb EC(P(Z))^2\le C_qc(Z),\qquad\mathbb ED(P(Z),V)^2\le C_q\bigl(\hs{[Z,V]\xi}+c(Z)+c(V)\bigr),\\
+\mathbb ED(P(Z),P(B))\le C\bigl(\hs{[Z,B]\xi}+c(Z)+c(B)\bigr)^{1/4},
+\end{gather*}
+and if $V$ conjugates $Z$ approximately to $\zeta Z$, with $\pi$ the induced cyclic permutation of the arcs,
+$\mathbb E\sum_a\hs{(P_a(Z)V-VP_{\pi(a)}(Z))\xi}^2\le C_q(\hs{(VZV^*-\zeta Z)\xi}+c(Z)+c(V))$.
+\end{lemma}
+
+\begin{proof}
+The weights $\hs{E_R(dt)\xi E_S(du)}^2$ form a coupling of the $\rho$-spectral laws of $R$ and $S$ with
+$\int|e^{2\pi it}-e^{2\pi iu}|^2=\hs{R\xi-\xi S}^2$ (\cref{lem:spectral-coupling}). The left side of the first claim is twice the
+coupling mass of pairs in different arcs, and a random offset separates $t$ from $u$ with probability at most $q\,d(t,u)$,
+where $d(t,u)\le\frac14|e^{2\pi it}-e^{2\pi iu}|$; Cauchy--Schwarz gives the bound. Take $R=S=Z$ for the first consequence, and
+$R=VZV^*$, $S=Z$ or $S=\zeta Z$ for the second and the covariant one, converting $P_a(R)\xi-\xi P_a(S)$ into the stated
+commutators at the cost of $C(P(Z))$ and $c(V)$; all quantities are bounded, so squares may be absorbed into first powers. For
+the third, the second applied with $Z$ as control bounds $\mathbb E\sum_b\hs{[Q_b,Z]\xi}^2$ for the arcs $Q_b$ of $B$; applying it again
+to the arcs of $Z$ with the unitary controls $2Q_b-I$, Cauchy--Schwarz over $b$ and Jensen give the fourth root.
+\end{proof}
+
+\begin{lemma}[Weighted histories]\label{lem:histories}
+Let $P_1,\dots,P_M$ be projective partitions with at most $Q$ outcomes, $c_t=C(P_t)$, $c=\sum_tc_t$, $d_{t,s}=D(P_t,P_s)$, and
+let $K_h$ be the Kraus products of the sequential measurement, in physical order. Then
+$\sum_hK_h^*K_h=\sum_hK_hK_h^*=I$ and, for every operator $F$,
+\[
+\Bigl(\sum_h\hs{[K_h,\xi]}^2\Bigr)^{1/2}\le c,\qquad\Bigl(\sum_h\hs{FK_h\xi}^2\Bigr)^{1/2}\le\hs{F\xi}+\opn Fc .
+\]
+Let $B$ be Bob's record of the sequence on $\rho$.
+\begin{enumerate}[label=(\alph*),itemsep=1pt]
+\item If a unitary $V_t$ fixes the earlier labels and permutes the $q_t$ labels of step $t$ cyclically, and $a_t$ is the sum of
+$c(V_t)$, of the aggregate covariance errors $(\sum_a\hs{(P_{s,a}V_t-V_tP_{s,\pi_s(a)})\xi}^2)^{1/2}$ over $s\le t$, and of $C_QMc$,
+then $H(B_t\mid B_1,\dots,B_{t-1})\ge\log q_t-C_Q\min(1,\sqrt{a_t})$.
+\item On the canonical purification, let Alice measure the transposed partitions in the same order, with record $A$. Then
+$H(B\mid A)\le C_Q\sum_t\min(1,c_t+\sum_{s<t}d_{t,s}+Mc)$, and $S(\rho)\ge H(B)-H(B\mid A)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Completeness follows by summing the innermost factor. Expanding $[AB,\xi]=A[B,\xi]+[A,\xi]B$ and summing each term by one of
+the two completeness relations gives the centrality bound by induction; then $FK_h\xi=F\xi K_h+F[K_h,\xi]$, and
+$\sum_h\hs{F\xi K_h}^2=\hs{F\xi}^2$ by unitality.
+
+(a) Telescope $V_tK_h-K_{\pi h}V_t$ through the prefix; each term is a later product, a covariance defect
+$P_{s,a}V_t-V_tP_{s,\pi_s(a)}$, and an earlier history applied to $\xi$. Summing the later outcomes by completeness and the earlier
+histories by the second estimate bounds the aggregate by $a_t$; moving $V_t$ through $\xi$ costs $c(V_t)$. Since right
+multiplication by $V_t$ preserves the norm, the prefix law $\hs{K_h\xi}^2$ and its cyclic shift in the current label are within
+total variation $Ca_t$. Averaging over the $q_t$ powers of the shift gives a law uniform in the current label given the past,
+and continuity of conditional entropy over an alphabet of fixed size gives the claim.
+
+(b) The joint components before step $t$ are $\sigma_{h,g}=K_h\xi K_g^*$, with $h$ Bob's and $g$ Alice's history. For every
+matrix $\sigma$, $\sum_a\hs{P_{t,a}\sigma-\sigma P_{t,a}}^2=2\sum_{a\ne b}\hs{P_{t,a}\sigma P_{t,b}}^2$, so $\sqrt{2\Pr[A_t\ne B_t]}$ is the
+aggregate norm of $[P_{t,a},\sigma_{h,g}]=[P_{t,a},K_h]\xi K_g^*+K_h[P_{t,a},\xi]K_g^*+K_h\xi[P_{t,a},K_g^*]$. The middle term
+aggregates to exactly $c_t$, and the two outer terms to the aggregate of $[P_{t,a},K_h]\xi$, which telescopes to at most
+$\sum_{s<t}d_{t,s}+C_QMc$. Fano's inequality with $h(x)\le C\sqrt x$ and subadditivity bound $H(B\mid A)$. Finally Alice's
+measurement prepares on Bob an ensemble averaging to $\rho$, so Holevo's bound gives $I(A:B)\le S(\rho)$.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:additive}]
+Put $n_i=\lfloor\log_{m_i}(1/e)\rfloor$, $N=\max_in_i$ and $M=\sum_in_i$, so $M,N=O(\log(1/e))$ and $em_i^{n_i}\le1$. For each copy
+measure the $q_i$ arcs of $Z_{i,j}$ for $j=n_i-1,\dots,0$, in this reverse order, the copies in a fixed order, with
+independent random offsets; this is an actual sequence of $M$ projective measurements. By \cref{lem:short-words} and
+\cref{lem:random-cuts}, $\mathbb Ec\le CM\sqrt{(N+1)e}$, so every polynomial in $M,N$ times $\mathbb Ec$ tends to zero.
+
+\emph{Bob's record.} At stage $(i,j)$ use $V=T_{i,j}$. It permutes the current arcs cyclically, and it nearly fixes the arcs of
+every earlier stage: earlier stages of the same copy are deeper, $l>j$, and those of other copies are controlled by the
+cross-copy estimates. By \cref{lem:random-cuts} and a geometric sum,
+$\mathbb Ea_{i,j}\le C(em_i^{n_i-j})^{1/2}+C(N+1)^Ce^{1/2}$, so by \cref{lem:histories}(a) and Jensen
+$\mathbb E[\log q_i-H(B_{i,j}\mid\text{earlier})]\le C(em_i^{n_i-j})^{1/4}+C(N+1)^Ce^{1/4}$. The first terms form a geometric series
+in $j$, bounded uniformly in $e$, and the remainders sum to $o(1)$. Hence $\mathbb EH(B)\ge\sum_in_i\log q_i-C$; the conditional
+entropies add across copies because the earlier record contains the copies already processed.
+
+\emph{Alice's prediction.} For two stages of one copy, $\mathbb Ed\le C(em_i^{|l-j|})^{1/4}+C((N+1)e)^{1/4}$, and for different copies
+$\mathbb Ed\le C((N+1)^3e)^{1/4}$. At stage $(i,j)$ the earlier stages of the same copy have $l>j$, and
+$\sum_{l>j}(em_i^{l-j})^{1/4}\le C(em_i^{n_i-j})^{1/4}$. Summing \cref{lem:histories}(b) gives $\mathbb EH(B\mid A)\le C$.
+
+\emph{Conclusion.} For every offset $S(\rho)\ge H(B)-H(B\mid A)$; averaging over offsets, which does not change $\rho$,
+$S(\rho)\ge\sum_in_i\log q_i-C=s\log(1/e)-C$. Finally $\log\rank\rho\ge S(\rho)$. For the upper bound, tensor the Fourier-lamp
+models of the copies at precision $e$, with the flat state: cross-copy commutators vanish exactly, the marked involution is
+$-I$ in every factor, internal defects are unchanged, dimensions multiply and entropies add.
+\end{proof}
+
+The estimates of \cref{lem:random-cuts,lem:histories} are written for this purpose, but each is elementary: the first is
+Connes' coupling with a random cut, the second uses that a sequence of projective pinchings is both trace preserving and
+unital, so that weighted errors can be summed over all histories without a factor of their number. The reverse order of
+depths is what makes the same-copy errors geometric.
+
+\subsection{Shared dilations force uniformity}\label{sec:rates-shared}
+
+Two dilations acting on the same $Y$ can force more than either alone. Take commuting involutions $z_0,z_1,w$ with the row
+$z_0z_1w=1$, a unitary $y$ exchanging $z_0$ and $z_1$ by conjugation, and unitaries $x_4,x_6$ with $x_jwx_j^{-1}=w$ and
+$x_jyx_j^{-1}=y^j$; the relation $[x_4,x_6]=1$ may be added. Call this source $K_{4,6}$; the marked involution is $w$.
+
+\begin{theorem}[Shared dilations $4$ and $6$]\label{thm:shared}
+Every model of $K_{4,6}$ at precision $e$, with or without $[x_4,x_6]=1$, satisfies $d\ge\rank\rho\ge c/e$ and
+$S(\rho)\ge\log(1/e)-C$, and there are flat models of dimension $O(1/e)$ satisfying $[x_4,x_6]=1$ exactly. For the
+$\rho$-spectral law $\mu$ of $Y$, with $\delta_j=\Wone(j_*\mu,\mu)$ and $\delta_S=\Wone((+\frac12)_*\mu,\mu)$ in turns,
+\[
+\Wone(\mu,h)\ \le\ \tfrac13(4\delta_6+7\delta_4+5\delta_S)\ \le\ \tfrac{85}4e .
+\]
+\end{theorem}
+
+\begin{proof}
+\emph{Spectral defects.} The lamp swap and the row give $\hs{(Z_1+Z_0)\xi}\le5e$, hence $\hs{(Z_0YZ_0^*+Y)\xi}\le12e$ after moving
+suffixes, and Connes' coupling with the state-change cost gives $\delta_S\le\frac{17}4e$. The dilation relators give
+$\delta_j\le\frac{j+3}2e$, so $\delta_4\le\frac72e$ and $\delta_6\le\frac92e$.
+
+\emph{Inverse-root kernels.} For $m\ge1$ let $D_m$ be the pushforward under $t\mapsto mt$, $Q_m$ the average of the rotations by
+$j/m$, and $R_m$ the operator choosing a uniform $m$-th root. Then $R_mD_m=Q_m$, $R_2Q_2D_2=Q_4$,
+$\Wone(R_m\alpha,R_m\beta)\le\frac1m\Wone(\alpha,\beta)$ (couple $t$ with $t+\Delta$ by a shortest signed difference and the roots
+$(t+j)/m$ with $(t+\Delta+j)/m$), and, as $R_m$ fixes Haar measure, $\Wone(\mu,h)\le\frac m{m-1}\Wone(\mu,R_m\mu)$.
+
+\emph{The arithmetic.} Since $D_2D_6=D_3D_4=D_{12}$, $\Wone(D_2\mu,D_3\mu)\le2\delta_6+3\delta_4$. The map $D_3$ commutes with the
+half-turn because $3$ is odd and is $3$-Lipschitz, so $\Wone(D_2\mu,S_*D_2\mu)\le4\delta_6+6\delta_4+3\delta_S$. Then
+$\Wone(\mu,Q_4\mu)\le\Wone(\mu,Q_2\mu)+\frac14\Wone(D_2\mu,S_*D_2\mu)\le\delta_6+\frac32\delta_4+\frac54\delta_S$, and
+$\Wone(\mu,R_4\mu)\le\Wone(\mu,Q_4\mu)+\frac14\delta_4$. With $m=4$ this proves the display.
+
+\emph{Lower bounds.} A law with at most $d$ atoms is at distance at least $1/(4d)$ from Haar measure in turns, so $d\ge1/(85e)$.
+\Cref{thm:entropy-transport} with $\nu=h$ and $\hs{[Y,\xi]}\le e$ gives $S(\rho)\ge\log(1/e)-C$, and $\rank\rho\ge2^{S(\rho)}$.
+
+\emph{Upper models.} For odd $L$ put $d=2^L$ and $N=d-1$, which is coprime to $6$; let $Y e_b=e^{2\pi ib/N}e_b$ for
+$0\le b\le N$ (one duplicated root at $b=N$), $Z_0e_b=e_{b\oplus2^{L-1}}$, $Z_1=-Z_0$, $W=-I$, and $X_j$ the permutation matrix
+with $X_je_b=e_{j^{-1}b\bmod N}$ on the cyclic labels $b<N$, where $j^{-1}$ is the inverse of $j$ modulo $N$, fixing the additional
+label $N$; equivalently $(X_j)_{b,jb}=1$. Then $X_j^*e_b=e_{jb}$, so $X_jYX_j^*e_b=e^{2\pi ijb/N}e_b$ and $X_jYX_j^*=Y^j$; with the opposite
+convention $X_je_b=e_{jb}$ one would get $Y^{j^{-1}}$ instead, for instance $Y^2$ at $N=7$, $j=4$. Also $X_jWX_j^*=W$ and $X_4X_6=X_6X_4$ exactly, and flipping the highest
+bit changes $b/N$ by $\pm(\frac12+\frac1{2N})$, so the lamp swaps have operator defect at most $\pi/N$. With the flat state this is a
+model at precision $\pi/N$ and entropy $\log d$.
+\end{proof}
+
+Each dilation alone permits the smaller exponent $\log_42=\frac12$ or $\log_62$; sharing $Y$ forces uniformity. This is an exact
+elementary transport identity, not a quantitative solution of the $\times m,\times n$ rigidity problem: for the pair $4,9$ the
+present bounds are $\Omega(e^{-1/2})$ and $O(e^{-1})$ (\cref{sec:open}).

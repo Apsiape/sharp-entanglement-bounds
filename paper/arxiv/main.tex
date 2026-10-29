@@ -1,0 +1,146 @@
+% The price of precision: usable entanglement in nonlocal games and the geometry of groups.
+% Build: pdflatex main (three passes). The supplied main.bbl needs no BibTeX step.
+% refs.bib is included for services that invoke BibTeX automatically.
+\documentclass[11pt,a4paper]{article}
+\newcommand{\DoNotLoadEpstopdf}{}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{0pt}
+\usepackage{etoolbox}
+\makeatletter
+\newcommand{\fixlongtablefill}{\patchcmd{\LT@output}{\vss}{\vfil}{\fixlongtablefill}{}}
+\fixlongtablefill
+\makeatother
+\usepackage{placeins}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\usepackage{enumitem}
+\usepackage{microtype}
+\setlength{\emergencystretch}{2em}
+\usepackage{xcolor}
+\usepackage{aliascnt}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+\usepackage[capitalise,nameinlink]{cleveref}
+\hypersetup{pdftitle={The price of precision: usable entanglement in nonlocal games and the geometry of groups},
+pdfauthor={Seth Douglas and Nidhal Mghirbi},pdfkeywords={nonlocal games, distillable entanglement, linear system games,
+constraint system games, Houghton's group, approximate representations, hyperlinear profile, undecidability}}
+
+% Theorem-like environments share the theorem counter through aliased counters, so that cleveref names each one.
+\newcommand{\sharedtheorem}[2]{\newaliascnt{#1}{theorem}\newtheorem{#1}[#1]{#2}\aliascntresetthe{#1}}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\sharedtheorem{proposition}{Proposition}
+\sharedtheorem{corollary}{Corollary}
+\sharedtheorem{lemma}{Lemma}
+\sharedtheorem{problem}{Problem}
+\newtheorem{fillingproposition}{Proposition}
+\renewcommand{\thefillingproposition}{13.6a}
+\crefname{fillingproposition}{Proposition}{Propositions}
+\newtheorem{holonomyproposition}{Proposition}
+\renewcommand{\theholonomyproposition}{13.9a}
+\crefname{holonomyproposition}{Proposition}{Propositions}
+\newtheorem*{theoremA}{Theorem A}
+\newtheorem*{theoremB}{Theorem B}
+\newtheorem*{theoremC}{Theorem C}
+\newtheorem*{theoremD}{Theorem D}
+\newtheorem*{theoremE}{Theorem E}
+\theoremstyle{definition}
+\sharedtheorem{definition}{Definition}
+\sharedtheorem{example}{Example}
+\theoremstyle{remark}
+\sharedtheorem{remark}{Remark}
+\numberwithin{equation}{section}
+\crefname{problem}{Problem}{Problems}
+\DeclareMathOperator{\FSym}{FSym}
+
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\hlp}{hlp}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Area}{Area}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\re}{Re}
+\newcommand{\hs}[1]{\lVert #1\rVert_2}
+\newcommand{\opn}[1]{\lVert #1\rVert_{\mathrm{op}}}
+\newcommand{\trn}[1]{\lVert #1\rVert_1}
+\newcommand{\fn}[1]{\lVert #1\rVert_{f}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\Ent}{\mathcal E}
+\newcommand{\RP}{R_{\mathrm P}}
+\newcommand{\GP}{G_{\mathrm P}}
+\newcommand{\Pres}{\mathcal P}
+\newcommand{\C}{\mathbb C}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\F}{\mathbb F}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Tor}{\mathbb T}
+\newcommand{\Wone}{W_1}
+\newcommand{\GSV}{G_{\mathrm{SV}}}
+\newcommand{\EF}{E_{\mathrm F}}
+\newcommand{\ED}{E_{\mathrm D}}
+\newcommand{\companionref}{Version 1.0.0, Zenodo. Unrefereed preprint; result numbers refer to this version}
+
+\title{The price of precision: usable entanglement in nonlocal games\ and the geometry of groups}
+\author{Seth Douglas \and Nidhal Mghirbi}
+\date{Version 1.1.0, October 2026}
+
+\begin{document}
+\maketitle
+
+\input{sections/abstract}
+
+{\small\setcounter{tocdepth}{1}\tableofcontents}
+
+\input{sections/intro}
+\input{sections/prelim}
+
+\part*{I.\quad The engine}\addcontentsline{toc}{part}{I.\texorpdfstring{\quad}{ } The engine}
+\input{sections/count}
+\input{sections/transfer}
+\input{sections/compile}
+\input{sections/extract}
+
+\part*{II.\quad The law}\addcontentsline{toc}{part}{II.\texorpdfstring{\quad}{ } The law}
+\input{sections/law}
+\input{sections/direction}
+
+\part*{III.\quad The spectrum}\addcontentsline{toc}{part}{III.\texorpdfstring{\quad}{ } The spectrum}
+\input{sections/transport}
+\input{sections/rates}
+\input{sections/rational}
+\input{sections/lamps}
+\input{sections/point}
+\input{sections/exact}
+
+\part*{IV.\quad Limits}\addcontentsline{toc}{part}{IV.\texorpdfstring{\quad}{ } Limits}
+\input{sections/obstructions}
+\input{sections/boundary}
+\input{sections/floor}
+\input{sections/open}
+\input{sections/discussion}
+\input{sections/methods}
+
+\appendix
+\crefalias{section}{appendix}
+\crefalias{subsection}{subappendix}
+\input{sections/app-protocol}
+\input{sections/app-status}
+\input{sections/app-audits}
+\input{sections/app-companion}
+\input{sections/app-reservoir}
+\input{sections/app-floor}
+\input{sections/app-window}
+
+\IfFileExists{refs.bib}{%
+  \bibliographystyle{plainurl}\bibliography{refs}%
+}{\input{main.bbl}}
+
+\end{document}

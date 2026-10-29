@@ -14,16 +14,16 @@ $ python -I -B l4m8/L4M8-EXACT.py
   "number_of_failures": 0,
   "input": "L4M8-LINEAR-GAME.json",
   "normal_form_engine": "verify/check_linear_games.py, l48_scalar",
-  "seconds": 0.96
+  "seconds": 0.94
 }
 [exit code 0]
 
 $ python -I -B l4m8/L4M8-PLAY.py 
-{"contexts_done": 1000, "seconds": 15.87746689998312, "source_trace_cache": 660}
-{"contexts_done": 2000, "seconds": 23.2370126999449, "source_trace_cache": 660}
-{"contexts_done": 3000, "seconds": 31.52010139997583, "source_trace_cache": 696}
-{"contexts_done": 4000, "seconds": 39.12378149997676, "source_trace_cache": 696}
-{"contexts_done": 5000, "seconds": 46.519441699958406, "source_trace_cache": 696}
+{"contexts_done": 1000, "seconds": 16.371673800051212, "source_trace_cache": 660}
+{"contexts_done": 2000, "seconds": 26.21514029998798, "source_trace_cache": 660}
+{"contexts_done": 3000, "seconds": 36.29007680003997, "source_trace_cache": 696}
+{"contexts_done": 4000, "seconds": 46.02117319998797, "source_trace_cache": 696}
+{"contexts_done": 5000, "seconds": 56.351897799992, "source_trace_cache": 696}
 {"complete_losses": [4.472266202921442e-06, 5.725065581496652e-08, 8.705921165652781e-10, 1.3556628035921791e-11], "maximum_mass_errors": [2.220446049250313e-16, 0.0, 0.0, 2.220446049250313e-16], "complete_square_errors": [0.0, 0.0, 0.0, 0.0]}
 {"validation_length": 1, "source_error_squared": 0.12286176129541548, "game_loss": 4.472266202921442e-06, "mass_error": 2.220446049250313e-16}
 {"word_length": 1, "source_dimension": 4, "game_schmidt_rank": 64, "source_precision": 0.3505164208641522, "game_entropy": 6.0, "all_contexts": 5653, "all_raw_branches": 45244, "actual_complete_game_loss": 4.472266202921442e-06, "loss_over_source_error_squared": 3.640079839135695e-05, "maximum_normalized_square_trace_defect": 0.0, "maximum_probability_mass_error": 2.220446049250313e-16, "maximum_imaginary_probability_or_correlation": 5.265241893342759e-19, "maximum_context_forbidden_probability": 0.0019197150202408357}
@@ -48,7 +48,7 @@ $ python -I -B l4m8/L4M8-PLAY.py
     "maximum_trace_difference": 2.3191507704880176e-16
   },
   "source_trace_cache": 696,
-  "seconds": 51.33555429999251,
+  "seconds": 63.36753000004683,
   "limits": "Complete actual strategies, not optimization or a lower-bound proof. Source and retained-state compiler proofs give the matching one-third rate."
 }
 [exit code 0]
