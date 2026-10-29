@@ -2,7 +2,7 @@
 
 Seth Douglas and Nidhal Mghirbi
 
-Version 1.1.0, October 2026. Concept DOI: [10.5281/zenodo.23697345](https://doi.org/10.5281/zenodo.23697345).
+Version 1.1.0, October 2026. DOI: [10.5281/zenodo.23753349](https://doi.org/10.5281/zenodo.23753349). Concept DOI (all versions): [10.5281/zenodo.23697345](https://doi.org/10.5281/zenodo.23697345).
 
 The companion paper, *An explicit nonlocal game of quantum value one that needs exponential entanglement* (Nidhal Mghirbi and Seth Douglas, 2026, [10.5281/zenodo.23697255](https://doi.org/10.5281/zenodo.23697255)), proves the qubit count in an arbitrary state, state-weighted transfer and return for linear system games, the CHSH(n) and Slofstra-Vidick rates, and the explicit configuration-lamp game. This paper identifies every imported result at its use. Coefficient realization is supplied by Theorem 1.1 of [The uncomputable price of precision](https://doi.org/10.5281/zenodo.23736188); Appendix D maps the additional uses of that paper.
 
